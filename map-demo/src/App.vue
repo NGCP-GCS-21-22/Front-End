@@ -1,26 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <GMapMap
+      :center="{lat: 51.093048, lng: 6.842120}"
+      :zoom="7"
+      map-type-id="terrain"
+      style="width: 100vw; height: 900px"
+  >
+  </GMapMap>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
+<script >
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      center: {lat: 51.093048, lng: 6.842120},
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
