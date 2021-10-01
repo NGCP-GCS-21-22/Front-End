@@ -13,4 +13,4 @@ app.use(VueGoogleMaps, {
         key: 'AIzaSyALxRDktZaYsxXCYJQjLdJ6Wz-l3paEBag',
     },
     autobindAllEvents: true,
-}).mount('#app')
+})
