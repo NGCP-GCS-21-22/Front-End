@@ -1,7 +1,7 @@
 <template>
     <label for="">Vehicle Input:</label>
-    
-    <p><input type="text" v-model="vehicle_name"> {{vehicle_name}}</p>
+
+    <p><input type="text" v-model="vehicle" /> {{ vehicle }}</p>
     <button @click="post_vehicle_type">Submit</button>
    
 
@@ -27,10 +27,21 @@ export default {
       }
   },
   methods:{
-    post_vehicle_type(){
-      const path = "http://localhost:3000/data"
-      axios.get(path)
-      .then
+    post_vehicle_type() {
+      // const vehicle_name = data();
+      const vehicle_name = JSON.stringify({
+        vehicle: this.vehicle,
+      });
+      console.log(this.vehicle);
+      const path = "http://localhost:3000/data";
+      axios
+        .post(path, vehicle_name)
+        .then(() => {
+          console.log("Sucessfully Post!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     get_vehicle_type() {
       const path = "http://localhost:3000/data"
