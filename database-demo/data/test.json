@@ -1,3 +1,10 @@
 {
-  "data": [{"vehicle" : "MAC"}]
+  "data": [
+    {
+      "vehicle": "MAC"
+    },
+    {
+      "tomato": "fruit"
+    }
+  ]
 }

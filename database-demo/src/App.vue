@@ -1,13 +1,21 @@
 <template>
-  <form action="">
     <label for="">Vehicle Input:</label>
     
     <p><input type="text" v-model="vehicle_name"> {{vehicle_name}}</p>
     <button @click="post_vehicle_type">Submit</button>
-  </form>
+   
+
+  <br>
+  
+    <label for="">Get request</label>
+    <br>
+    <button v-on:click="get_vehicle_type" >Get</button>
+    <p v-if="vehicle_name"> {{vehicle_name}} </p>
+ 
 </template>
 
 <script>
+import axios from "axios"
 
 
 export default {
@@ -15,7 +23,7 @@ export default {
   data()
   { 
       return{
-        vehicle_name: "UAV"
+        vehicle_name: null,
       }
   },
   methods:{
@@ -23,6 +31,17 @@ export default {
       const path = "http://localhost:3000/data"
       axios.get(path)
       .then
+    },
+    get_vehicle_type() {
+      const path = "http://localhost:3000/data"
+      axios.get(path)
+      .then((reponse ) => {
+        console.log(reponse.data)
+        this.vehicle_name = reponse.data[0]["vehicle"]
+      }) 
+      .catch((error) => {
+        console.log(error)
+      })
     }
   }
   
