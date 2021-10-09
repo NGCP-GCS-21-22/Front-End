@@ -1,32 +1,33 @@
 <template>
-    <label for="">Vehicle Input:</label>
+  <!-- POST -->
+  <label for="">Vehicle Input:</label>
 
-    <p><input type="text" v-model="vehicle" /> {{ vehicle }}</p>
-    <button @click="post_vehicle_type">Submit</button>
-   
+  <p><input type="text" v-model="vehicle" /> {{ vehicle }}</p>
+  <button @click="post_vehicle_type">Submit</button>
 
-  <br>
-  
-    <label for="">Get request</label>
-    <br>
-    <button v-on:click="get_vehicle_type" >Get</button>
-    <p v-if="vehicle_name"> {{vehicle_name}} </p>
- 
+  <!-- GET -->
+  <label for="">Get request</label>
+  <br />
+  <button v-on:click="get_vehicle_type">Get</button>
+  <p v-if="vehicle_name">{{ vehicle_name }}</p>
+  <!-- <Random /> -->
 </template>
 
 <script>
-import axios from "axios"
-
+import axios from "axios";
+import Random from "./components/Random.vue";
 
 export default {
-  name: 'App',
-  data()
-  { 
-      return{
-        vehicle_name: null,
-      }
+  name: "App",
+  components: {
+    Random,
   },
-  methods:{
+  data() {
+    return {
+      vehicle_name: null,
+    };
+  },
+  methods: {
     post_vehicle_type() {
       // const vehicle_name = data();
       const vehicle_name = JSON.stringify({
@@ -44,19 +45,19 @@ export default {
         });
     },
     get_vehicle_type() {
-      const path = "http://localhost:3000/data"
-      axios.get(path)
-      .then((reponse ) => {
-        console.log(reponse.data)
-        this.vehicle_name = reponse.data[0]["vehicle"]
-      }) 
-      .catch((error) => {
-        console.log(error)
-      })
-    }
-  }
-  
-}
+      const path = "http://localhost:3000/data";
+      axios
+        .get(path)
+        .then((reponse) => {
+          console.log(reponse.data);
+          this.vehicle_name = reponse.data[0]["vehicle"];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style>
