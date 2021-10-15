@@ -1,4 +1,4 @@
-# database-demo
+# front-end-app
 
 ## Project setup
 ```
