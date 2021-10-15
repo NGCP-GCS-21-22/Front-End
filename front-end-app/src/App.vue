@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <!-- POST -->
-    <Post />
+    <b-container>
+      <b-row>
+        <b-col>
+          <!-- POST -->
+          <h2>Enter Your Vehicle Name</h2>
+          <Post />
+        </b-col>
+        <br />
+        <b-col>
+          <!-- GET -->
+          <h2>Return Vehicle Name</h2>
+          <Get />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-
-import BootTest from "@/components/BootTest.vue"
-import Post from "@/components/Post.vue"
+import Post from "@/components/Post.vue";
+import Get from "@/components/Get.vue";
 
 export default {
-  data()
-  {
-    return{
+  data() {
+    return {
       vehicle_name: null,
-    }
+    };
   },
-  name: 'App',
+  name: "App",
   components: {
-    BootTest,
-    Post
+    Post,
+    Get,
   },
-}
+};
 </script>
 
 <style>
