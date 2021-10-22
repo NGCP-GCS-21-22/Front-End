@@ -8,7 +8,7 @@
       :tilt="tilt"
       :options="options"
     >
-      <GmapMarker
+    <GmapMarker
         :key="marker.id"
         v-for="marker in markers"
         :position="marker.position"
@@ -40,6 +40,7 @@ export default {
     return {
       // Map Data
       center: { lat: 33.93364332758927, lng: -117.6311926970484 },
+      zoom: 18,
       tilt: 0,
       options: {
         zoomControl: false,
@@ -50,7 +51,7 @@ export default {
         fullscreenControl: false,
       },
       mapType: "satellite",
-      zoom: 18,
+
       //Marker Data
       markers: [
         {
