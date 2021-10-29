@@ -1,4 +1,4 @@
-# map-demo
+# front-end
 
 ## Project setup
 ```
