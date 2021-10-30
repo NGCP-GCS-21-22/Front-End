@@ -1,60 +1,56 @@
 <template>
-	<div>
-		<b-navbar id="nav" toggleable="lg" type="dark">
-            <b-img style="width: 4%" :src="require('../assets/ngcp.png')" ></b-img>
+  <div>
+    <b-navbar id="nav" toggleable="lg" type="dark">
+      <b-img style="width: 4%" :src="require('../assets/ngcp.png')"></b-img>
 
-			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-			<b-navbar-nav class="ml-auto">
-				<b-collapse id="nav-collapse" is-nav right>
-					<b-navbar-nav>
-						<b-nav-item href="#/">Main</b-nav-item>
-						<b-nav-item href="#/mac">MAC</b-nav-item>
-						<b-nav-item href="#/eru">ERU</b-nav-item>
-						<b-nav-item href="#/mea">MEA</b-nav-item>
-					</b-navbar-nav>
-				</b-collapse>
-			</b-navbar-nav>
-		</b-navbar>
-		<router-view></router-view>
-	</div>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-navbar-nav class="ml-auto">
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item :active="$route.name == 'Main'">
+              <b-link to="/">Main</b-link>
+            </b-nav-item>
+            <b-nav-item :active="$route.name == 'MAC'">
+              <b-link to="/mac">MAC</b-link>
+            </b-nav-item>
+            <b-nav-item :active="$route.name == 'ERU'">
+              <b-link to="/eru">ERU</b-link>
+            </b-nav-item>
+            <b-nav-item :active="$route.name == 'MEA'">
+              <b-link to="/mea">MEA</b-link>
+            </b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar-nav>
+    </b-navbar>
+    <router-view></router-view>
+  </div>
 </template>
 <script>
-export default {
-	data() {
-		return {
-			stage: "[Stage]",
-			vehicle: "[Vehicle]",
-		}
-	},
-	methods: {
-		setGeneralStage(stage, vehicle) {
-			this.stage = stage
-			this.vehicle = vehicle
-			//console.log(stage);
-			//console.log("a nice hot cup of tea");
-			this.$forceUpdate()
-		},
-	},
-}
+export default {};
 </script>
 <style scoped>
 #nav {
-	background-color: #011949;
-    padding: 8px;
+  background-color: #011949;
+  padding: 8px;
 }
 #nav a {
-	padding: 5px 20px;
-	text-decoration: none;
-	color: white;
-    font-size: 18pt;
-    font-family: Helvetica;
-    font-weight: 400;
+  padding: 5px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 25pt;
+  font-family: Helvetica;
+  font-weight: 400;
 }
-#nav a.router-link-exact-active, #nav a:active {
-	color: white;
-	background-color: gray;
+#nav a.router-link-exact-active {
+  color: #61a3ff;
+  text-decoration: underline;
 }
 #nav a:hover {
-	background-color: rgb(49, 68, 109);
+  color: rgb(144, 165, 209);
 }
+
+/* #nav a.active {
+	color: rgb(144, 165, 209);
+} */
 </style>
