@@ -2,10 +2,10 @@
 	<div>
 		<b-navbar id="nav" toggleable="lg" type="dark">
 			<b-img
-				style="width: 4%"
+				style="width: 75px; padding-left: 15px;"
 				:src="require('../assets/ngcp.png')"
 			></b-img>
-			<div class="nav-title">GCS</div>
+			<div class="nav-title">Ground Control Station</div>
 			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 			<b-navbar-nav class="ml-auto">
 				<b-collapse id="nav-collapse" is-nav>
@@ -40,7 +40,7 @@ export default {}
 #nav a {
 	padding: 5px 20px;
 	text-decoration: none;
-	color: white;
+	color: rgb(226, 226, 226);
 	font-size: 25pt;
 	font-weight: 400;
 }
@@ -53,9 +53,11 @@ export default {}
 }
 
 .nav-title {
-	font-size: 25pt;
-	padding-left: 30px;
+	font-size: 18pt;
+  text-transform: uppercase;
+	padding-left: 25px;
     font-weight: 400;
-	color: white;
+    /* margin: auto; */
+	color: rgb(226, 226, 226);
 }
 </style>
