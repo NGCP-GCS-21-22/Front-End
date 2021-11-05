@@ -1,15 +1,15 @@
 <template>
   <div>
-    <b-container>
-      <b-card style="width:550px; height:190px">
+    <b-container fluid="sm">
+      <b-card fluid style="width:auto; height:auto; padding-right:0;" align-self="center">
         <b-row>
           <b-col>
-            <h2 align="left">{{vehicleName}} Status</h2>
+            <h2>{{vehicleName}} Status</h2>
           </b-col>
-          <b-col cols="1">
+          <b-col >
             <b-img
               :src="require('@/assets/airplane.png')"
-              style="width:60px; height:50px"
+              style="width:auto; height:auto"
               >
             </b-img>
           </b-col>    
@@ -18,7 +18,7 @@
             </br>
             Last Packet: 2ms
           </b-col>
-            <b-icon icon="reception4" style="color: #29C16E; width:50px; height:50px"></b-icon>
+            <b-icon icon="reception4" style="color: #29C16E; width:auto; height:auto"></b-icon>
           
         </b-row>
         
@@ -27,16 +27,17 @@
         </b-row>
         <b-row>
             <b-col cols="7">
-              <b-icon icon="battery-full" style="color: #29C16E; width:60px; height:28px" ></b-icon>
+              <b-icon icon="battery-full" style="color: #29C16E; width:auto; height:auto" ></b-icon>
               97%
             </b-col>
             <b-col>
-              <b-card bg-variant="secondary" text-variant="white" style="width:165px; height:25px;" no-body>Mode: Autonomous</b-card>
+              <b-card bg-variant="secondary" text-variant="white" style="width:auto; height:auto;" no-body>Mode: Autonomous</b-card>
             </b-col>
         </b-row>
+        &nbsp
         <b-row>
           <b-col>
-            <b-button @click="show-true" v-b-modal.modal-1 variant="primary" class="mb-2" style="width:230px; height:50px">
+            <b-button @click="show-true" v-b-modal.modal-1 variant="primary" class="mb-2" style="width:auto; height:auto">
               <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> STAGE SELECTION
             </b-button>
 
@@ -50,7 +51,7 @@
             </b-modal>
           </b-col>
           <b-col>
-            <b-button @click="show-true" v-b-modal.modal-2 variant="danger" class="mb-2" style="width:230px; height:50px">
+            <b-button @click="show-true" v-b-modal.modal-1 variant="danger" class="mb-2" style="width:auto; height:auto">
               
               <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> EMERGENCY STOP
             </b-button>
@@ -80,7 +81,7 @@ export default {
 <style>
 img {
   display: block;
-  width: 20;
-  height: 20;
+  width: auto;
+  height: auto;
 }
 </style>
