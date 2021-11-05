@@ -4,6 +4,7 @@ import Main from '../views/Main.vue'
 import MAC from '../views/MAC.vue'
 import ERU from '../views/ERU.vue'
 import MEA from '../views/MEA.vue'
+import Form from '../views/Form.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/mea',
     name: 'MEA',
     component: MEA
+  },
+  {
+    path: '/form',
+    name: 'Form',
+    component: Form
   },
 ]
 
