@@ -1,0 +1,39 @@
+{
+    "vehicles": {
+        "MAC": {
+            "Stages": [
+                {
+                    "id": 1,
+                    "name": "Ready for Takeoff"
+                },
+                {
+                    "id": 2,
+                    "name": "Locate Hiker"
+                }
+            ],
+            "Waypoints": {
+                "ERU Drop Location": {
+                    "alt": false
+                },
+                "Home Coordinates": {
+                    "alt": true
+                }
+            },
+            "Search Area": true,
+            "Manual Control": null
+        },
+        "ERU": {
+            "Waypoints": {
+                "ERU Drop Location": {
+                    "alt": false
+                },
+                "Home Coordinates": {
+                    "alt": true
+                }
+            },
+            "Search Area": true,
+            "Manual Control": null
+        },
+        "MEA": {}
+    }
+}
