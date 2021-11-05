@@ -4,7 +4,7 @@
       <b-card style="width:550px; height:190px">
         <b-row>
           <b-col>
-            <h2 align="left">MAC Status</h2>
+            <h2 align="left">{{vehicleName}} Status</h2>
           </b-col>
           <b-col cols="1">
             <b-img
@@ -72,7 +72,9 @@
 
 <script>
 import axios from "axios";
-export default {};
+export default {
+    props: ['vehicleName']
+};
 </script>
 
 <style>

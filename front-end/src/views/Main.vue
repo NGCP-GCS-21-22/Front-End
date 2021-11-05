@@ -2,6 +2,7 @@
   <div>
     <b-row class="noPadding">
       <br />
+      <!-- left column -->
       <b-col align="left">
         <!-- RESIZE IMG -->
         <div id="image">
@@ -15,12 +16,13 @@
       </b-col>
       <br />
       <!-- ALIGN COLUMNS RIGHT A LITTLE BIT MORE AND MAKE WIDER -->
+      <!-- right column -->
       <b-col cols="5">
-        <VehicleStatus />
+        <VehicleStatus :vehicleName="'MAC'"/>
         &nbsp;
-        <VehicleStatus />
+        <VehicleStatus :vehicleName="'ERU'"/>
         &nbsp;
-        <VehicleStatus />
+        <VehicleStatus :vehicleName="'MEA'"/>
       </b-col>
     </b-row>
   </div>
