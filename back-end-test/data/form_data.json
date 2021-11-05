@@ -20,9 +20,19 @@
                 }
             },
             "Search Area": true,
-            "Manual Control": null
+            "Manual Control": false
         },
         "ERU": {
+            "Stages": [
+                {
+                    "id": 1,
+                    "name": "Ready for Takeoff"
+                },
+                {
+                    "id": 2,
+                    "name": "Locate Hiker"
+                }
+            ],
             "Waypoints": {
                 "ERU Drop Location": {
                     "alt": false
@@ -31,8 +41,8 @@
                     "alt": true
                 }
             },
-            "Search Area": true,
-            "Manual Control": null
+            "Search Area": false,
+            "Manual Control": true
         },
         "MEA": {}
     }
