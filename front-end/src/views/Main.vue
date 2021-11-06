@@ -18,11 +18,17 @@
       <!-- ALIGN COLUMNS RIGHT A LITTLE BIT MORE AND MAKE WIDER -->
       <!-- right column -->
       <b-col cols="5">
+        <b-row>
         <VehicleStatus :vehicleName="'MAC'"/>
-        &nbsp;
+        </b-row>
+        <!-- &nbsp; -->
+        <b-row>
         <VehicleStatus :vehicleName="'ERU'"/>
-        &nbsp;
-        <VehicleStatus :vehicleName="'MEA'"/>
+        </b-row>
+        <!-- &nbsp; -->
+        <b-row>
+        <!-- <VehicleStatus :vehicleName="'MEA'"/> -->
+        </b-row>
       </b-col>
     </b-row>
   </div>
@@ -34,7 +40,7 @@ import VehicleStatus from "@/components/Main/VehicleStatus.vue";
 
 export default {
   components: {
-    VehicleStatus,
+    VehicleStatus
   },
 };
 </script>

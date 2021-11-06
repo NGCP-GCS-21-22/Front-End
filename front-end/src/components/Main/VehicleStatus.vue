@@ -23,7 +23,7 @@
         </b-row>
         
         <b-row>
-        <b-card-subtitle align="left">Mission Stage: Return to Base</b-card-subtitle>
+        <b-card-sub-title align="left">Mission Stage: Return to Base</b-card-sub-title>
         </b-row>
         <b-row>
             <b-col cols="7">
@@ -36,35 +36,16 @@
         </b-row>
         <b-row>
           <b-col>
-            <b-button @click="show-true" v-b-modal.modal-1 variant="primary" class="mb-2" style="width:230px; height:50px">
-              <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> STAGE SELECTION
-            </b-button>
-
-            <b-modal id="modal-1" title="Stage Selection">
-              <p class="my-4">This is Stage Selection</p>
-                <template #modal-footer="{ok, cancel}">
-                 <!-- Emulate built in modal footer ok and cancel button actions -->
-                <b-button size="sm" variant="success" @click="ok()">Yes</b-button>
-                <b-button size="sm" variant="danger" @click="cancel()">No</b-button>
-                </template>
-            </b-modal>
+            <stage-selection>
+            </stage-selection>
           </b-col>
           <b-col>
-            <b-button @click="show-true" v-b-modal.modal-2 variant="danger" class="mb-2" style="width:230px; height:50px">
-              
-              <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> EMERGENCY STOP
-            </b-button>
-
-            <b-modal id="modal-2" title="Emergency Stop">
-              <p class="my-4">Are you sure?</p>
-              <template #modal-footer="{ ok, cancel }">
-                 <!-- Emulate built in modal footer ok and cancel button actions -->
-                <b-button size="sm" variant="success" @click="ok()">Yes</b-button>
-                <b-button size="sm" variant="danger" @click="cancel()">No</b-button>
-              </template>
-            </b-modal>
+            <!-- <EmergencyStop/> -->
           </b-col>
         </b-row>
+        <!-- <b-col>
+            <!-- <AnotherButton/> -->
+          <!-- </b-col> --> -->
       </b-card>
     </b-container>
   </div>
@@ -72,7 +53,12 @@
 
 <script>
 import axios from "axios";
+import EmergencyStop from './EmergencyStop.vue';
+import StageSelection from './StageSelection.vue';
+import AnotherButton from './AnotherButton.vue';
+
 export default {
+    components: {EmergencyStop, "stage-selection": StageSelection, AnotherButton},
     props: ['vehicleName']
 };
 </script>
