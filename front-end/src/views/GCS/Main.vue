@@ -7,7 +7,7 @@
         <!-- RESIZE IMG -->
         <div id="image">
           <b-img
-            :src="require('../assets/map.png')"
+            :src="require('@/assets/map.png')"
             class="img-fluid"
             rounded
             alt="map pic"

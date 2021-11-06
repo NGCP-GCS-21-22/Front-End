@@ -11,16 +11,16 @@
 				<b-collapse id="nav-collapse" is-nav>
 					<b-navbar-nav>
 						<b-nav-item :active="$route.name == 'Main'">
-							<b-link to="/">Main</b-link>
+							<b-link to="/gcs/main">Main</b-link>
 						</b-nav-item>
 						<b-nav-item :active="$route.name == 'MAC'">
-							<b-link to="/mac">MAC</b-link>
+							<b-link to="/gcs/mac">MAC</b-link>
 						</b-nav-item>
 						<b-nav-item :active="$route.name == 'ERU'">
-							<b-link to="/eru">ERU</b-link>
+							<b-link to="/gcs/eru">ERU</b-link>
 						</b-nav-item>
 						<b-nav-item :active="$route.name == 'MEA'">
-							<b-link to="/mea">MEA</b-link>
+							<b-link to="/gcs/mea">MEA</b-link>
 						</b-nav-item>
 					</b-navbar-nav>
 				</b-collapse>
