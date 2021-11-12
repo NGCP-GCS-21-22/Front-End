@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .btn-circle.btn-sm {
   width: 30px;
   height: 30px;

@@ -54,11 +54,6 @@ const routes = [
       },
     ]
   },
-  {
-    path: '/form',
-    name: 'Form',
-    component: Form
-  },
 ]
 
 const router = new VueRouter({

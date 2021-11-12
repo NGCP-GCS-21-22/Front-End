@@ -23,7 +23,7 @@
         </b-row>
         
         <b-row>
-        <b-card-subtitle align="left">Mission Stage: Return to Base</b-card-subtitle>
+        <b-card-sub-title align="left">Mission Stage: Return to Base</b-card-sub-title>
         </b-row>
         <b-row>
             <b-col cols="7">
@@ -36,7 +36,7 @@
         </b-row>
         <b-row>
           <b-col>
-            <b-button @click="show-true" v-b-modal.modal-1 variant="primary" class="mb-2" style="width:230px; height:50px">
+            <b-button v-b-modal.modal-1 variant="primary" class="mb-2" style="width:230px; height:50px">
               <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> STAGE SELECTION
             </b-button>
 
@@ -50,7 +50,7 @@
             </b-modal>
           </b-col>
           <b-col>
-            <b-button @click="show-true" v-b-modal.modal-2 variant="danger" class="mb-2" style="width:230px; height:50px">
+            <b-button v-b-modal.modal-2 variant="danger" class="mb-2" style="width:230px; height:50px">
               
               <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> EMERGENCY STOP
             </b-button>
@@ -73,11 +73,11 @@
 <script>
 import axios from "axios";
 export default {
-    props: ['vehicleName']
+  props: ["vehicleName"],
 };
 </script>
 
-<style>
+<style scoped>
 img {
   display: block;
   width: 20;
