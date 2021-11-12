@@ -29,6 +29,27 @@
             </b-row>
             <b-row>
               <!-- emergency stop -->
+              <b-button
+                @click="EmodalShow = !EmodalShow"
+                variant="danger"
+                style="width: 230px; height: 50px"
+                >Emergency Stop</b-button
+              >
+              <b-modal v-model="EmodalShow" hide-footer title="Emergency Stop">
+                <h3>Hello From Emergency Stop Modal!</h3>
+                <b-button
+                  variant="success"
+                  block
+                  @click="EmodalShow = !EmodalShow"
+                  >Yes</b-button
+                >
+                <b-button
+                  variant="danger"
+                  block
+                  @click="EmodalShow = !EmodalShow"
+                  >Close Me</b-button
+                >
+              </b-modal>
             </b-row>
           </b-col>
         </b-row>
@@ -53,6 +74,8 @@ export default {
   data() {
     return {
       latency: 2,
+      SmodalShow: false,
+      EmodalShow: false,
     };
   },
 };
