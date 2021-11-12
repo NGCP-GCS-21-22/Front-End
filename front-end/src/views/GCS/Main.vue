@@ -14,9 +14,7 @@
       <!-- right column -->
       <b-col class="right-column" cols="4">
         <VehicleStatus :vehicleName="'MAC'" />
-
         <VehicleStatus :vehicleName="'ERU'" />
-
         <VehicleStatus :vehicleName="'MEA'" />
       </b-col>
     </b-row>
