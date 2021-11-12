@@ -65,6 +65,9 @@
             </b-modal>
           </b-col>
         </b-row>
+        <!-- <b-col>
+            <!-- <AnotherButton/> -->
+          <!-- </b-col> -->
       </b-card>
     </b-container>
   </div>
@@ -72,6 +75,10 @@
 
 <script>
 import axios from "axios";
+import EmergencyStop from './EmergencyStop.vue';
+import StageSelection from './StageSelection.vue';
+import AnotherButton from './AnotherButton.vue';
+
 export default {
   props: ["vehicleName"],
 };
