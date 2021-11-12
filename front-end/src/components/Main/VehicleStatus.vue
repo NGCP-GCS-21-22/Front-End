@@ -1,19 +1,19 @@
 <template>
 	<div>
 		<b-container>
-			<b-card >
+			<b-card>
 				<!-- top row -->
 				<b-row>
-					<b-col class="top-left-col" cols="7">
+					<b-col class="top-left-col" cols="6">
 						<VehicleStatusTitle :vehicleName="vehicleName" />
 					</b-col>
-					<b-col class="top-right-col" cols="5">
+					<b-col class="top-right-col" cols="6">
 						<ConnectionStatus :latency="latency" />
 					</b-col>
 				</b-row>
 
 				<!-- bottom row -->
-				<b-row class="justify-content-md-center">
+				<b-row>
 					<b-col>
 						<!-- Stage Selection Dropdown -->
 					</b-col>

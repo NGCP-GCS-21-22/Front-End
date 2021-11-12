@@ -2,8 +2,8 @@
   <b-row>
     <!-- left side -->
     <b-col cols="8">
-      <b-row> Connection: Online </b-row>
-      <b-row> Last packet: {{ latency }}ms </b-row>
+      Connection: Online <br />
+      Last packet: {{ latency }}ms
     </b-col>
 
     <!-- right side -->
@@ -23,8 +23,11 @@ export default {
 
 <style scoped>
 .reception {
-  color: #29c16e;
-  width: 40px;
-  height: 40px;
+    color: #29c16e;
+    width: 40px;
+    height: 40px;
+}
+.connection-text {
+    padding-left: 30px;
 }
 </style>
