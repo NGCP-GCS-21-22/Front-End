@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <b-container>
-      <b-card style="width:550px; height:190px">
+   <div>
+     <b-card style="width:550px; height:190px">
         <b-row>
           <b-col>
             <h2 align="left">{{vehicleName}} Status</h2>
@@ -19,7 +18,6 @@
             Last Packet: 2ms
           </b-col>
             <b-icon icon="reception4" style="color: #29C16E; width:50px; height:50px"></b-icon>
-          
         </b-row>
         
         <b-row>
@@ -34,42 +32,26 @@
               <b-card bg-variant="secondary" text-variant="white" style="width:165px; height:25px;" no-body>Mode: Autonomous</b-card>
             </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-            <b-button v-b-modal.modal-1 variant="primary" class="mb-2" style="width:230px; height:50px">
-              <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> STAGE SELECTION
-            </b-button>
 
-            <b-modal id="modal-1" title="Stage Selection">
-              <p class="my-4">This is Stage Selection</p>
-                <template #modal-footer="{ok, cancel}">
-                 <!-- Emulate built in modal footer ok and cancel button actions -->
-                <b-button size="sm" variant="success" @click="ok()">Yes</b-button>
-                <b-button size="sm" variant="danger" @click="cancel()">No</b-button>
-                </template>
-            </b-modal>
-          </b-col>
-          <b-col>
-            <b-button v-b-modal.modal-2 variant="danger" class="mb-2" style="width:230px; height:50px">
-              
-              <b-icon icon="exclamation-circle-fill" variant="white"></b-icon> EMERGENCY STOP
-            </b-button>
+      <b-row>
+        <b-button @click="SmodalShow = !SmodalShow" variant="primary" style="width:230px; height:50px">Stage Selection</b-button>
+        <b-col>
+        <b-button @click="EmodalShow = !EmodalShow" variant="danger" style="width:230px; height:50px">Emergency Stop</b-button>
+        </b-col>
 
-            <b-modal id="modal-2" title="Emergency Stop">
-              <p class="my-4">Are you sure?</p>
-              <template #modal-footer="{ ok, cancel }">
-                 <!-- Emulate built in modal footer ok and cancel button actions -->
-                <b-button size="sm" variant="success" @click="ok()">Yes</b-button>
-                <b-button size="sm" variant="danger" @click="cancel()">No</b-button>
-              </template>
-            </b-modal>
-          </b-col>
-        </b-row>
-        <!-- <b-col>
-            <!-- <AnotherButton/> -->
-          <!-- </b-col> -->
-      </b-card>
-    </b-container>
+        <b-modal v-model="SmodalShow" hide-footer title="Stage Selection">
+            <h3>Hello From Stage Selection Modal!</h3>
+            <b-button variant="success" block @click="SmodalShow = !SmodalShow">Yes</b-button>
+            <b-button variant="danger" block @click="SmodalShow = !SmodalShow">Close Me</b-button>
+        </b-modal>
+        <b-modal v-model="EmodalShow" hide-footer title="Emergency Stop">
+          <h3>Hello From Emergency Stop Modal!</h3>
+            <b-button variant="success" block @click="EmodalShow = !EmodalShow">Yes</b-button>
+            <b-button variant="danger" block @click="EmodalShow = !EmodalShow">Close Me</b-button>
+        </b-modal>
+      </b-row>
+    </b-card>
+
   </div>
 </template>
 
@@ -80,6 +62,12 @@ import StageSelection from './StageSelection.vue';
 import AnotherButton from './AnotherButton.vue';
 
 export default {
+  data() {
+    return {
+      SmodalShow: false,
+      EmodalShow: false
+    }
+  },
   props: ["vehicleName"],
 };
 </script>
