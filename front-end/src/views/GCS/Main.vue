@@ -2,7 +2,7 @@
   <b-container class="main-container">
     <b-row class="main-row">
       <!-- left column -->
-      <b-col cols="8">
+      <b-col class="left-column" cols="8">
         <b-img
           class="map-image"
           rounded
@@ -12,7 +12,7 @@
       </b-col>
 
       <!-- right column -->
-      <b-col cols="4">
+      <b-col class="right-column" cols="4">
         <VehicleStatus :vehicleName="'MAC'" />
 
         <VehicleStatus :vehicleName="'ERU'" />
@@ -36,9 +36,8 @@ export default {
 
 <style scoped>
 .map-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: fill;
+  max-height: 92vh;
+  margin: auto;
 }
 .main-container {
   max-width: 100%;
@@ -46,8 +45,14 @@ export default {
   /* background-color: orange; */
 }
 .main-row {
-  max-width: 100%;
-  max-height: 100%;
+  /* max-width: 100%;
+  max-height: 100%; */
   /* background-color: aqua; */
+}
+.left-column {
+  /* background-color: red; */
+}
+.right-column {
+  /* background-color: purple; */
 }
 </style>
