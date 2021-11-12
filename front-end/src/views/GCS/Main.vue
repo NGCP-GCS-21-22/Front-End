@@ -1,31 +1,26 @@
 <template>
-  <div>
-    <b-row class="noPadding">
-      <br />
+  <b-container class="main-container">
+    <b-row class="main-row">
       <!-- left column -->
-      <b-col align="left">
-        <!-- RESIZE IMG -->
-        <div id="image">
-          <b-img
-            :src="require('@/assets/map.png')"
-            class="img-fluid"
-            rounded
-            alt="map pic"
-          ></b-img>
-        </div>
+      <b-col cols="8">
+        <b-img
+          class="map-image"
+          rounded
+          :src="require('@/assets/map.png')"
+          alt="map pic"
+        ></b-img>
       </b-col>
-      <br />
-      <!-- ALIGN COLUMNS RIGHT A LITTLE BIT MORE AND MAKE WIDER -->
+
       <!-- right column -->
-      <b-col cols="5">
-        <VehicleStatus :vehicleName="'MAC'"/>
-        &nbsp;
-        <VehicleStatus :vehicleName="'ERU'"/>
-        &nbsp;
-        <VehicleStatus :vehicleName="'MEA'"/>
+      <b-col cols="4">
+        <VehicleStatus :vehicleName="'MAC'" />
+
+        <VehicleStatus :vehicleName="'ERU'" />
+
+        <VehicleStatus :vehicleName="'MEA'" />
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -39,4 +34,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.map-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: fill;
+}
+.main-container {
+  max-width: 100%;
+  max-height: 100%;
+  /* background-color: orange; */
+}
+.main-row {
+  max-width: 100%;
+  max-height: 100%;
+  /* background-color: aqua; */
+}
+</style>
