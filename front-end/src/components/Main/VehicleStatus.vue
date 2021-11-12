@@ -1,114 +1,88 @@
 <template>
-  <div>
-    <b-container>
-      <b-card style="width: 550px; height: 190px">
-        <!-- top row -->
-        <b-row>
-          <b-col class="top-left-col" cols="7">
-            <VehicleStatusTitle :vehicleName="vehicleName" />
-          </b-col>
-          <b-col class="top-right-col" cols="5">
-            <ConnectionStatus :latency="latency" />
-          </b-col>
-        </b-row>
+	<div>
+		<b-container>
+			<b-card >
+				<!-- top row -->
+				<b-row>
+					<b-col class="top-left-col" cols="7">
+						<VehicleStatusTitle :vehicleName="vehicleName" />
+					</b-col>
+					<b-col class="top-right-col" cols="5">
+						<ConnectionStatus :latency="latency" />
+					</b-col>
+				</b-row>
 
-        <!-- bottom row -->
-        <b-row>
-          <b-col>
-            <!-- Stage Selection Dropdown -->
-          </b-col>
-          <b-col>
-            <!-- bottom right -->
-            <b-row>
-              <b-col>
-                <!-- battery -->
-              </b-col>
-              <b-col>
-                <!-- mode -->
-              </b-col>
-            </b-row>
-            <b-row>
-              <!-- emergency stop -->
-              <b-button
-                @click="EmodalShow = !EmodalShow"
-                variant="danger"
-                style="width: 230px; height: 50px"
-                >Emergency Stop</b-button
-              >
-              <b-modal v-model="EmodalShow" hide-footer title="Emergency Stop">
-                <h3>Hello From Emergency Stop Modal!</h3>
-                <b-button
-                  variant="success"
-                  block
-                  @click="EmodalShow = !EmodalShow"
-                  >Yes</b-button
-                >
-                <b-button
-                  variant="danger"
-                  block
-                  @click="EmodalShow = !EmodalShow"
-                  >Close Me</b-button
-                >
-              </b-modal>
-            </b-row>
-          </b-col>
-        </b-row>
-      </b-card>
-    </b-container>
-  </div>
+				<!-- bottom row -->
+				<b-row class="justify-content-md-center">
+					<b-col>
+						<!-- Stage Selection Dropdown -->
+					</b-col>
+					<b-col>
+						<!-- bottom right -->
+						<b-row>
+							<b-col cols="6">
+								<Battery :batteryPercentage="batteryPercentage" />
+							</b-col>
+							<b-col cols="6">
+								<Mode :mode="mode" />
+							</b-col>
+						</b-row>
+						<b-row class="justify-content-md-center">
+							<EmergencyStop />
+						</b-row>
+					</b-col>
+				</b-row>
+			</b-card>
+		</b-container>
+	</div>
 </template>
 
 <script>
 import axios from "axios";
 import VehicleStatusTitle from "@/components/Main/VehicleStatusTitle.vue";
 import ConnectionStatus from "@/components/Main/ConnectionStatus.vue";
+import EmergencyStop from "@/components/Main/EmergencyStop.vue";
+import Battery from "@/components/Main/Battery.vue";
+import Mode from "@/components/Main/Mode.vue"
 
 export default {
-  props: {
-    vehicleName: String,
-  },
-  components: {
-    VehicleStatusTitle,
-    ConnectionStatus,
-  },
-  data() {
-    return {
-      latency: 2,
-      SmodalShow: false,
-      EmodalShow: false,
-    };
-  },
+	props: {
+		vehicleName: String,
+	},
+	components: {
+		VehicleStatusTitle,
+		ConnectionStatus,
+		EmergencyStop,
+		Battery,
+    Mode
+	},
+	data() {
+		return {
+			latency: 2,
+			batteryPercentage: 97,
+			mode: "Autonomous"
+		};
+	},
 };
 </script>
 
 <style scoped>
 img {
-  display: block;
-  width: 20;
-  height: 20;
+	display: block;
+	width: 20;
+	height: 20;
 }
 
 .top-left-col {
-  /* background-color: red; */
+	/* background-color: red; */
 }
 
 .top-right-col {
-  /* background-color: blue; */
-}
-
-.battery {
-  color: #29c16e;
-  width: 60px;
-  height: 28px;
-}
-
-.mode {
-  width: 165px;
-  height: 25px;
+	/* background-color: blue; */
 }
 
 .stage_selection {
-  width: 230px;
-  height: 50px;
+	width: 230px;
+	height: 50px;
 }
 </style>
