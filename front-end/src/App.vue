@@ -22,10 +22,6 @@ export default {
 	color: #2c3e50;
 }
 
-/* . {
-	background-color: #181a1b;
-} */
-
 h1 {
 	color: #ffffff;
 }
