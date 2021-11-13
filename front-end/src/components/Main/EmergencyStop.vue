@@ -7,7 +7,7 @@
 		>
 			Emergency Stop
 		</b-button>
-		<b-modal v-model="eModalShow" hide-footer title="Emergency Stop">
+		<b-modal centered v-model="eModalShow" hide-footer title="Emergency Stop">
 			<h3>Hello From Emergency Stop Modal!</h3>
 			<b-button variant="success" block @click="eModalShow = !eModalShow">
 				Yes
