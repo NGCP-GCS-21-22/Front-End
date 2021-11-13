@@ -1,30 +1,32 @@
 <template>
 	<div>
-		<b-container>
+		<b-container class="container">
 			<b-card>
 				<!-- top row -->
 				<b-row>
-					<b-col class="top-left-col" cols="6">
-						<VehicleStatusTitle :vehicleName="vehicleName" />
-					</b-col>
-					<b-col class="top-right-col" cols="6">
-						<ConnectionStatus :latency="latency" />
+					<b-col class="top-left-col">
+						<VehicleStatusTitle :vehicleName="vehicleName" :vehicleImgPath="vehicleImgPath"/>
 					</b-col>
 				</b-row>
 
 				<!-- bottom row -->
 				<b-row>
 					<b-col>
+						<ConnectionStatus :latency="latency" />
+
 						<!-- Stage Selection Dropdown -->
+						<EmergencyStop />
 					</b-col>
 					<b-col>
 						<!-- bottom right -->
 						<b-row>
 							<b-col cols="6">
-								<Battery :batteryPercentage="batteryPercentage" />
+								<Mode :mode="mode" />
 							</b-col>
 							<b-col cols="6">
-								<Mode :mode="mode" />
+								<Battery
+									:batteryPercentage="batteryPercentage"
+								/>
 							</b-col>
 						</b-row>
 						<b-row class="justify-content-md-center">
@@ -43,30 +45,34 @@ import VehicleStatusTitle from "@/components/Main/VehicleStatusTitle.vue";
 import ConnectionStatus from "@/components/Main/ConnectionStatus.vue";
 import EmergencyStop from "@/components/Main/EmergencyStop.vue";
 import Battery from "@/components/Main/Battery.vue";
-import Mode from "@/components/Main/Mode.vue"
+import Mode from "@/components/Main/Mode.vue";
 
 export default {
 	props: {
 		vehicleName: String,
+		vehicleImgPath: String,
 	},
 	components: {
 		VehicleStatusTitle,
 		ConnectionStatus,
 		EmergencyStop,
 		Battery,
-    Mode
+		Mode,
 	},
 	data() {
 		return {
 			latency: 2,
 			batteryPercentage: 97,
-			mode: "Autonomous"
+			mode: "Autonomous",
 		};
 	},
 };
 </script>
 
 <style scoped>
+.container {
+	margin-bottom: 20px;
+}
 img {
 	display: block;
 	width: 20;

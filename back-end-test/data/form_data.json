@@ -1,6 +1,7 @@
 {
     "21-22 GCS": {
         "MAC": {
+            "Icon": "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
             "Stages": [
                 {
                     "id": 1,
@@ -19,6 +20,7 @@
             "Manual Control": false
         },
         "ERU": {
+            "Icon": "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
             "Stages": [
                 {
                     "id": 1,

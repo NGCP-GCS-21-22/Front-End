@@ -17,5 +17,6 @@ export default {
     margin-top: 10px;
 	width: 100px;
 	height: 25px;
+	margin-left: 10px;
 }
 </style>
