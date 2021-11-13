@@ -12,28 +12,32 @@
 					</b-col>
 				</b-row>
 
-				<!-- row -->
+				<!-- middle row -->
 				<b-row>
-					<b-col>
+					<!-- middle left -->
+					<b-col cols="6">
 						<ConnectionStatus :latency="latency" />
-						<StageSelection :vehicleName="vehicleName" />
-						<!-- <StageSelection :vehicleName="vehicleName" :options="options"/> -->
 					</b-col>
+					<!-- middle right -->
+					<b-col cols="6">
+						<b-row
+							><b-col><Mode :mode="mode" /></b-col>
+							<b-col>
+								<Battery :batteryPct="batteryPct" />
+							</b-col>
+						</b-row>
+					</b-col>
+				</b-row>
+
+				<!-- bottom row -->
+				<b-row>
+					<!-- bottom left -->
+					<b-col cols="6">
+						<StageSelection :vehicleName="vehicleName" />
+					</b-col>
+					<!-- bottom right -->
 					<b-col>
-						<!-- right -->
-						<b-row>
-							<b-col cols="6">
-								<Mode :mode="mode" />
-							</b-col>
-							<b-col cols="6">
-								<Battery
-									:batteryPercentage="batteryPercentage"
-								/>
-							</b-col>
-						</b-row>
-						<b-row class="justify-content-md-center">
-							<EmergencyStop />
-						</b-row>
+						<EmergencyStop />
 					</b-col>
 				</b-row>
 			</b-card>
@@ -72,7 +76,7 @@ export default {
 	data() {
 		return {
 			latency: 2,
-			batteryPercentage: 97,
+			batteryPct: 97,
 			mode: "Autonomous",
 			sModalShow: false,
 			selected: null,
@@ -130,10 +134,5 @@ img {
 
 .top-right-col {
 	/* background-color: blue; */
-}
-
-.stage_selection {
-	width: 230px;
-	height: 50px;
 }
 </style>

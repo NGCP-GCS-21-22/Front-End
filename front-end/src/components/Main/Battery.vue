@@ -1,14 +1,14 @@
 <template>
 	<div class="batteryContainer">
 		<b-icon icon="battery-full" class="battery"></b-icon>
-		<div class="batteryPercent">{{ batteryPercentage }}%</div>
+		<div class="batteryPercent">{{ batteryPct }}%</div>
 	</div>
 </template>
 
 <script>
 export default {
     props: {
-        batteryPercentage: Number,
+        batteryPct: Number,
     }
 };
 </script>
