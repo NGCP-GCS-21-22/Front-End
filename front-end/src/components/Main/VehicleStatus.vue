@@ -5,20 +5,22 @@
 				<!-- top row -->
 				<b-row>
 					<b-col class="top-left-col">
-						<VehicleStatusTitle :vehicleName="vehicleName" :vehicleImgPath="vehicleImgPath"/>
+						<VehicleStatusTitle
+							:vehicleName="vehicleName"
+							:vehicleImgPath="vehicleImgPath"
+						/>
 					</b-col>
 				</b-row>
 
-				<!-- bottom row -->
+				<!-- row -->
 				<b-row>
 					<b-col>
 						<ConnectionStatus :latency="latency" />
-
-						<!-- Stage Selection Dropdown -->
-						<EmergencyStop />
+						<StageSelection :vehicleName="vehicleName" />
+						<!-- <StageSelection :vehicleName="vehicleName" :options="options"/> -->
 					</b-col>
 					<b-col>
-						<!-- bottom right -->
+						<!-- right -->
 						<b-row>
 							<b-col cols="6">
 								<Mode :mode="mode" />
@@ -46,6 +48,7 @@ import ConnectionStatus from "@/components/Main/ConnectionStatus.vue";
 import EmergencyStop from "@/components/Main/EmergencyStop.vue";
 import Battery from "@/components/Main/Battery.vue";
 import Mode from "@/components/Main/Mode.vue";
+import StageSelection from "@/components/Main/StageSelection.vue";
 
 export default {
 	props: {
@@ -58,12 +61,54 @@ export default {
 		EmergencyStop,
 		Battery,
 		Mode,
+		StageSelection,
+	},
+	computed: {
+		// options() {
+		// 	// use data from "stages" to create the required
+		// 	// options property for the b-form-select
+		// },
 	},
 	data() {
 		return {
 			latency: 2,
 			batteryPercentage: 97,
 			mode: "Autonomous",
+			sModalShow: false,
+			selected: null,
+			form: {
+				option: null,
+			},
+			// stages: [
+			// 	{
+			// 		stage: "Ready to Start",
+			// 		id: 1,
+			// 	},
+			// 	{
+			// 		stage: "ERU Landing Sequence",
+			// 		id: 5,
+			// 	},
+			// 	{
+			// 		stage: "Drive to Hiker",
+			// 		id: 6,
+			// 	},
+			// 	{
+			// 		stage: "Load the Hiker",
+			// 		id: 7,
+			// 	},
+			// 	{
+			// 		stage: "Go to EZ",
+			// 		id: 8,
+			// 	},
+			// 	{
+			// 		stage: "Transferring Hiker",
+			// 		id: 9,
+			// 	},
+			// 	{
+			// 		stage: "Return to Home/Travel to Position",
+			// 		id: 10,
+			// 	},
+			// ],
 		};
 	},
 };
