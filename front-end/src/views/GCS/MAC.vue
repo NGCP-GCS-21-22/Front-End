@@ -25,7 +25,7 @@
         <!-- &nbsp; -->
         <b-row>
         <!-- A Card with 6 buttons inside -->
-        <Features/>
+        <Widgets/>
         </b-row>
       </b-col>
     </b-row>
@@ -33,13 +33,13 @@
 </template>
 
 <script>
-import Status from "@/components/MAC/Status.vue";
-import Features from "@/components/MAC/Features.vue";
+import Status from "@/components/VehiclePage/Status.vue";
+import Widgets from "@/components/VehiclePage/Widgets.vue";
 
 
 export default {
   components: {
-    Status, Features
+    Status, Widgets
   },
 };
 </script>
