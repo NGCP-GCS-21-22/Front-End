@@ -12,10 +12,7 @@
                     "name": "Locate Hiker"
                 }
             ],
-            "Waypoints": [
-                "ERU Drop Location",
-                "Return to Base Coordinates"
-            ],
+            "Mission Waypoint": "ERU Drop Location",
             "Search Area": true,
             "Manual Control": false
         },
@@ -31,10 +28,7 @@
                     "name": "Locate Hiker"
                 }
             ],
-            "Waypoints": [
-                "Evacuation Zone",
-                "Return to Base Coordinates"
-            ],
+            "Mission Waypoint": "Evacuation Zone",
             "Search Area": false,
             "Manual Control": true
         },

@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import ImageURL from "@/components/Form/ImageURL.vue";
 import MissionWaypoint from "@/components/Form/MissionWaypoint.vue";
 import Stages from "@/components/Form/Stages.vue";
 import ManualControl from "@/components/Form/ManualControl.vue";
 import SearchArea from "@/components/Form/SearchArea.vue";
+import ImageURL from "@/components/Form/ImageURL.vue";
 
 export default {
 	props: {
@@ -45,6 +45,7 @@ export default {
 		Stages,
 		ManualControl,
 		SearchArea,
+		ImageURL,
 	},
 	data() {
 		return {

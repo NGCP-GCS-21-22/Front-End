@@ -23,7 +23,7 @@ export default {
 }
 
 h1 {
-	color: #ffffff;
+	color: #000000;
 }
 
 #nav {

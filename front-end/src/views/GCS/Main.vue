@@ -31,6 +31,10 @@ export default {
 	props: {
 		stage: String,
 	},
+	components: {
+		VehicleStatus,
+		GeneralStage,
+	},
 	data() {
 		return {
 			generalStage: "ERU: Ready for Takeoff",
@@ -42,17 +46,12 @@ export default {
 				"https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
 		};
 	},
-	components: {
-		VehicleStatus,
-		GeneralStage,
-	},
 };
 </script>
 
 <style scoped>
 .map-image {
 	max-height: 92vh;
-	margin: auto;
 }
 .main-container {
 	max-width: 100%;

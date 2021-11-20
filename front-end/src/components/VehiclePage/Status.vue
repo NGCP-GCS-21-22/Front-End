@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <b-card style="width: 780px; height: 300px" title="MAC Status">
-      <div>This is some content/ dummy info for the things.</div>
-    </b-card>
-  </div>
+	<b-container>
+		<b-card class="status-card" title="MAC Status">
+			<div>This is some content/ dummy info for the things.</div>
+		</b-card>
+	</b-container>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style>
+<style scoped>
+.status-card {
+  width: 40vw;
+	height: 30vh;
+}
 </style>
