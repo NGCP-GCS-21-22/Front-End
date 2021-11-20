@@ -24,7 +24,6 @@
 				</b-row>
 				<!-- &nbsp; -->
 				<b-row>
-					<!-- A Card with 6 buttons inside -->
 					<Widgets />
 				</b-row>
 			</b-col>

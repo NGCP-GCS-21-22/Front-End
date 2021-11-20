@@ -1,56 +1,47 @@
 <template>
-	<b-container fluid="sm">
+	<b-container>
 		<b-card>
 			<div v-for="widget in widgetList" :key="widget.name">
-				<b-container>
-					<b-row>
-						<b-button
-							v-if="!selected"
-							@click="selectWidget(widget.name)"
-						>
-							{{ widget.name }}
-						</b-button>
+				<b-button v-if="!selected" @click="selectWidget(widget.name)">
+					{{ widget.name }}
+				</b-button>
 
-						<Waypoint
-							v-if="
-								widget.type == 'Waypoint' &&
-								cardSelected == widget.name
-							"
-							:name="widget.name"
-							@goBack="showWidgets"
-						/>
-						<StageCommand
-							v-if="
-								widget.type == 'StageCommand' &&
-								cardSelected == widget.name
-							"
-							:name="widget.name"
-							:options="widget.options"
-							@goBack="showWidgets"
-						/>
-						<SearchArea
-							v-if="
-								widget.type == 'SearchArea' &&
-								cardSelected == widget.name
-							"
-							:name="widget.name"
-						/>
-						<Geofence
-							v-if="
-								widget.type == 'Geofence' &&
-								cardSelected == widget.name
-							"
-							:name="widget.name"
-						/>
-						<ManualControl
-							v-if="
-								widget.type == 'ManualControl' &&
-								cardSelected == widget.name
-							"
-							:name="widget.name"
-						/>
-					</b-row>
-				</b-container>
+				<Waypoint
+					v-if="
+						widget.type == 'Waypoint' && cardSelected == widget.name
+					"
+					:name="widget.name"
+					@goBack="showWidgets"
+				/>
+				<StageCommand
+					v-if="
+						widget.type == 'StageCommand' &&
+						cardSelected == widget.name
+					"
+					:name="widget.name"
+					:options="widget.options"
+					@goBack="showWidgets"
+				/>
+				<SearchArea
+					v-if="
+						widget.type == 'SearchArea' &&
+						cardSelected == widget.name
+					"
+					:name="widget.name"
+				/>
+				<Geofence
+					v-if="
+						widget.type == 'Geofence' && cardSelected == widget.name
+					"
+					:name="widget.name"
+				/>
+				<ManualControl
+					v-if="
+						widget.type == 'ManualControl' &&
+						cardSelected == widget.name
+					"
+					:name="widget.name"
+				/>
 			</div>
 		</b-card>
 	</b-container>
@@ -80,10 +71,12 @@ export default {
 				{
 					type: "Waypoint",
 					name: "ERU Drop Location",
+					id: 1
 				},
 				{
 					type: "Waypoint",
 					name: "Home Coordinates",
+					id: 2
 				},
 				{
 					type: "StageCommand",
@@ -140,18 +133,22 @@ export default {
 							},
 						},
 					],
+					id: 3
 				},
 				{
 					type: "SearchArea",
 					name: "Search Area",
+					id: 4
 				},
 				{
 					type: "Geofence",
 					name: "Geofence",
+					id: 5
 				},
 				{
 					type: "ManualControl",
 					name: "Manual Control",
+					id: 6
 				},
 			],
 		};

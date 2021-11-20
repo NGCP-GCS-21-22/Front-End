@@ -17,7 +17,7 @@
 <script>
 export default {
 	props: {
-		options: Object,
+		options: Array,
 	},
 	data() {
 		return {
