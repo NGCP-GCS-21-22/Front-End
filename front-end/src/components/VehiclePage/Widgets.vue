@@ -25,6 +25,7 @@
 								cardSelected == widget.name
 							"
 							:name="widget.name"
+							:options="widget.options"
 							@goBack="showWidgets"
 						/>
 						<SearchArea
@@ -87,6 +88,58 @@ export default {
 				{
 					type: "StageCommand",
 					name: "Stage Command",
+					// Stages
+					options: [
+						{
+							text: "Ready to Start",
+							value: {
+								id: 1,
+								stage: "Ready to Start",
+							},
+						},
+						{
+							text: "ERU Landing Sequence",
+							value: {
+								id: 5,
+								stage: "ERU Landing Sequence",
+							},
+						},
+						{
+							text: "Drive to Hiker",
+							value: {
+								id: 6,
+								stage: "Drive to Hiker",
+							},
+						},
+						{
+							text: "Load the Hiker",
+							value: {
+								id: 7,
+								stage: "Load the Hiker",
+							},
+						},
+						{
+							text: "Go to EZ",
+							value: {
+								id: 8,
+								stage: "Go to EZ",
+							},
+						},
+						{
+							text: "Transferring Hiker",
+							value: {
+								id: 9,
+								stage: "Transferring Hiker",
+							},
+						},
+						{
+							text: "Return to Home/Travel to Position",
+							value: {
+								id: 10,
+								stage: "Return to Home/Travel to Position",
+							},
+						},
+					],
 				},
 				{
 					type: "SearchArea",
