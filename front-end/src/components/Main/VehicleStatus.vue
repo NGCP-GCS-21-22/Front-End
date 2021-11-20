@@ -75,6 +75,16 @@ export default {
 		// 	// use data from "stages" to create the required
 		// 	// options property for the b-form-select
 		// },
+		statusUpdate(){
+			let status = null;
+			this.MAC.forEach(property =>{
+				if(property.title=="Status"){
+					status = property.value;
+				}
+			})
+			return status;
+
+		},
 
 		batteryPct(){
 			// depends on MAC
@@ -85,13 +95,13 @@ export default {
 				// if element.title == "Battery"
 				// return element.value
 
-			// let pct = 0;
-			// this.MAC.forEach(property =>{
-			// 	if(property.title=="Battery"){
-			// 		pct = property.value;
-			// 	}
-			// })
-			// return pct;
+			let pct = 0;
+			this.MAC.forEach(property =>{
+				if(property.title=="Battery"){
+					pct = property.value;
+				}
+			})
+			return pct;
 
 		
 
@@ -100,7 +110,7 @@ export default {
 
 			// Dictionary
 			// return this.MAC.Battery;
-			return this.MAC.Battery;
+			//return this.MAC.Battery;
 
 		}
 	},
@@ -116,77 +126,77 @@ export default {
 				option: null,
 			},
 			
-			MAC: {
-				Altitude: 56,
-				Battery: 8.0
-			},
+			// MAC: {
+			// 	Altitude: 56,
+			// 	Battery: 8.0
+			// },
 
-			// MAC: [
-			// 	{
-			// 	"title": "Altitude", 
-			// 	"value": 56.0
-			// 	}, 
-			// 	{
-			// 	"title": "Battery", 
-			// 	"value": 7.0
-			// 	}, 
-			// 	{
-			// 	"title": "Current Stage", 
-			// 	"value": 0
-			// 	}, 
-			// 	{
-			// 	"title": "Geofence Compliant", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Latitude", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Longitude", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Pitch", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Propulsion", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Roll", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Sensors ok", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Speed", 
-			// 	"value": 95.0
-			// 	}, 
-			// 	{
-			// 	"title": "Stage Completed", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Status", 
-			// 	"value": 0
-			// 	}, 
-			// 	{
-			// 	"title": "Yaw", 
-			// 	"value": 0.0
-			// 	},
-			// 	{
-			// 	"title": "time_since_last_packet",
-			// 	"value": 0
-			// 	},
-			// 	{
-			// 	"title": "last_packet_time",
-			// 	"value": 0
-			// 	}
-			// ],
+			MAC: [
+				{
+				"title": "Altitude", 
+				"value": 56.0
+				}, 
+				{
+				"title": "Battery", 
+				"value": 7.0
+				}, 
+				{
+				"title": "Current Stage", 
+				"value": 0
+				}, 
+				{
+				"title": "Geofence Compliant", 
+				"value": false
+				}, 
+				{
+				"title": "Latitude", 
+				"value": 0.0
+				}, 
+				{
+				"title": "Longitude", 
+				"value": 0.0
+				}, 
+				{
+				"title": "Pitch", 
+				"value": 0.0
+				}, 
+				{
+				"title": "Propulsion", 
+				"value": false
+				}, 
+				{
+				"title": "Roll", 
+				"value": 0.0
+				}, 
+				{
+				"title": "Sensors ok", 
+				"value": false
+				}, 
+				{
+				"title": "Speed", 
+				"value": 95.0
+				}, 
+				{
+				"title": "Stage Completed", 
+				"value": false
+				}, 
+				{
+				"title": "Status", 
+				"value": 0
+				}, 
+				{
+				"title": "Yaw", 
+				"value": 0.0
+				},
+				{
+				"title": "time_since_last_packet",
+				"value": 0
+				},
+				{
+				"title": "last_packet_time",
+				"value": 0
+				}
+			],
 
 			// stages: [
 			// 	{
