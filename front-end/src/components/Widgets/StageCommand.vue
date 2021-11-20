@@ -6,9 +6,11 @@
 			-- Please select an option
 			</b-form-select-option>
 		</b-form-select>
+		<div class="mt-3">Selected ID: <strong>{{ SelectedID }}</strong></div>
+		<div class="mt-3">Selected Stage: <strong>{{ SelectedStage }}</strong></div>
         </br>
         
-        <b-button variant="success">Submit</b-button>
+        <b-button variant="success" @click="getData">Submit</b-button>
         <b-button @click="goBack" >Back</b-button>
       </b-card>
     </b-col>
@@ -19,22 +21,30 @@ export default {
 	props: {
 		options: Array,
 	},
+	computed:{
+		SelectedID(){
+			if (this.selected) {
+				return this.selected.id;
+			}
+			return null;
+		},
+		SelectedStage(){
+			if (this.selected) {
+				return this.selected.stage;
+			}
+			return "Stage Selection";
+		}
+	},
 	data() {
 		return {
 			selected: null,
-			// options: [
-			// 	{ value: null, text: "Please select an option" },
-			// 	{ value: "a", text: "This is First option" },
-			// 	{ value: "b", text: "Selected Option" },
-			// 	{
-			// 		value: { C: "3PO" },
-			// 		text: "This is an option with object value",
-			// 	},
-			// 	{ value: "d", text: "This one is disabled", disabled: true },
-			// ],
 		};
 	},
 	methods: {
+		getData(){
+			console.log(this.selected.id);
+			console.log(this.selected.stage);
+		},
 		goBack() {
 			this.$emit("goBack");
 		},
