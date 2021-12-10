@@ -149,10 +149,10 @@ export default {
 									},
 								},
 								{
-									text: "Return to Home/Travel to Position",
+									text: "Return to Home",
 									value: {
 										id: 10,
-										stage: "Return to Home/Travel to Position",
+										stage: "Return to Home",
 									},
 								},
 							],
