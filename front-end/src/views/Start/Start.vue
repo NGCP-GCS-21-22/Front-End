@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>Main Page</h1>
-        <b-button @click="createNew">create new</b-button>
-        <b-button @click="loadOld">2nd button</b-button>
+        <b-button @click="createNew">New Mission</b-button>
+        <b-button @click="loadOld">Saved Missions</b-button>
     </div>
     
 </template>

@@ -1,8 +1,8 @@
 <template>
 	<div>
 			<h1>Form Page</h1>
-			<b-button @click="goToStart"> Back </b-button>
-			<b-button @click="goToGCS"> go to GCS</b-button>
+			<b-button @click="goToStart">Back</b-button>
+			<b-button @click="goToGCS">Go to GCS</b-button>
 
 			<b-container>
 				<b-row>
