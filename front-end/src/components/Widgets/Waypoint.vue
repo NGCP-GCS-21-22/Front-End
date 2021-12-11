@@ -24,12 +24,13 @@
         <div class="mt-2">Longtitude: {{ longtitude }}</div>
         </br>
         <b-button @click="resetData">clear</b-button>
-        <b-button variant="success" @click="getData">Submit</b-button>
+        <b-button variant="success" @click="clickedSubmit">Submit</b-button>
         <b-button @click="goBack" >Back</b-button>
     </b-card>
 </template>
 
 <script>
+import axios from "axios"
 export default {
 	props: {
 		name: String,
@@ -52,6 +53,24 @@ export default {
 		goBack() {
 			this.$emit("goBack");
 		},
+    postInformation(coordinate)
+    {
+      const path = "http://localhost:300/data"
+      axios.post(path, coordinate).
+      then(()=> console.log("Sucessfully Post!")). 
+      catch((error)=> {
+          console.log(error);});
+    },
+    clickedSubmit()
+    {
+      const coordinate = {
+        attitule:  this.attitule,
+        latitude: this.latitude
+      };
+      this.postInformation(coordinate);
+    }
+
+    
 	},
 };
 </script>

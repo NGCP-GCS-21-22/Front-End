@@ -1,7 +1,7 @@
 <template>
   <b-card>
         <p class="card-text">Stage Command</p>
-        <b-form-select v-model="selected" :options="options">
+        <b-form-select v-model="selected" :options="list_of_stage_command">
 			<b-form-select-option :value="null" disabled>
 			-- Please select an option
 			</b-form-select-option>
@@ -38,16 +38,23 @@ export default {
 	data() {
 		return {
 			selected: null,
+			list_of_stage_command: [],
 		};
 	},
 	methods: {
 		getData(){
-			console.log(this.selected.id);
-			console.log(this.selected.stage);
+			const path = "http://localhost:5000/stagecommand";
+			axios.get(path)
+			.then((res) =>{
+				this.list_of_stage_command = res.data.stagecommand;})
+				.catch((error) => console.log(error));
+			// console.log(this.selected.id);
+			// console.log(this.selected.stage);
 		},
 		goBack() {
 			this.$emit("goBack");
 		},
+
 	},
 };
 </script>

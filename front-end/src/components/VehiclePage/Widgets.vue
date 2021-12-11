@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<b-container>
 		<b-card>
 			<div v-for="widget in widgetList" :key="widget.name">
