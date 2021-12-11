@@ -2,25 +2,25 @@
 	<b-container class="mac-container">
 		<b-row class="mac-row">
 			<!-- left column -->
-            <b-col class="left-column" cols="7">
-                <b-img
-                    class="map-image"
-                    :src="require('@/assets/map.png')"
-                    rounded
-                    alt="map pic"
-                ></b-img>
-            </b-col>
+			<b-col class="left-column" cols="7">
+				<b-img
+					class="map-image"
+					:src="require('@/assets/map.png')"
+					rounded
+					alt="map pic"
+				></b-img>
+			</b-col>
 
-            <!-- right column -->
-            <b-col cols="5">
-                <b-row>
-                    <!-- A Card with dummy data for Status MAC -->
-                    <Status />
-                </b-row>
-                <b-row>
-                    <Widgets />
-                </b-row>
-            </b-col>
+			<!-- right column -->
+			<b-col cols="5">
+				<b-row>
+					<!-- A Card with dummy data for Status MAC -->
+					<Status />
+				</b-row>
+				<b-row>
+					<Widgets :vehicleName="vehicleName" />
+				</b-row>
+			</b-col>
 		</b-row>
 	</b-container>
 </template>
@@ -33,6 +33,11 @@ export default {
 	components: {
 		Status,
 		Widgets,
+	},
+	data() {
+		return {
+			vehicleName: "MAC",
+		};
 	},
 };
 </script>

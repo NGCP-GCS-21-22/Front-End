@@ -1,36 +1,36 @@
 {
     "21-22 GCS": {
         "MAC": {
-            "Icon": "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
+            "icon": "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
             "Stages": [
                 {
                     "id": 1,
-                    "name": "Ready for Takeoff"
+                    "stage": "Ready for Takeoff"
                 },
                 {
                     "id": 2,
-                    "name": "Locate Hiker"
+                    "stage": "Locate Hiker"
                 }
             ],
-            "Mission Waypoint": "ERU Drop Location",
-            "Search Area": true,
+            "missionWaypoint": "ERU Drop Location",
+            "searchArea": true,
             "Manual Control": false
         },
         "ERU": {
-            "Icon": "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
+            "icon": "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
             "Stages": [
                 {
                     "id": 1,
-                    "name": "Ready for Takeoff"
+                    "stage": "Ready for Takeoff"
                 },
                 {
                     "id": 2,
-                    "name": "Locate Hiker"
+                    "stage": "Locate Hiker"
                 }
             ],
-            "Mission Waypoint": "Evacuation Zone",
-            "Search Area": false,
-            "Manual Control": true
+            "missionWaypoint": "Evacuation Zone",
+            "searchArea": false,
+            "manualControl": true
         },
         "MEA": {}
     }

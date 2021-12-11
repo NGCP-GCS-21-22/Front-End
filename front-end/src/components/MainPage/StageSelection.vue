@@ -14,7 +14,7 @@
 			:title="vehicleName + ' Stage Selection'"
 		>
 			<!-- include form dropdown & submit button -->
-			<b-form-select v-model="selected" :options="options">
+			<b-form-select v-model="selected" :options="stages">
 				<b-form-select-option :value="null" disabled
 					>-- Please select an option
 				</b-form-select-option>
@@ -26,7 +26,7 @@
 			<div class="mt-3">
 				Selected Stage: <strong>{{ selectedStage }}</strong>
 			</div>
-			<!--<div class="mt-3">Stage: <strong>{{ options.text }}</strong></div>-->
+			<!--<div class="mt-3">Stage: <strong>{{ stages.text }}</strong></div>-->
 			<b-button
 				@click="submit(sModalShow)"
 				variant="primary"
@@ -40,7 +40,7 @@
 <script>
 export default {
 	props: {
-		// options: Object,
+		// stages: Object,
 		vehicleName: String,
 	},
 	computed: {
@@ -64,7 +64,7 @@ export default {
 			form: {
 				option: null,
 			},
-			options: [
+			stages: [
 				{
 					text: "Ready to Start",
 					value: {

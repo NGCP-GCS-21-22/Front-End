@@ -1,7 +1,7 @@
 <template>
 	<b-container>
 		<b-card class="widget-card">
-			<b-row v-for="group in widgetGroups" :key="group.groupId">
+			<b-row v-for="group in widgetGroups" :key="group.buttonGroupId">
 				<b-col v-for="widget in group.widgetGroup" :key="widget.name">
 					<b-button
 						class="widget-button"
@@ -14,11 +14,8 @@
 				</b-col>
 			</b-row>
 
-			<div v-for="group in widgetGroups" :key="group.groupId">
-				<div
-					v-for="widget in group.widgetGroup"
-					:key="widget.name"
-				>
+			<div v-for="group in widgetGroups" :key="group.widgetGroupId">
+				<div v-for="widget in group.widgetGroup" :key="widget.name">
 					<Waypoint
 						v-if="
 							widget.type == 'Waypoint' &&
@@ -33,7 +30,7 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
-						:options="widget.options"
+						:stages="widget.stages"
 						@goBack="showWidgets"
 					/>
 					<SearchArea
@@ -78,108 +75,22 @@ export default {
 		Geofence,
 		ManualControl,
 	},
+	props: {
+		vehicleName: String,
+	},
+	computed: {
+		// widgetGroups() {
+		// }
+	},
 	data() {
 		return {
 			selected: false,
 			cardSelected: null,
-
-			widgetGroups: [
-				// group 1
-				{
-					widgetGroup: [
-						{
-							type: "Waypoint",
-							name: "ERU Drop Location",
-						},
-						{
-							type: "Waypoint",
-							name: "Home Coordinates",
-						},
-					],
-					groupId: 1,
-				},
-				// group 2
-				{
-					widgetGroup: [
-						{
-							type: "StageCommand",
-							name: "Stage Command",
-							// Stages
-							options: [
-								{
-									text: "Ready to Start",
-									value: {
-										id: 1,
-										stage: "Ready to Start",
-									},
-								},
-								{
-									text: "ERU Landing Sequence",
-									value: {
-										id: 5,
-										stage: "ERU Landing Sequence",
-									},
-								},
-								{
-									text: "Drive to Hiker",
-									value: {
-										id: 6,
-										stage: "Drive to Hiker",
-									},
-								},
-								{
-									text: "Load the Hiker",
-									value: {
-										id: 7,
-										stage: "Load the Hiker",
-									},
-								},
-								{
-									text: "Go to EZ",
-									value: {
-										id: 8,
-										stage: "Go to EZ",
-									},
-								},
-								{
-									text: "Transferring Hiker",
-									value: {
-										id: 9,
-										stage: "Transferring Hiker",
-									},
-								},
-								{
-									text: "Return to Home",
-									value: {
-										id: 10,
-										stage: "Return to Home",
-									},
-								},
-							],
-						},
-						{
-							type: "SearchArea",
-							name: "Search Area",
-						},
-					],
-					groupId: 2,
-				},
-				// group 3
-				{
-					widgetGroup: [
-						{
-							type: "Geofence",
-							name: "Geofence",
-						},
-						{
-							type: "ManualControl",
-							name: "Manual Control",
-						},
-					],
-					groupId: 3,
-				},
-			],
+			widgetGroups: [],
 		};
+	},
+	mounted() {
+		this.setUpWidgetGroups();
 	},
 	methods: {
 		selectWidget(widgetName) {
@@ -189,6 +100,138 @@ export default {
 		showWidgets() {
 			this.selected = false;
 			this.cardSelected = null;
+		},
+		setUpWidgetGroups() {
+			// TBD
+			// let dataEndpoint;
+
+			let missionData = {
+				MAC: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "ERU Drop Location",
+					searchArea: true,
+					manualControl: true,
+				},
+				ERU: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
+					stages: [
+						{
+							id: 1,
+							name: "Ready for Takeoff",
+						},
+						{
+							id: 2,
+							name: "Locate Hiker",
+						},
+					],
+					missionWaypoint: "Evacuation Zone",
+					searchArea: false,
+					manualControl: true,
+				},
+				MEA: {},
+			};
+			if (this.vehicleName == "MAC") {
+				missionData = missionData.MAC;
+			} else if (this.vehicleName == "ERU") {
+				missionData = missionData.ERU;
+			} else if (this.vehicleName == "MEA") {
+				missionData = missionData.MEA;
+			}
+
+			this.getWidgetGroups(missionData);
+		},
+		getWidgetGroups(missionData) {
+			// missionWaypoint and home coordinates
+			let widgetGroup1 = {
+				widgetGroup: [
+					{
+						type: "Waypoint",
+						name: missionData.missionWaypoint,
+					},
+					{
+						type: "Waypoint",
+						name: "Home Coordinates",
+					},
+				],
+				buttonGroupId: "Button Group 1",
+				widgetGroupId: "Widget Group 1",
+			};
+
+			// Stage Command and Geofence
+			let widgetGroup2 = {
+				widgetGroup: [
+					{
+						type: "StageCommand",
+						name: "Stage Command",
+						stages: missionData.stages,
+					},
+					{
+						type: "Geofence",
+						name: "Geofence",
+					},
+				],
+				buttonGroupId: "Button Group 2",
+				widgetGroupId: "Widget Group 2",
+			};
+
+			this.widgetGroups.push(widgetGroup1, widgetGroup2);
+
+			// Search Area (optional) and Manual Control (optional)
+			let widgetGroup = [];
+			if (missionData.searchArea) {
+				let widget = {
+					type: "SearchArea",
+					name: "Search Area",
+				};
+				widgetGroup.push(widget);
+			}
+			if (missionData.manualControl) {
+				let widget = {
+					type: "ManualControl",
+					name: "Manual Control",
+				};
+				widgetGroup.push(widget);
+			}
+
+			if (widgetGroup.length > 0) {
+				let widgetGroup3 = {
+					widgetGroup: widgetGroup,
+					buttonGroupId: "Button Group 3",
+					widgetGroupId: "Widget Group 3",
+				};
+
+				this.widgetGroups.push(widgetGroup3);
+			}
 		},
 	},
 };
@@ -207,6 +250,6 @@ p {
 	margin-bottom: 10px;
 
 	/* 50 / number of groups - extra margins */
-	height: calc(50vh/3);
+	height: calc(50vh / 3);
 }
 </style>

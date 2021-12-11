@@ -17,21 +17,26 @@
 <script>
 export default {
 	props: {
-		options: Array,
+		stages: Array,
+	},
+	computed: {
+		options() {
+			let options = [];
+			for (let i = 0; i < this.stages.length; i++) {
+				let stage = this.stages[i];
+
+				let option = {
+					text: stage.stage,
+					value: stage,
+				};
+				options.push(option);
+			}
+			return options;
+		},
 	},
 	data() {
 		return {
 			selected: null,
-			// options: [
-			// 	{ value: null, text: "Please select an option" },
-			// 	{ value: "a", text: "This is First option" },
-			// 	{ value: "b", text: "Selected Option" },
-			// 	{
-			// 		value: { C: "3PO" },
-			// 		text: "This is an option with object value",
-			// 	},
-			// 	{ value: "d", text: "This one is disabled", disabled: true },
-			// ],
 		};
 	},
 	methods: {
