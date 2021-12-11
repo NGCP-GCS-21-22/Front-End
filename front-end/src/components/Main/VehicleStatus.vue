@@ -16,7 +16,9 @@
 				<b-row>
 					<!-- middle left -->
 					<b-col cols="6">
-						<ConnectionStatus :latency="latency" />
+						<ConnectionStatus 
+							:status="status"
+							:latency="latency" />
 					</b-col>
 					<!-- middle right -->
 					<b-col cols="6">
@@ -95,30 +97,31 @@ export default {
 				// if element.title == "Battery"
 				// return element.value
 
-			let pct = 0;
-			this.MAC.forEach(property =>{
-				if(property.title=="Battery"){
-					pct = property.value;
-				}
-			})
-			return pct;
-
-		
-
-
-			
+			// let pct = 0;
+			// this.MAC.forEach(property =>{
+			// 	if(property.title=="Battery"){
+			// 		pct = property.value;
+			// 	}
+			// })
+			// return pct;
 
 			// Dictionary
 			// return this.MAC.Battery;
-			//return this.MAC.Battery;
-
+			return this.MAC.Battery;
+		},
+		latency() {
+			return this.MAC.ConnectionStatus;
+		},
+		mode() {
+			return this.MAC.Mode;
 		}
 	},
 	data() {
 		return {
-			latency: 2,
+			// these are old static numbers (delete later)
+			status: "Online",
 			// batteryPct: 97,
-			mode: "Autonomous",
+			// mode: "Autonomous",
 			sModalShow: false,
 			propertyChosen: null,
 			selected: null,
@@ -126,77 +129,79 @@ export default {
 				option: null,
 			},
 			
-			// MAC: {
-			// 	Altitude: 56,
-			// 	Battery: 8.0
-			// },
+			MAC: {
+				Altitude: 56,
+				Battery: 15.0,
+				ConnectionStatus: 3,
+				Mode: "Automatic"
+			},
 
-			MAC: [
-				{
-				"title": "Altitude", 
-				"value": 56.0
-				}, 
-				{
-				"title": "Battery", 
-				"value": 7.0
-				}, 
-				{
-				"title": "Current Stage", 
-				"value": 0
-				}, 
-				{
-				"title": "Geofence Compliant", 
-				"value": false
-				}, 
-				{
-				"title": "Latitude", 
-				"value": 0.0
-				}, 
-				{
-				"title": "Longitude", 
-				"value": 0.0
-				}, 
-				{
-				"title": "Pitch", 
-				"value": 0.0
-				}, 
-				{
-				"title": "Propulsion", 
-				"value": false
-				}, 
-				{
-				"title": "Roll", 
-				"value": 0.0
-				}, 
-				{
-				"title": "Sensors ok", 
-				"value": false
-				}, 
-				{
-				"title": "Speed", 
-				"value": 95.0
-				}, 
-				{
-				"title": "Stage Completed", 
-				"value": false
-				}, 
-				{
-				"title": "Status", 
-				"value": 0
-				}, 
-				{
-				"title": "Yaw", 
-				"value": 0.0
-				},
-				{
-				"title": "time_since_last_packet",
-				"value": 0
-				},
-				{
-				"title": "last_packet_time",
-				"value": 0
-				}
-			],
+			// MAC: [
+			// 	{
+			// 	"title": "Altitude", 
+			// 	"value": 56.0
+			// 	}, 
+			// 	{
+			// 	"title": "Battery", 
+			// 	"value": 7.0
+			// 	}, 
+			// 	{
+			// 	"title": "Current Stage", 
+			// 	"value": 0
+			// 	}, 
+			// 	{
+			// 	"title": "Geofence Compliant", 
+			// 	"value": false
+			// 	}, 
+			// 	{
+			// 	"title": "Latitude", 
+			// 	"value": 0.0
+			// 	}, 
+			// 	{
+			// 	"title": "Longitude", 
+			// 	"value": 0.0
+			// 	}, 
+			// 	{
+			// 	"title": "Pitch", 
+			// 	"value": 0.0
+			// 	}, 
+			// 	{
+			// 	"title": "Propulsion", 
+			// 	"value": false
+			// 	}, 
+			// 	{
+			// 	"title": "Roll", 
+			// 	"value": 0.0
+			// 	}, 
+			// 	{
+			// 	"title": "Sensors ok", 
+			// 	"value": false
+			// 	}, 
+			// 	{
+			// 	"title": "Speed", 
+			// 	"value": 95.0
+			// 	}, 
+			// 	{
+			// 	"title": "Stage Completed", 
+			// 	"value": false
+			// 	}, 
+			// 	{
+			// 	"title": "Status", 
+			// 	"value": 0
+			// 	}, 
+			// 	{
+			// 	"title": "Yaw", 
+			// 	"value": 0.0
+			// 	},
+			// 	{
+			// 	"title": "time_since_last_packet",
+			// 	"value": 0
+			// 	},
+			// 	{
+			// 	"title": "last_packet_time",
+			// 	"value": 0
+			// 	}
+			// ],
 
 			// stages: [
 			// 	{
