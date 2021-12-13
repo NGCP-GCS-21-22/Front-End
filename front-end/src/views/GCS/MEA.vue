@@ -1,10 +1,54 @@
 <template>
-  <h1>MEA</h1>
+	<b-container class="mea-container">
+		<b-row class="mea-row">
+			<!-- left column -->
+			<b-col class="left-column" cols="7">
+				<b-img
+					class="map-image"
+					:src="require('@/assets/map.png')"
+					rounded
+					alt="map pic"
+				></b-img>
+			</b-col>
+
+			<!-- right column -->
+			<b-col cols="5">
+				<b-row>
+					<!-- A Card with dummy data for Status MEA -->
+					<Status :vehicleName="vehicleName" />
+				</b-row>
+				<b-row>
+					<Widgets :vehicleName="vehicleName" />
+				</b-row>
+			</b-col>
+		</b-row>
+	</b-container>
 </template>
 
 <script>
-export default {};
+import Status from "@/components/VehiclePage/Status.vue";
+import Widgets from "@/components/VehiclePage/Widgets.vue";
+
+export default {
+	components: {
+		Status,
+		Widgets,
+	},
+	data() {
+		return {
+			vehicleName: "MEA",
+		};
+	},
+};
 </script>
 
 <style scoped>
+.map-image {
+	max-height: 90vh;
+	margin: auto;
+}
+.mea-container {
+	max-width: 100%;
+	max-height: 100%;
+}
 </style>

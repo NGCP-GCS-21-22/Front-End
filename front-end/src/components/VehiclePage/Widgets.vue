@@ -6,7 +6,7 @@
 					<b-button
 						class="widget-button"
 						variant="dark"
-						v-if="!selected"
+						v-if="!selected && widget.type != 'Placeholder'"
 						@click="selectWidget(widget.name)"
 					>
 						{{ widget.name }}
@@ -140,25 +140,80 @@ export default {
 					],
 					missionWaypoint: "ERU Drop Location",
 					searchArea: true,
-					manualControl: true,
+					manualControl: false,
 				},
 				ERU: {
 					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
 					stages: [
 						{
+							stage: "Ready to Start",
 							id: 1,
-							name: "Ready for Takeoff",
 						},
 						{
-							id: 2,
-							name: "Locate Hiker",
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
 						},
 					],
 					missionWaypoint: "Evacuation Zone",
 					searchArea: false,
 					manualControl: true,
 				},
-				MEA: {},
+				MEA: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "Evacuation Zone",
+					searchArea: false,
+					manualControl: false,
+				},
 			};
 			if (this.vehicleName == "MAC") {
 				missionData = missionData.MAC;
@@ -223,15 +278,23 @@ export default {
 				widgetGroup.push(widget);
 			}
 
-			if (widgetGroup.length > 0) {
-				let widgetGroup3 = {
-					widgetGroup: widgetGroup,
-					buttonGroupId: "Button Group 3",
-					widgetGroupId: "Widget Group 3",
+			while (widgetGroup.length < 2) {
+				let widgetPlaceholder = {
+					type: "Placeholder",
+					name: "Placeholder",
 				};
-
-				this.widgetGroups.push(widgetGroup3);
+				widgetGroup.push(widgetPlaceholder);
 			}
+
+			// if (widgetGroup.length == 2) {
+			let widgetGroup3 = {
+				widgetGroup: widgetGroup,
+				buttonGroupId: "Button Group 3",
+				widgetGroupId: "Widget Group 3",
+			};
+
+			this.widgetGroups.push(widgetGroup3);
+			// }
 		},
 	},
 };
@@ -251,5 +314,8 @@ p {
 
 	/* 50 / number of groups - extra margins */
 	height: calc(50vh / 3);
+}
+.invisible {
+	visibility: hidden;
 }
 </style>

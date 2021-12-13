@@ -15,7 +15,7 @@
 			<b-col cols="5">
 				<b-row>
 					<!-- A Card with dummy data for Status MAC -->
-					<Status />
+					<Status :vehicleName="vehicleName"/>
 				</b-row>
 				<b-row>
 					<Widgets :vehicleName="vehicleName" />
