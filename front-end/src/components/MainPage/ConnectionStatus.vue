@@ -2,7 +2,7 @@
   <b-row no-gutters>
     <!-- left side -->
     <b-col align="left" style="margin-left: 10px;">
-      Connection: Online <br />
+      Connection: {{ status }} <br />
       Last Packet: {{ latency }}ms
     </b-col>
 
@@ -16,6 +16,7 @@
 <script>
 export default {
   props: {
+    status: String,
     latency: Number,
   },
 };
