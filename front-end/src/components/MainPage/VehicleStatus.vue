@@ -133,7 +133,7 @@ export default {
 				Altitude: 56,
 				Battery: 15.0,
 				ConnectionStatus: 3,
-				Mode: "Automatic"
+				Mode: "Autonomous"
 			},
 
 			// MAC: [
