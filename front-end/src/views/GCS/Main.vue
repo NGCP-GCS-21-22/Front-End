@@ -3,7 +3,14 @@
 		<b-row class="main-row">
 			<!-- left column -->
 			<b-col class="left-column" cols="8" style="padding: 0">
-				<Map :macData="macData" :eruData="eruData" :meaData="meaData" />
+				<Map
+					:macData="macData"
+					:eruData="eruData"
+					:meaData="meaData"
+					:macIcon="macIcon"
+					:eruIcon="eruIcon"
+					:meaIcon="meaIcon"
+				/>
 			</b-col>
 
 			<!-- right column -->
@@ -11,17 +18,17 @@
 				<GeneralStage :generalStage="generalStage" />
 				<VehicleStatus
 					:vehicleName="'MAC'"
-					:vehicleImgPath="macPath"
+					:vehicleImgPath="macIcon"
 					:vehicleData="macData"
 				/>
 				<VehicleStatus
 					:vehicleName="'ERU'"
-					:vehicleImgPath="eruPath"
+					:vehicleImgPath="eruIcon"
 					:vehicleData="eruData"
 				/>
 				<VehicleStatus
 					:vehicleName="'MEA'"
-					:vehicleImgPath="meaPath"
+					:vehicleImgPath="meaIcon"
 					:vehicleData="meaData"
 				/>
 			</b-col>
@@ -47,22 +54,145 @@ export default {
 	data() {
 		return {
 			generalStage: "ERU: Ready for Takeoff",
-			macPath:
-				"https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mac.png",
-			eruPath:
-				"https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
-			meaPath:
-				"https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
-
 			macData: null,
 			eruData: null,
 			meaData: null,
+			missionData: null,
 		};
 	},
+	computed: {
+		macIcon() {
+			if (!this.missionData) return null;
+			return this.missionData.MAC.icon;
+		},
+		eruIcon() {
+			if (!this.missionData) return null;
+			return this.missionData.ERU.icon;
+		},
+		meaIcon() {
+			if (!this.missionData) return null;
+			return this.missionData.MEA.icon;
+		},
+	},
 	mounted() {
+		this.getMissionData();
 		this.interval = setInterval(this.getVehicleData, 500);
 	},
 	methods: {
+		getMissionData() {
+			// GET request
+
+			this.missionData = {
+				MAC: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mac.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "ERU Drop Location",
+					searchArea: true,
+					manualControl: false,
+				},
+				ERU: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "Evacuation Zone",
+					searchArea: false,
+					manualControl: true,
+				},
+				MEA: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "Evacuation Zone",
+					searchArea: false,
+					manualControl: false,
+				},
+			};
+		},
 		getVehicleData() {
 			// GET request at x endpoint
 

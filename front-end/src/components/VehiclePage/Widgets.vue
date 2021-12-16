@@ -77,6 +77,7 @@ export default {
 	},
 	props: {
 		vehicleName: String,
+		missionData: Object,
 	},
 	computed: {
 		// widgetGroups() {
@@ -102,128 +103,13 @@ export default {
 			this.cardSelected = null;
 		},
 		setUpWidgetGroups() {
-			// TBD
-			// let dataEndpoint;
-
-			let missionData = {
-				MAC: {
-					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
-					stages: [
-						{
-							stage: "Ready to Start",
-							id: 1,
-						},
-						{
-							stage: "ERU Landing Sequence",
-							id: 5,
-						},
-						{
-							stage: "Drive to Hiker",
-							id: 6,
-						},
-						{
-							stage: "Load the Hiker",
-							id: 7,
-						},
-						{
-							stage: "Go to EZ",
-							id: 8,
-						},
-						{
-							stage: "Transferring Hiker",
-							id: 9,
-						},
-						{
-							stage: "Return to Home/Travel to Position",
-							id: 10,
-						},
-					],
-					missionWaypoint: "ERU Drop Location",
-					searchArea: true,
-					manualControl: false,
-				},
-				ERU: {
-					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
-					stages: [
-						{
-							stage: "Ready to Start",
-							id: 1,
-						},
-						{
-							stage: "ERU Landing Sequence",
-							id: 5,
-						},
-						{
-							stage: "Drive to Hiker",
-							id: 6,
-						},
-						{
-							stage: "Load the Hiker",
-							id: 7,
-						},
-						{
-							stage: "Go to EZ",
-							id: 8,
-						},
-						{
-							stage: "Transferring Hiker",
-							id: 9,
-						},
-						{
-							stage: "Return to Home/Travel to Position",
-							id: 10,
-						},
-					],
-					missionWaypoint: "Evacuation Zone",
-					searchArea: false,
-					manualControl: true,
-				},
-				MEA: {
-					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
-					stages: [
-						{
-							stage: "Ready to Start",
-							id: 1,
-						},
-						{
-							stage: "ERU Landing Sequence",
-							id: 5,
-						},
-						{
-							stage: "Drive to Hiker",
-							id: 6,
-						},
-						{
-							stage: "Load the Hiker",
-							id: 7,
-						},
-						{
-							stage: "Go to EZ",
-							id: 8,
-						},
-						{
-							stage: "Transferring Hiker",
-							id: 9,
-						},
-						{
-							stage: "Return to Home/Travel to Position",
-							id: 10,
-						},
-					],
-					missionWaypoint: "Evacuation Zone",
-					searchArea: false,
-					manualControl: false,
-				},
-			};
 			if (this.vehicleName == "MAC") {
-				missionData = missionData.MAC;
+				this.getWidgetGroups(missionData.MAC);
 			} else if (this.vehicleName == "ERU") {
-				missionData = missionData.ERU;
+				this.getWidgetGroups(missionData.ERU);
 			} else if (this.vehicleName == "MEA") {
-				missionData = missionData.MEA;
+				this.getWidgetGroups(missionData.MEA);
 			}
-
-			this.getWidgetGroups(missionData);
 		},
 		getWidgetGroups(missionData) {
 			// missionWaypoint and home coordinates

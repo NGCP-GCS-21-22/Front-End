@@ -9,15 +9,13 @@
 	>
 		<!-- vehicle pos -->
 		<GmapMarker
-        v-for="position in vehiclePositions"
-		:key="position.id"
-        :position="position.position"
-        :icon="{
-          url: 'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
-          scaledSize: { width: 32, height: 40 },
-          labelOrigin: { x: 16, y: 40 },
-        }"
-      />
+			v-for="marker in vehicleMarkers"
+			:key="marker.id"
+			:position="marker.position"
+			:icon="{
+				url: marker.icon,
+			}"
+		/>
 	</GmapMap>
 </template>
 
@@ -27,6 +25,9 @@ export default {
 		macData: Object,
 		eruData: Object,
 		meaData: Object,
+		macIcon: String,
+		eruIcon: String,
+		meaIcon: String,
 	},
 	data() {
 		return {
@@ -46,39 +47,43 @@ export default {
 		};
 	},
 	computed: {
-		macPosition() {
+		macMarker() {
 			if (!this.macData) return null;
 			return {
-				id: "macPosition",
+				id: "macMarker",
 				position: {
 					lat: this.macData.latitude,
 					lng: this.macData.longitude,
 				},
+				icon: this.macIcon,
 			};
 		},
-		eruPosition() {
+		eruMarker() {
 			if (!this.eruData) return null;
 			return {
-				id: "eruPosition",
+				id: "eruMarker",
 				position: {
 					lat: this.eruData.latitude,
 					lng: this.eruData.longitude,
 				},
+				icon: this.eruIcon,
 			};
 		},
-		meaPosition() {
+		meaMarker() {
 			if (!this.meaData) return null;
 			return {
-				id: "meaPosition",
+				id: "meaMarker",
 				position: {
 					lat: this.meaData.latitude,
 					lng: this.meaData.longitude,
 				},
+				icon: this.meaIcon,
 			};
 		},
-		vehiclePositions() {
-			if (!(this.macPosition && this.eruPosition && this.meaPosition)) return null;
-			return [this.macPosition, this.eruPosition, this.meaPosition];
+		vehicleMarkers() {
+			if (!(this.macMarker && this.eruMarker && this.meaMarker))
+				return null;
+			return [this.macMarker, this.eruMarker, this.meaMarker];
 		},
 	},
 	methods: {},
