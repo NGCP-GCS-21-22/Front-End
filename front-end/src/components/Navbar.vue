@@ -39,7 +39,8 @@ export default {};
 #nav {
 	background-color: #011949;
 	padding: 8px;
-	width: 100%
+	width: 100%;
+	height: 8vh;
 }
 #nav a {
   padding: 5px 20px;
