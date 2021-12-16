@@ -131,8 +131,12 @@ export default {
 			
 			MAC: {
 				Altitude: 56,
-				Battery: 15.0,
-				ConnectionStatus: 3,
+				// current battery range
+				// 80-100: full, 21-79: half, <=20: low
+				Battery: 20.0,
+				// the current latency range is 
+				// 1-10: high, 11-45: semi-high, 46-85: medium, 86-100: low, 100+ or 0: no connection
+				ConnectionStatus: 3, 
 				Mode: "Automatic"
 			},
 
