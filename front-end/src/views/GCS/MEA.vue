@@ -3,18 +3,17 @@
 		<b-row class="mea-row">
 			<!-- left column -->
 			<b-col class="left-column" cols="7">
-				<b-img
-					class="map-image"
-					:src="require('@/assets/map.png')"
-					rounded
-					alt="map pic"
-				></b-img>
+				<Map
+					v-if="meaData && meaIcon"
+					:vehicleData="meaData"
+					:vehicleIcon="meaIcon"
+				/>
 			</b-col>
 
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status :vehicleName="vehicleName" :vehicleIcon="meaIcon" />
+					<Status v-if="vehicleName && meaIcon" :vehicleName="vehicleName" :vehicleIcon="meaIcon" />
 				</b-row>
 				<b-row>
 					<Widgets
@@ -31,29 +30,31 @@
 <script>
 import Status from "@/components/VehiclePage/Status.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
+import Map from "@/components/Map/VehicleMap.vue";
 
 export default {
 	components: {
 		Status,
 		Widgets,
+		Map,
 	},
 	data() {
 		return {
 			vehicleName: "MEA",
-			generalStage: null,
+			generalStage: "ERU: Ready for Takeoff",
 			meaData: null,
 			meaMissionData: null,
 		};
 	},
 	computed: {
 		meaIcon() {
-			if (!this.missionData) return null;
+			if (!this.meaMissionData) return null;
 			return this.meaMissionData.icon;
 		},
 	},
 	mounted() {
 		this.getMissionData();
-		this.interval = setInterval(this.getCurrentStatus, 500);
+		this.interval = setInterval(this.getVehicleData, 500);
 	},
 	methods: {
 		getMissionData() {
@@ -170,13 +171,6 @@ export default {
 				},
 			};
 			this.meaMissionData = missionData.MEA;
-		},
-		getCurrentStatus() {
-			this.getGeneralStage();
-			this.getVehicleData();
-		},
-		getGeneralStage() {
-			this.generalStage = "ERU: Ready for Takeoff";
 		},
 		getVehicleData() {
 			// GET request at x endpoint

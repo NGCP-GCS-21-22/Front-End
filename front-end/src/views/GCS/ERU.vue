@@ -3,18 +3,17 @@
 		<b-row class="eru-row">
 			<!-- left column -->
 			<b-col class="left-column" cols="7">
-				<b-img
-					class="map-image"
-					:src="require('@/assets/map.png')"
-					rounded
-					alt="map pic"
-				></b-img>
+				<Map
+					v-if="eruData && eruIcon"
+					:vehicleData="eruData"
+					:vehicleIcon="eruIcon"
+				/>
 			</b-col>
 
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status :vehicleName="vehicleName" :vehicleIcon="eruIcon" />
+					<Status v-if="vehicleName && eruIcon" :vehicleName="vehicleName" :vehicleIcon="eruIcon" />
 				</b-row>
 				<b-row>
 					<Widgets
@@ -31,11 +30,13 @@
 <script>
 import Status from "@/components/VehiclePage/Status.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
+import Map from "@/components/Map/VehicleMap.vue";
 
 export default {
 	components: {
 		Status,
 		Widgets,
+		Map,
 	},
 	data() {
 		return {
@@ -47,7 +48,7 @@ export default {
 	},
 	computed: {
 		eruIcon() {
-			if (!this.missionData) return null;
+			if (!this.eruMissionData) return null;
 			return this.eruMissionData.icon;
 		},
 	},
