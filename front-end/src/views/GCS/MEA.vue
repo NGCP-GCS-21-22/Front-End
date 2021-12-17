@@ -3,18 +3,17 @@
 		<b-row class="mea-row">
 			<!-- left column -->
 			<b-col class="left-column" cols="7">
-				<b-img
-					class="map-image"
-					:src="require('@/assets/map.png')"
-					rounded
-					alt="map pic"
-				></b-img>
+				<Map
+					v-if="meaData && meaIcon"
+					:vehicleData="meaData"
+					:vehicleIcon="meaIcon"
+				/>
 			</b-col>
 
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status :vehicleName="vehicleName" />
+					<Status v-if="vehicleName && meaIcon" :vehicleName="vehicleName" :vehicleIcon="meaIcon" />
 				</b-row>
 				<b-row>
 					<Widgets
@@ -31,11 +30,13 @@
 <script>
 import Status from "@/components/VehiclePage/Status.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
+import Map from "@/components/Map/VehicleMap.vue";
 
 export default {
 	components: {
 		Status,
 		Widgets,
+		Map,
 	},
 	data() {
 		return {
@@ -45,7 +46,12 @@ export default {
 			meaMissionData: null,
 		};
 	},
-	computed: {},
+	computed: {
+		meaIcon() {
+			if (!this.meaMissionData) return null;
+			return this.meaMissionData.icon;
+		},
+	},
 	mounted() {
 		this.getMissionData();
 		this.interval = setInterval(this.getVehicleData, 500);
