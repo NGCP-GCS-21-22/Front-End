@@ -14,7 +14,7 @@
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status :vehicleName="vehicleName" />
+					<Status :vehicleName="vehicleName" :vehicleIcon="meaIcon" />
 				</b-row>
 				<b-row>
 					<Widgets
@@ -40,15 +40,20 @@ export default {
 	data() {
 		return {
 			vehicleName: "MEA",
-			generalStage: "ERU: Ready for Takeoff",
+			generalStage: null,
 			meaData: null,
 			meaMissionData: null,
 		};
 	},
-	computed: {},
+	computed: {
+		meaIcon() {
+			if (!this.missionData) return null;
+			return this.meaMissionData.icon;
+		},
+	},
 	mounted() {
 		this.getMissionData();
-		this.interval = setInterval(this.getVehicleData, 500);
+		this.interval = setInterval(this.getCurrentStatus, 500);
 	},
 	methods: {
 		getMissionData() {
@@ -165,6 +170,13 @@ export default {
 				},
 			};
 			this.meaMissionData = missionData.MEA;
+		},
+		getCurrentStatus() {
+			this.getGeneralStage();
+			this.getVehicleData();
+		},
+		getGeneralStage() {
+			this.generalStage = "ERU: Ready for Takeoff";
 		},
 		getVehicleData() {
 			// GET request at x endpoint

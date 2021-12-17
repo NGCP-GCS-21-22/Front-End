@@ -14,7 +14,7 @@
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status :vehicleName="vehicleName" />
+					<Status :vehicleName="vehicleName" :vehicleIcon="macIcon" />
 				</b-row>
 				<b-row>
 					<Widgets
@@ -40,12 +40,18 @@ export default {
 	data() {
 		return {
 			vehicleName: "MAC",
-			generalStage: "ERU: Ready for Takeoff",
+			generalStage: null,
 			macData: null,
 			macMissionData: null,
+			macIcon: null,
 		};
 	},
-	computed: {},
+	components: {
+		macIcon() {
+			if (!this.macMissionData) return null;
+			return this.macMissionData.icon;
+		},
+	},
 	mounted() {
 		this.getMissionData();
 		this.interval = setInterval(this.getVehicleData, 500);

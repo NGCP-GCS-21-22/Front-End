@@ -53,7 +53,7 @@ export default {
 	},
 	data() {
 		return {
-			generalStage: "ERU: Ready for Takeoff",
+			generalStage: null,
 			macData: null,
 			eruData: null,
 			meaData: null,
@@ -76,7 +76,7 @@ export default {
 	},
 	mounted() {
 		this.getMissionData();
-		this.interval = setInterval(this.getVehicleData, 500);
+		this.interval = setInterval(this.getCurrentStatus, 500);
 	},
 	methods: {
 		getMissionData() {
@@ -192,6 +192,13 @@ export default {
 					manualControl: false,
 				},
 			};
+		},
+		getCurrentStatus() {
+			this.getGeneralStage();
+			this.getVehicleData();
+		},
+		getGeneralStage() {
+			this.generalStage = "ERU: Ready for Takeoff";
 		},
 		getVehicleData() {
 			// GET request at x endpoint
