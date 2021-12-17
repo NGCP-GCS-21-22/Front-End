@@ -14,11 +14,14 @@
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<!-- A Card with dummy data for Status MEA -->
 					<Status :vehicleName="vehicleName" />
 				</b-row>
 				<b-row>
-					<Widgets :vehicleName="vehicleName" />
+					<Widgets
+						v-if="vehicleName && meaMissionData"
+						:vehicleName="vehicleName"
+						:vehicleMissionData="meaMissionData"
+					/>
 				</b-row>
 			</b-col>
 		</b-row>
@@ -37,7 +40,144 @@ export default {
 	data() {
 		return {
 			vehicleName: "MEA",
+			generalStage: "ERU: Ready for Takeoff",
+			meaData: null,
+			meaMissionData: null,
 		};
+	},
+	computed: {},
+	mounted() {
+		this.getMissionData();
+		this.interval = setInterval(this.getVehicleData, 500);
+	},
+	methods: {
+		getMissionData() {
+			// GET request
+
+			let missionData = {
+				MAC: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "ERU Drop Location",
+					searchArea: true,
+					manualControl: false,
+				},
+				ERU: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "Evacuation Zone",
+					searchArea: false,
+					manualControl: true,
+				},
+				MEA: {
+					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
+					stages: [
+						{
+							stage: "Ready to Start",
+							id: 1,
+						},
+						{
+							stage: "ERU Landing Sequence",
+							id: 5,
+						},
+						{
+							stage: "Drive to Hiker",
+							id: 6,
+						},
+						{
+							stage: "Load the Hiker",
+							id: 7,
+						},
+						{
+							stage: "Go to EZ",
+							id: 8,
+						},
+						{
+							stage: "Transferring Hiker",
+							id: 9,
+						},
+						{
+							stage: "Return to Home/Travel to Position",
+							id: 10,
+						},
+					],
+					missionWaypoint: "Evacuation Zone",
+					searchArea: false,
+					manualControl: false,
+				},
+			};
+			this.meaMissionData = missionData.MEA;
+		},
+		getVehicleData() {
+			// GET request at x endpoint
+
+			this.meaData = {
+				latitude: 33.93404089266308,
+				longitude: -117.63052445140261,
+			};
+			console.log("Data received!");
+		},
+	},
+	beforeDestroy() {
+		clearInterval(this.interval);
 	},
 };
 </script>

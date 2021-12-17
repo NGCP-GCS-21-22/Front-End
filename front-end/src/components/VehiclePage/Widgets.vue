@@ -77,7 +77,7 @@ export default {
 	},
 	props: {
 		vehicleName: String,
-		missionData: Object,
+		vehicleMissionData: Object,
 	},
 	computed: {
 		// widgetGroups() {
@@ -91,7 +91,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.setUpWidgetGroups();
+		this.getWidgetGroups();
 	},
 	methods: {
 		selectWidget(widgetName) {
@@ -102,22 +102,13 @@ export default {
 			this.selected = false;
 			this.cardSelected = null;
 		},
-		setUpWidgetGroups() {
-			if (this.vehicleName == "MAC") {
-				this.getWidgetGroups(missionData.MAC);
-			} else if (this.vehicleName == "ERU") {
-				this.getWidgetGroups(missionData.ERU);
-			} else if (this.vehicleName == "MEA") {
-				this.getWidgetGroups(missionData.MEA);
-			}
-		},
-		getWidgetGroups(missionData) {
+		getWidgetGroups() {
 			// missionWaypoint and home coordinates
 			let widgetGroup1 = {
 				widgetGroup: [
 					{
 						type: "Waypoint",
-						name: missionData.missionWaypoint,
+						name: this.vehicleMissionData.missionWaypoint,
 					},
 					{
 						type: "Waypoint",
@@ -134,7 +125,7 @@ export default {
 					{
 						type: "StageCommand",
 						name: "Stage Command",
-						stages: missionData.stages,
+						stages: this.vehicleMissionData.stages,
 					},
 					{
 						type: "Geofence",
@@ -149,14 +140,14 @@ export default {
 
 			// Search Area (optional) and Manual Control (optional)
 			let widgetGroup = [];
-			if (missionData.searchArea) {
+			if (this.vehicleMissionData.searchArea) {
 				let widget = {
 					type: "SearchArea",
 					name: "Search Area",
 				};
 				widgetGroup.push(widget);
 			}
-			if (missionData.manualControl) {
+			if (this.vehicleMissionData.manualControl) {
 				let widget = {
 					type: "ManualControl",
 					name: "Manual Control",
@@ -167,7 +158,7 @@ export default {
 			while (widgetGroup.length < 2) {
 				let widgetPlaceholder = {
 					type: "Placeholder",
-					name: "Placeholder",
+					name: "Placeholder " + widgetGroup.length,
 				};
 				widgetGroup.push(widgetPlaceholder);
 			}
