@@ -19,11 +19,11 @@
 			</b-row>
 			<b-row>
 				<!-- Manual Control (toggle/checkbox) -->
-				<ManualControl ref="ManualControl" />
+				<ManualControl ref="ManualControl" :vehicleName="vehicleName + 'manual'" /> 
 			</b-row>
 			<b-row>
 				<!-- Search Area (toggle/checkbox) -->
-				<SearchArea ref="SearchArea" />
+				<SearchArea ref="SearchArea" :vehicleName="vehicleName + 'search'"/>
 			</b-row>
 		</b-card>
 	</b-container>

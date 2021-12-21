@@ -17,7 +17,7 @@
 					</b-col>
 				</b-row>
 			</b-container>
-			<b-button @click="submit">Sumbit</b-button>
+			<b-button @click="submit">Submit</b-button>
 	</div>
 </template>
 
