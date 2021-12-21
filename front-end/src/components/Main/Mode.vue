@@ -15,8 +15,8 @@ export default {
 <style scoped>
 .mode {
     margin-top: 10px;
-	width: 100px;
+	width: 230px;
 	height: 25px;
-	margin-left: 10px;
+	/* margin-left: 20px; */
 }
 </style>
