@@ -1,9 +1,5 @@
 <template>
   <div>
-<<<<<<< Updated upstream
-    <b-card style="width: 780px; height: 300px" title="MAC Status">
-      <div>This is some content/ dummy info for the things.</div>
-=======
     <b-card style="width: 780px; height: 300px">
       <b-row >
         <b-col >
@@ -17,7 +13,6 @@
             <vehicle-mission-stage :stage="getStage" />
           </b-row>
         </b-col>
-
         <b-col>
           <b-row>
             <b-col>
@@ -47,15 +42,11 @@
           </b-row>
         </b-col>
       </b-row>
->>>>>>> Stashed changes
     </b-card>
   </div>
 </template>
 
 <script>
-<<<<<<< Updated upstream
-export default {};
-=======
 import ImageURL from "../Form/ImageURL.vue";
 import Battery from '../MainPage/Battery.vue';
 import ConnectionStatus from "../MainPage/ConnectionStatus.vue";
@@ -130,8 +121,6 @@ export default {
 
   }
 };
-
->>>>>>> Stashed changes
 </script>
 
 <style>

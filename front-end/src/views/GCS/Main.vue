@@ -24,8 +24,8 @@
 
 <script>
 // @ is the same as src
-import VehicleStatus from "@/components/Main/VehicleStatus.vue";
-import GeneralStage from "@/components/Main/GeneralStage.vue";
+import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
+import GeneralStage from "@/components/MainPage/GeneralStage.vue";
 
 export default {
 	props: {
