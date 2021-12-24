@@ -198,10 +198,6 @@ export default {
 </script>
 
 <style scoped>
-.map-image {
-	max-height: 90vh;
-	margin: auto;
-}
 .eru-container {
 	max-width: 100%;
 	max-height: 100%;

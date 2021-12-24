@@ -20,6 +20,9 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: #2c3e50;
+	padding: 0; margin: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 h1 {

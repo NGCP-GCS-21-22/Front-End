@@ -225,9 +225,6 @@ export default {
 </script>
 
 <style scoped>
-.map-image {
-	max-height: 92vh;
-}
 .main-container {
 	max-width: 100%;
 	max-height: 100%;

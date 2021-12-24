@@ -2,7 +2,7 @@
   <b-container class="mac-container">
     <b-row class="mac-row">
       <!-- left column -->
-      <b-col class="left-column" cols="7">
+      <b-col class="left-column" cols="7" >
         <Map
           v-if="macData && macIcon"
           :vehicleData="macData"
@@ -200,10 +200,6 @@ export default {
 </script>
 
 <style scoped>
-.map-image {
-  max-height: 90vh;
-  margin: auto;
-}
 .mac-container {
   max-width: 100%;
   max-height: 100%;

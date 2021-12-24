@@ -42,13 +42,16 @@ export default {
 				streetViewControl: false,
 				rotateControl: false,
 				fullscreenControl: false,
+				scrollwheel: false,
+				draggable: false,
+				disableDoubleClickZoom: true,
 			},
 			mapType: "satellite",
-		};
+		}
 	},
 	computed: {
 		macMarker() {
-			if (!this.macData) return null;
+			if (!this.macData) return null
 			return {
 				id: "macMarker",
 				position: {
@@ -56,10 +59,10 @@ export default {
 					lng: this.macData.longitude,
 				},
 				icon: this.macIcon,
-			};
+			}
 		},
 		eruMarker() {
-			if (!this.eruData) return null;
+			if (!this.eruData) return null
 			return {
 				id: "eruMarker",
 				position: {
@@ -67,10 +70,10 @@ export default {
 					lng: this.eruData.longitude,
 				},
 				icon: this.eruIcon,
-			};
+			}
 		},
 		meaMarker() {
-			if (!this.meaData) return null;
+			if (!this.meaData) return null
 			return {
 				id: "meaMarker",
 				position: {
@@ -78,16 +81,16 @@ export default {
 					lng: this.meaData.longitude,
 				},
 				icon: this.meaIcon,
-			};
+			}
 		},
 		vehicleMarkers() {
 			if (!(this.macMarker && this.eruMarker && this.meaMarker))
-				return null;
-			return [this.macMarker, this.eruMarker, this.meaMarker];
+				return null
+			return [this.macMarker, this.eruMarker, this.meaMarker]
 		},
 	},
 	methods: {},
-};
+}
 </script>
 
 <style>

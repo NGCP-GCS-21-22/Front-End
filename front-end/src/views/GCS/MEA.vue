@@ -189,10 +189,6 @@ export default {
 </script>
 
 <style scoped>
-.map-image {
-	max-height: 90vh;
-	margin: auto;
-}
 .mea-container {
 	max-width: 100%;
 	max-height: 100%;

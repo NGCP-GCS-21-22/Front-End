@@ -37,6 +37,9 @@ export default {
 				streetViewControl: false,
 				rotateControl: false,
 				fullscreenControl: false,
+				scrollwheel: false,
+				draggable: false,
+				disableDoubleClickZoom: true,
 			},
 			mapType: "satellite",
 		};
