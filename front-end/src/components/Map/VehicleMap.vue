@@ -14,6 +14,12 @@
 				url: vehicleMarker.icon,
 			}"
 		/>
+
+		<!-- mission waypoint -->
+		<GmapMarker
+			:position="missionWaypointMarker.position"
+			:icon="{ url: missionWaypointMarker.icon }"
+		/>
 	</GmapMap>
 </template>
 
@@ -22,7 +28,10 @@ export default {
 	props: {
 		vehicleData: Object,
 		vehicleIcon: String,
-
+		missionWaypointData: Object,
+	},
+	mounted() {
+		console.log(this.missionWaypointData)
 	},
 	data() {
 		return {
@@ -42,11 +51,11 @@ export default {
 				disableDoubleClickZoom: true,
 			},
 			mapType: "satellite",
-		};
+		}
 	},
 	computed: {
 		vehicleMarker() {
-			if (!this.vehicleData) return null;
+			if (!this.vehicleData) return null
 			return {
 				id: "vehicleMarker",
 				position: {
@@ -54,11 +63,22 @@ export default {
 					lng: this.vehicleData.longitude,
 				},
 				icon: this.vehicleIcon,
-			};
+			}
+		},
+		missionWaypointMarker() {
+			if (!this.missionWaypointData) return null
+			return {
+				id: "missionWaypointMarker",
+				position: {
+					lat: this.missionWaypointData.latitude,
+					lng: this.missionWaypointData.longitude,
+				},
+				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+			}
 		},
 	},
 	methods: {},
-};
+}
 </script>
 
 <style>

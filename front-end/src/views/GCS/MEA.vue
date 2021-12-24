@@ -7,19 +7,25 @@
 					v-if="meaData && meaIcon"
 					:vehicleData="meaData"
 					:vehicleIcon="meaIcon"
+					:missionWaypointData="missionWaypointData"
 				/>
 			</b-col>
 
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status v-if="vehicleName && meaIcon" :vehicleName="vehicleName" :vehicleIcon="meaIcon" />
+					<Status
+						v-if="vehicleName && meaIcon"
+						:vehicleName="vehicleName"
+						:vehicleIcon="meaIcon"
+					/>
 				</b-row>
 				<b-row>
 					<Widgets
 						v-if="vehicleName && meaMissionData"
 						:vehicleName="vehicleName"
 						:vehicleMissionData="meaMissionData"
+						:missionWaypointData="missionWaypointData"
 					/>
 				</b-row>
 			</b-col>
@@ -28,9 +34,9 @@
 </template>
 
 <script>
-import Status from "@/components/VehiclePage/Status.vue";
-import Widgets from "@/components/VehiclePage/Widgets.vue";
-import Map from "@/components/Map/VehicleMap.vue";
+import Status from "@/components/VehiclePage/Status.vue"
+import Widgets from "@/components/VehiclePage/Widgets.vue"
+import Map from "@/components/Map/VehicleMap.vue"
 
 export default {
 	components: {
@@ -44,17 +50,18 @@ export default {
 			generalStage: "ERU: Ready for Takeoff",
 			meaData: null,
 			meaMissionData: null,
-		};
+			missionWaypointData: null,
+		}
 	},
 	computed: {
 		meaIcon() {
-			if (!this.meaMissionData) return null;
-			return this.meaMissionData.icon;
+			if (!this.meaMissionData) return null
+			return this.meaMissionData.icon
 		},
 	},
 	mounted() {
-		this.getMissionData();
-		this.interval = setInterval(this.getVehicleData, 500);
+		this.getMissionData()
+		this.interval = setInterval(this.getCurrentStatus, 500)
 	},
 	methods: {
 		getMissionData() {
@@ -169,8 +176,16 @@ export default {
 					searchArea: false,
 					manualControl: false,
 				},
-			};
-			this.meaMissionData = missionData.MEA;
+			}
+			this.meaMissionData = missionData.MEA
+		},
+		getCurrentStatus() {
+			this.getGeneralStage()
+			this.getVehicleData()
+			this.getWidgetData()
+		},
+		getGeneralStage() {
+			this.generalStage = "ERU: Ready for Takeoff"
 		},
 		getVehicleData() {
 			// GET request at x endpoint
@@ -178,14 +193,28 @@ export default {
 			this.meaData = {
 				latitude: 33.93404089266308,
 				longitude: -117.63052445140261,
-			};
-			console.log("Data received!");
+			}
+			console.log("Data received!")
+		},
+		getWidgetData() {
+			// get ERU Drop Location
+
+			// GET request macMissionData.missionWaypoint
+			// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
+			// axios.get(missionWaypointPath).then((response) => {
+			// 	this.missionWaypointData = res.data
+			// })
+
+			this.missionWaypointData = {
+				latitude: 33.933729,
+				longitude: -117.6318437,
+			}
 		},
 	},
 	beforeDestroy() {
-		clearInterval(this.interval);
+		clearInterval(this.interval)
 	},
-};
+}
 </script>
 
 <style scoped>

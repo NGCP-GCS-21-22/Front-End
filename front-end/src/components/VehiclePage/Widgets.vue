@@ -22,6 +22,7 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						:missionWaypointData="missionWaypointData"
 						@goBack="showWidgets"
 					/>
 					<StageCommand
@@ -78,6 +79,7 @@ export default {
 	props: {
 		vehicleName: String,
 		vehicleMissionData: Object,
+		missionWaypointData: Object,
 	},
 	computed: {
 		// widgetGroups() {

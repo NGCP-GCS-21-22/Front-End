@@ -7,6 +7,7 @@
 					v-if="eruData && eruIcon"
 					:vehicleData="eruData"
 					:vehicleIcon="eruIcon"
+					:missionWaypointData="missionWaypointData"
 				/>
 			</b-col>
 
@@ -20,6 +21,7 @@
 						v-if="vehicleName && eruMissionData"
 						:vehicleName="vehicleName"
 						:vehicleMissionData="eruMissionData"
+						:missionWaypointData="missionWaypointData"
 					/>
 				</b-row>
 			</b-col>
@@ -175,6 +177,7 @@ export default {
 		getCurrentStatus() {
 			this.getGeneralStage();
 			this.getVehicleData();
+			this.getWidgetData() // get all widget data to passed to widgets and map
 		},
 		getGeneralStage() {
 			// GET request at x endpoint
@@ -189,6 +192,20 @@ export default {
 				longitude: -117.6314209323399,
 			};
 			console.log("Data received!");
+		},
+		getWidgetData() {
+			// get ERU Drop Location
+
+			// GET request macMissionData.missionWaypoint
+			// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
+			// axios.get(missionWaypointPath).then((response) => {
+			// 	this.missionWaypointData = res.data
+			// })
+
+			this.missionWaypointData = {
+				latitude: 33.933729,
+				longitude: -117.6318437,
+			}
 		},
 	},
 	beforeDestroy() {

@@ -30,11 +30,22 @@
 export default {
 	props: {
 		name: String,
+    missionWaypointData: Object,
 	},
+  computed: {
+    latitude() {
+      if (!this.missionWaypointData) return null
+      return this.missionWaypointData.latitude
+    },
+    longitude() {
+      if (!this.missionWaypointData) return null
+      return this.missionWaypointData.longitude
+    },
+  },
 	data() {
 		return {
-			latitude: null,
-			longitude: null,
+			// latitude: null,
+			// longitude: null,
 		};
 	},
 	methods: {
