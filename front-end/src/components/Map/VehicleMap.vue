@@ -10,6 +10,7 @@
 		<!-- vehicle pos -->
 		<GmapMarker
 			:position="vehicleMarker.position"
+			:clickable="false"
 			:icon="{
 				url: vehicleMarker.icon,
 			}"
