@@ -20,9 +20,10 @@
         >
         </b-form-input>
         </br>
-        <b-button>clear</b-button>
-        <b-button variant="success" >Submit</b-button>
+        
         <b-button @click="goBack" >Back</b-button>
+        <b-button>Clear</b-button>
+        <b-button variant="success" >Submit</b-button>
     </b-card>
 </template>
 
@@ -30,18 +31,18 @@
 export default {
 	props: {
 		name: String,
-    missionWaypointData: Object,
+		missionWaypointData: Object,
 	},
-  computed: {
-    latitude() {
-      if (!this.missionWaypointData) return null
-      return this.missionWaypointData.latitude
-    },
-    longitude() {
-      if (!this.missionWaypointData) return null
-      return this.missionWaypointData.longitude
-    },
-  },
+	computed: {
+		latitude() {
+			if (!this.missionWaypointData) return 33.933729;
+			return this.missionWaypointData.latitude;
+		},
+		longitude() {
+			if (!this.missionWaypointData) return -117.6318437;
+			return this.missionWaypointData.longitude;
+		},
+	},
 	data() {
 		return {
 			// latitude: null,

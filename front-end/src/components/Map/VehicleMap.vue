@@ -18,7 +18,9 @@
 		<!-- mission waypoint -->
 		<GmapMarker
 			:position="missionWaypointMarker.position"
+			:draggable="missionWaypointMarker.draggable"
 			:icon="{ url: missionWaypointMarker.icon }"
+			@drag="handleMarkerDrag"
 		/>
 	</GmapMap>
 </template>
@@ -29,10 +31,9 @@ export default {
 		vehicleData: Object,
 		vehicleIcon: String,
 		missionWaypointData: Object,
+		widgetTypeSelected: String,
 	},
-	mounted() {
-		console.log(this.missionWaypointData)
-	},
+	mounted() {},
 	data() {
 		return {
 			// Map Data
@@ -51,11 +52,11 @@ export default {
 				disableDoubleClickZoom: true,
 			},
 			mapType: "satellite",
-		}
+		};
 	},
 	computed: {
 		vehicleMarker() {
-			if (!this.vehicleData) return null
+			if (!this.vehicleData) return null;
 			return {
 				id: "vehicleMarker",
 				position: {
@@ -63,10 +64,19 @@ export default {
 					lng: this.vehicleData.longitude,
 				},
 				icon: this.vehicleIcon,
-			}
+			};
 		},
 		missionWaypointMarker() {
-			if (!this.missionWaypointData) return null
+			if (!this.missionWaypointData)
+				return {
+					id: "missionWaypointMarker",
+					position: {
+						lat: 33.933729,
+						lng: -117.6318437,
+					},
+					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+					draggable: this.widgetTypeSelected === "Waypoint",
+				};
 			return {
 				id: "missionWaypointMarker",
 				position: {
@@ -74,11 +84,23 @@ export default {
 					lng: this.missionWaypointData.longitude,
 				},
 				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
-			}
+				draggable: this.widgetTypeSelected === "Waypoint",
+			};
 		},
 	},
-	methods: {},
-}
+	methods: {
+		handleMarkerDrag(e) {
+			this.missionWaypointMarker.position = {
+				lat: e.latLng.lat(),
+				lng: e.latLng.lng(),
+			};
+			this.$emit("moveWaypointMarker", {
+				latitude: this.missionWaypointMarker.position.lat,
+				longitude: this.missionWaypointMarker.position.lng,
+			});
+		},
+	},
+};
 </script>
 
 <style>

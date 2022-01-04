@@ -8,6 +8,8 @@
 					:vehicleData="macData"
 					:vehicleIcon="macIcon"
 					:missionWaypointData="missionWaypointData"
+					:widgetTypeSelected="widgetTypeSelected"
+					@moveWaypointMarker="setMissionWaypointData"
 				/>
 			</b-col>
 
@@ -26,6 +28,7 @@
 						:vehicleName="vehicleName"
 						:vehicleMissionData="macMissionData"
 						:missionWaypointData="missionWaypointData"
+						@widgetTypeSelected="setWidgetSelected"
 					/>
 				</b-row>
 			</b-col>
@@ -34,9 +37,9 @@
 </template>
 
 <script>
-import Status from "@/components/VehiclePage/Status.vue"
-import Widgets from "@/components/VehiclePage/Widgets.vue"
-import Map from "@/components/Map/VehicleMap.vue"
+import Status from "@/components/VehiclePage/Status.vue";
+import Widgets from "@/components/VehiclePage/Widgets.vue";
+import Map from "@/components/Map/VehicleMap.vue";
 
 export default {
 	components: {
@@ -51,17 +54,20 @@ export default {
 			macData: null,
 			macMissionData: null,
 			missionWaypointData: null,
-		}
+			widgetTypeSelected: null,
+		};
 	},
 	computed: {
 		macIcon() {
-			if (!this.macMissionData) return null
-			return this.macMissionData.icon
+			if (!this.macMissionData) return null;
+			return this.macMissionData.icon;
 		},
 	},
 	mounted() {
-		this.getMissionData()
-		this.interval = setInterval(this.getCurrentStatus, 500)
+		this.getMissionData();
+		this.getWidgetData();
+
+		this.interval = setInterval(this.getCurrentStatus, 500);
 	},
 	methods: {
 		getMissionData() {
@@ -176,16 +182,23 @@ export default {
 					searchArea: false,
 					manualControl: false,
 				},
-			}
-			this.macMissionData = missionData.MAC
+			};
+			this.macMissionData = missionData.MAC;
+		},
+		getWidgetData() {
+			// get ERU Drop Location
+			// GET request macMissionData.missionWaypoint
+			// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
+			// axios.get(missionWaypointPath).then((response) => {
+			// 	this.missionWaypointData = res.data
+			// })
 		},
 		getCurrentStatus() {
-			this.getGeneralStage()
-			this.getVehicleData()
-			this.getWidgetData()
+			this.getGeneralStage();
+			this.getVehicleData();
 		},
 		getGeneralStage() {
-			this.generalStage = "ERU: Ready for Takeoff"
+			this.generalStage = "ERU: Ready for Takeoff";
 		},
 		getVehicleData() {
 			// GET request at x endpoint
@@ -193,28 +206,20 @@ export default {
 			this.macData = {
 				latitude: 33.93459532438122,
 				longitude: -117.6311926970484,
-			}
-			console.log("Data received!")
+			};
+			console.log("Data received!");
 		},
-		getWidgetData() {
-			// get ERU Drop Location
-
-			// GET request macMissionData.missionWaypoint
-			// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
-			// axios.get(missionWaypointPath).then((response) => {
-			// 	this.missionWaypointData = res.data
-			// })
-
-			this.missionWaypointData = {
-				latitude: 33.933729,
-				longitude: -117.6318437,
-			}
+		setMissionWaypointData(position) {
+			this.missionWaypointData = position;
 		},
+		setWidgetSelected(widgetTypeSelected) {
+			this.widgetTypeSelected = widgetTypeSelected;
+		}
 	},
 	beforeDestroy() {
-		clearInterval(this.interval)
+		clearInterval(this.interval);
 	},
-}
+};
 </script>
 
 <style scoped>

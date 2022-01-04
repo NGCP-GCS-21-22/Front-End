@@ -7,7 +7,7 @@
 						class="widget-button"
 						variant="dark"
 						v-if="!selected && widget.type != 'Placeholder'"
-						@click="selectWidget(widget.name)"
+						@click="selectWidget(widget.name, widget.type)"
 					>
 						{{ widget.name }}
 					</b-button>
@@ -89,6 +89,7 @@ export default {
 		return {
 			selected: false,
 			cardSelected: null,
+			widgetTypeSelected: null,
 			widgetGroups: [],
 		};
 	},
@@ -96,13 +97,17 @@ export default {
 		this.getWidgetGroups();
 	},
 	methods: {
-		selectWidget(widgetName) {
+		selectWidget(widgetName, widgetType) {
 			this.selected = true;
 			this.cardSelected = widgetName;
+			this.widgetTypeSelected = widgetType;
+			this.$emit("widgetTypeSelected", this.widgetTypeSelected);
 		},
 		showWidgets() {
 			this.selected = false;
 			this.cardSelected = null;
+			this.widgetTypeSelected = null;
+			this.$emit("widgetTypeSelected", this.widgetTypeSelected);
 		},
 		getWidgetGroups() {
 			// missionWaypoint and home coordinates
