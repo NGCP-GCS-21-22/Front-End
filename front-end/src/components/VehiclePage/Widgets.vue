@@ -16,15 +16,27 @@
 
 			<div v-for="group in widgetGroups" :key="group.widgetGroupId">
 				<div v-for="widget in group.widgetGroup" :key="widget.name">
-					<Waypoint
+					<MissionWaypoint
 						v-if="
-							widget.type == 'Waypoint' &&
+							widget.type == 'MissionWaypoint' &&
 							cardSelected == widget.name
 						"
 						:name="widget.name"
-						:missionWaypointData="missionWaypointData"
+						:missionWaypoint="missionWaypoint"
 						@goBack="showWidgets"
+						@moveCoordinates="moveCoordinates"
 					/>
+					<HomeCoordinates
+						v-if="
+							widget.type == 'HomeCoordinates' &&
+							cardSelected == widget.name
+						"
+						:name="widget.name"
+						:homeCoordinates="homeCoordinates"
+						@goBack="showWidgets"
+						@moveCoordinates="moveCoordinates"
+					/>
+
 					<StageCommand
 						v-if="
 							widget.type == 'StageCommand' &&
@@ -62,7 +74,8 @@
 </template>
 
 <script>
-import Waypoint from "@/components/Widgets/Waypoint.vue";
+import MissionWaypoint from "@/components/Widgets/MissionWaypoint.vue";
+import HomeCoordinates from "@/components/Widgets/HomeCoordinates.vue";
 import StageCommand from "@/components/Widgets/StageCommand.vue";
 import SearchArea from "@/components/Widgets/SearchArea.vue";
 import Geofence from "@/components/Widgets/Geofence.vue";
@@ -70,7 +83,8 @@ import ManualControl from "@/components/Widgets/ManualControl.vue";
 
 export default {
 	components: {
-		Waypoint,
+		MissionWaypoint,
+		HomeCoordinates,
 		StageCommand,
 		SearchArea,
 		Geofence,
@@ -79,11 +93,17 @@ export default {
 	props: {
 		vehicleName: String,
 		vehicleMissionData: Object,
-		missionWaypointData: Object,
+		widgetData: Object,
 	},
 	computed: {
-		// widgetGroups() {
-		// }
+		missionWaypoint() {
+			if (!this.widgetData.missionWaypoint) return null;
+			return this.widgetData.missionWaypoint;
+		},
+		homeCoordinates() {
+			if (!this.widgetData.homeCoordinates) return null;
+			return this.widgetData.homeCoordinates;
+		},
 	},
 	data() {
 		return {
@@ -114,11 +134,11 @@ export default {
 			let widgetGroup1 = {
 				widgetGroup: [
 					{
-						type: "Waypoint",
+						type: "MissionWaypoint",
 						name: this.vehicleMissionData.missionWaypoint,
 					},
 					{
-						type: "Waypoint",
+						type: "HomeCoordinates",
 						name: "Home Coordinates",
 					},
 				],
@@ -179,6 +199,9 @@ export default {
 
 			this.widgetGroups.push(widgetGroup3);
 			// }
+		},
+		moveCoordinates(direction, coordinate) {
+			this.$emit("moveCoordinates", direction, coordinate);
 		},
 	},
 };

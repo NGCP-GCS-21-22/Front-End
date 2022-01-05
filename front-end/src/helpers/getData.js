@@ -1,3 +1,5 @@
+// const axios = require('axios')
+
 const getMissionData = (vehicleName) => {
     // GET request
 
@@ -135,6 +137,7 @@ const getWidgetData = (vehicleName) => {
 	// axios.get(missionWaypointPath).then((response) => {
 	// 	this.missionWaypointData = res.data
 	// })
+    return {}
 }
 
 export { getMissionData, getGeneralStage, getVehicleData, getWidgetData}

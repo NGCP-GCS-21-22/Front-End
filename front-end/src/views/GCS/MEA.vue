@@ -7,9 +7,9 @@
 					v-if="meaData && meaIcon"
 					:vehicleData="meaData"
 					:vehicleIcon="meaIcon"
-					:missionWaypointData="missionWaypointData"
+					:widgetData="widgetData"
 					:widgetTypeSelected="widgetTypeSelected"
-					@moveWaypointMarker="setMissionWaypointData"
+					@moveMarker="setWidgetData"
 				/>
 			</b-col>
 
@@ -27,8 +27,9 @@
 						v-if="vehicleName && meaMissionData"
 						:vehicleName="vehicleName"
 						:vehicleMissionData="meaMissionData"
-						:missionWaypointData="missionWaypointData"
+						:widgetData="widgetData"
 						@widgetTypeSelected="setWidgetSelected"
+						@moveCoordinates="setWidgetData"
 					/>
 				</b-row>
 			</b-col>
@@ -56,10 +57,10 @@ export default {
 	data() {
 		return {
 			vehicleName: "MEA",
-			generalStage: "ERU: Ready for Takeoff",
+			generalStage: null,
 			meaData: null,
 			meaMissionData: null,
-			missionWaypointData: null,
+			widgetData: null,
 			widgetTypeSelected: null,
 		};
 	},
@@ -71,7 +72,7 @@ export default {
 	},
 	mounted() {
 		this.meaMissionData = getMissionData(this.vehicleName);
-		this.missionWaypointData = getWidgetData();
+		this.widgetData = getWidgetData(this.vehicleName);
 
 		this.interval = setInterval(this.getCurrentStatus, 500);
 	},
@@ -80,8 +81,8 @@ export default {
 			this.generalStage = getGeneralStage();
 			this.meaData = getVehicleData();
 		},
-		setMissionWaypointData(position) {
-			this.missionWaypointData = position;
+		setWidgetData(widgetType, position) {
+			this.$set(this.widgetData, widgetType, position);
 		},
 		setWidgetSelected(widgetTypeSelected) {
 			this.widgetTypeSelected = widgetTypeSelected;

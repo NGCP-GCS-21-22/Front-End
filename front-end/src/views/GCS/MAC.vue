@@ -7,9 +7,9 @@
 					v-if="macData && macIcon"
 					:vehicleData="macData"
 					:vehicleIcon="macIcon"
-					:missionWaypointData="missionWaypointData"
+					:widgetData="widgetData"
 					:widgetTypeSelected="widgetTypeSelected"
-					@moveWaypointMarker="setMissionWaypointData"
+					@moveMarker="setWidgetData"
 				/>
 			</b-col>
 
@@ -27,8 +27,9 @@
 						v-if="vehicleName && macMissionData"
 						:vehicleName="vehicleName"
 						:vehicleMissionData="macMissionData"
-						:missionWaypointData="missionWaypointData"
+						:widgetData="widgetData"
 						@widgetTypeSelected="setWidgetSelected"
+						@moveCoordinates="setWidgetData"
 					/>
 				</b-row>
 			</b-col>
@@ -59,7 +60,7 @@ export default {
 			generalStage: null,
 			macData: null,
 			macMissionData: null,
-			missionWaypointData: null,
+			widgetData: null,
 			widgetTypeSelected: null,
 		};
 	},
@@ -71,7 +72,7 @@ export default {
 	},
 	mounted() {
 		this.macMissionData = getMissionData(this.vehicleName);
-		this.missionWaypointData = getWidgetData();
+		this.widgetData = getWidgetData(this.vehicleName);
 
 		this.interval = setInterval(this.getCurrentStatus, 500);
 	},
@@ -80,8 +81,8 @@ export default {
 			this.generalStage = getGeneralStage();
 			this.macData = getVehicleData();
 		},
-		setMissionWaypointData(position) {
-			this.missionWaypointData = position;
+		setWidgetData(widgetType, position) {
+			this.$set(this.widgetData, widgetType, position);
 		},
 		setWidgetSelected(widgetTypeSelected) {
 			this.widgetTypeSelected = widgetTypeSelected;

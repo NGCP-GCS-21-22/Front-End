@@ -31,23 +31,38 @@
 export default {
 	props: {
 		name: String,
-		missionWaypointData: Object,
+		homeCoordinates: Object,
 	},
 	computed: {
-		latitude() {
-			if (!this.missionWaypointData) return 33.933729;
-			return this.missionWaypointData.latitude;
+		latitude: {
+			get: function () {
+				if (!this.homeCoordinates) return 33.93459532438122;
+				return this.homeCoordinates.latitude;
+			},
+			set: function (newValue) {
+				let coordinates = {
+					latitude: parseFloat(newValue),
+					longitude: this.longitude,
+				};
+				this.$emit("moveCoordinates", "homeCoordinates", coordinates);
+			},
 		},
-		longitude() {
-			if (!this.missionWaypointData) return -117.6318437;
-			return this.missionWaypointData.longitude;
+		longitude: {
+			get: function () {
+				if (!this.homeCoordinates) return -117.6311926970484;
+				return this.homeCoordinates.longitude;
+			},
+			set: function (newValue) {
+				let coordinates = {
+					latitude: this.latitude,
+					longitude: parseFloat(newValue),
+				};
+				this.$emit("moveCoordinates", "homeCoordinates", coordinates);
+			},
 		},
 	},
 	data() {
-		return {
-			// latitude: null,
-			// longitude: null,
-		};
+		return {};
 	},
 	methods: {
 		goBack() {
