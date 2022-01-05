@@ -1,4 +1,4 @@
-let getMissionData = (vehicleName) => {
+const getMissionData = (vehicleName) => {
     // GET request
 
     let missionData = {
@@ -114,11 +114,11 @@ let getMissionData = (vehicleName) => {
     return missionData[vehicleName];
 }
 
-let getGeneralStage = () => {
+const getGeneralStage = () => {
 	return "ERU: Ready for Takeoff"
 }
 
-let getVehicleData = (vehicleName) => {
+const getVehicleData = (vehicleName) => {
 	// GET request at x endpoint
 
 	// console.log("Data received!");
@@ -128,7 +128,7 @@ let getVehicleData = (vehicleName) => {
 	}
 }
 
-let getWidgetData = (vehicleName) => {
+const getWidgetData = (vehicleName) => {
 	// get ERU Drop Location
 	// GET request macMissionData.missionWaypoint
 	// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
