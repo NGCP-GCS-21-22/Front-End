@@ -40,6 +40,12 @@
 import Status from "@/components/VehiclePage/Status.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Map/VehicleMap.vue";
+import {
+	getMissionData,
+	getGeneralStage,
+	getVehicleData,
+	getWidgetData,
+} from "@/helpers/getData.js";
 
 export default {
 	components: {
@@ -64,152 +70,15 @@ export default {
 		},
 	},
 	mounted() {
-		this.getMissionData();
-		this.getWidgetData();
+		this.eruMissionData = getMissionData(this.vehicleName);
+		this.missionWaypointData = getWidgetData();
 
 		this.interval = setInterval(this.getCurrentStatus, 500);
 	},
 	methods: {
-		getMissionData() {
-			// GET request
-
-			let missionData = {
-				MAC: {
-					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mac.png",
-					stages: [
-						{
-							stage: "Ready to Start",
-							id: 1,
-						},
-						{
-							stage: "ERU Landing Sequence",
-							id: 5,
-						},
-						{
-							stage: "Drive to Hiker",
-							id: 6,
-						},
-						{
-							stage: "Load the Hiker",
-							id: 7,
-						},
-						{
-							stage: "Go to EZ",
-							id: 8,
-						},
-						{
-							stage: "Transferring Hiker",
-							id: 9,
-						},
-						{
-							stage: "Return to Home/Travel to Position",
-							id: 10,
-						},
-					],
-					missionWaypoint: "ERU Drop Location",
-					searchArea: true,
-					manualControl: false,
-				},
-				ERU: {
-					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/eru.png",
-					stages: [
-						{
-							stage: "Ready to Start",
-							id: 1,
-						},
-						{
-							stage: "ERU Landing Sequence",
-							id: 5,
-						},
-						{
-							stage: "Drive to Hiker",
-							id: 6,
-						},
-						{
-							stage: "Load the Hiker",
-							id: 7,
-						},
-						{
-							stage: "Go to EZ",
-							id: 8,
-						},
-						{
-							stage: "Transferring Hiker",
-							id: 9,
-						},
-						{
-							stage: "Return to Home/Travel to Position",
-							id: 10,
-						},
-					],
-					missionWaypoint: "Evacuation Zone",
-					searchArea: false,
-					manualControl: true,
-				},
-				MEA: {
-					icon: "https://raw.githubusercontent.com/NGCP-GCS-2021/front-end-21/harvey/src/assets/map_icons/mea.png",
-					stages: [
-						{
-							stage: "Ready to Start",
-							id: 1,
-						},
-						{
-							stage: "ERU Landing Sequence",
-							id: 5,
-						},
-						{
-							stage: "Drive to Hiker",
-							id: 6,
-						},
-						{
-							stage: "Load the Hiker",
-							id: 7,
-						},
-						{
-							stage: "Go to EZ",
-							id: 8,
-						},
-						{
-							stage: "Transferring Hiker",
-							id: 9,
-						},
-						{
-							stage: "Return to Home/Travel to Position",
-							id: 10,
-						},
-					],
-					missionWaypoint: "Evacuation Zone",
-					searchArea: false,
-					manualControl: false,
-				},
-			};
-			this.eruMissionData = missionData.ERU;
-		},
-		getWidgetData() {
-			// get ERU Drop Location
-			// GET request macMissionData.missionWaypoint
-			// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
-			// axios.get(missionWaypointPath).then((response) => {
-			// 	this.missionWaypointData = res.data
-			// })
-		},
 		getCurrentStatus() {
-			this.getGeneralStage();
-			this.getVehicleData();
-		},
-		getGeneralStage() {
-			// GET request at x endpoint
-
-			this.generalStage = "ERU: Ready for Takeoff";
-		},
-		getVehicleData() {
-			// GET request at x endpoint
-
-			this.eruData = {
-				latitude: 33.93364332758927,
-				longitude: -117.6314209323399,
-			};
-			console.log("Data received!");
+			this.generalStage = getGeneralStage();
+			this.eruData = getVehicleData();
 		},
 		setMissionWaypointData(position) {
 			this.missionWaypointData = position;
