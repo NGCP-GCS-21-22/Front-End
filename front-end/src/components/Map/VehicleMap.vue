@@ -21,15 +21,17 @@
 		<GmapMarker
 			:position="missionWaypointMarker.position"
 			:draggable="isSelected(missionWaypointMarker)"
+			:clickable="isSelected(missionWaypointMarker)"
 			:icon="{ url: missionWaypointMarker.icon }"
 			@drag="moveMissionWaypoint"
 			:zIndex="isSelected(missionWaypointMarker) ? 50 : 1"
 		/>
 
-				<!-- home coordinates -->
+		<!-- home coordinates -->
 		<GmapMarker
 			:position="homeCoordinatesMarker.position"
 			:draggable="isSelected(homeCoordinatesMarker)"
+			:clickable="isSelected(homeCoordinatesMarker)"
 			:icon="{ url: homeCoordinatesMarker.icon }"
 			@drag="moveHomeCoordinates"
 			:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
@@ -132,7 +134,7 @@ export default {
 	methods: {
 		isSelected(marker) {
 			if (!marker || !marker.draggable) return false;
-			return true
+			return true;
 		},
 		moveMissionWaypoint(e) {
 			this.missionWaypointMarker.position = {

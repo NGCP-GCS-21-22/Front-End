@@ -12,6 +12,7 @@
 			v-for="marker in vehicleMarkers"
 			:key="marker.id"
 			:position="marker.position"
+			:clickable="false"
 			:icon="{
 				url: marker.icon,
 			}"
