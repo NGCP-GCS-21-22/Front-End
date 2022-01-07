@@ -96,7 +96,7 @@ export default {
 						lat: 33.93459532438122,
 						lng: -117.6311926970484,
 					},
-					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
 					draggable: this.widgetTypeSelected === "HomeCoordinates",
 				};
 			return {
@@ -105,7 +105,7 @@ export default {
 					lat: this.homeCoordinates.latitude,
 					lng: this.homeCoordinates.longitude,
 				},
-				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
 				draggable: this.widgetTypeSelected === "HomeCoordinates",
 			};
 		},
