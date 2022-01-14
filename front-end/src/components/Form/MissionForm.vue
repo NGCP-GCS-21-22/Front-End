@@ -13,15 +13,17 @@
 				<!-- Mission Waypoint -->
 				<MissionWaypoint ref="MissionWaypoint" />
 			</b-row>
+			&nbsp
 			<b-row>
 				<!-- Stages Form -->
 				<Stages ref="Stages" />
 			</b-row>
-			<b-row>
+			&nbsp
+			<b-row align="start">
 				<!-- Manual Control (toggle/checkbox) -->
 				<ManualControl ref="ManualControl" :vehicleName="vehicleName + 'manual'" /> 
 			</b-row>
-			<b-row>
+			<b-row align="start">
 				<!-- Search Area (toggle/checkbox) -->
 				<SearchArea ref="SearchArea" :vehicleName="vehicleName + 'search'"/>
 			</b-row>
