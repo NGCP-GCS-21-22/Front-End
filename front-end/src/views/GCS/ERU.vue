@@ -75,7 +75,7 @@ export default {
 		this.widgetData = getWidgetData(this.vehicleName);
 
 		this.interval = setInterval(this.getCurrentStatus, 500);
-	},
+	},	
 	methods: {
 		getCurrentStatus() {
 			this.generalStage = getGeneralStage();

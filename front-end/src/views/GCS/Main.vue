@@ -201,7 +201,9 @@ export default {
 			this.generalStage = "ERU: Ready for Takeoff";
 		},
 		getVehicleData() {
-			// GET request at x endpoint
+			// POST request at x endpoint
+			// axios.post()
+			
 
 			this.macData = {
 				latitude: 33.93459532438122,
