@@ -3,7 +3,22 @@ const axios = require("axios")
 let path = "http://localhost:5000/postData"
 
 const getMissionData = (vehicleName) => {
-	// GET request
+	// let payload = {
+	// 	mission_data: "mission_data",
+	// }
+
+	// return new Promise((resolve, reject) => {
+	// 	axios
+	// 		.post(path, payload)
+	// 		.then((response) => {
+	// 			let missionData = response.data
+	// 			if (vehicleName == "all") resolve(missionData)
+	// 			resolve(missionData[vehicleName])
+	// 		})
+	// 		.catch((error) => {
+	// 			reject(error)
+	// 		})
+	// })
 
 	let missionData = {
 		MAC: {
@@ -122,35 +137,58 @@ const getMissionData = (vehicleName) => {
 }
 
 const getGeneralStage = () => {
+	// let payload = {
+	// 	general_stage: "general_stage",
+	// }
+
+	// return new Promise((resolve, reject) => {
+	// 	axios
+	// 		.post(path, payload)
+	// 		.then((response) => {
+	// 			resolve(response.data)
+	// 		})
+	// 		.catch((error) => {
+	// 			reject(error)
+	// 		})
+	// })
+
 	return "ERU: Ready for Takeoff"
 }
 
-const getVehicleData = (vehicleName, callback) => {
+const getVehicleData = (vehicleName) => {
 	let payload = {
-		vehicle_name: "testing",
+		// vehicle_name: "testing",
+		vehicle_name: vehicleName,
 	}
 
-	// let payload = {
-	// 	vehicle_name: vehicleName,
-	// }
-
-	axios
-		.post(path, payload) // "MAC"
-		.then((response) => {
-			callback(response.data)
-		})
-		.catch((error) => {
-			console.log(error)
-		})
+	return new Promise((resolve, reject) => {
+		axios
+			.post(path, payload)
+			.then((response) => {
+				resolve(response.data)
+			})
+			.catch((error) => {
+				reject(error)
+			})
+	})
 }
 
 const getWidgetData = (vehicleName) => {
-	// get ERU Drop Location
-	// GET request macMissionData.missionWaypoint
-	// let missionWaypointPath = `http://127.0.0.1/${macMissionData.missionWaypoint}`
-	// axios.get(missionWaypointPath).then((response) => {
-	// 	this.missionWaypointData = res.data
+	// let payload = {
+	// 	widget_data: vehicleName,
+	// }
+
+	// return new Promise((resolve, reject) => {
+	// 	axios
+	// 		.post(path, payload)
+	// 		.then((response) => {
+	// 			resolve(response.data)
+	// 		})
+	// 		.catch((error) => {
+	// 			reject(error)
+	// 		})
 	// })
+
 	return {}
 }
 

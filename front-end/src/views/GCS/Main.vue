@@ -81,23 +81,55 @@ export default {
 		},
 	},
 	mounted() {
-		this.missionData = getMissionData("all");
-		this.interval = setInterval(this.getCurrentStatus, 500);
+		this.initializeMissionData();
+		this.interval = setInterval(this.updateStatus, 500);
 	},
 	methods: {
-		getCurrentStatus() {
-			this.generalStage = getGeneralStage();
-
-			getVehicleData("MAC", (data) => {
-				this.macData = data;
-				console.log(this.macData);
-			});
-			getVehicleData("ERU", (data) => {
-				this.eruData = data;
-			});
-			getVehicleData("MEA", (data) => {
-				this.meaData = data;
-			});
+		updateStatus() {
+			this.updateGeneralStage();
+			this.updateMACData();
+			this.updateERUata();
+			this.updateMEAData();
+		},
+		async initializeMissionData() {
+			try {
+				const response = await getMissionData("all");
+				this.missionData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async updateGeneralStage() {
+			try {
+				const response = await getGeneralStage();
+				this.generalStage = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async updateMACData() {
+			try {
+				const response = await getVehicleData("MAC");
+				this.macData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async updateERUata() {
+			try {
+				const response = await getVehicleData("ERU");
+				this.eruData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async updateMEAData() {
+			try {
+				const response = await getVehicleData("MEA");
+				this.meaData = response;
+			} catch (error) {
+				console.log(error);
+			}
 		},
 	},
 	beforeDestroy() {

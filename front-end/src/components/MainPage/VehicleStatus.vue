@@ -92,14 +92,14 @@ export default {
 			return this.vehicleData["battery"];
 		},
 		latency() {
-			// if (!this.vehicleData) return 0;
-			// return this.vehicleData["last_packet"];
-			return 999;
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["last_packet_time"];
+			// return 999;
 		},
 		mode() {
-			// if (!this.vehicleData) return "None";
-			// return this.vehicleData["mode"];
-			return "Autonomous"
+			if (!this.vehicleData) return "None";
+			return this.vehicleData["mode"];
+			// return "Autonomous";
 		},
 	},
 	data() {
@@ -119,11 +119,6 @@ export default {
 			// 	Mode: "Autonomous",
 			// },
 		};
-	},
-	methods: {
-		testBattery() {
-			console.log("batteryPct: " + this.batteryPct);
-		},
 	},
 };
 </script>
