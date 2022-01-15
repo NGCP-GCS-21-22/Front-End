@@ -16,9 +16,7 @@
 				<b-row>
 					<!-- middle left -->
 					<b-col cols="6">
-						<ConnectionStatus 
-							:status="status"
-							:latency="latency" />
+						<ConnectionStatus :status="status" :latency="latency" />
 					</b-col>
 					<!-- middle right -->
 					<b-col cols="6">
@@ -44,9 +42,7 @@
 				</b-row>
 			</b-card>
 		</b-container>
-		
 	</div>
-	
 </template>
 
 <script>
@@ -62,7 +58,7 @@ export default {
 	props: {
 		vehicleName: String,
 		vehicleImgPath: String,
-		vehicleData: Object
+		vehicleData: Object,
 	},
 	components: {
 		VehicleStatusTitle,
@@ -73,29 +69,14 @@ export default {
 		StageSelection,
 	},
 	computed: {
-		// options() {
-		// 	// use data from "stages" to create the required
-		// 	// options property for the b-form-select
-		// },
-		statusUpdate(){
-			let status = null;
-			this.MAC.forEach(property =>{
-				if(property.title=="Status"){
-					status = property.value;
-				}
-			})
-			return status;
-
-		},
-
-		batteryPct(){
+		batteryPct() {
 			// depends on MAC
 			// get the battery out of it
 
 			// Array
 			// for element in this.MAC
-				// if element.title == "Battery"
-				// return element.value
+			// if element.title == "Battery"
+			// return element.value
 
 			// let pct = 0;
 			// this.MAC.forEach(property =>{
@@ -107,144 +88,43 @@ export default {
 
 			// Dictionary
 			// return this.MAC.Battery;
-			return this.MAC.Battery;
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["battery"];
 		},
 		latency() {
-			return this.MAC.ConnectionStatus;
+			// if (!this.vehicleData) return 0;
+			// return this.vehicleData["last_packet"];
+			return 999;
 		},
 		mode() {
-			return this.MAC.Mode;
-		}
+			// if (!this.vehicleData) return "None";
+			// return this.vehicleData["mode"];
+			return "Autonomous"
+		},
 	},
 	data() {
 		return {
-			// these are old static numbers (delete later)
+			// // these are old static numbers (delete later)
 			status: "Online",
-			// batteryPct: 97,
-			// mode: "Autonomous",
-			sModalShow: false,
-			propertyChosen: null,
-			selected: null,
-			form: {
-				option: null,
-			},
-			
-			MAC: {
-				Altitude: 56,
-				// current battery range
-				// 80-100: full, 21-79: half, <=20: low
-				Battery: 97.0,
-				// the current latency range is 
-				// 1-10: high, 11-45: semi-high, 46-85: medium, 86-100: low, 100+ or 0: no connection
-				ConnectionStatus: 3, 
-				Mode: "Autonomous"
-			},
-
-			// MAC: [
-			// 	{
-			// 	"title": "Altitude", 
-			// 	"value": 56.0
-			// 	}, 
-			// 	{
-			// 	"title": "Battery", 
-			// 	"value": 7.0
-			// 	}, 
-			// 	{
-			// 	"title": "Current Stage", 
-			// 	"value": 0
-			// 	}, 
-			// 	{
-			// 	"title": "Geofence Compliant", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Latitude", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Longitude", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Pitch", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Propulsion", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Roll", 
-			// 	"value": 0.0
-			// 	}, 
-			// 	{
-			// 	"title": "Sensors ok", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Speed", 
-			// 	"value": 95.0
-			// 	}, 
-			// 	{
-			// 	"title": "Stage Completed", 
-			// 	"value": false
-			// 	}, 
-			// 	{
-			// 	"title": "Status", 
-			// 	"value": 0
-			// 	}, 
-			// 	{
-			// 	"title": "Yaw", 
-			// 	"value": 0.0
-			// 	},
-			// 	{
-			// 	"title": "time_since_last_packet",
-			// 	"value": 0
-			// 	},
-			// 	{
-			// 	"title": "last_packet_time",
-			// 	"value": 0
-			// 	}
-			// ],
-
-			// stages: [
-			// 	{
-			// 		stage: "Ready to Start",
-			// 		id: 1,
-			// 	},
-			// 	{
-			// 		stage: "ERU Landing Sequence",
-			// 		id: 5,
-			// 	},
-			// 	{
-			// 		stage: "Drive to Hiker",
-			// 		id: 6,
-			// 	},
-			// 	{
-			// 		stage: "Load the Hiker",
-			// 		id: 7,
-			// 	},
-			// 	{
-			// 		stage: "Go to EZ",
-			// 		id: 8,
-			// 	},
-			// 	{
-			// 		stage: "Transferring Hiker",
-			// 		id: 9,
-			// 	},
-			// 	{
-			// 		stage: "Return to Home/Travel to Position",
-			// 		id: 10,
-			// 	},
-			// ],
+			// // batteryPct: 97,
+			// // mode: "Autonomous",
+			// MAC: {
+			// 	Altitude: 56,
+			// 	// current battery range
+			// 	// 80-100: full, 21-79: half, <=20: low
+			// 	Battery: 97.0,
+			// 	// the current latency range is
+			// 	// 1-10: high, 11-45: semi-high, 46-85: medium, 86-100: low, 100+ or 0: no connection
+			// 	ConnectionStatus: 100,
+			// 	Mode: "Autonomous",
+			// },
 		};
 	},
 	methods: {
-
-		testBattery(){
+		testBattery() {
 			console.log("batteryPct: " + this.batteryPct);
-		}
-	}
+		},
+	},
 };
 </script>
 
