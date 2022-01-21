@@ -192,4 +192,9 @@ const getWidgetData = (vehicleName) => {
 	return {}
 }
 
+const getDefaultCoord = () => {
+	let lat = 33.933729
+	let long = 117.6318437
+}
+
 export { getMissionData, getGeneralStage, getVehicleData, getWidgetData }

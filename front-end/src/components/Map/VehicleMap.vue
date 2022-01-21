@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import defaultCoords from "@/helpers/defaultCoordinates.js";
+
 export default {
 	props: {
 		vehicleData: Object,
@@ -67,10 +69,7 @@ export default {
 			if (!this.missionWaypoint)
 				return {
 					id: "missionWaypoint",
-					position: {
-						lat: 33.933729,
-						lng: -117.6318437,
-					},
+					position: this.defaultCoords,
 					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
 					draggable: this.widgetTypeSelected === "MissionWaypoint",
 				};
@@ -92,10 +91,7 @@ export default {
 			if (!this.homeCoordinates)
 				return {
 					id: "homeCoordinates",
-					position: {
-						lat: 33.93459532438122,
-						lng: -117.6311926970484,
-					},
+					position: this.defaultCoords,
 					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
 					draggable: this.widgetTypeSelected === "HomeCoordinates",
 				};
