@@ -88,7 +88,7 @@ export default {
 		updateStatus() {
 			this.updateGeneralStage();
 			this.updateMACData();
-			this.updateERUData();
+			this.updateERUata();
 			this.updateMEAData();
 		},
 		async initializeMissionData() {
@@ -115,7 +115,7 @@ export default {
 				console.log(error);
 			}
 		},
-		async updateERUData() {
+		async updateERUata() {
 			try {
 				const response = await getVehicleData("ERU");
 				this.eruData = response;

@@ -1,5 +1,7 @@
 const axios = require("axios")
 
+let path = "http://localhost:5000/postData"
+
 const getMissionData = (vehicleName) => {
 	// let payload = {
 	// 	mission_data: "mission_data",
@@ -135,23 +137,25 @@ const getMissionData = (vehicleName) => {
 }
 
 const getGeneralStage = () => {
-	let path = "http://localhost:5000/generalStage"
+	// let payload = {
+	// 	general_stage: "general_stage",
+	// }
 
-	return new Promise((resolve, reject) => {
-		axios
-			.get(path)
-			.then((response) => {
-				// console.log(response.data)
-				resolve(response.data["name"])
-			})
-			.catch((error) => {
-				reject(error)
-			})
-	})
+	// return new Promise((resolve, reject) => {
+	// 	axios
+	// 		.post(path, payload)
+	// 		.then((response) => {
+	// 			resolve(response.data)
+	// 		})
+	// 		.catch((error) => {
+	// 			reject(error)
+	// 		})
+	// })
+
+	return "ERU: Ready for Takeoff"
 }
 
 const getVehicleData = (vehicleName) => {
-	let path = "http://localhost:5000/postData"
 	let payload = {
 		// vehicle_name: "testing",
 		vehicle_name: vehicleName,
@@ -186,6 +190,11 @@ const getWidgetData = (vehicleName) => {
 	// })
 
 	return {}
+}
+
+const getDefaultCoord = () => {
+	let lat = 33.933729
+	let long = 117.6318437
 }
 
 export { getMissionData, getGeneralStage, getVehicleData, getWidgetData }
