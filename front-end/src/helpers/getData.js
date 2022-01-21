@@ -141,7 +141,6 @@ const getGeneralStage = () => {
 		axios
 			.get(path)
 			.then((response) => {
-				// console.log(response.data)
 				resolve(response.data["name"])
 			})
 			.catch((error) => {
