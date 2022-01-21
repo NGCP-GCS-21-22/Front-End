@@ -1,12 +1,12 @@
 <template>
-	<b-container class="mac-container">
-		<b-row class="mac-row">
+	<b-container class="vehicle-container">
+		<b-row class="vehicle-row">
 			<!-- left column -->
 			<b-col class="left-column" cols="7">
 				<Map
-					v-if="macData && macIcon"
-					:vehicleData="macData"
-					:vehicleIcon="macIcon"
+					v-if="vehicleData && vehicleIcon"
+					:vehicleData="vehicleData"
+					:vehicleIcon="vehicleIcon"
 					:widgetData="widgetData"
 					:widgetTypeSelected="widgetTypeSelected"
 					@moveMarker="setWidgetData"
@@ -17,16 +17,16 @@
 			<b-col cols="5">
 				<b-row>
 					<Status
-						v-if="vehicleName && macIcon"
+						v-if="vehicleName && vehicleIcon"
 						:vehicleName="vehicleName"
-						:vehicleIcon="macIcon"
+						:vehicleIcon="vehicleIcon"
 					/>
 				</b-row>
 				<b-row>
 					<Widgets
-						v-if="vehicleName && macMissionData"
+						v-if="vehicleName && vehicleMissionData"
 						:vehicleName="vehicleName"
-						:vehicleMissionData="macMissionData"
+						:vehicleMissionData="vehicleMissionData"
 						:widgetData="widgetData"
 						@widgetTypeSelected="setWidgetSelected"
 						@moveCoordinates="setWidgetData"
@@ -58,28 +58,59 @@ export default {
 		return {
 			vehicleName: "MAC",
 			generalStage: null,
-			macData: null,
-			macMissionData: null,
+			vehicleData: null,
+			vehicleMissionData: null,
 			widgetData: null,
 			widgetTypeSelected: null,
 		};
 	},
 	computed: {
-		macIcon() {
-			if (!this.macMissionData) return null;
-			return this.macMissionData.icon;
+		vehicleIcon() {
+			if (!this.vehicleMissionData) return null;
+			return this.vehicleMissionData.icon;
 		},
 	},
 	mounted() {
-		this.macMissionData = getMissionData(this.vehicleName);
-		this.widgetData = getWidgetData(this.vehicleName);
-
-		this.interval = setInterval(this.getCurrentStatus, 500);
+		this.initializeMissionData();
+		this.initializeWidgetData();
+		this.interval = setInterval(this.updateStatus, 500);
 	},
 	methods: {
-		getCurrentStatus() {
-			this.generalStage = getGeneralStage();
-			this.macData = getVehicleData();
+		async initializeMissionData() {
+			try {
+				const response = await getMissionData(this.vehicleName);
+				this.vehicleMissionData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async initializeWidgetData() {
+			try {
+				const response = await getWidgetData(this.vehicleName);
+				this.widgetData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		updateStatus() {
+			this.updateGeneralStage();
+			this.updateVehicleData();
+		},
+		async updateGeneralStage() {
+			try {
+				const response = await getGeneralStage();
+				this.generalStage = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async updateVehicleData() {
+			try {
+				const response = await getVehicleData("MAC");
+				this.vehicleData = response;
+			} catch (error) {
+				console.log(error);
+			}
 		},
 		setWidgetData(widgetType, position) {
 			this.$set(this.widgetData, widgetType, position);
@@ -95,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-.mac-container {
+.vehicle-container {
 	max-width: 100%;
 	max-height: 100%;
 }

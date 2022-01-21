@@ -1,12 +1,12 @@
 <template>
-	<b-container class="mea-container">
-		<b-row class="mea-row">
+	<b-container class="vehicle-container">
+		<b-row class="vehicle-row">
 			<!-- left column -->
 			<b-col class="left-column" cols="7">
 				<Map
-					v-if="meaData && meaIcon"
-					:vehicleData="meaData"
-					:vehicleIcon="meaIcon"
+					v-if="vehicleData && vehicleIcon"
+					:vehicleData="vehicleData"
+					:vehicleIcon="vehicleIcon"
 					:widgetData="widgetData"
 					:widgetTypeSelected="widgetTypeSelected"
 					@moveMarker="setWidgetData"
@@ -17,16 +17,16 @@
 			<b-col cols="5">
 				<b-row>
 					<Status
-						v-if="vehicleName && meaIcon"
+						v-if="vehicleName && vehicleIcon"
 						:vehicleName="vehicleName"
-						:vehicleIcon="meaIcon"
+						:vehicleIcon="vehicleIcon"
 					/>
 				</b-row>
 				<b-row>
 					<Widgets
-						v-if="vehicleName && meaMissionData"
+						v-if="vehicleName && vehicleMissionData"
 						:vehicleName="vehicleName"
-						:vehicleMissionData="meaMissionData"
+						:vehicleMissionData="vehicleMissionData"
 						:widgetData="widgetData"
 						@widgetTypeSelected="setWidgetSelected"
 						@moveCoordinates="setWidgetData"
@@ -58,28 +58,59 @@ export default {
 		return {
 			vehicleName: "MEA",
 			generalStage: null,
-			meaData: null,
-			meaMissionData: null,
+			vehicleData: null,
+			vehicleMissionData: null,
 			widgetData: null,
 			widgetTypeSelected: null,
 		};
 	},
 	computed: {
-		meaIcon() {
-			if (!this.meaMissionData) return null;
-			return this.meaMissionData.icon;
+		vehicleIcon() {
+			if (!this.vehicleMissionData) return null;
+			return this.vehicleMissionData.icon;
 		},
 	},
 	mounted() {
-		this.meaMissionData = getMissionData(this.vehicleName);
-		this.widgetData = getWidgetData(this.vehicleName);
-
-		this.interval = setInterval(this.getCurrentStatus, 500);
+		this.initializeMissionData();
+		this.initializeWidgetData();
+		this.interval = setInterval(this.updateStatus, 500);
 	},
 	methods: {
-		getCurrentStatus() {
-			this.generalStage = getGeneralStage();
-			this.meaData = getVehicleData();
+		async initializeMissionData() {
+			try {
+				const response = await getMissionData(this.vehicleName);
+				this.vehicleMissionData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async initializeWidgetData() {
+			try {
+				const response = await getWidgetData(this.vehicleName);
+				this.widgetData = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		updateStatus() {
+			this.updateGeneralStage();
+			this.updateVehicleData();
+		},
+		async updateGeneralStage() {
+			try {
+				const response = await getGeneralStage();
+				this.generalStage = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async updateVehicleData() {
+			try {
+				const response = await getVehicleData("MEA");
+				this.vehicleData = response;
+			} catch (error) {
+				console.log(error);
+			}
 		},
 		setWidgetData(widgetType, position) {
 			this.$set(this.widgetData, widgetType, position);
@@ -95,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-.mea-container {
+.vehicle-container {
 	max-width: 100%;
 	max-height: 100%;
 }
