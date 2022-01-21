@@ -1,6 +1,6 @@
 <template>
 	<div>
-			<h1>Form Page</h1>
+			<h1 style="color: white;">Form Page</h1>
 			<b-button @click="goToStart">Back</b-button>
 			<b-button @click="goToGCS">Go to GCS</b-button>
 
@@ -17,7 +17,7 @@
 					</b-col>
 				</b-row>
 			</b-container>
-			<b-button @click="submit">Sumbit</b-button>
+			<b-button class="submit" variant="primary" @click="submit">Submit</b-button>
 	</div>
 </template>
 
@@ -28,6 +28,7 @@ export default {
 	components: {
 		MissionForm,
 	},
+	
 	methods: {
 		goToGCS() {
 			this.$router.push("/gcs/main");
@@ -53,5 +54,11 @@ export default {
 	border-radius: 15px;
 	font-size: 8px;
 	text-align: center;
+	margin-bottom: 10px;
+}
+
+.submit{
+	 text-align: center;
+	 margin-top: 10px;
 }
 </style>

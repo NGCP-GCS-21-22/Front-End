@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<b-container>
 		<b-card class="widget-card">
 			<b-row v-for="group in widgetGroups" :key="group.buttonGroupId">

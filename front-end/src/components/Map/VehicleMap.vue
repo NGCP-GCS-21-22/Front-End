@@ -36,6 +36,11 @@
 			@drag="moveHomeCoordinates"
 			:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
 		/>
+
+
+		<!-- v-if geofence selected v-for number of points in UI -->
+		<!-- polygon -->
+		<GmapPolygon :paths="paths" :clickable="false" :options="polyOptions" />
 	</GmapMap>
 </template>
 
@@ -124,6 +129,22 @@ export default {
 				disableDoubleClickZoom: true,
 			},
 			mapType: "satellite",
+
+			// Polygon Data
+			paths: [
+				{ lat: 33.933729, lng: -117.6318437 }, // marker1
+				{ lat: 33.93441, lng: -117.6318169 }, // marker2
+				{ lat: 33.9344055, lng: -117.6306099 },
+				{ lat: 33.9337468, lng: -117.6305616 },
+			],
+
+			polyOptions: {
+				strokeColor: "#39FF14",
+				strokeOpacity: 0.8,
+				strokeWeight: 3,
+				fillColor: "#39FF14",
+				fillOpacity: 0.3,
+			},
 		};
 	},
 	mounted() {},
