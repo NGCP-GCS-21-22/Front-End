@@ -5,7 +5,9 @@
 			@click="eModalShow = !eModalShow"
 			variant="danger"
 		>
-			Emergency Stop
+		<h4 style="margin-top:5px">
+      Emergency Stop
+    </h4>	
 		</b-button>
 		<b-modal
 			centered
@@ -50,7 +52,7 @@ export default {
 
 <style scoped>
 .emergency-button {
-	width: 230px;
-	height: 50px;
+	width: 250px;
+	height: 80px;
 }
 </style>
