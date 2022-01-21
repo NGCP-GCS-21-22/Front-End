@@ -1,5 +1,5 @@
 <template>
-  <b-containter>
+  <b-container>
     <b-row no-gutters>
       <b-col align="center" style="margin-left: 10px;">
         <h3 style="font-weight: bold; color: #B4A4A4">
@@ -14,7 +14,7 @@
         </h4>
       </b-col>
     </b-row>
-  </b-containter>
+  </b-container>
 </template>
 
 <script>

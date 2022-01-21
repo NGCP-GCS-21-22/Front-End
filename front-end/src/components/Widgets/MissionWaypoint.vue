@@ -22,7 +22,7 @@
         <br />
         
         <b-button @click="goBack" >Back</b-button>
-        <b-button>Clear</b-button>
+		<b-button @click="reset" >Reset</b-button>
         <b-button variant="success" >Submit</b-button>
     </b-card>
 </template>
@@ -69,6 +69,13 @@ export default {
 		goBack() {
 			this.$emit("goBack");
 		},
+		reset() {
+			let coordinates = {
+        	latitude: defaultLat,
+            longitude: defaultLng,
+        };
+        this.$emit("moveCoordinates", "missionWaypoint", coordinates);
+		}
 	},
 };
 </script>

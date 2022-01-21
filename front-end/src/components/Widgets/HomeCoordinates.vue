@@ -1,30 +1,30 @@
 <template>
-    <b-card>
-        <p class="card-text">{{name}}</p>
-        <label for="input-live">Latitude:</label>
-        <b-form-input
-          id="input-1"
-          v-model="latitude"
-          type="email"
-          placeholder="Enter Latitude"
-          required
-        >
-        </b-form-input>
-        <label for="input-live">Longtitude:</label>
-        <b-form-input
-          id="input-1"
-          v-model="longitude"
-          type="email"
-          placeholder="Enter Longtitude"
-          required
-        >
-        </b-form-input>
-        <br />
-        
-        <b-button @click="goBack" >Back</b-button>
-        <b-button>Clear</b-button>
-        <b-button variant="success" >Submit</b-button>
-    </b-card>
+	<b-card>
+		<p class="card-text">{{ name }}</p>
+		<label for="input-live">Latitude:</label>
+		<b-form-input
+			id="input-1"
+			v-model="latitude"
+			type="email"
+			placeholder="Enter Latitude"
+			required
+		>
+		</b-form-input>
+		<label for="input-live">Longtitude:</label>
+		<b-form-input
+			id="input-1"
+			v-model="longitude"
+			type="email"
+			placeholder="Enter Longtitude"
+			required
+		>
+		</b-form-input>
+		<br />
+
+		<b-button @click="goBack">Back</b-button>
+		<b-button @click="reset">Reset</b-button>
+		<b-button variant="success">Submit</b-button>
+	</b-card>
 </template>
 
 <script>
@@ -69,6 +69,13 @@ export default {
 	methods: {
 		goBack() {
 			this.$emit("goBack");
+		},
+		reset() {
+			let coordinates = {
+			    latitude: defaultLat,
+			    longitude: defaultLng,
+			};
+			this.$emit("moveCoordinates", "homeCoordinates", coordinates);
 		},
 	},
 };
