@@ -28,6 +28,7 @@ export default {
 	components: {
 		MissionForm,
 	},
+	
 	methods: {
 		goToGCS() {
 			this.$router.push("/gcs/main");
