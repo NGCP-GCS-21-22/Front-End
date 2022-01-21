@@ -19,7 +19,7 @@
           required
         >
         </b-form-input>
-        </br>
+        <br />
         
         <b-button @click="goBack" >Back</b-button>
         <b-button>Clear</b-button>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { defaultLat, defaultLng } from "@/helpers/coordinates.js";
 export default {
 	props: {
 		name: String,
@@ -36,7 +37,7 @@ export default {
 	computed: {
 		latitude: {
 			get: function () {
-				if (!this.missionWaypoint) return 33.933729;
+				if (!this.missionWaypoint) return defaultLat;
 				return this.missionWaypoint.latitude;
 			},
 			set: function (newValue) {
@@ -49,7 +50,7 @@ export default {
 		},
 		longitude: {
 			get: function () {
-				if (!this.missionWaypoint) return -117.6318437;
+				if (!this.missionWaypoint) return defaultLng;
 				return this.missionWaypoint.longitude;
 			},
 			set: function (newValue) {

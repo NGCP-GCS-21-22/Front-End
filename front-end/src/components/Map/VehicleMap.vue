@@ -37,7 +37,6 @@
 			:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
 		/>
 
-
 		<!-- v-if geofence selected v-for number of points in UI -->
 		<!-- polygon -->
 		<GmapPolygon :paths="paths" :clickable="false" :options="polyOptions" />
@@ -45,7 +44,7 @@
 </template>
 
 <script>
-import defaultCoords from "@/helpers/defaultCoordinates.js";
+import { defaultLat, defaultLng } from "@/helpers/coordinates.js";
 
 export default {
 	props: {
@@ -74,7 +73,10 @@ export default {
 			if (!this.missionWaypoint)
 				return {
 					id: "missionWaypoint",
-					position: this.defaultCoords,
+					position: {
+						lat: defaultLat,
+						lng: defaultLng
+					},
 					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
 					draggable: this.widgetTypeSelected === "MissionWaypoint",
 				};
@@ -96,7 +98,10 @@ export default {
 			if (!this.homeCoordinates)
 				return {
 					id: "homeCoordinates",
-					position: this.defaultCoords,
+					position: {
+						lat: defaultLat,
+						lng: defaultLng
+					},
 					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
 					draggable: this.widgetTypeSelected === "HomeCoordinates",
 				};
@@ -147,7 +152,10 @@ export default {
 			},
 		};
 	},
-	mounted() {},
+	mounted() {
+		// console.log("mounted");
+		// // console.log(defaultCoords);
+	},
 	methods: {
 		isSelected(marker) {
 			if (!marker || !marker.draggable) return false;

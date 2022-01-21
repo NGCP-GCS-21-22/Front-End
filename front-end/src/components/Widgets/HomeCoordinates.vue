@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import defaultCoords from "@/helpers/defaultCoordinates.js";
+import { defaultLat, defaultLng } from "@/helpers/coordinates.js";
 
 export default {
 	props: {
@@ -38,7 +38,7 @@ export default {
 	computed: {
 		latitude: {
 			get: function () {
-				if (!this.homeCoordinates) return this.defaultCoords.lat;
+				if (!this.homeCoordinates) return defaultLat;
 				return this.homeCoordinates.latitude;
 			},
 			set: function (newValue) {
@@ -51,7 +51,7 @@ export default {
 		},
 		longitude: {
 			get: function () {
-				if (!this.homeCoordinates) return this.defaultCoords.lng;
+				if (!this.homeCoordinates) return defaultLng;
 				return this.homeCoordinates.longitude;
 			},
 			set: function (newValue) {
