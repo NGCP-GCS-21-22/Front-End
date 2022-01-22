@@ -13,12 +13,12 @@
 				<!-- Mission Waypoint -->
 				<MissionWaypoint ref="MissionWaypoint" />
 			</b-row>
-			&nbsp
+			&nbsp;
 			<b-row>
 				<!-- Stages Form -->
 				<Stages ref="Stages" />
 			</b-row>
-			&nbsp
+			&nbsp;
 			<b-row align="start">
 				<!-- Manual Control (toggle/checkbox) -->
 				<ManualControl ref="ManualControl" :vehicleName="vehicleName + 'manual'" /> 
