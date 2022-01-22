@@ -1,4 +1,7 @@
 const axios = require("axios")
+// const defaultLat = require("./coordinates.js")
+import { defaultLat } from "./coordinates.js"
+import { defaultLng } from "./coordinates.js"
 
 const getMissionData = (vehicleName) => {
 	// let payload = {
@@ -184,8 +187,29 @@ const getWidgetData = (vehicleName) => {
 	// 		})
 	// })
 
-	return {}
+	// return {}
+
+	let widgetData = {
+		searchArea: [
+			{ lat: 33.933729, lng: -117.6318437 }, // marker1
+			{ lat: 33.93441, lng: -117.6318169 }, // marker2
+			{ lat: 33.9344055, lng: -117.6306099 },
+		],
+	}
+
+	if (!widgetData["missionWaypoint"])
+		widgetData["missionWaypoint"] = {
+			lat: defaultLat,
+			lng: defaultLng,
+		}
+
+	if (!widgetData["homeCoordinates"])
+		widgetData["homeCoordinates"] = {
+			lat: defaultLat,
+			lng: defaultLng,
+		}
+
+	return widgetData
 }
 
 export { getMissionData, getGeneralStage, getVehicleData, getWidgetData }
-

@@ -58,10 +58,10 @@
 
 <script>
 import ImageURL from "../Form/ImageURL.vue";
-import Battery from '../MainPage/Battery.vue';
-import ConnectionStatus from "../MainPage/ConnectionStatus.vue";
-import EmergencyStop from "../MainPage/EmergencyStop.vue";
-import Mode from "../MainPage/Mode.vue";
+import Battery from '../MainPage/Status/Battery.vue';
+import ConnectionStatus from "../MainPage/Status/ConnectionStatus.vue";
+import EmergencyStop from "../MainPage/Status/EmergencyStop.vue";
+import Mode from "../MainPage/Status/Mode.vue";
 import BatteryInStatus from './StatusComponents/BatteryInStatus.vue';
 import ConnectionStatusVehiclePage from './StatusComponents/ConnectionStatusVehiclePage.vue';
 import EmergencyButton from './StatusComponents/EmergencyButton.vue';

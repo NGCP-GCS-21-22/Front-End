@@ -37,9 +37,22 @@
 			:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
 		/>
 
-		<!-- v-if geofence selected v-for number of points in UI -->
+		<!-- Search Area -->
+		<!-- v-if search selected v-for number of points in UI, create marker -->
+		<GmapMarker
+			:key="coordinate.id"
+			v-for="coordinate in searchAreaPolygon.coordiantes"
+			:position="{ lat: coordinate.lat, lng: coordinate.lng }"
+			:draggable="true"
+			@drag="moveSearchAreaVertex($event, coordinate.id)"
+		/>
+
 		<!-- polygon -->
-		<GmapPolygon :paths="paths" :clickable="false" :options="polyOptions" />
+		<GmapPolygon
+			:path="searchAreaPolygon.coordiantes"
+			:clickable="false"
+			:options="polyOptions"
+		/>
 	</GmapMap>
 </template>
 
@@ -75,7 +88,7 @@ export default {
 					id: "missionWaypoint",
 					position: {
 						lat: defaultLat,
-						lng: defaultLng
+						lng: defaultLng,
 					},
 					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
 					draggable: this.widgetTypeSelected === "MissionWaypoint",
@@ -83,8 +96,8 @@ export default {
 			return {
 				id: "missionWaypoint",
 				position: {
-					lat: this.missionWaypoint.latitude,
-					lng: this.missionWaypoint.longitude,
+					lat: this.missionWaypoint.lat,
+					lng: this.missionWaypoint.lng,
 				},
 				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
 				draggable: this.widgetTypeSelected === "MissionWaypoint",
@@ -100,7 +113,7 @@ export default {
 					id: "homeCoordinates",
 					position: {
 						lat: defaultLat,
-						lng: defaultLng
+						lng: defaultLng,
 					},
 					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
 					draggable: this.widgetTypeSelected === "HomeCoordinates",
@@ -108,11 +121,44 @@ export default {
 			return {
 				id: "homeCoordinates",
 				position: {
-					lat: this.homeCoordinates.latitude,
-					lng: this.homeCoordinates.longitude,
+					lat: this.homeCoordinates.lat,
+					lng: this.homeCoordinates.lng,
 				},
 				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
 				draggable: this.widgetTypeSelected === "HomeCoordinates",
+			};
+		},
+		searchArea() {
+			if (!this.widgetData.searchArea) return null;
+
+			return this.widgetData.searchArea.map((coordinate) => {
+				return {
+					lat: parseFloat(coordinate.lat),
+					lng: parseFloat(coordinate.lng),
+				};
+			});
+		},
+		searchAreaPolygon() {
+			if (!this.searchArea)
+				return {
+					id: "searchArea",
+					coordiantes: this.paths,
+					draggable: this.widgetTypeSelected === "SearchArea",
+				};
+
+			let coordiantes = [];
+			this.searchArea.forEach((element, index) => {
+				let coordinate = {
+					id: index,
+					lat: element.lat,
+					lng: element.lng,
+				};
+				coordiantes.push(coordinate);
+			});
+			return {
+				id: "searchArea",
+				coordiantes: coordiantes,
+				draggable: this.widgetTypeSelected === "SearchArea",
 			};
 		},
 	},
@@ -136,12 +182,13 @@ export default {
 			mapType: "satellite",
 
 			// Polygon Data
-			paths: [
-				{ lat: 33.933729, lng: -117.6318437 }, // marker1
-				{ lat: 33.93441, lng: -117.6318169 }, // marker2
-				{ lat: 33.9344055, lng: -117.6306099 },
-				{ lat: 33.9337468, lng: -117.6305616 },
-			],
+			// paths: [
+			// 	{ id: 1, lat: 33.933729, lng: -117.6318437 }, // marker1
+			// 	{ id: 2, lat: 33.93441, lng: -117.6318169 }, // marker2
+			// 	{ id: 3, lat: 33.9344055, lng: -117.6306099 },
+			// 	{ id: 4, lat: 33.9337468, lng: -117.6305616 },
+			// ],
+			paths: [],
 
 			polyOptions: {
 				strokeColor: "#39FF14",
@@ -152,10 +199,7 @@ export default {
 			},
 		};
 	},
-	mounted() {
-		// console.log("mounted");
-		// // console.log(defaultCoords);
-	},
+	mounted() {},
 	methods: {
 		isSelected(marker) {
 			if (!marker || !marker.draggable) return false;
@@ -167,8 +211,8 @@ export default {
 				lng: e.latLng.lng(),
 			};
 			this.$emit("moveMarker", "missionWaypoint", {
-				latitude: this.missionWaypointMarker.position.lat,
-				longitude: this.missionWaypointMarker.position.lng,
+				lat: this.missionWaypointMarker.position.lat,
+				lng: this.missionWaypointMarker.position.lng,
 			});
 		},
 		moveHomeCoordinates(e) {
@@ -177,9 +221,19 @@ export default {
 				lng: e.latLng.lng(),
 			};
 			this.$emit("moveMarker", "homeCoordinates", {
-				latitude: this.homeCoordinatesMarker.position.lat,
-				longitude: this.homeCoordinatesMarker.position.lng,
+				lat: this.homeCoordinatesMarker.position.lat,
+				lng: this.homeCoordinatesMarker.position.lng,
 			});
+		},
+		moveSearchAreaVertex(e, index) {
+			this.searchAreaPolygon.coordiantes[index].lat = e.latLng.lat();
+			this.searchAreaPolygon.coordiantes[index].lng = e.latLng.lng();
+
+			this.$emit(
+				"moveMarker",
+				"searchArea",
+				this.searchAreaPolygon.coordiantes
+			);
 		},
 	},
 };

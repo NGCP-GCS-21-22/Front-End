@@ -40,7 +40,7 @@
 // @ is the same as src
 import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import GeneralStage from "@/components/MainPage/GeneralStage.vue";
-import Map from "@/components/Map/MainMap.vue";
+import Map from "@/components/Maps/MainMap.vue";
 import {
 	getMissionData,
 	getGeneralStage,

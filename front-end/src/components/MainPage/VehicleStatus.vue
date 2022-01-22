@@ -47,12 +47,12 @@
 
 <script>
 import axios from "axios";
-import VehicleStatusTitle from "@/components/MainPage/VehicleStatusTitle.vue";
-import ConnectionStatus from "@/components/MainPage/ConnectionStatus.vue";
-import EmergencyStop from "@/components/MainPage/EmergencyStop.vue";
-import Battery from "@/components/MainPage/Battery.vue";
-import Mode from "@/components/MainPage/Mode.vue";
-import StageSelection from "@/components/MainPage/StageSelection.vue";
+import VehicleStatusTitle from "@/components/MainPage/Status/VehicleStatusTitle.vue";
+import ConnectionStatus from "@/components/MainPage/Status/ConnectionStatus.vue";
+import EmergencyStop from "@/components/MainPage/Status/EmergencyStop.vue";
+import Battery from "@/components/MainPage/Status/Battery.vue";
+import Mode from "@/components/MainPage/Status/Mode.vue";
+import StageSelection from "@/components/MainPage/Status/StageSelection.vue";
 
 export default {
 	props: {

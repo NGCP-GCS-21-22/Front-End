@@ -24,7 +24,7 @@
 						:name="widget.name"
 						:missionWaypoint="missionWaypoint"
 						@goBack="showWidgets"
-						@moveCoordinates="moveCoordinates"
+						@updateWidgetData="updateWidgetData"
 					/>
 					<HomeCoordinates
 						v-if="
@@ -34,7 +34,7 @@
 						:name="widget.name"
 						:homeCoordinates="homeCoordinates"
 						@goBack="showWidgets"
-						@moveCoordinates="moveCoordinates"
+						@updateWidgetData="updateWidgetData"
 					/>
 
 					<StageCommand
@@ -52,6 +52,9 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						:searchArea="searchArea"
+						@updateWidgetData="updateWidgetData"
+						@goBack="showWidgets"
 					/>
 					<Geofence
 						v-if="
@@ -74,12 +77,12 @@
 </template>
 
 <script>
-import MissionWaypoint from "@/components/Widgets/MissionWaypoint.vue";
-import HomeCoordinates from "@/components/Widgets/HomeCoordinates.vue";
-import StageCommand from "@/components/Widgets/StageCommand.vue";
-import SearchArea from "@/components/Widgets/SearchArea.vue";
-import Geofence from "@/components/Widgets/Geofence.vue";
-import ManualControl from "@/components/Widgets/ManualControl.vue";
+import MissionWaypoint from "@/components/VehiclePage/Widgets/MissionWaypoint.vue";
+import HomeCoordinates from "@/components/VehiclePage/Widgets/HomeCoordinates.vue";
+import StageCommand from "@/components/VehiclePage/Widgets/StageCommand.vue";
+import SearchArea from "@/components/VehiclePage/Widgets/SearchArea.vue";
+import Geofence from "@/components/VehiclePage/Widgets/Geofence.vue";
+import ManualControl from "@/components/VehiclePage/Widgets/ManualControl.vue";
 
 export default {
 	components: {
@@ -103,6 +106,16 @@ export default {
 		homeCoordinates() {
 			if (!this.widgetData.homeCoordinates) return null;
 			return this.widgetData.homeCoordinates;
+		},
+		searchArea() {
+			if (!this.widgetData.searchArea) return null;
+
+			return this.widgetData.searchArea.map((coordinate) => {
+				return {
+					lat: parseFloat(coordinate.lat),
+					lng: parseFloat(coordinate.lng),
+				};
+			});
 		},
 	},
 	data() {
@@ -200,8 +213,8 @@ export default {
 			this.widgetGroups.push(widgetGroup3);
 			// }
 		},
-		moveCoordinates(direction, coordinate) {
-			this.$emit("moveCoordinates", direction, coordinate);
+		updateWidgetData(widgetType, value) {
+			this.$emit("updateWidgetData", widgetType, value);
 		},
 	},
 };

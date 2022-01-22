@@ -29,7 +29,7 @@
 						:vehicleMissionData="vehicleMissionData"
 						:widgetData="widgetData"
 						@widgetTypeSelected="setWidgetSelected"
-						@moveCoordinates="setWidgetData"
+						@updateWidgetData="setWidgetData"
 					/>
 				</b-row>
 			</b-col>
@@ -40,7 +40,7 @@
 <script>
 import Status from "@/components/VehiclePage/Status.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
-import Map from "@/components/Map/VehicleMap.vue";
+import Map from "@/components/Maps/VehicleMap.vue";
 import {
 	getMissionData,
 	getGeneralStage,
@@ -112,8 +112,8 @@ export default {
 				console.log(error);
 			}
 		},
-		setWidgetData(widgetType, position) {
-			this.$set(this.widgetData, widgetType, position);
+		setWidgetData(widgetType, value) {
+			this.$set(this.widgetData, widgetType, value);
 		},
 		setWidgetSelected(widgetTypeSelected) {
 			this.widgetTypeSelected = widgetTypeSelected;
