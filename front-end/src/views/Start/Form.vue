@@ -1,18 +1,18 @@
 <template>
 	<div>
 			<h1 style="color: white;">Form Page</h1>
-			<b-button @click="goToStart">Back</b-button>
-			<b-button @click="goToGCS">Go to GCS</b-button>
+			<b-button class="back" variant="outline-primary" @click="goToStart">Back</b-button>
+			<b-button class="back" variant="outline-primary" @click="goToGCS">Go to GCS</b-button>
 
-			<b-container>
-				<b-row>
-					<b-col>
+			<b-container fluid>
+				<b-row class="justify-content-md-center">
+					<b-col md="4"> 
 						<MissionForm ref="MACForm" :vehicleName="'MAC'" />
 					</b-col>
-					<b-col>
+					<b-col cols="4" > 
 						<MissionForm ref="ERUForm" :vehicleName="'ERU'" />
 					</b-col>
-					<b-col>
+					<b-col cols="4"> 
 						<MissionForm ref="MEAForm" :vehicleName="'MEA'" />
 					</b-col>
 				</b-row>
@@ -58,6 +58,14 @@ export default {
 
 .submit{
 	 text-align: center;
-	 margin-top: 10px;
+	 margin-top: 20px;
 }
+
+.back{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 </style>

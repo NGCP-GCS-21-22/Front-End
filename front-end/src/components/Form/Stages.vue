@@ -1,35 +1,102 @@
 <template>
-<div>
-  <b-col>
+  <div>
+    <b-col>
       <b-row>
-          <h4 class="text-left font-weight-bold">Stages</h4>
+        <h4 class="text-left font-weight-bold">Stages</h4>
       </b-row>
       <b-row>
-          <b-form-input v-model="id" placeholder="Enter Id/Number"></b-form-input>
-          <!-- for testing purpose only -->
-          <div class="mt-2">Value Entered: {{ id }}</div>
+        <div class="b-form-group" v-for="(input, k) in inputs" :key="k">
+          <!-- Input Text field -->
+          <b-input-group>
+            <b-form-input
+              type="text"
+              class="form-control"
+              v-model="input.id"
+              placeholder="Enter ID/Number"
+              width="10px"
+            ></b-form-input>
+
+            <b-form-input
+              type="text"
+              class="form-control"
+              v-model="input.stage"
+              placeholder="Enter Stage Name"
+              width="10px"
+            ></b-form-input>
+
+            <b-input-group-append class="btns">
+              <!-- Remove button -->
+
+              <b-button
+                pill
+                @click="remove(k)"
+                v-show="k || (!k && inputs.length > 1)"
+                variant="light"
+                size="sm"
+                class="mb-2 float-right"
+              >
+                <b-icon
+                  icon="dash-circle"
+                  variant="danger"
+                  font-scale="1"
+                  aria-label="Delete"
+                ></b-icon>
+              </b-button>
+
+              <!-- Add button -->
+              <b-button
+                pill
+                @click="add(k)"
+                v-show="k == inputs.length - 1"
+                b-modal="k == inputs.length-1"
+                variant="light"
+                size="sm"
+                class="mb-2 float-right"
+                
+              >
+                <b-icon
+                  icon="plus-circle"
+                  variant="success"
+                  font-scale="1"
+                  aria-label="Add"
+                ></b-icon>
+              </b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </div>
       </b-row>
-      <b-row>
-          <b-form-input v-model="stage" placeholder="Enter Name of Stage"></b-form-input>
-          <!-- for testing purpose only -->
-          <div class="mt-2">Stage Name: {{ stage }}</div>
-      </b-row>
-  </b-col>
-</div>
+    </b-col>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-      return {
-        id: '',
-        stage: ''
-      };
-    }
+  data() {
+    return {
+      inputs: [
+        {
+          id: "",
+          stage: "",
+        },
+      ],
+    };
+  },
 
-}
+  methods: {
+    add(index) {
+      this.inputs.push({ id: "", stage: "" });
+    },
+    remove(index) {
+      this.inputs.splice(index, 1);
+    },
+  },
+};
 </script>
 
 <style scoped>
 
+.btns{
+
+	margin-left: 10px;
+}
 </style>
