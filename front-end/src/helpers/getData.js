@@ -188,3 +188,4 @@ const getWidgetData = (vehicleName) => {
 }
 
 export { getMissionData, getGeneralStage, getVehicleData, getWidgetData }
+
