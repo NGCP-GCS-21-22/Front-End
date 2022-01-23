@@ -16,10 +16,10 @@
         <b-col>
           <b-row>
             <b-col>
-              <Features />
+              <AltitudeStatus :altitude="getAltitude" />
             </b-col>
             <b-col>
-              <Features />
+              <SpeedStatus :speed="getSpeed" />
             </b-col>
           </b-row>
 
@@ -53,7 +53,8 @@ import ConnectionStatus from "../MainPage/ConnectionStatus.vue";
 import EmergencyStop from "../MainPage/EmergencyStop.vue";
 import Mode from "../MainPage/Mode.vue";
 import BatteryInStatus from './StatusComponents/BatteryInStatus.vue';
-import Features from "./StatusComponents/Features.vue";
+import AltitudeStatus from "./StatusComponents/AltitudeStatus.vue";
+import SpeedStatus from "./StatusComponents/SpeedStatus.vue";
 import PitchRollYaw from './StatusComponents/PitchRollYaw.vue';
 import VehicleMissionStage from "./StatusComponents/VehicleMissionStage.vue";
 export default {
@@ -62,10 +63,12 @@ export default {
     Mode,
     EmergencyStop,
     VehicleMissionStage,
-    Features,
     PitchRollYaw,
     Battery,
     BatteryInStatus,
+    AltitudeStatus,
+    SpeedStatus,
+ 
   },
   data() {
     return {
@@ -84,7 +87,7 @@ export default {
       },
       MAC: {
         "latency": 3,
-        "batteryPct": 50,
+        "batteryPct": 80,
         "batteryStatus": 97,
         "mode": "Autonomous",
         "sModalShow": false,
@@ -93,6 +96,8 @@ export default {
         "pitch": 10,
         "roll": 5,
         "yaw": 12,
+        "altitude": 250,
+        "speed": 50,
       },
     }; 
   },
@@ -117,6 +122,12 @@ export default {
     }, 
     getYaw(){
       return this.MAC.yaw;
+    }, 
+    getAltitude(){
+      return this.MAC.altitude;
+    }, 
+    getSpeed(){
+      return this.MAC.speed;
     }, 
 
   }
