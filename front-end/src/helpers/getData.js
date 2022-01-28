@@ -132,20 +132,20 @@ const getMissionData = (vehicleName) => {
 		},
 	}
 
-	
+
 	if (vehicleName == "all") return missionData
 
 	return missionData[vehicleName]
 }
 
 const getGeneralStage = () => {
-	let path = "http://localhost:5000/generalStage"
+	let path = "http://localhost:5000/getGeneralStage"
 
 	return new Promise((resolve, reject) => {
 		axios
 			.get(path)
 			.then((response) => {
-				resolve(response.data["name"])
+				resolve(`${response.data["vehicle"]}: ${response.data["name"]}`)
 			})
 			.catch((error) => {
 				reject(error)
