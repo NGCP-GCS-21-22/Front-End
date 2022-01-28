@@ -2,9 +2,9 @@
   <b-container>
     <b-row no-gutters>
       <b-col align="center" style="margin-left: 10px;">
-        <h3 style="font-weight: bold; color: #B4A4A4">
+        <h5 style="font-weight: bold; color: #B4A4A4">
           Vehicle Mission Stage
-        </h3>
+        </h5>
       </b-col>
     </b-row>
     <b-row>
