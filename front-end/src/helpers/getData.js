@@ -132,6 +132,7 @@ const getMissionData = (vehicleName) => {
 		},
 	}
 
+	
 	if (vehicleName == "all") return missionData
 
 	return missionData[vehicleName]
