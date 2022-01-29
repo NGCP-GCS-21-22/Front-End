@@ -36,16 +36,6 @@
 						@goBack="showWidgets"
 						@updateWidgetData="updateWidgetData"
 					/>
-
-					<StageCommand
-						v-if="
-							widget.type == 'StageCommand' &&
-							cardSelected == widget.name
-						"
-						:name="widget.name"
-						:stages="widget.stages"
-						@goBack="showWidgets"
-					/>
 					<SearchArea
 						v-if="
 							widget.type == 'SearchArea' &&
@@ -79,7 +69,6 @@
 <script>
 import MissionWaypoint from "@/components/VehiclePage/Widgets/MissionWaypoint.vue";
 import HomeCoordinates from "@/components/VehiclePage/Widgets/HomeCoordinates.vue";
-import StageCommand from "@/components/VehiclePage/Widgets/StageCommand.vue";
 import SearchArea from "@/components/VehiclePage/Widgets/SearchArea.vue";
 import Geofence from "@/components/VehiclePage/Widgets/Geofence.vue";
 import ManualControl from "@/components/VehiclePage/Widgets/ManualControl.vue";
@@ -88,7 +77,7 @@ export default {
 	components: {
 		MissionWaypoint,
 		HomeCoordinates,
-		StageCommand,
+
 		SearchArea,
 		Geofence,
 		ManualControl,
@@ -143,7 +132,7 @@ export default {
 			this.$emit("widgetTypeSelected", this.widgetTypeSelected);
 		},
 		getWidgetGroups() {
-			// missionWaypoint and home coordinates
+			// Mission Waypoint and Home Cboordinates
 			let widgetGroup1 = {
 				widgetGroup: [
 					{
@@ -159,27 +148,17 @@ export default {
 				widgetGroupId: "Widget Group 1",
 			};
 
-			// Stage Command and Geofence
-			let widgetGroup2 = {
-				widgetGroup: [
-					{
-						type: "StageCommand",
-						name: "Stage Command",
-						stages: this.vehicleMissionData.stages,
-					},
-					{
-						type: "Geofence",
-						name: "Geofence",
-					},
-				],
-				buttonGroupId: "Button Group 2",
-				widgetGroupId: "Widget Group 2",
-			};
-
-			this.widgetGroups.push(widgetGroup1, widgetGroup2);
-
-			// Search Area (optional) and Manual Control (optional)
+			// Geofence and
+			// Search Area (optional) or Manual Control (optional)
 			let widgetGroup = [];
+
+			// Geofence
+			widgetGroup.push({
+				type: "Geofence",
+				name: "Geofence",
+			});
+
+			// Search Area
 			if (this.vehicleMissionData.searchArea) {
 				let widget = {
 					type: "SearchArea",
@@ -187,6 +166,8 @@ export default {
 				};
 				widgetGroup.push(widget);
 			}
+
+			// Manual Control
 			if (this.vehicleMissionData.manualControl) {
 				let widget = {
 					type: "ManualControl",
@@ -203,15 +184,13 @@ export default {
 				widgetGroup.push(widgetPlaceholder);
 			}
 
-			// if (widgetGroup.length == 2) {
-			let widgetGroup3 = {
+			let widgetGroup2 = {
 				widgetGroup: widgetGroup,
-				buttonGroupId: "Button Group 3",
-				widgetGroupId: "Widget Group 3",
+				buttonGroupId: "Button Group 2",
+				widgetGroupId: "Widget Group 2",
 			};
 
-			this.widgetGroups.push(widgetGroup3);
-			// }
+			this.widgetGroups.push(widgetGroup1, widgetGroup2);
 		},
 		updateWidgetData(widgetType, value) {
 			this.$emit("updateWidgetData", widgetType, value);

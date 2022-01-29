@@ -1,48 +1,46 @@
 <template>
-	<div>
-		<b-container class="container">
-			<b-card>
-				<!-- top row -->
-				<b-row>
-					<b-col>
-						<VehicleStatusTitle
-							:vehicleName="vehicleName"
-							:vehicleImgPath="vehicleImgPath"
-						/>
-					</b-col>
-				</b-row>
+	<b-container class="container">
+		<b-card>
+			<!-- top row -->
+			<b-row>
+				<b-col>
+					<VehicleStatusTitle
+						:vehicleName="vehicleName"
+						:vehicleImgPath="vehicleImgPath"
+					/>
+				</b-col>
+			</b-row>
 
-				<!-- middle row -->
-				<b-row>
-					<!-- middle left -->
-					<b-col cols="6">
-						<ConnectionStatus :status="status" :latency="latency" />
-					</b-col>
-					<!-- middle right -->
-					<b-col cols="6">
-						<b-row
-							><b-col><Mode :mode="mode" /></b-col>
-							<b-col>
-								<Battery :batteryPct="batteryPct" />
-							</b-col>
-						</b-row>
-					</b-col>
-				</b-row>
+			<!-- middle row -->
+			<b-row>
+				<!-- middle left -->
+				<b-col cols="6">
+					<ConnectionStatus :status="status" :latency="latency" />
+				</b-col>
+				<!-- middle right -->
+				<b-col cols="6">
+					<b-row
+						><b-col><Mode :mode="mode" /></b-col>
+						<b-col>
+							<Battery :batteryPct="batteryPct" />
+						</b-col>
+					</b-row>
+				</b-col>
+			</b-row>
 
-				<!-- bottom row -->
-				<b-row>
-					<!-- bottom left -->
-					<b-col cols="6">
-						<StageSelection :vehicleName="vehicleName" />
-					</b-col>
-					<!-- bottom right -->
-					<b-col>
-						<EmergencyStop />
-					</b-col>
-				</b-row>
-			</b-card>
-		</b-container>
-	</div>
+			<!-- bottom row -->
+			<b-row>
+				<!-- bottom left -->
+				<b-col cols="6">
+					<StageSelection :vehicleName="vehicleName" />
+				</b-col>
+				<!-- bottom right -->
+				<b-col>
+					<EmergencyStop />
+				</b-col>
+			</b-row>
+		</b-card>
+	</b-container>
 </template>
 
 <script>
