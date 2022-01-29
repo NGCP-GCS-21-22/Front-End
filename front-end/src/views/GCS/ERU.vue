@@ -16,7 +16,7 @@
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<VehicleGeneralStage :generalStage="generalStage"/>
+					<VehicleStage :generalStage="generalStage"/>
 				</b-row>
 				<b-row>
 					<VehicleStatus
@@ -50,13 +50,13 @@ import {
 	getVehicleData,
 	getWidgetData,
 } from "@/helpers/getData.js";
-import VehicleGeneralStage from '../../components/VehiclePage/VehicleGeneralStage.vue';
+import VehicleStage from '../../components/VehiclePage/VehicleStage.vue';
 export default {
 	components: {
 		VehicleStatus,
 		Widgets,
 		Map,
-		VehicleGeneralStage,
+		VehicleStage,
 	},
 	data() {
 		return {

@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
 .container {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 img {
 	display: block;

@@ -16,7 +16,7 @@
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<VehicleGeneralStage :generalStage="generalStage"/>
+					<VehicleStage :generalStage="generalStage"/>
 				</b-row>
 				<b-row>
 					<VehicleStatus
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import VehicleGeneralStage from '../../components/VehiclePage/VehicleGeneralStage.vue';
+import VehicleStage from '../../components/VehiclePage/VehicleStage.vue';
 import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Maps/VehicleMap.vue";
@@ -57,7 +57,7 @@ export default {
 		VehicleStatus,
 		Widgets,
 		Map,
-		VehicleGeneralStage,
+		VehicleStage,
 	},
 	data() {
 		return {

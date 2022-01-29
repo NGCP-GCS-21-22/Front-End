@@ -2,9 +2,9 @@
 	<b-container class="container">
 		<b-card>
 			<h4>Vehicle Mission Stage:</h4>
-			<h2>
+			<h3>
 				{{ generalStage }}
-			</h2>
+			</h3>
 		</b-card>
 	</b-container>
 </template>
@@ -24,7 +24,7 @@ h4 {
 }
 
 .container {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 </style>
