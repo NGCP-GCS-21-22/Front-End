@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<b-container class="container">
-			<b-card class="status-card">
+			<b-card>
 				<!-- top row -->
 				<b-row>
-					<b-col class="top-left-col">
+					<b-col>
 						<VehicleStatusTitle
 							:vehicleName="vehicleName"
 							:vehicleImgPath="vehicleImgPath"
@@ -70,36 +70,16 @@ export default {
 	},
 	computed: {
 		batteryPct() {
-			// depends on MAC
-			// get the battery out of it
-
-			// Array
-			// for element in this.MAC
-			// if element.title == "Battery"
-			// return element.value
-
-			// let pct = 0;
-			// this.MAC.forEach(property =>{
-			// 	if(property.title=="Battery"){
-			// 		pct = property.value;
-			// 	}
-			// })
-			// return pct;
-
-			// Dictionary
-			// return this.MAC.Battery;
 			if (!this.vehicleData) return 0;
 			return this.vehicleData["battery"];
 		},
 		latency() {
 			if (!this.vehicleData) return 0;
 			return this.vehicleData["last_packet_time"];
-			// return 999;
 		},
 		mode() {
 			if (!this.vehicleData) return "None";
 			return this.vehicleData["mode"];
-			// return "Autonomous";
 		},
 	},
 	data() {
@@ -114,22 +94,8 @@ export default {
 .container {
 	margin-bottom: 20px;
 }
-.status-card{
-  width: 40vw;
-	height: 20vh;
-  margin-bottom: 10px;
-}
 img {
 	display: block;
 	width: 20;
 	height: 20;
 }
-
-.top-left-col {
-	/* background-color: red; */
-}
-
-.top-right-col {
-	/* background-color: blue; */
-}
-</style>
