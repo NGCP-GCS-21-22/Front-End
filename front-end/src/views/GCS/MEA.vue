@@ -42,7 +42,7 @@
 
 <script>
 import VehicleGeneralStage from '../../components/VehiclePage/VehicleGeneralStage.vue';
-import VehicleStatus from "@/components/VehiclePage/VehicleStatus.vue";
+import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Maps/VehicleMap.vue";
 import {
