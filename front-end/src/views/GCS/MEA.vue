@@ -16,11 +16,14 @@
 			<!-- right column -->
 			<b-col cols="5">
 				<b-row>
-					<Status
-						v-if="vehicleName && vehicleIcon"
-						:vehicleName="vehicleName"
-						:vehicleIcon="vehicleIcon"
-					/>
+					<VehicleGeneralStage :generalStage="generalStage"/>
+				</b-row>
+				<b-row>
+					<VehicleStatus
+					:vehicleName="'MEA'"
+					:vehicleImgPath="vehicleIcon"
+					:vehicleData="vehicleData"
+				/>
 				</b-row>
 				<b-row>
 					<Widgets
@@ -38,7 +41,8 @@
 </template>
 
 <script>
-import Status from "@/components/VehiclePage/Status.vue";
+import VehicleGeneralStage from '../../components/VehiclePage/VehicleGeneralStage.vue';
+import VehicleStatus from "@/components/VehiclePage/VehicleStatus.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Maps/VehicleMap.vue";
 import {
@@ -50,9 +54,10 @@ import {
 
 export default {
 	components: {
-		Status,
+		VehicleStatus,
 		Widgets,
 		Map,
+		VehicleGeneralStage,
 	},
 	data() {
 		return {
