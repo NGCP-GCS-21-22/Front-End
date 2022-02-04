@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { defaultLat, defaultLng } from "@/helpers/coordinates.js";
+import { centerLng, centerLat, defaultLat, defaultLng } from "@/helpers/coordinates.js";
 
 export default {
 	props: {
@@ -168,7 +168,7 @@ export default {
 	data() {
 		return {
 			// Map Data
-			center: { lat: 33.93364332758927, lng: -117.6295006970484 },
+			center: { lat: centerLat, lng: centerLng },
 			zoom: 18,
 			tilt: 0,
 			options: {
