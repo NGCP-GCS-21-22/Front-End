@@ -33,14 +33,16 @@
 			:draggable="isSelected(homeCoordinatesMarker)"
 			:clickable="isSelected(homeCoordinatesMarker)"
 			:icon="{ url: homeCoordinatesMarker.icon }"
-			@drag="moveHomeCoordinates"
 			:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
+			@drag="moveHomeCoordinates"
+			
 		/>
 
 		<!-- Search Area -->
 		<!-- v-if search selected v-for number of points in UI, create marker -->
 		<GmapMarker
 			:key="coordinate.id"
+			v-if="widgetTypeSelected == 'SearchArea'"
 			v-for="coordinate in searchAreaPolygon.coordiantes"
 			:position="{ lat: coordinate.lat, lng: coordinate.lng }"
 			:draggable="true"
