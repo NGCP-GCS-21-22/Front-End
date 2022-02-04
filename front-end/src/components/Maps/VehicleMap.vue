@@ -44,6 +44,7 @@
 			v-for="coordinate in searchAreaPolygon.coordiantes"
 			:position="{ lat: coordinate.lat, lng: coordinate.lng }"
 			:draggable="true"
+			:zIndex="100"
 			@drag="moveSearchAreaVertex($event, coordinate.id)"
 		/>
 
