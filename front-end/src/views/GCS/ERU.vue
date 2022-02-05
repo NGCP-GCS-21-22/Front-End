@@ -15,16 +15,18 @@
 
 			<!-- right column -->
 			<b-col cols="5">
-				<b-row>
-					<VehicleStage :generalStage="generalStage"/>
-				</b-row>
-				<b-row>
-					<VehicleStatus
-					:vehicleName="'ERU'"
-					:vehicleImgPath="vehicleIcon"
-					:vehicleData="vehicleData"
-					/>
-				</b-row>
+				<div v-if="widgetTypeSelected != 'Geofence'">
+					<b-row>
+						<VehicleStage :generalStage="generalStage" />
+					</b-row>
+					<b-row>
+						<VehicleStatus
+							:vehicleName="vehicleName"
+							:vehicleImgPath="vehicleIcon"
+							:vehicleData="vehicleData"
+						/>
+					</b-row>
+				</div>
 				<b-row>
 					<Widgets
 						v-if="vehicleName && vehicleMissionData"
@@ -50,7 +52,7 @@ import {
 	getVehicleData,
 	getWidgetData,
 } from "@/helpers/getData.js";
-import VehicleStage from '../../components/VehiclePage/VehicleStage.vue';
+import VehicleStage from "../../components/VehiclePage/VehicleStage.vue";
 export default {
 	components: {
 		VehicleStatus,

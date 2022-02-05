@@ -15,16 +15,18 @@
 
 			<!-- right column -->
 			<b-col cols="5">
-				<b-row>
-					<VehicleStage :generalStage="generalStage" />
-				</b-row>
-				<b-row>
-					<VehicleStatus
-						:vehicleName="'MAC'"
-						:vehicleImgPath="vehicleIcon"
-						:vehicleData="vehicleData"
-					/>
-				</b-row>
+				<div v-if="widgetTypeSelected != 'Geofence'">
+					<b-row>
+						<VehicleStage :generalStage="generalStage" />
+					</b-row>
+					<b-row>
+						<VehicleStatus
+							:vehicleName="vehicleName"
+							:vehicleImgPath="vehicleIcon"
+							:vehicleData="vehicleData"
+						/>
+					</b-row>
+				</div>
 				<b-row>
 					<Widgets
 						v-if="vehicleName && vehicleMissionData"

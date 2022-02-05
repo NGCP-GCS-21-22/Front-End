@@ -15,16 +15,18 @@
 
 			<!-- right column -->
 			<b-col cols="5">
-				<b-row>
-					<VehicleStage :generalStage="generalStage"/>
-				</b-row>
-				<b-row>
-					<VehicleStatus
-					:vehicleName="'MEA'"
-					:vehicleImgPath="vehicleIcon"
-					:vehicleData="vehicleData"
-				/>
-				</b-row>
+				<div v-if="widgetTypeSelected != 'Geofence'">
+					<b-row>
+						<VehicleStage :generalStage="generalStage" />
+					</b-row>
+					<b-row>
+						<VehicleStatus
+							:vehicleName="vehicleName"
+							:vehicleImgPath="vehicleIcon"
+							:vehicleData="vehicleData"
+						/>
+					</b-row>
+				</div>
 				<b-row>
 					<Widgets
 						v-if="vehicleName && vehicleMissionData"
@@ -41,7 +43,7 @@
 </template>
 
 <script>
-import VehicleStage from '../../components/VehiclePage/VehicleStage.vue';
+import VehicleStage from "../../components/VehiclePage/VehicleStage.vue";
 import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Maps/VehicleMap.vue";

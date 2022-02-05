@@ -52,6 +52,7 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						@goBack="showWidgets"
 					/>
 					<ManualControl
 						v-if="
@@ -59,6 +60,7 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						@goBack="showWidgets"
 					/>
 				</div>
 			</div>

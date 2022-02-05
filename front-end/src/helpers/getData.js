@@ -71,13 +71,7 @@ const getWidgetData = (vehicleName) => {
 
 	// return {}
 
-	let widgetData = {
-		searchArea: [
-			{ lat: 33.933729, lng: -117.6318437 }, // marker1
-			{ lat: 33.93441, lng: -117.6318169 }, // marker2
-			{ lat: 33.9344055, lng: -117.6306099 },
-		],
-	}
+	let widgetData = {}
 
 	if (!widgetData["missionWaypoint"])
 		widgetData["missionWaypoint"] = {
@@ -90,6 +84,13 @@ const getWidgetData = (vehicleName) => {
 			lat: defaultLat,
 			lng: defaultLng,
 		}
+
+	if (!widgetData["searchArea"])
+		widgetData["searchArea"] = [
+			{ lat: 33.933729, lng: -117.6318437 }, // marker1
+			{ lat: 33.93441, lng: -117.6318169 }, // marker2
+			{ lat: 33.9344055, lng: -117.6306099 },
+		]
 
 	return widgetData
 }
