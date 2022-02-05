@@ -150,9 +150,11 @@ export default {
 	/* background-color: aqua; */
 }
 .left-column {
+	padding: 0;
 	/* background-color: red; */
 }
 .right-column {
+	padding: 0;
 	/* background-color: purple; */
 }
 </style>

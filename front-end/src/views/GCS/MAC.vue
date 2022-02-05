@@ -135,4 +135,12 @@ export default {
 	max-width: 100%;
 	max-height: 100%;
 }
+.left-column {
+	padding: 0;
+	/* background-color: red; */
+}
+.right-column {
+	padding: 0;
+	/* background-color: purple; */
+}
 </style>
