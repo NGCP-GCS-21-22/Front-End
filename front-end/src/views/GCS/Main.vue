@@ -17,16 +17,19 @@
 			<b-col class="right-column" cols="4">
 				<GeneralStage :generalStage="generalStage" />
 				<VehicleStatus
+					class="vehicle-status"
 					:vehicleName="'MAC'"
 					:vehicleImgPath="macIcon"
 					:vehicleData="macData"
 				/>
 				<VehicleStatus
+					class="vehicle-status"
 					:vehicleName="'ERU'"
 					:vehicleImgPath="eruIcon"
 					:vehicleData="eruData"
 				/>
 				<VehicleStatus
+					class="vehicle-status"
 					:vehicleName="'MEA'"
 					:vehicleImgPath="meaIcon"
 					:vehicleData="meaData"
@@ -143,6 +146,9 @@ export default {
 	max-width: 100%;
 	max-height: 100%;
 	/* background-color: orange; */
+}
+.vehicle-status {
+	margin-top: 20px;
 }
 .main-row {
 	/* max-width: 100%;
