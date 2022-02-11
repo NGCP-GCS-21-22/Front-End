@@ -1,6 +1,6 @@
 <template>
-	<b-container class="container">
-		<b-card>
+	<b-container class="status-container">
+		<b-card class="status-card">
 			<!-- top row -->
 			<b-row>
 				<b-col>
@@ -89,8 +89,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-	margin-bottom: 10px;
+.status-container {
+	margin-top: 10px;
+}
+.status-card {
+	height: 22vh;
 }
 img {
 	display: block;

@@ -1,5 +1,5 @@
  <template>
-	<b-container>
+	<b-container class="widget-container">
 		<b-card
 			:class="
 				widgetTypeSelected == 'Geofence'
@@ -211,23 +211,23 @@ export default {
 p {
 	color: black;
 }
+.widget-container {
+	margin-top: 10px;
+}
 .widget-card {
 	overflow: auto;
 	width: 40vw;
-	height: 50vh;
+	height: 52vh;
 }
 .geofence-card {
 	overflow: auto;
 	width: 40vw;
 	height: 89vh;
-	margin-top: 10px;
 }
 .widget-button {
-	width: 90%;
-	margin-bottom: 10px;
-
-	/* 50 / number of groups - extra margins */
-	height: calc(50vh / 3);
+	width: 100%;
+	margin-bottom: 12px;
+	height: 23vh;
 }
 .invisible {
 	visibility: hidden;

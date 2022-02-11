@@ -1,6 +1,6 @@
 <template>
-	<b-container class="container">
-		<b-card>
+	<b-container class="stage-container">
+		<b-card class="stage-card">
 			<h4>Vehicle Mission Stage:</h4>
 			<h3>
 				{{ generalStage }}
@@ -23,8 +23,10 @@ h4 {
 	color: #2c3e50;
 }
 
-.container {
-    margin-top: 10px;
-    margin-bottom: 10px;
+.stage-container {
+	margin-top: 10px;
+}
+.stage-card {
+	height: 13vh;
 }
 </style>
