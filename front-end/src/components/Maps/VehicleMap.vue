@@ -11,9 +11,8 @@
 		<GmapMarker
 			:position="vehicleMarker.position"
 			:clickable="false"
-			:icon=" {
-				
-				url: 'https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/ERU.png'
+			:icon="{
+				url: vehicleMarker.icon,
 			}"
 			:zIndex="1000"
 		/>
@@ -36,7 +35,6 @@
 			:icon="{ url: homeCoordinatesMarker.icon }"
 			:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
 			@drag="moveHomeCoordinates"
-			
 		/>
 
 		<!-- Search Area -->
@@ -61,7 +59,12 @@
 </template>
 
 <script>
-import { centerLng, centerLat, defaultLat, defaultLng } from "@/helpers/coordinates.js";
+import {
+	centerLng,
+	centerLat,
+	defaultLat,
+	defaultLng,
+} from "@/helpers/coordinates.js";
 
 export default {
 	props: {
@@ -94,7 +97,7 @@ export default {
 						lat: defaultLat,
 						lng: defaultLng,
 					},
-					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+					icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
 					draggable: this.widgetTypeSelected === "MissionWaypoint",
 				};
 			return {
@@ -103,7 +106,7 @@ export default {
 					lat: this.missionWaypoint.lat,
 					lng: this.missionWaypoint.lng,
 				},
-				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+				icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
 				draggable: this.widgetTypeSelected === "MissionWaypoint",
 			};
 		},
@@ -119,7 +122,7 @@ export default {
 						lat: defaultLat,
 						lng: defaultLng,
 					},
-					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
+					icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
 					draggable: this.widgetTypeSelected === "HomeCoordinates",
 				};
 			return {
@@ -128,7 +131,7 @@ export default {
 					lat: this.homeCoordinates.lat,
 					lng: this.homeCoordinates.lng,
 				},
-				icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/home.png?raw=true",
+				icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
 				draggable: this.widgetTypeSelected === "HomeCoordinates",
 			};
 		},
