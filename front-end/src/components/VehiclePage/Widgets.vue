@@ -9,7 +9,10 @@
 						v-if="!selected && widget.type != 'Placeholder'"
 						@click="selectWidget(widget.name, widget.type)"
 					>
-						{{ widget.name }}
+						{{ widget.name }} 
+						<b-img v-if="widget.icon" :src="widget.icon"> </b-img>
+
+
 					</b-button>
 				</b-col>
 			</b-row>
@@ -115,6 +118,7 @@ export default {
 			cardSelected: null,
 			widgetTypeSelected: null,
 			widgetGroups: [],
+			//widgetIcon: null,
 		};
 	},
 	mounted() {
@@ -140,10 +144,13 @@ export default {
 					{
 						type: "MissionWaypoint",
 						name: this.vehicleMissionData.missionWaypoint,
+						icon:  "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true",
+						
 					},
 					{
 						type: "HomeCoordinates",
 						name: "Home Coordinates",
+						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
 					},
 				],
 				buttonGroupId: "Button Group 1",
@@ -158,6 +165,7 @@ export default {
 			widgetGroup.push({
 				type: "Geofence",
 				name: "Geofence",
+				icon: null,
 			});
 
 			// Search Area
@@ -165,7 +173,8 @@ export default {
 				let widget = {
 					type: "SearchArea",
 					name: "Search Area",
-				};
+					icon: null,
+			};
 				widgetGroup.push(widget);
 			}
 
@@ -174,6 +183,7 @@ export default {
 				let widget = {
 					type: "ManualControl",
 					name: "Manual Control",
+					icon: null,
 				};
 				widgetGroup.push(widget);
 			}
@@ -182,6 +192,7 @@ export default {
 				let widgetPlaceholder = {
 					type: "Placeholder",
 					name: "Placeholder " + widgetGroup.length,
+					icon: null,
 				};
 				widgetGroup.push(widgetPlaceholder);
 			}

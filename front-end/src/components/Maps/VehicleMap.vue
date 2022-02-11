@@ -94,7 +94,7 @@ export default {
 						lat: defaultLat,
 						lng: defaultLng,
 					},
-					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/evac-point.png?raw=true",
+					icon: "https://github.com/NGCP-GCS-2021/front-end-21/blob/master/src/assets/map_icons/-point.png?raw=true",
 					draggable: this.widgetTypeSelected === "MissionWaypoint",
 				};
 			return {

@@ -1,6 +1,15 @@
 <template>
 	<b-card>
-		<p class="card-text">{{ name }}</p>
+		<p class="card-text">{{ name }}
+			<b-img
+					style="width: 60px;"
+					:src="require('@/assets/map_icons/mission-waypoint.png')"
+			></b-img>
+		</p>
+
+		
+		
+		
 		<label for="input-live">Latitude:</label>
 		<b-form-input
 			id="input-1"
@@ -33,6 +42,7 @@ export default {
 	props: {
 		name: String,
 		missionWaypoint: Object,
+		missionIcon: String,
 	},
 	data() {
 		return {};

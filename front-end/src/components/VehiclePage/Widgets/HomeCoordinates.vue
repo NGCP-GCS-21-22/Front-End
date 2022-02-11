@@ -1,6 +1,11 @@
 <template>
 	<b-card>
-		<p class="card-text">{{ name }}</p>
+		<p class="card-text">{{ name }}
+			<b-img
+					style="width: 60px;"
+					:src="require('@/assets/map_icons/home.png')"
+			></b-img>
+		</p>
 		<label for="input-live">Latitude:</label>
 		<b-form-input
 			id="input-1"
