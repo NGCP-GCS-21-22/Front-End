@@ -1,6 +1,12 @@
  <template>
 	<b-container>
-		<b-card class="widget-card">
+		<b-card
+			:class="
+				widgetTypeSelected == 'Geofence'
+					? 'geofence-card'
+					: 'widget-card'
+			"
+		>
 			<b-row v-for="group in widgetGroups" :key="group.buttonGroupId">
 				<b-col v-for="widget in group.widgetGroup" :key="widget.name">
 					<b-button
@@ -208,6 +214,13 @@ p {
 .widget-card {
 	overflow: auto;
 	width: 40vw;
+	height: 50vh;
+}
+.geofence-card {
+	overflow: auto;
+	width: 40vw;
+	height: 89vh;
+	margin-top: 10px;
 }
 .widget-button {
 	width: 90%;

@@ -1,8 +1,8 @@
 <template>
-	<div>
-		<h1>{{ name }}</h1>
+	<b-container>
+		<h2>{{ name }}</h2>
 		<b-button @click="goBack">Back</b-button>
-	</div>
+	</b-container>
 </template>
 
 <script>

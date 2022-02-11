@@ -1,30 +1,50 @@
 <template>
-	<b-card>
-		<p class="card-text">{{ name }}</p>
-		<label for="input-live">Latitude:</label>
-		<b-form-input
-			id="input-1"
-			v-model="missionWaypoint.lat"
-			type="email"
-			placeholder="Enter Latitude"
-			required
-		>
-		</b-form-input>
-		<label for="input-live">Longitude:</label>
-		<b-form-input
-			id="input-1"
-			v-model="missionWaypoint.lng"
-			type="email"
-			placeholder="Enter Longtitude"
-			required
-		>
-		</b-form-input>
-		<br />
+	<b-container class="widget-container">
+		<h2>{{ name }}</h2>
+
+		<b-row>
+			<b-col
+				class="latlong"
+				cols="2"
+				style="padding-top: 6.5px"
+				align="left"
+			>
+				<label for="input-live">Latitude:</label>
+			</b-col>
+			<b-col cols="10">
+				<b-form-input
+					id="input-1"
+					v-model="missionWaypoint.lat"
+					type="email"
+					placeholder="Enter Latitude"
+					required
+				>
+				</b-form-input>
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col
+				class="latlong"
+				cols="2"
+				style="padding-top: 6.5px"
+				align="left"
+			>
+				<label for="input-live">Longitude:</label>
+			</b-col>
+			<b-col cols="10">
+				<b-form-input
+					id="input-1"
+					v-model="missionWaypoint.lng"
+					type="email"
+					placeholder="Enter Longtitude"
+					required
+				>
+				</b-form-input>
+			</b-col>
+		</b-row>
 
 		<b-button @click="goBack">Back</b-button>
-		<b-button @click="reset">Reset</b-button>
-		<b-button variant="success">Submit</b-button>
-	</b-card>
+	</b-container>
 </template>
 
 <script>
@@ -53,4 +73,10 @@ export default {
 </script>
 
 <style scoped>
+.widget-container {
+}
+
+.latlong {
+	margin-bottom: 10px;
+}
 </style>

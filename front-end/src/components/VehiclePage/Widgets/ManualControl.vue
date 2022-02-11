@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>{{ name }}</h1>
+		<h2>{{ name }}</h2>
 		<b-button @click="goBack">Back</b-button>
 	</div>
 </template>

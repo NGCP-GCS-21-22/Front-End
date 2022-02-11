@@ -1,10 +1,7 @@
 <template>
 	<div>
-		<h1>{{ name }}</h1>
+		<h2>{{ name }}</h2>
 		<b-col>
-			<b-row>
-				<h4 class="text-left font-weight-bold">{{ name }}</h4>
-			</b-row>
 			<b-row>
 				<div
 					class="b-form-group"
