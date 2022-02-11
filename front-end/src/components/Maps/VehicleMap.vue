@@ -11,8 +11,9 @@
 		<GmapMarker
 			:position="vehicleMarker.position"
 			:clickable="false"
-			:icon="{
-				url: vehicleMarker.icon,
+			:icon=" {
+				
+				url: 'https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/ERU.png'
 			}"
 			:zIndex="1000"
 		/>
