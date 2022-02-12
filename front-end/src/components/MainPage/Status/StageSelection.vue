@@ -2,9 +2,15 @@
 	<div>
 		<b-button
 			class="stage-selection-button"
+			style="font-weight: bold;"
 			@click="sModalShow = !sModalShow"
 			variant="primary"
-			>{{ selectedStage }}</b-button
+			>{{ selectedStage }}
+			<b-img
+					style="padding-left: 6px; width: 32px; color: #FFFFFF;"
+					:src="require('@/assets/select.png')"
+			></b-img>
+			</b-button
 		>
 
 		<b-modal
@@ -48,7 +54,7 @@ export default {
 			if (this.selected) {
 				return this.selected.stage;
 			}
-			return "Stage Selection";
+			return "STAGE SELECTION";
 		},
 		selectedId() {
 			if (this.selected) {

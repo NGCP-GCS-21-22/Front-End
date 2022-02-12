@@ -2,10 +2,15 @@
 	<div>
 		<b-button
 			class="emergency-button"
+			style="font-weight: bold;"
 			@click="eModalShow = !eModalShow"
 			variant="danger"
 		>
-			Emergency Stop
+			EMERGENCY STOP
+			<b-img
+					style="padding-left: 5px; width: 42px; color: #FFFFFF;"
+					:src="require('@/assets/stop.png')"
+			></b-img>
 		</b-button>
 		<b-modal
 			centered
@@ -53,4 +58,5 @@ export default {
 	width: 230px;
 	height: 50px;
 }
+
 </style>
