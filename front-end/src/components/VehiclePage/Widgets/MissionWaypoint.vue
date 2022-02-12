@@ -1,6 +1,12 @@
 <template>
 	<b-container class="widget-container">
-		<h2>{{ name }}</h2>
+		<p class="card-text">
+			{{ name }}
+			<b-img
+				style="width: 60px"
+				:src="require('@/assets/map_icons/mission-waypoint.png')"
+			></b-img>
+		</p>
 
 		<b-row>
 			<b-col
@@ -53,6 +59,7 @@ export default {
 	props: {
 		name: String,
 		missionWaypoint: Object,
+		missionIcon: String,
 	},
 	data() {
 		return {};

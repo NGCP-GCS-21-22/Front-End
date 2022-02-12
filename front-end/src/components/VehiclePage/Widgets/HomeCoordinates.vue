@@ -1,9 +1,20 @@
 <template>
 	<b-container>
-		<h2>{{ name }}</h2>
+		<p class="card-text">
+			{{ name }}
+			<b-img
+				style="width: 60px"
+				:src="require('@/assets/map_icons/home.png')"
+			></b-img>
+		</p>
 
 		<b-row>
-			<b-col class="latlong" cols="2" style="padding-top: 6.5px;" align="left">
+			<b-col
+				class="latlong"
+				cols="2"
+				style="padding-top: 6.5px"
+				align="left"
+			>
 				<label for="input-live">Latitude:</label>
 			</b-col>
 
@@ -20,10 +31,15 @@
 		</b-row>
 
 		<b-row>
-			<b-col class="latlong" cols="2" style="padding-top: 6.5px;" align="left">
+			<b-col
+				class="latlong"
+				cols="2"
+				style="padding-top: 6.5px"
+				align="left"
+			>
 				<label for="input-live">Longitude:</label>
 			</b-col>
-			
+
 			<b-col>
 				<b-form-input
 					id="input-1"
