@@ -15,10 +15,11 @@
 						v-if="!selected && widget.type != 'Placeholder'"
 						@click="selectWidget(widget.name, widget.type)"
 					>
-						{{ widget.name }} 
-						<b-img v-if="widget.icon" :src="widget.icon"> </b-img>
-
-
+						<h4>
+							{{ widget.name }}
+							<b-img class="widget-icon" v-if="widget.icon" :src="widget.icon">
+							</b-img>
+						</h4>
 					</b-button>
 				</b-col>
 			</b-row>
@@ -150,8 +151,7 @@ export default {
 					{
 						type: "MissionWaypoint",
 						name: this.vehicleMissionData.missionWaypoint,
-						icon:  "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true",
-						
+						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true",
 					},
 					{
 						type: "HomeCoordinates",
@@ -180,7 +180,7 @@ export default {
 					type: "SearchArea",
 					name: "Search Area",
 					icon: null,
-			};
+				};
 				widgetGroup.push(widget);
 			}
 
@@ -239,6 +239,9 @@ p {
 	width: 100%;
 	margin-bottom: 12px;
 	height: 23vh;
+}
+.widget-icon {
+	height: 4vh;
 }
 .invisible {
 	visibility: hidden;

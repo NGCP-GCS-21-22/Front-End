@@ -1,12 +1,12 @@
 <template>
 	<b-container>
-		<p class="card-text">
+		<h2>
 			{{ name }}
 			<b-img
-				style="width: 60px"
+				class="widget-icon"
 				:src="require('@/assets/map_icons/home.png')"
 			></b-img>
-		</p>
+		</h2>
 
 		<b-row>
 			<b-col
@@ -91,5 +91,8 @@ export default {
 }
 .button {
 	margin-right: 10px;
+}
+.widget-icon {
+	height: 4vh;
 }
 </style>
