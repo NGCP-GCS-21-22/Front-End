@@ -15,11 +15,11 @@
 						v-if="!selected && widget.type != 'Placeholder'"
 						@click="selectWidget(widget.name, widget.type)"
 					>
-						<h4>
+						<h5>
 							{{ widget.name }}
 							<b-img class="widget-icon" v-if="widget.icon" :src="widget.icon">
 							</b-img>
-						</h4>
+						</h5>
 					</b-button>
 				</b-col>
 			</b-row>
@@ -227,12 +227,10 @@ p {
 }
 .widget-card {
 	overflow: auto;
-	width: 40vw;
 	height: 52vh;
 }
 .geofence-card {
 	overflow: auto;
-	width: 40vw;
 	height: 89vh;
 }
 .widget-button {
