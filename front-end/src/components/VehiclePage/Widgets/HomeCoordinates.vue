@@ -58,7 +58,13 @@
 
 		<b-row class="row" style="float: right">
 			<b-button class="button" @click="reset">Reset</b-button>
-			<b-button class="button" variant="success" :disabled="waypointNotChanged()" @click="postData">Submit</b-button>
+			<b-button
+				class="button"
+				variant="success"
+				:disabled="waypointNotChanged()"
+				@click="postData"
+				>Submit</b-button
+			>
 		</b-row>
 	</b-container>
 </template>
@@ -77,6 +83,7 @@ export default {
 	},
 	methods: {
 		goBack() {
+			this.reset();
 			this.$emit("goBack");
 		},
 		reset() {
@@ -98,9 +105,8 @@ export default {
 		},
 		postData() {
 			// update initialHomeCoordinates
-			console.log("test!")
-			this.initialHomeCoordinates = this.homeCoordinates
-		}
+			this.initialHomeCoordinates = this.homeCoordinates;
+		},
 	},
 };
 </script>

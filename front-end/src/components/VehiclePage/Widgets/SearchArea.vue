@@ -121,6 +121,7 @@ export default {
 
 	methods: {
 		goBack() {
+			this.resetSearchArea();
 			this.$emit("goBack");
 		},
 		add() {

@@ -78,6 +78,7 @@ export default {
 	},
 	methods: {
 		goBack() {
+			this.reset();
 			this.$emit("goBack");
 		},
 		reset() {
