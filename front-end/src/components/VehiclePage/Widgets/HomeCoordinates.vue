@@ -17,7 +17,7 @@
 					style="padding-top: 6.5px"
 					align="left"
 				>
-					<label for="input-live">Latitude:</label>
+					<label>Latitude:</label>
 				</b-col>
 
 				<b-col cols="4">
@@ -40,7 +40,7 @@
 					style="padding-top: 6.5px"
 					align="left"
 				>
-					<label for="input-live">Longitude:</label>
+					<label>Longitude:</label>
 				</b-col>
 
 				<b-col cols="4">
@@ -54,7 +54,7 @@
 					</b-form-input>
 				</b-col>
 			</b-row>
-		</div class="lat">
+		</div>
 
 		<b-row class="row" style="float: right">
 			<b-button class="button" @click="reset">Reset</b-button>

@@ -60,10 +60,6 @@
 			<b-button class="button" @click="reset">Reset</b-button>
 			<b-button class="button" variant="success" :disabled="waypointNotChanged()" @click="postData">Submit</b-button>
 		</b-row>
-		<b-row>
-			<h3>{{ missionWaypoint}}</h3>
-			<h3>{{ initialMissionWaypoint }}</h3>
-		</b-row>
 
 	</b-container>
 </template>

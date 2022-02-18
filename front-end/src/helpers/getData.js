@@ -2,6 +2,7 @@ const axios = require("axios")
 // const defaultLat = require("./coordinates.js")
 import { defaultLat } from "./coordinates.js"
 import { defaultLng } from "./coordinates.js"
+import { defaultSearchArea } from "./coordinates.js"
 
 const getMissionData = (vehicleName) => {
 	let path = "http://localhost:5000/getNewMission"
@@ -86,11 +87,7 @@ const getWidgetData = (vehicleName) => {
 		}
 
 	if (!widgetData["searchArea"])
-		widgetData["searchArea"] = [
-			{ lat: 33.933729, lng: -117.6318437 }, // marker1
-			{ lat: 33.93441, lng: -117.6318169 }, // marker2
-			{ lat: 33.9344055, lng: -117.6306099 },
-		]
+		widgetData["searchArea"] = defaultSearchArea
 
 	return widgetData
 }
