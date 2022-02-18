@@ -58,7 +58,7 @@
 
 		<b-row class="row" style="float: right">
 			<b-button class="button" @click="reset">Reset</b-button>
-			<b-button class="button" variant="success">Submit</b-button>
+			<b-button class="button" variant="success" :disabled="waypointNotChanged()" @click="postData">Submit</b-button>
 		</b-row>
 	</b-container>
 </template>
@@ -71,7 +71,9 @@ export default {
 		homeCoordinates: Object,
 	},
 	data() {
-		return {};
+		return {
+			initialHomeCoordinates: this.homeCoordinates,
+		};
 	},
 	methods: {
 		goBack() {
@@ -84,6 +86,21 @@ export default {
 			};
 			this.$emit("updateWidgetData", "homeCoordinates", coordinates);
 		},
+		waypointNotChanged() {
+			if (
+				this.homeCoordinates.lat == this.initialHomeCoordinates.lat &&
+				this.homeCoordinates.lng == this.initialHomeCoordinates.lng
+			) {
+				return true;
+			}
+
+			return false;
+		},
+		postData() {
+			// update initialHomeCoordinates
+			console.log("test!")
+			this.initialHomeCoordinates = this.homeCoordinates
+		}
 	},
 };
 </script>

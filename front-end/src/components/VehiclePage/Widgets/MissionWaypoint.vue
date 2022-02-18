@@ -58,8 +58,13 @@
 
 		<b-row class="row" style="float: right">
 			<b-button class="button" @click="reset">Reset</b-button>
-			<b-button class="button" variant="success">Submit</b-button>
+			<b-button class="button" variant="success" :disabled="waypointNotChanged()" @click="postData">Submit</b-button>
 		</b-row>
+		<b-row>
+			<h3>{{ missionWaypoint}}</h3>
+			<h3>{{ initialMissionWaypoint }}</h3>
+		</b-row>
+
 	</b-container>
 </template>
 
@@ -71,7 +76,9 @@ export default {
 		missionWaypoint: Object,
 	},
 	data() {
-		return {};
+		return {
+			initialMissionWaypoint: this.missionWaypoint,
+		};
 	},
 	methods: {
 		goBack() {
@@ -83,6 +90,22 @@ export default {
 				lng: defaultLng,
 			};
 			this.$emit("updateWidgetData", "missionWaypoint", coordinates);
+		},
+		waypointNotChanged() {
+			if (
+				this.missionWaypoint.lat == this.initialMissionWaypoint.lat &&
+				this.missionWaypoint.lng == this.initialMissionWaypoint.lng
+			) {
+				return true;
+			}
+
+			return false;
+		},
+		postData() {
+			// update initialMissionWaypoint
+			this.initialMissionWaypoint = this.missionWaypoint;
+
+			// send data to back-end
 		},
 	},
 };
