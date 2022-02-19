@@ -14,7 +14,7 @@
 			:icon="{
 				url: vehicleMarker.icon,
 			}"
-			:zIndex="1000"
+			:zIndex="500"
 		/>
 
 		<!-- mission waypoint -->
@@ -39,19 +39,21 @@
 
 		<!-- Search Area -->
 		<!-- v-if search selected v-for number of points in UI, create marker -->
+		<div v-if="widgetTypeSelected == 'SearchArea'">
 		<GmapMarker
 			:key="coordinate.id"
-			v-if="widgetTypeSelected == 'SearchArea'"
-			v-for="coordinate in searchAreaPolygon.coordiantes"
+			v-for="(coordinate, index) in searchAreaPolygon.coordinates"
 			:position="{ lat: coordinate.lat, lng: coordinate.lng }"
 			:draggable="true"
-			:zIndex="100"
+			:zIndex="1000"
+			:label="{color: '#000', fontSize: '12px', fontWeight: '600', text: `${index + 1}`}"
 			@drag="moveSearchAreaVertex($event, coordinate.id)"
 		/>
+		</div>
 
 		<!-- polygon -->
 		<GmapPolygon
-			:path="searchAreaPolygon.coordiantes"
+			:path="searchAreaPolygon.coordinates"
 			:clickable="false"
 			:options="polyOptions"
 		/>
@@ -149,22 +151,22 @@ export default {
 			if (!this.searchArea)
 				return {
 					id: "searchArea",
-					coordiantes: this.paths,
+					coordinates: this.paths,
 					draggable: this.widgetTypeSelected === "SearchArea",
 				};
 
-			let coordiantes = [];
+			let coordinates = [];
 			this.searchArea.forEach((element, index) => {
 				let coordinate = {
 					id: index,
 					lat: element.lat,
 					lng: element.lng,
 				};
-				coordiantes.push(coordinate);
+				coordinates.push(coordinate);
 			});
 			return {
 				id: "searchArea",
-				coordiantes: coordiantes,
+				coordinates: coordinates,
 				draggable: this.widgetTypeSelected === "SearchArea",
 			};
 		},
@@ -233,13 +235,13 @@ export default {
 			});
 		},
 		moveSearchAreaVertex(e, index) {
-			this.searchAreaPolygon.coordiantes[index].lat = e.latLng.lat();
-			this.searchAreaPolygon.coordiantes[index].lng = e.latLng.lng();
+			this.searchAreaPolygon.coordinates[index].lat = e.latLng.lat();
+			this.searchAreaPolygon.coordinates[index].lng = e.latLng.lng();
 
 			this.$emit(
 				"moveMarker",
 				"searchArea",
-				this.searchAreaPolygon.coordiantes
+				this.searchAreaPolygon.coordinates
 			);
 		},
 	},

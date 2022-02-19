@@ -17,7 +17,10 @@
 		>
 			<!-- Input Text field -->
 			<b-input-group>
-				<b-col offset="1" cols="4">
+				<b-col cols="1" class="coordNum">
+					{{index+1}}
+				</b-col>
+				<b-col cols="4">
 					<b-form-input
 						type="text"
 						v-model="coordinate.lat"
@@ -108,6 +111,8 @@ import {
 	defaultLng,
 	defaultSearchArea,
 } from "@/helpers/coordinates.js";
+import axios from "axios";
+
 export default {
 	props: {
 		name: String,
@@ -161,6 +166,15 @@ export default {
 		},
 		postData() {
 			this.initialSearchArea = this.searchArea;
+
+			const path = "http://localhost:5000/postSearchArea"
+			axios.post(path, this.searchArea)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error)=>{
+				console.log(error);
+			});
 		},
 	},
 };
@@ -177,5 +191,10 @@ export default {
 	position: absolute;
 	top: 20px;
 	left: 20px;
+}
+
+.coordNum {
+	padding-top: 7px;
+	text-align: right;
 }
 </style>
