@@ -17,17 +17,24 @@
 					</b-col>
 				</b-row>
 			</b-container>
-			<b-button class="submit" variant="primary" @click="submit">Submit</b-button>
+			<b-button class="submit" variant="primary" @click.prevent="submit()">Submit</b-button>
 	</div>
 </template>
 
 <script>
 import MissionForm from "@/components/Form/MissionForm.vue";
+import axios from 'axios'
+
+
 
 export default {
 	components: {
 		MissionForm,
 	},
+	props: {
+		vehicleName: String,
+	},
+	
 	
 	methods: {
 		goToGCS() {
@@ -41,6 +48,57 @@ export default {
 			console.log(this.$refs.MACForm.$refs.MissionWaypoint.waypointName);
 			console.log(this.$refs.ERUForm.$refs.MissionWaypoint.waypointName);
 			console.log(this.$refs.MEAForm.$refs.MissionWaypoint.waypointName);
+			// get the Stage id and name from each mission form
+			console.log(this.$refs.MACForm.$refs.Stages.id);
+			console.log(this.$refs.ERUForm.$refs.Stages.id);
+			console.log(this.$refs.MEAForm.$refs.Stages.id);
+			console.log(this.$refs.MACForm.$refs.Stages.stage);
+			console.log(this.$refs.ERUForm.$refs.Stages.stage);
+			console.log(this.$refs.MEAForm.$refs.Stages.stage);
+			// get the manual control from each mission form
+			console.log(this.$refs.MACForm.$refs.ManualControl.toggle);
+			console.log(this.$refs.ERUForm.$refs.ManualControl.toggle);
+			console.log(this.$refs.MEAForm.$refs.ManualControl.toggle);
+			// get the search area from each mission form
+			console.log(this.$refs.MACForm.$refs.SearchArea.toggle); 
+			console.log(this.$refs.ERUForm.$refs.SearchArea.toggle); 
+			console.log(this.$refs.MEAForm.$refs.SearchArea.toggle); 
+
+			//const submit = (vehicleName) => {
+				let path = "http://localhost:5000/postData"
+				let payload = {
+					MAC:{
+						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/MAC.png",
+						MissionWaypoint: this.$refs.MACForm.$refs.MissionWaypoint.waypointName,
+						Stage: this.$refs.MACForm.$refs.Stages.id,
+						Stage: this.$refs.MACForm.$refs.Stages.stage,
+						Manualcontrol: this.$refs.MACForm.$refs.ManualControl.toggle,
+						Searcharea: this.$refs.MACForm.$refs.SearchArea.toggle
+					},
+					ERU:{
+						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/ERU.png",
+						MissionWaypoint: this.$refs.ERUForm.$refs.MissionWaypoint.waypointName,
+						Stage: this.$refs.ERUForm.$refs.Stages.id,
+						Stage: this.$refs.ERUForm.$refs.Stages.stage,
+						Manualcontrol: this.$refs.ERUForm.$refs.ManualControl.toggle,
+						Searcharea: this.$refs.ERUForm.$refs.SearchArea.toggle
+					},
+					MEA:{
+						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/MEA.png",
+						MissionWaypoint: this.$refs.MEAForm.$refs.MissionWaypoint.waypointName,
+						Stage: this.$refs.MEAForm.$refs.Stages.id,
+						Stage: this.$refs.MEAForm.$refs.Stages.stage,
+						Manualcontrol: this.$refs.MEAForm.$refs.ManualControl.toggle,
+						Searcharea: this.$refs.MEAForm.$refs.SearchArea.toggle
+					},
+				}
+				axios.post(path, payload)
+				.then((response) => {
+					console.log("Mission data sent.");
+				}, (error) => {
+					console.log(Error);
+				});
+			//}
 		},
 	},
 };
