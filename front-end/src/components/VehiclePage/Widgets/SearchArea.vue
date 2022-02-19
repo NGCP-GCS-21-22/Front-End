@@ -108,6 +108,8 @@ import {
 	defaultLng,
 	defaultSearchArea,
 } from "@/helpers/coordinates.js";
+import axios from "axios";
+
 export default {
 	props: {
 		name: String,
@@ -161,6 +163,14 @@ export default {
 		},
 		postData() {
 			this.initialSearchArea = this.searchArea;
+			const path = "http://localhost:5000/postSearchArea"
+			axios.post(path, this.searchArea)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error)=>{
+				console.log(error);
+			});
 		},
 	},
 };
