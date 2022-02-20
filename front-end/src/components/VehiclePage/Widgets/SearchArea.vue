@@ -17,7 +17,10 @@
 		>
 			<!-- Input Text field -->
 			<b-input-group>
-				<b-col offset="1" cols="4">
+				<b-col cols="1" class="coordNum">
+					{{index+1}}
+				</b-col>
+				<b-col cols="4">
 					<b-form-input
 						type="text"
 						v-model="coordinate.lat"
@@ -187,5 +190,10 @@ export default {
 	position: absolute;
 	top: 20px;
 	left: 20px;
+}
+
+.coordNum {
+	padding-top: 7px;
+	text-align: right;
 }
 </style>
