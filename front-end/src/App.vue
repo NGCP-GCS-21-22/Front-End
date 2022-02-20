@@ -6,9 +6,11 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import Form from "@/views/Start/Form.vue";
 export default {
 	components: {
 		Navbar,
+		Form,
 	},
 };
 </script>
