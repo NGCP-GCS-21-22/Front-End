@@ -74,9 +74,7 @@
 						<!-- Add button -->
 						<b-button
 							pill
-							@click="add()"
-							v-show="index == searchArea.length - 1"
-							b-modal="index == searchArea.length-1"
+							@click="add(index)"
 							variant="light"
 							size="sm"
 							class="btn"
@@ -129,9 +127,9 @@ export default {
 			this.resetSearchArea();
 			this.$emit("goBack");
 		},
-		add() {
+		add(index) {
 			let newSearchArea = this.searchArea;
-			newSearchArea.push({ lat: defaultLat, lng: defaultLng });
+			newSearchArea.splice(index + 1, 0, { lat: defaultLat, lng: defaultLng });
 			this.$emit("updateWidgetData", "searchArea", newSearchArea);
 		},
 		remove(index) {
