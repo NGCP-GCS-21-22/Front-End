@@ -95,7 +95,7 @@
 			<b-button
 				class="button"
 				variant="success"
-				:disabled="searchAreaNotChanged()"
+				:disabled="searchAreaNotChanged() || searchArea.length < 3"
 				@click="postData"
 				>Submit</b-button
 			>
