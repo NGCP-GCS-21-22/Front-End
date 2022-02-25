@@ -2,7 +2,7 @@ const axios = require("axios")
 // const defaultLat = require("./coordinates.js")
 import { defaultLat } from "./coordinates.js"
 import { defaultLng } from "./coordinates.js"
-import { defaultSearchArea } from "./coordinates.js"
+import { defaultPolygon } from "./coordinates.js"
 
 const getMissionData = (vehicleName) => {
 	let path = "http://localhost:5000/getNewMission"
@@ -87,7 +87,20 @@ const getWidgetData = (vehicleName) => {
 		}
 
 	if (!widgetData["searchArea"])
-		widgetData["searchArea"] = defaultSearchArea
+		widgetData["searchArea"] = [...defaultPolygon]
+
+	if (!widgetData["geofence"])
+		widgetData["geofence"] = [
+			{
+				coordinates: [...defaultPolygon],
+				keep_in: true
+			}
+		]
+
+	widgetData["geofenceWorkspace"] = {
+		coordinates: [...defaultPolygon],
+		keep_in: true
+	}
 
 	return widgetData
 }

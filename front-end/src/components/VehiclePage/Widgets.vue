@@ -53,8 +53,8 @@
 						"
 						:name="widget.name"
 						:searchArea="searchArea"
-						@updateWidgetData="updateWidgetData"
 						@goBack="showWidgets"
+						@updateWidgetData="updateWidgetData"
 					/>
 					<Geofence
 						v-if="
@@ -62,7 +62,10 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						:geofence="geofence"
+						:geofenceWorkspace="geofenceWorkspace"
 						@goBack="showWidgets"
+						@updateWidgetData="updateWidgetData"
 					/>
 					<ManualControl
 						v-if="
@@ -118,6 +121,14 @@ export default {
 				};
 			});
 		},
+		geofence() {
+			if (!this.widgetData.geofence) return null;
+			return this.widgetData.geofence;
+		},
+		geofenceWorkspace() {
+			if (!this.widgetData.geofenceWorkspace) return null;
+			return this.widgetData.geofenceWorkspace;
+		}
 	},
 	data() {
 		return {
