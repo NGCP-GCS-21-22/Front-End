@@ -84,11 +84,14 @@ export default {
 		updateWidgetData(widgetType, value) {
 			this.$emit("updateWidgetData", widgetType, value);
 		},
-		deletePolygon() {
-			// create a copy of the current geofence
-			// modify it/
-			// pass it up with updateWidgetData
-		}
+		deletePolygon(index) {
+			let newGeofence = this.geofence; 		// create a copy of the current geofence
+			newGeofence.splice(index, 1) 			// modify it/ removing
+			this.$emit("updateWidgetData", "geofence", newGeofence); // pass it up with updateWidgetData
+		},
+		editPolygon(index) {
+
+		},
 	},
 };
 </script>

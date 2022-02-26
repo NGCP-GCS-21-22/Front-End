@@ -1,21 +1,33 @@
 <template>
 	<b-container>
-		<h5 v-for="(polygon, index) in polygons">
+		<h5 v-for="(polygon, index) in polygons" :key="index">
 			Polygon {{ polygon.index + 1 }}
-			<b-icon
-				icon="dash-circle"
-				variant="danger"
-				font-scale="1"
-				aria-label="Delete"
+			<b-button
+				pill
 				@click="deletePolygon"
-			></b-icon>
-			<b-icon
-				icon="pencil"
-				variant="info"
-				font-scale="1"
-				aria-label="Edit"
+				variant="light"
+				size="sm"
+			>
+				<b-icon
+					icon="dash-circle"
+					variant="danger"
+					font-scale="1"
+					aria-label="Delete"
+				></b-icon>
+			</b-button>
+			<b-button
+				pill
 				@click="editPolygon"
-			></b-icon>
+				variant="light"
+				size="sm"
+			>
+				<b-icon
+					icon="pencil"
+					variant="info"
+					font-scale="1"
+					aria-label="Edit"
+				></b-icon>
+			</b-button>
 		</h5>
 	</b-container>
 </template>
@@ -29,10 +41,10 @@ export default {
 		return {}
 	},
 	methods: {
-		deletePolygon() {
+		deletePolygon(index) {
 			this.$emit("deletePolygon", index)
 		},
-		editPolygon() {
+		editPolygon(index) {
 			this.$emit("editPolygon", index)
 		},
 	},
