@@ -97,76 +97,76 @@ import {
 } from "@/helpers/coordinates.js";
 
 export default {
-  props: {
-    vehicleData: Object,
-    vehicleIcon: String,
-    widgetData: Object,
-    widgetTypeSelected: String,
-  },
-  computed: {
-    vehicleMarker() {
-      if (!this.vehicleData) return null;
-      return {
-        id: "vehicleMarker",
-        position: {
-          lat: this.vehicleData.latitude,
-          lng: this.vehicleData.longitude,
-        },
-        icon: this.vehicleIcon,
-      };
-    },
-    missionWaypoint() {
-      if (!this.widgetData.missionWaypoint) return null;
-      return this.widgetData.missionWaypoint;
-    },
-    missionWaypointMarker() {
-      if (!this.missionWaypoint)
-        return {
-          id: "missionWaypoint",
-          position: {
-            lat: defaultLat,
-            lng: defaultLng,
-          },
-          icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
-          draggable: this.widgetTypeSelected === "MissionWaypoint",
-        };
-      return {
-        id: "missionWaypoint",
-        position: {
-          lat: this.missionWaypoint.lat,
-          lng: this.missionWaypoint.lng,
-        },
-        icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
-        draggable: this.widgetTypeSelected === "MissionWaypoint",
-      };
-    },
-    homeCoordinates() {
-      if (!this.widgetData.homeCoordinates) return null;
-      return this.widgetData.homeCoordinates;
-    },
-    homeCoordinatesMarker() {
-      if (!this.homeCoordinates)
-        return {
-          id: "homeCoordinates",
-          position: {
-            lat: defaultLat,
-            lng: defaultLng,
-          },
-          icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
-          draggable: this.widgetTypeSelected === "HomeCoordinates",
-        };
-      return {
-        id: "homeCoordinates",
-        position: {
-          lat: this.homeCoordinates.lat,
-          lng: this.homeCoordinates.lng,
-        },
-        icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
-        draggable: this.widgetTypeSelected === "HomeCoordinates",
-      };
-    },
-    searchArea() {
-      if (!this.widgetData.searchArea) return null;
+	props: {
+		vehicleData: Object,
+		vehicleIcon: String,
+		widgetData: Object,
+		widgetTypeSelected: String,
+	},
+	computed: {
+		vehicleMarker() {
+			if (!this.vehicleData) return null;
+			return {
+				id: "vehicleMarker",
+				position: {
+					lat: this.vehicleData.latitude,
+					lng: this.vehicleData.longitude,
+				},
+				icon: this.vehicleIcon,
+			};
+		},
+		missionWaypoint() {
+			if (!this.widgetData.missionWaypoint) return null;
+			return this.widgetData.missionWaypoint;
+		},
+		missionWaypointMarker() {
+			if (!this.missionWaypoint)
+				return {
+					id: "missionWaypoint",
+					position: {
+						lat: defaultLat,
+						lng: defaultLng,
+					},
+					icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
+					draggable: this.widgetTypeSelected === "MissionWaypoint",
+				};
+			return {
+				id: "missionWaypoint",
+				position: {
+					lat: parseFloat(this.missionWaypoint.lat),
+					lng: parseFloat(this.missionWaypoint.lng),
+				},
+				icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
+				draggable: this.widgetTypeSelected === "MissionWaypoint",
+			};
+		},
+		homeCoordinates() {
+			if (!this.widgetData.homeCoordinates) return null;
+			return this.widgetData.homeCoordinates;
+		},
+		homeCoordinatesMarker() {
+			if (!this.homeCoordinates)
+				return {
+					id: "homeCoordinates",
+					position: {
+						lat: defaultLat,
+						lng: defaultLng,
+					},
+					icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
+					draggable: this.widgetTypeSelected === "HomeCoordinates",
+				};
+			return {
+				id: "homeCoordinates",
+				position: {
+					lat: parseFloat(this.homeCoordinates.lat),
+					lng: parseFloat(this.homeCoordinates.lng),
+				},
+				icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
+				draggable: this.widgetTypeSelected === "HomeCoordinates",
+			};
+		},
+		searchArea() {
+			if (!this.widgetData.searchArea) return null;
 
       return this.widgetData.searchArea.map((coordinate) => {
         return {

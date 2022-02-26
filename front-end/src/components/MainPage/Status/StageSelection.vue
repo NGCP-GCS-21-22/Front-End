@@ -5,7 +5,7 @@
 			style="font-weight: bold;"
 			@click="sModalShow = !sModalShow"
 			variant="primary"
-			>{{ selectedStage }}
+			>{{ selectedStage == null ? "STAGE SELECTION" : selectedStage}}
 			<b-img
 					style="padding-left: 6px; width: 32px; color: #FFFFFF;"
 					:src="require('@/assets/select.png')"
@@ -54,7 +54,7 @@ export default {
 			if (this.selected) {
 				return this.selected.stage;
 			}
-			return "STAGE SELECTION";
+			return null;
 		},
 		selectedId() {
 			if (this.selected) {

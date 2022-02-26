@@ -83,7 +83,7 @@ export default {
 	},
 	methods: {
 		goBack() {
-			this.reset();
+			this.$emit("updateWidgetData", "homeCoordinates", this.initialHomeCoordinates);
 			this.$emit("goBack");
 		},
 		reset() {
@@ -106,6 +106,7 @@ export default {
 		postData() {
 			// update initialHomeCoordinates
 			this.initialHomeCoordinates = this.homeCoordinates;
+			this.$emit("goBack");
 		},
 	},
 };
