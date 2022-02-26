@@ -12,20 +12,12 @@
 		</b-row>
 		<b-row>
 			<b-col>
-				<Cart :polygons="keepInPolygons" @deletePolygon="deletePolygon"/>
+				<Cart :polygons="keepInPolygons" @deletePolygon="deletePolygon" @editPolygon="editPolygon"/>
 			</b-col>
 			<b-col>
-				<Cart :polygons="keepOutPolygons" />
+				<Cart :polygons="keepOutPolygons" @deletePolygon="deletePolygon" @editPolygon="editPolygon"/>
 			</b-col>
 		</b-row>
-
-		<!--
-      <Workspace @addGeofencePolygon="addkasdjfkasdfj"/>
-
-      <KeepInCart :polygons="keepInPolygons"/>
-
-      <KeepOutCart />
-      -->
 	</b-container>
 </template>
 
