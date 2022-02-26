@@ -28,5 +28,6 @@ h4 {
 }
 .stage-card {
 	height: 13vh;
+	
 }
 </style>

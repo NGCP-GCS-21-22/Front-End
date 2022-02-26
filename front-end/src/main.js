@@ -34,7 +34,7 @@ Vue.use(VueGoogleMaps, {
   //// import {GmapMarker} from 'vue2-google-maps/src/components/marker'
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
-  // installComponents: true,
+  installComponents: true,
 })
 
 // Make BootstrapVue available throughout your project
@@ -44,6 +44,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.use(ModalPlugin)
+
 
 
 

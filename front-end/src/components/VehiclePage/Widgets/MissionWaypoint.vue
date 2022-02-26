@@ -54,7 +54,7 @@
 					</b-form-input>
 				</b-col>
 			</b-row>
-		</div class="lat">
+		</div>
 
 		<b-row class="row" style="float: right">
 			<b-button class="button" @click="reset">Reset</b-button>

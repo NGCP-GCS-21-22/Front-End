@@ -17,7 +17,17 @@
 				url: marker.icon,
 			}"
 		/>
+		<GMapInfoWindow>
+        <div>I am in info window <MyComponent/>
+        </div>
+		
+      </GMapInfoWindow>
+		<div style="z-index: 500; position: absolute; left: 100px; top: 800px; color: white;">
+			hello worlds
+			
+		</div>
 	</GmapMap>
+	
 </template>
 
 <script>
