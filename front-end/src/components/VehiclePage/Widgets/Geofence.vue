@@ -12,7 +12,7 @@
 		</b-row>
 		<b-row>
 			<b-col>
-				<Cart :polygons="keepInPolygons" />
+				<Cart :polygons="keepInPolygons" @deletePolygon="deletePolygon"/>
 			</b-col>
 			<b-col>
 				<Cart :polygons="keepOutPolygons" />
@@ -92,6 +92,11 @@ export default {
 		updateWidgetData(widgetType, value) {
 			this.$emit("updateWidgetData", widgetType, value);
 		},
+		deletePolygon() {
+			// create a copy of the current geofence
+			// modify it/
+			// pass it up with updateWidgetData
+		}
 	},
 };
 </script>

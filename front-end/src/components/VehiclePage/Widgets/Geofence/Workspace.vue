@@ -74,7 +74,7 @@
 									icon="arrow-counterclockwise"
 									variant="primary"
 									font-scale="1"
-									aria-label="Delete"
+									aria-label="Reset"
 								></b-icon>
 							</b-button>
 
