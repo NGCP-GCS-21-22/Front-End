@@ -105,8 +105,8 @@ export default {
 			return {
 				id: "missionWaypoint",
 				position: {
-					lat: this.missionWaypoint.lat,
-					lng: this.missionWaypoint.lng,
+					lat: parseFloat(this.missionWaypoint.lat),
+					lng: parseFloat(this.missionWaypoint.lng),
 				},
 				icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true ",
 				draggable: this.widgetTypeSelected === "MissionWaypoint",
@@ -130,8 +130,8 @@ export default {
 			return {
 				id: "homeCoordinates",
 				position: {
-					lat: this.homeCoordinates.lat,
-					lng: this.homeCoordinates.lng,
+					lat: parseFloat(this.homeCoordinates.lat),
+					lng: parseFloat(this.homeCoordinates.lng),
 				},
 				icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
 				draggable: this.widgetTypeSelected === "HomeCoordinates",
