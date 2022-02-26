@@ -91,10 +91,10 @@ const getWidgetData = (vehicleName) => {
 
 	if (!widgetData["geofence"])
 		widgetData["geofence"] = [
-			{
-				coordinates: [...defaultPolygon],
-				keep_in: true
-			}
+			// {
+			// 	coordinates: [...defaultPolygon],
+			// 	keep_in: true
+			// }
 		]
 
 	widgetData["geofenceWorkspace"] = {
