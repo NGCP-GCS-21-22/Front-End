@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<!--toggle-->
-
 		<b-form-group v-slot="{ ariaDescribedby }">
 			<b-form-radio-group
 				id="radio-slots"
@@ -124,7 +123,7 @@
 				variant="success"
 				:disabled="keep_in == null || coordinates.length < 3"
 				@click="addGeofencePolygon"
-				>Submit</b-button
+				>Add</b-button
 			>
 		</b-row>
 	</div>
@@ -140,12 +139,10 @@ import axios from "axios"
 
 export default {
 	props: {
-		geofenceWorkspace: Object,
+		geofenceWorkspace: Object, // coordinates, keep_in
 	},
 	data() {
 		return {
-			// coordinates: [...defaultPolygon],
-			// keepIn: true,
 			keep_in: null,
 			polygonIndex: null
 		}
@@ -209,9 +206,6 @@ export default {
 				newGeofenceWorkspace
 			)
 		},
-		// editCoordinate(index) {
-		// 	this.widgetData.geofence
-		// },
 	},
 }
 </script>

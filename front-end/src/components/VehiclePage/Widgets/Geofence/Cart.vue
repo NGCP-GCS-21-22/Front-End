@@ -36,7 +36,7 @@
 export default {
 	props: {
 		polygons: Array,
-		keep_in: Boolean,
+		keepIn: Boolean,
 	},
 	data() {
 		return {}
@@ -46,7 +46,7 @@ export default {
 			this.$emit("deletePolygon", index)
 		},
 		editPolygon(index) {
-			this.$emit("editPolygon", index)
+			this.$emit("editPolygon", index, this.keepIn)
 		},
 	},
 }
