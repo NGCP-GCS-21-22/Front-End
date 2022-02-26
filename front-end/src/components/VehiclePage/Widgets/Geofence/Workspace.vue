@@ -147,6 +147,7 @@ export default {
 			// coordinates: [...defaultPolygon],
 			// keepIn: true,
 			keep_in: null,
+			polygonIndex: null
 		}
 	},
 	computed: {
@@ -194,7 +195,7 @@ export default {
 				coordinates: this.coordinates,
 				keep_in: this.keep_in,
 			}
-			this.$emit("addGeofencePolygon", geofencePolygon)
+			this.$emit("addGeofencePolygon", geofencePolygon, this.polygonIndex)
 			this.resetCoordinates()
 		},
 		updateGeofenceWorkspace(newCoordinates) {
@@ -208,6 +209,9 @@ export default {
 				newGeofenceWorkspace
 			)
 		},
+		// editCoordinate(index) {
+		// 	this.widgetData.geofence
+		// },
 	},
 }
 </script>

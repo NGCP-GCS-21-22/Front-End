@@ -1,10 +1,10 @@
 <template>
 	<b-container>
-		<h5 v-for="(polygon, index) in polygons" :key="index">
+		<h5 v-for="(polygon) in polygons" :key="polygon.index">
 			Polygon {{ polygon.index + 1 }}
 			<b-button
 				pill
-				@click="deletePolygon"
+				@click="deletePolygon(polygon.index)"
 				variant="light"
 				size="sm"
 			>
@@ -17,7 +17,7 @@
 			</b-button>
 			<b-button
 				pill
-				@click="editPolygon"
+				@click="editPolygon(polygon.index)"
 				variant="light"
 				size="sm"
 			>
@@ -36,6 +36,7 @@
 export default {
 	props: {
 		polygons: Array,
+		keep_in: Boolean,
 	},
 	data() {
 		return {}
