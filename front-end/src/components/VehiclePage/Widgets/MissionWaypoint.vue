@@ -78,7 +78,7 @@ export default {
 	},
 	methods: {
 		goBack() {
-			this.reset();
+			this.$emit("updateWidgetData", "missionWaypoint", this.initialMissionWaypoint);
 			this.$emit("goBack");
 		},
 		reset() {
@@ -101,7 +101,7 @@ export default {
 		postData() {
 			// update initialMissionWaypoint
 			this.initialMissionWaypoint = this.missionWaypoint;
-
+			this.$emit("goBack");
 			// send data to back-end
 		},
 	},

@@ -124,7 +124,7 @@ export default {
 
 	methods: {
 		goBack() {
-			this.resetSearchArea();
+			this.$emit("updateWidgetData", "searchArea", this.initialSearchArea);
 			this.$emit("goBack");
 		},
 		add(index) {
@@ -164,17 +164,18 @@ export default {
 		},
 		postData() {
 			this.initialSearchArea = this.searchArea;
-			const path = "http://localhost:8000/postSearchArea"
-			let payload = {
-				search_area: this.searchArea,
-			}
-			axios.post(path, payload)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error)=>{
-				console.log(error);
-			});
+			// const path = "http://localhost:8000/postSearchArea"
+			// let payload = {
+			// 	search_area: this.searchArea,
+			// }
+			// axios.post(path, payload)
+			// .then((response) => {
+			// 	console.log(response);
+			// })
+			// .catch((error)=>{
+			// 	console.log(error);
+			// });
+			this.$emit("goBack")
 		},
 	},
 };
