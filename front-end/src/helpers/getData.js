@@ -82,8 +82,8 @@ const getWidgetData = (vehicleName) => {
 
 	if (!widgetData["homeCoordinates"])
 		widgetData["homeCoordinates"] = {
-			lat: defaultLat,
-			lng: defaultLng,
+			lat: defaultLat + 0.0003,
+			lng: defaultLng + 0.0015,
 		}
 
 	if (!widgetData["searchArea"])
