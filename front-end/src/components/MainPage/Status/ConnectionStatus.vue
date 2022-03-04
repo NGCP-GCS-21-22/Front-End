@@ -34,7 +34,7 @@ export default {
 }
 
 .reception3 {
-  color: #2966c1;
+  color: #29c16e;
   width: 40px;
   height: 40px;
 }
