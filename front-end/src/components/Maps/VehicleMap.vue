@@ -74,7 +74,7 @@
 				:draggable="true"
 				:zIndex="1000"
 				:label="{
-					color: '#000',
+					color: '#fff',
 					fontSize: '12px',
 					fontWeight: '600',
 					text: `${index + 1}`,
@@ -88,19 +88,28 @@
 			/>
 		</div>
 		<!-- Polygons -->
-		<GmapPolygon
-			v-for="(polygon, index) in geofencePolygons.polygons"
-			:key="polygon.id"
-			:path="polygon.coordinates"
-			:label="{
-				color: '#000',
-				fontSize: '12px',
-				fontWeight: '600',
-				text: `${index + 1}`,
-			}"
-			:clickable="false"
-			:options="polygon.keep_in ? keepInOptions : keepOutOptions"
-		/>
+		<div v-for="(polygon, index) in geofencePolygons.polygons" :key="polygon.id">
+			<GmapPolygon
+				:path="polygon.coordinates"
+				:clickable="false"
+				:options="polygon.keep_in ? keepInOptions : keepOutOptions"
+			/>
+			<GmapMarker
+				:position="getCenter(polygon.coordinates)"
+				:clickable="false"
+				:label="{
+					color: '#fff',
+					fontSize: '20px',
+					fontWeight: '600',
+					text: `${index + 1}`,
+				}"
+				:icon="{
+					url: 'https://i.imgur.com/w2akEKc.png'
+				}"
+			/>
+		</div>
+		<!--v-for for each polygon in geofence... markers
+			positon - lat,lng -> getCenter(all vertices of polygon)-->
 	</GmapMap>
 </template>
 
@@ -111,6 +120,7 @@ import {
 	defaultLat,
 	defaultLng,
 } from "@/helpers/coordinates.js"
+// import transparentIcon from "@/helpers/urls.js"
 
 export default {
 	props: {
@@ -414,6 +424,21 @@ export default {
 				keep_in: this.geofenceWorkspacePolygon.keepIn,
 			})
 		},
+		getCenter(coordinates) {
+			let centerLat = 0
+			let centerLng = 0
+			for (let i = 0; i < coordinates.length; i++) {
+				let coordinate = coordinates[i]
+				centerLat += parseFloat(coordinate.lat)
+				centerLng += parseFloat(coordinate.lng)
+			}
+			centerLat = centerLat/coordinates.length
+			centerLng = centerLng/coordinates.length
+			return {
+				lat: parseFloat(centerLat),
+				lng: parseFloat(centerLng),
+			}
+		}
 	},
 }
 </script>
