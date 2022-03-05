@@ -37,7 +37,8 @@
 				@click="submit(sModalShow)"
 				variant="primary"
 				style="padding='5px'"
-				>Submit</b-button
+				>Submit
+			</b-button
 			>
 		</b-modal>
 	</div>

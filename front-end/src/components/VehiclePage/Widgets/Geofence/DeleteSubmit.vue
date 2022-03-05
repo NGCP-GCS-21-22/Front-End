@@ -1,0 +1,79 @@
+<template>
+	<div>
+		<b-button @click="deleteModalShow = !deleteModalShow" variant="danger">
+			Delete All
+		</b-button>
+		<b-modal
+			centered
+			v-model="deleteModalShow"
+			hide-footer
+			:title="'Delete All'"
+		>
+			<h3>Delete {{ vehicleName }} Geofence?</h3>
+			<b-row>
+				<b-col>
+					<b-button
+						variant="danger"
+						block
+						@click="deleteModalShow = !deleteModalShow"
+					>
+						No
+					</b-button>
+				</b-col>
+				<b-col>
+					<b-button variant="success" block @click="deleteAll">
+						Yes
+					</b-button>
+				</b-col>
+			</b-row>
+		</b-modal>
+
+		<b-button
+			@click="submitAll"
+			:disabled="geofence.length == 0"
+			variant="success"
+		>
+			Submit All
+		</b-button>
+	</div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+	props: {
+		name: String,
+		vehicleName: String,
+		geofence: Array,
+	},
+	data() {
+		return {
+			deleteModalShow: false,
+		};
+	},
+	methods: {
+		deleteAll() {
+			this.deleteModalShow = !this.deleteModalShow;
+			this.$emit("updateWidgetData", "geofence", []);
+		},
+		submitAll() {
+			const path = "http://localhost:8000/gcs/geofence/" + this.name;
+			let payload = {
+				geofence: this.geofence,
+			};
+			axios
+				.post(path, payload)
+				.then((response) => {
+					console.log(response.data.message);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		},
+	},
+};
+</script>
+
+<style>
+</style>

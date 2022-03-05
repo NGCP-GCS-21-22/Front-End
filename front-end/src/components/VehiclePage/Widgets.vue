@@ -62,6 +62,7 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						:vehicleName="vehicleName"
 						:geofence="geofence"
 						:geofenceWorkspace="geofenceWorkspace"
 						@goBack="showWidgets"

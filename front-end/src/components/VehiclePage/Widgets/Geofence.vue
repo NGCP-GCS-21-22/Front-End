@@ -12,29 +12,49 @@
 		</b-row>
 		<b-row>
 			<b-col>
-				<Cart :polygons="keepInPolygons" :keepIn="true" @deletePolygon="deletePolygon" @editPolygon="editPolygon"/>
+				<Cart
+					:polygons="keepInPolygons"
+					:keepIn="true"
+					@deletePolygon="deletePolygon"
+					@editPolygon="editPolygon"
+				/>
 			</b-col>
 			<b-col>
-				<Cart :polygons="keepOutPolygons" :keepIn="false" @deletePolygon="deletePolygon" @editPolygon="editPolygon"/>
+				<Cart
+					:polygons="keepOutPolygons"
+					:keepIn="false"
+					@deletePolygon="deletePolygon"
+					@editPolygon="editPolygon"
+				/>
 			</b-col>
+		</b-row>
+		<b-row>
+			<DeleteSubmit
+				:name="name"
+				:vehicleName="vehicleName"
+				:geofence="geofence"
+				@updateWidgetData="updateWidgetData"
+			/>
 		</b-row>
 	</b-container>
 </template>
 
 <script>
-import axios from "axios";
 import Workspace from "@/components/VehiclePage/Widgets/Geofence/Workspace.vue";
 import Cart from "@/components/VehiclePage/Widgets/Geofence/Cart.vue";
+import DeleteSubmit from "@/components/VehiclePage/Widgets/Geofence/DeleteSubmit.vue";
 
 export default {
 	props: {
 		name: String,
+		vehicleName: String,
 		geofence: Array,
 		geofenceWorkspace: Object,
 	},
 	components: {
 		Workspace,
 		Cart,
+		DeleteSubmit,
 	},
 	data() {
 		return {
@@ -89,15 +109,19 @@ export default {
 			this.$emit("updateWidgetData", widgetType, value);
 		},
 		deletePolygon(index) {
-			let newGeofence = this.geofence; 		// create a copy of the current geofence
-			newGeofence.splice(index, 1) 			// modify it/ removing
+			let newGeofence = this.geofence; // create a copy of the current geofence
+			newGeofence.splice(index, 1); // modify it/ removing
 			this.$emit("updateWidgetData", "geofence", newGeofence); // pass it up with updateWidgetData
 		},
 		editPolygon(index, keep_in) {
-			this.$emit("updateWidgetData", "geofenceWorkspace", this.geofence[index]);
+			this.$emit(
+				"updateWidgetData",
+				"geofenceWorkspace",
+				this.geofence[index]
+			);
 			this.$refs.Workspace.keep_in = keep_in;
 			this.$refs.Workspace.polygonIndex = index;
-			this.deletePolygon(index)
+			this.deletePolygon(index);
 		},
 	},
 };
