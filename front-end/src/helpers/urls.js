@@ -1,0 +1,1 @@
+export let transparentIcon = 'https://i.imgur.com/w2akEKc.png'

@@ -86,8 +86,8 @@ const getWidgetData = (vehicleName) => {
 			lng: defaultLng + 0.0015,
 		}
 
-	if (!widgetData["searchArea"])
-		widgetData["searchArea"] = [...defaultPolygon]
+	// if (!widgetData["searchArea"])
+	// 	widgetData["searchArea"] = [...defaultPolygon]
 
 	if (!widgetData["geofence"])
 		widgetData["geofence"] = [
