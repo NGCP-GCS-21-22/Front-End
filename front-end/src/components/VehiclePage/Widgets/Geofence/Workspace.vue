@@ -1,7 +1,27 @@
 <template>
 	<div>
-		<b-button class="back-button" @click="goBack">Back</b-button>
-		<h2>{{ name }}</h2>
+		<!--toggle-->
+		<b-form-group v-slot="{ ariaDescribedby }">
+			<b-form-radio-group
+				id="radio-slots"
+				v-model="keep_in"
+				:aria-describedby="ariaDescribedby"
+				name="radio-options-slots"
+				buttons
+			>
+				<b-form-radio
+					:class="keep_in == true ? 'keep-in-selected' : 'toggle'"
+					:value="true"
+					>Keep In</b-form-radio
+				>
+				<b-form-radio
+					:class="keep_in == false ? 'keep-out-selected' : 'toggle'"
+					:value="false"
+					>Keep Out</b-form-radio
+				>
+			</b-form-radio-group>
+		</b-form-group>
+		<!--Lat/Long Coord inputs-->
 		<b-row>
 			<b-col offset="1" cols="4">
 				<label>Latitude</label>
@@ -12,7 +32,7 @@
 		</b-row>
 		<div class="container">
 			<b-row
-				v-for="(coordinate, index) in searchArea"
+				v-for="(coordinate, index) in coordinates"
 				:key="index"
 				style="margin-bottom: 10px"
 			>
@@ -43,7 +63,7 @@
 								pill
 								@click="resetCoordinate(index)"
 								v-show="
-									index || (!index && searchArea.length > 1)
+									index || (!index && coordinates.length > 1)
 								"
 								variant="light"
 								size="sm"
@@ -53,7 +73,7 @@
 									icon="arrow-counterclockwise"
 									variant="primary"
 									font-scale="1"
-									aria-label="Delete"
+									aria-label="Reset"
 								></b-icon>
 							</b-button>
 
@@ -62,7 +82,7 @@
 								pill
 								@click="remove(index)"
 								v-show="
-									index || (!index && searchArea.length > 1)
+									index || (!index && coordinates.length > 1)
 								"
 								variant="light"
 								size="sm"
@@ -97,13 +117,13 @@
 			</b-row>
 		</div>
 		<b-row class="row" style="float: right; padding-right: 20px">
-			<b-button class="button" @click="resetSearchArea">Reset</b-button>
+			<b-button class="button" @click="resetCoordinates">Reset</b-button>
 			<b-button
 				class="button"
 				variant="success"
-				:disabled="searchAreaNotChanged() || searchArea.length < 3"
-				@click="postData"
-				>Submit</b-button
+				:disabled="keep_in == null || coordinates.length < 3"
+				@click="addGeofencePolygon"
+				>Add</b-button
 			>
 		</b-row>
 	</div>
@@ -119,71 +139,72 @@ import axios from "axios"
 
 export default {
 	props: {
-		name: String,
-		searchArea: Array,
+		geofenceWorkspace: Object, // coordinates, keep_in
 	},
 	data() {
 		return {
-			initialSearchArea: this.searchArea,
+			keep_in: null,
+			polygonIndex: null
 		}
 	},
-	methods: {
-		goBack() {
-			this.$emit("updateWidgetData", "searchArea", this.initialSearchArea)
-			this.$emit("goBack")
+	computed: {
+		coordinates() {
+			if (!this.geofenceWorkspace) return null
+			return this.geofenceWorkspace.coordinates
 		},
+	},
+	// mounted() {
+	//   this.$emit("updateWidgetData", "geofenceWorkspace", {
+	//     coordinates: [...defaultPolygon],
+	//     keep_in: true,
+	//   });
+	// },
+	methods: {
 		add(index) {
-			let newSearchArea = this.searchArea
-			newSearchArea.splice(index + 1, 0, {
+			let newCoordinates = this.coordinates
+			newCoordinates.splice(index + 1, 0, {
 				lat: defaultLat,
 				lng: defaultLng,
 			})
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			this.updateGeofenceWorkspace(newCoordinates)
 		},
 		remove(index) {
-			let newSearchArea = this.searchArea
-			newSearchArea.splice(index, 1)
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			let newCoordinates = this.coordinates
+			newCoordinates.splice(index, 1)
+			this.updateGeofenceWorkspace(newCoordinates)
 		},
 		resetCoordinate(index) {
-			let newSearchArea = this.searchArea
-			newSearchArea[index] = {
+			let newCoordinates = this.coordinates
+			newCoordinates[index] = {
 				lat: defaultLat,
 				lng: defaultLng,
 			}
 
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			this.updateGeofenceWorkspace(newCoordinates)
 		},
-		resetSearchArea() {
-			let newSearchArea = [...defaultPolygon]
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+		resetCoordinates() {
+			let newCoordinates = [...defaultPolygon]
+			this.keep_in = null
+			this.updateGeofenceWorkspace(newCoordinates)
 		},
-		searchAreaNotChanged() {
-			for (let i = 0; i < this.searchArea.length; i++) {
-				if (
-					this.searchArea[i].lat != this.initialSearchArea[i].lat &&
-					this.searchArea[i].lng != this.initialSearchArea[i].lng
-				) {
-					return false
-				}
+		addGeofencePolygon() {
+			let geofencePolygon = {
+				coordinates: this.coordinates,
+				keep_in: this.keep_in,
 			}
-
-			return true
+			this.$emit("addGeofencePolygon", geofencePolygon, this.polygonIndex)
+			this.resetCoordinates()
 		},
-		postData() {
-			this.initialSearchArea = this.searchArea
-			// const path = "http://localhost:8000/postSearchArea"
-			// let payload = {
-			// 	search_area: this.searchArea,
-			// }
-			// axios.post(path, payload)
-			// .then((response) => {
-			// 	console.log(response);
-			// })
-			// .catch((error)=>{
-			// 	console.log(error);
-			// });
-			this.$emit("goBack")
+		updateGeofenceWorkspace(newCoordinates) {
+			let newGeofenceWorkspace = {
+				coordinates: newCoordinates,
+				keep_in: this.keep_in,
+			}
+			this.$emit(
+				"updateWidgetData",
+				"geofenceWorkspace",
+				newGeofenceWorkspace
+			)
 		},
 	},
 }
@@ -208,6 +229,20 @@ export default {
 }
 .container {
 	overflow: auto;
-	height: calc(52vh - 170px);
+	height: calc(45vh - 170px);
+}
+
+.toggle {
+	margin-right: 5px;
+}
+
+.keep-in-selected {
+	background: green !important;
+	margin-right: 5px;
+}
+
+.keep-out-selected {
+	background: red !important;
+	margin-right: 5px;
 }
 </style>
