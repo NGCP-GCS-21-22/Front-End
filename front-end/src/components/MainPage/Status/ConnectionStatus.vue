@@ -8,9 +8,9 @@
 
     <!-- right side -->
     <b-col cols="4" align="left">
-      <b-icon v-if="latency <= 10 && latency > 1" icon="reception-4" class="reception4"></b-icon>
-      <b-icon v-else-if="latency <= 45 && latency > 11" icon="reception-3" class="reception3"></b-icon>
-      <b-icon v-else-if="latency <= 85 && latency > 45" icon="reception-2" class="reception2"></b-icon>
+      <b-icon v-if="latency <= 49 && latency > 1" icon="reception-4" class="reception4"></b-icon>
+      <b-icon v-else-if="latency <= 70 && latency > 50" icon="reception-3" class="reception3"></b-icon>
+      <b-icon v-else-if="latency <= 85 && latency > 71" icon="reception-2" class="reception2"></b-icon>
       <b-icon v-else-if="latency <= 100 && latency > 85" icon="reception-1" class="reception1"></b-icon>
       <b-icon v-if="latency > 100 || latency == 0" icon="reception-0" class="reception0"></b-icon>
     </b-col>
@@ -34,7 +34,7 @@ export default {
 }
 
 .reception3 {
-  color: #2966c1;
+  color: #29c16e;
   width: 40px;
   height: 40px;
 }

@@ -76,14 +76,14 @@ const getWidgetData = (vehicleName) => {
 
 	if (!widgetData["missionWaypoint"])
 		widgetData["missionWaypoint"] = {
-			lat: defaultLat,
-			lng: defaultLng,
+			lat: defaultLat + 0.0003,
+			lng: defaultLng + 0.0015,
 		}
 
 	if (!widgetData["homeCoordinates"])
 		widgetData["homeCoordinates"] = {
-			lat: defaultLat + 0.0003,
-			lng: defaultLng + 0.0015,
+			lat: defaultLat - 0.00035,
+			lng: defaultLng + 0.0006,
 		}
 
 	// if (!widgetData["searchArea"])
