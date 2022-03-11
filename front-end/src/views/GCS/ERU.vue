@@ -14,17 +14,24 @@
 			</b-col>
 
 			<!-- right column -->
-			<b-col cols="5">
+			<b-col>
 				<div v-if="widgetTypeSelected != 'Geofence'">
 					<b-row>
-						<VehicleStage :generalStage="generalStage" />
-					</b-row>
-					<b-row>
-						<VehicleStatus
-							:vehicleName="vehicleName"
-							:vehicleImgPath="vehicleIcon"
-							:vehicleData="vehicleData"
-						/>
+						<b-col cols="3">
+							<FeaturesComponents />
+						</b-col>
+						<b-col>
+							<b-row>
+								<VehicleStage :generalStage="generalStage" />
+							</b-row>
+							<b-row>
+								<VehicleStatus
+									:vehicleName="vehicleName"
+									:vehicleImgPath="vehicleIcon"
+									:vehicleData="vehicleData"
+								/>
+							</b-row>
+						</b-col>
 					</b-row>
 				</div>
 				<b-row>
@@ -44,24 +51,24 @@
 </template>
 
 <script>
-import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
-import Widgets from "@/components/VehiclePage/Widgets.vue";
-import Map from "@/components/Maps/VehicleMap.vue";
+import VehicleStatus from "@/components/MainPage/VehicleStatus.vue"
+import Widgets from "@/components/VehiclePage/Widgets.vue"
+import Map from "@/components/Maps/VehicleMap.vue"
 import {
 	getMissionData,
 	getGeneralStage,
 	getVehicleData,
 	getWidgetData,
-} from "@/helpers/getData.js";
-import VehicleStage from "../../components/VehiclePage/VehicleStage.vue";
-import FeaturesComponents from '../../components/VehiclePage/FeaturesComponents.vue';
+} from "@/helpers/getData.js"
+import VehicleStage from "../../components/VehiclePage/VehicleStage.vue"
+import FeaturesComponents from "../../components/VehiclePage/FeaturesComponents.vue"
 export default {
 	components: {
 		VehicleStatus,
 		Widgets,
 		Map,
 		VehicleStage,
-FeaturesComponents,
+		FeaturesComponents,
 	},
 	data() {
 		return {
@@ -71,72 +78,80 @@ FeaturesComponents,
 			vehicleMissionData: null,
 			widgetData: null,
 			widgetTypeSelected: null,
-		};
+		}
 	},
 	computed: {
 		vehicleIcon() {
-			if (!this.vehicleMissionData) return null;
-			return this.vehicleMissionData.icon;
+			if (!this.vehicleMissionData) return null
+			return this.vehicleMissionData.icon
 		},
 	},
 	mounted() {
-		this.initializeMissionData();
-		this.initializeWidgetData();
-		this.interval = setInterval(this.updateStatus, 500);
+		this.initializeMissionData()
+		this.initializeWidgetData()
+		this.interval = setInterval(this.updateStatus, 500)
 	},
 	methods: {
 		async initializeMissionData() {
 			try {
-				const response = await getMissionData(this.vehicleName);
-				this.vehicleMissionData = response;
+				const response = await getMissionData(this.vehicleName)
+				this.vehicleMissionData = response
 			} catch (error) {
-				console.log(error);
+				console.log(error)
 			}
 		},
 		async initializeWidgetData() {
 			try {
-				const response = await getWidgetData(this.vehicleName);
-				this.widgetData = response;
+				const response = await getWidgetData(this.vehicleName)
+				this.widgetData = response
 			} catch (error) {
-				console.log(error);
+				console.log(error)
 			}
 		},
 		updateStatus() {
-			this.updateGeneralStage();
-			this.updateVehicleData();
+			this.updateGeneralStage()
+			this.updateVehicleData()
 		},
 		async updateGeneralStage() {
 			try {
-				const response = await getGeneralStage();
-				this.generalStage = response;
+				const response = await getGeneralStage()
+				this.generalStage = response
 			} catch (error) {
-				console.log(error);
+				console.log(error)
 			}
 		},
 		async updateVehicleData() {
 			try {
-				const response = await getVehicleData("ERU");
-				this.vehicleData = response;
+				const response = await getVehicleData("ERU")
+				this.vehicleData = response
 			} catch (error) {
-				console.log(error);
+				console.log(error)
 			}
 		},
 		setWidgetData(widgetType, value) {
-			this.$set(this.widgetData, widgetType, value);
+			this.$set(this.widgetData, widgetType, value)
 		},
 		setWidgetSelected(widgetTypeSelected) {
-			this.widgetTypeSelected = widgetTypeSelected;
+			this.widgetTypeSelected = widgetTypeSelected
 		},
 	},
 	beforeDestroy() {
-		clearInterval(this.interval);
+		clearInterval(this.interval)
 	},
-};
+}
 </script>
 
 <style scoped>
 .vehicle-container {
 	max-width: 100%;
 	max-height: 100%;
+}
+.left-column {
+	padding: 0;
+	/* background-color: red; */
+}
+.right-column {
+	padding: 0;
+	/* background-color: purple; */
 }
 </style>

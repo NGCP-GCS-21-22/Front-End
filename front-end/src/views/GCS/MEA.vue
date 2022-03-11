@@ -14,17 +14,24 @@
 			</b-col>
 
 			<!-- right column -->
-			<b-col cols="5">
+			<b-col>
 				<div v-if="widgetTypeSelected != 'Geofence'">
 					<b-row>
-						<VehicleStage :generalStage="generalStage" />
-					</b-row>
-					<b-row>
-						<VehicleStatus
-							:vehicleName="vehicleName"
-							:vehicleImgPath="vehicleIcon"
-							:vehicleData="vehicleData"
-						/>
+						<b-col cols="3">
+							<FeaturesComponents />
+						</b-col>
+						<b-col>
+							<b-row>
+								<VehicleStage :generalStage="generalStage" />
+							</b-row>
+							<b-row>
+								<VehicleStatus
+									:vehicleName="vehicleName"
+									:vehicleImgPath="vehicleIcon"
+									:vehicleData="vehicleData"
+								/>
+							</b-row>
+						</b-col>
 					</b-row>
 				</div>
 				<b-row>
@@ -139,5 +146,13 @@ FeaturesComponents,
 .vehicle-container {
 	max-width: 100%;
 	max-height: 100%;
+}
+.left-column {
+	padding: 0;
+	/* background-color: red; */
+}
+.right-column {
+	padding: 0;
+	/* background-color: purple; */
 }
 </style>
