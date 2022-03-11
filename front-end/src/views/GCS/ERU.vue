@@ -14,30 +14,37 @@
 			</b-col>
 
 			<!-- right column -->
-			<b-col cols="5">
-				<div v-if="widgetTypeSelected != 'Geofence'">
-					<b-row>
-						<VehicleStage :generalStage="generalStage" />
-					</b-row>
-					<b-row>
-						<VehicleStatus
-							:vehicleName="vehicleName"
-							:vehicleImgPath="vehicleIcon"
-							:vehicleData="vehicleData"
-						/>
-					</b-row>
-				</div>
-				<b-row>
-					<Widgets
-						v-if="vehicleName && vehicleMissionData"
-						:vehicleName="vehicleName"
-						:vehicleMissionData="vehicleMissionData"
-						:widgetData="widgetData"
-						@widgetTypeSelected="setWidgetSelected"
-						@updateWidgetData="setWidgetData"
-					/>
-				</b-row>
-			</b-col>
+			<b-col>
+        <div v-if="widgetTypeSelected != 'Geofence'">
+          <b-row>
+            <b-col cols="3">
+							<features-components/>
+						</b-col>
+            <b-col>
+              <b-row>
+                <VehicleStage :generalStage="generalStage" />
+              </b-row>
+              <b-row>
+                <VehicleStatus
+                  :vehicleName="vehicleName"
+                  :vehicleImgPath="vehicleIcon"
+                  :vehicleData="vehicleData"
+                />
+              </b-row>
+            </b-col>
+          </b-row>
+        </div>
+        <b-row>
+          <Widgets
+            v-if="vehicleName && vehicleMissionData"
+            :vehicleName="vehicleName"
+            :vehicleMissionData="vehicleMissionData"
+            :widgetData="widgetData"
+            @widgetTypeSelected="setWidgetSelected"
+            @updateWidgetData="setWidgetData"
+          />
+        </b-row>
+      </b-col>
 		</b-row>
 	</b-container>
 </template>
@@ -53,12 +60,14 @@ import {
 	getWidgetData,
 } from "@/helpers/getData.js";
 import VehicleStage from "../../components/VehiclePage/VehicleStage.vue";
+import FeaturesComponents from '../../components/VehiclePage/FeaturesComponents.vue';
 export default {
 	components: {
 		VehicleStatus,
 		Widgets,
 		Map,
 		VehicleStage,
+FeaturesComponents,
 	},
 	data() {
 		return {
