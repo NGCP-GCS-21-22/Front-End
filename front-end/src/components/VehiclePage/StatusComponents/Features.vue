@@ -3,12 +3,12 @@
     <b-col>
       <b-row class="fontB">{{ name }}</b-row>
       <b-row class="loadbar">
-        <strong class="bar" style="height: 50%">30</strong>
+        <strong class="bar" style="height: 50%"> {{ number }}</strong>
       </b-row>
       <!-- <b-row class="font">0 {{ unit }}</b-row> -->
     </b-col>
     <b-col>
-      <b-row class="fontB">0 {{ unit }}</b-row>
+      <b-row class="fontB">{{ number }} {{ unit }}</b-row>
     </b-col>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
   props: {
     name: String,
     unit: String,
+    value: Number
   },
 };
 </script>
