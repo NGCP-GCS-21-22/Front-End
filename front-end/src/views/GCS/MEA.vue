@@ -54,6 +54,7 @@ import {
 	getVehicleData,
 	getWidgetData,
 } from "@/helpers/getData.js";
+import FeaturesComponents from '../../components/VehiclePage/FeaturesComponents.vue';
 
 export default {
 	components: {
@@ -61,6 +62,7 @@ export default {
 		Widgets,
 		Map,
 		VehicleStage,
+FeaturesComponents,
 	},
 	data() {
 		return {
