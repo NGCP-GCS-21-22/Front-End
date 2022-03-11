@@ -15,10 +15,28 @@
 						v-if="!selected && widget.type != 'Placeholder'"
 						@click="selectWidget(widget.name, widget.type)"
 					>
-						<h5>
+
+						<!-- not geofence -->
+						<h5 v-if="widget.type != 'Geofence'">
 							{{ widget.name }}
 							<b-img class="widget-icon" v-if="widget.icon" :src="widget.icon">
 							</b-img>
+						</h5>
+
+						<!-- geofence -->
+						<h5 v-else>
+							Geofence 
+							<br />
+							<p class="compliant">Compliant: {{ geofenceCompliant }}
+								<b-icon icon="circle-fill"
+									v-if="geofenceCompliant"
+									:variant="success"
+								></b-icon>
+								<b-icon icon="circle-fill"
+									v-if="!geofenceCompliant"
+									:variant="danger"
+								></b-icon>
+							</p>
 						</h5>
 					</b-button>
 				</b-col>
@@ -102,6 +120,7 @@ export default {
 		vehicleName: String,
 		vehicleMissionData: Object,
 		widgetData: Object,
+		vehicleData: Object,
 	},
 	computed: {
 		missionWaypoint() {
@@ -129,6 +148,10 @@ export default {
 		geofenceWorkspace() {
 			if (!this.widgetData.geofenceWorkspace) return null;
 			return this.widgetData.geofenceWorkspace;
+		},
+		geofenceCompliant() {
+			if (!this.vehicleData) return "None";
+			return this.vehicleData["geofence_compliant"];
 		}
 	},
 	data() {
@@ -157,7 +180,7 @@ export default {
 			this.$emit("widgetTypeSelected", this.widgetTypeSelected);
 		},
 		getWidgetGroups() {
-			// Mission Waypoint and Home Cboordinates
+			// Mission Waypoint and Home Coordinates
 			let widgetGroup1 = {
 				widgetGroup: [
 					{
@@ -255,5 +278,9 @@ p {
 }
 .invisible {
 	visibility: hidden;
+}
+.compliant {
+	color: #ffffff;
+	font-size: 10pt;
 }
 </style>

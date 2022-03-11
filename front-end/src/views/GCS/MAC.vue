@@ -33,6 +33,7 @@
 						:vehicleName="vehicleName"
 						:vehicleMissionData="vehicleMissionData"
 						:widgetData="widgetData"
+						:vehicleData="vehicleData"
 						@widgetTypeSelected="setWidgetSelected"
 						@updateWidgetData="setWidgetData"
 					/>

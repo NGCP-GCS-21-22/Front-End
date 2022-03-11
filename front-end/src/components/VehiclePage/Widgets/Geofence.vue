@@ -8,27 +8,34 @@
 				:geofenceWorkspace="geofenceWorkspace"
 				@addGeofencePolygon="addGeofencePolygon"
 				@updateWidgetData="updateWidgetData"
+				style="width: 100%;"
 			/>
 		</b-row>
-		<b-row>
+		<b-row class="cart">
 			<b-col>
-				<Cart
-					:polygons="keepInPolygons"
-					:keepIn="true"
-					@deletePolygon="deletePolygon"
-					@editPolygon="editPolygon"
-				/>
+				<h5>Keep In</h5>
+				<div class="cont">
+					<Cart
+						:polygons="keepInPolygons"
+						:keepIn="true"
+						@deletePolygon="deletePolygon"
+						@editPolygon="editPolygon"
+					/>
+				</div>
 			</b-col>
 			<b-col>
-				<Cart
-					:polygons="keepOutPolygons"
-					:keepIn="false"
-					@deletePolygon="deletePolygon"
-					@editPolygon="editPolygon"
-				/>
+				<h5>Keep Out</h5>
+				<div class="cont">
+					<Cart
+						:polygons="keepOutPolygons"
+						:keepIn="false"
+						@deletePolygon="deletePolygon"
+						@editPolygon="editPolygon"
+					/>
+				</div>
 			</b-col>
 		</b-row>
-		<b-row>
+		<b-row class="deletesubmit">
 			<DeleteSubmit
 				:name="name"
 				:vehicleName="vehicleName"
@@ -132,5 +139,20 @@ export default {
 	position: absolute;
 	top: 20px;
 	left: 20px;
+}
+
+.deletesubmit {
+	position: absolute;
+	bottom: 30px;
+	right: 45px;
+}
+
+.cart {
+	padding-top: 20px;
+}
+
+.cont {
+	height: calc(45vh - 200px);
+	overflow: auto;
 }
 </style>
