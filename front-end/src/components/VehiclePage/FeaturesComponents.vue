@@ -11,7 +11,7 @@
       </b-row>
     </div>
     <div>
-     <pitch-roll-yaw :pitch="p" :roll="r" :yaw="y" />
+     <pitch-roll-yaw v-if="pitch && roll && yaw" class="":pitch="p" :roll="r" :yaw="y" />
     </div>
   </b-card>
 </template>
@@ -24,7 +24,7 @@ export default {
   components: { Features, PitchRollYaw, },
   data() {
     return {
-      nameofBar1: "Attribue",
+      nameofBar1: "Altitude",
       nameofBar2: "Speed",
       unit1: "ft",
       unit2: "ft/s",
