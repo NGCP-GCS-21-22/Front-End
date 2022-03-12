@@ -1,32 +1,30 @@
 <template>
-  <div>
-    <b-col>
-      <b-row class="info">Pitch: {{ pitch }}</b-row>
-      <b-row class="info">Roll: {{ roll }} </b-row>
-      <b-row class="info">Yaw: {{ yaw }} </b-row>
-    </b-col>
-  </div>
+	<b-row>
+		<b-col class="info">Pitch: <br /> {{ pitch }}</b-col>
+		<b-col class="info">Roll: <br /> {{ roll }} </b-col>
+		<b-col class="info">Yaw: <br /> {{ yaw }} </b-col>
+	</b-row>
 </template>
 
 <script>
 export default {
-  props: {
-    vehicleData: Object,
-  },
-  computed: {
-    pitch() {
-      if (!this.vehicleData) return 0;
-      return this.vehicleData["pitch"];
-    },
-    roll() {
-      if (!this.vehicleData) return 0;
-      return this.vehicleData["roll"];
-    },
-    yaw() {
-      if (!this.vehicleData) return 0;
-      return this.vehicleData["yaw"];
-    },
-  },
+	props: {
+		vehicleData: Object,
+	},
+	computed: {
+		pitch() {
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["pitch"];
+		},
+		roll() {
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["roll"];
+		},
+		yaw() {
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["yaw"];
+		},
+	},
 };
 </script>
 
