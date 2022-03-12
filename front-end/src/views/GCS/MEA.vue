@@ -2,7 +2,7 @@
 	<b-container class="vehicle-container">
 		<b-row class="vehicle-row">
 			<!-- left column -->
-			<b-col class="left-column" cols="7">
+			<b-col class="left-column" cols="6">
 				<Map
 					v-if="vehicleData && vehicleIcon"
 					:vehicleData="vehicleData"
@@ -14,11 +14,11 @@
 			</b-col>
 
 			<!-- right column -->
-			<b-col>
+			<b-col cols="6">
 				<div v-if="widgetTypeSelected != 'Geofence'">
 					<b-row>
 						<b-col cols="3">
-							<FeaturesComponents />
+							<StatusBars />
 						</b-col>
 						<b-col>
 							<b-row>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import VehicleStage from "../../components/VehiclePage/VehicleStage.vue";
+import VehicleStage from "@/components/VehiclePage/VehicleStage.vue";
 import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Maps/VehicleMap.vue";
@@ -61,7 +61,7 @@ import {
 	getVehicleData,
 	getWidgetData,
 } from "@/helpers/getData.js";
-import FeaturesComponents from '../../components/VehiclePage/FeaturesComponents.vue';
+import StatusBars from '@/components/VehiclePage/StatusComponents/StatusBars.vue';
 
 export default {
 	components: {
@@ -69,7 +69,7 @@ export default {
 		Widgets,
 		Map,
 		VehicleStage,
-FeaturesComponents,
+StatusBars,
 	},
 	data() {
 		return {

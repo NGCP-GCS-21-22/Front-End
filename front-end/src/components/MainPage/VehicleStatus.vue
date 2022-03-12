@@ -96,7 +96,6 @@ export default {
 	height: 22vh;
 }
 img {
-	display: block;
 	width: 20;
 	height: 20;
 }
