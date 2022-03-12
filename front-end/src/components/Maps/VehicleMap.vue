@@ -9,21 +9,24 @@
       :options="options"
     >
       <!-- vehicle pos -->
-      <GmapMarker
+      <GmapMarker 
         :position="vehicleMarker.position"
-        :clickable="false"
-        @click="infoWindowOpen"
+        :clickable="true"
+        @mouseover="hover = true"
+        @mouseout="hover = false"
+       
         :icon="{
           url: vehicleMarker.icon,
         }"
         :zIndex="500"
       >
-        <GmapInfoWindow
-        :opened="true"
+        <GmapInfoWindow v-if="hover"
+          :opened="true"
 			>
 				<div><strong>Longitude:</strong> {{this.vehicleData.longitude}} <br> <strong>Latitude:</strong> {{this.vehicleData.latitude}}
 				</div>
       </GmapInfoWindow>
+      
       </GmapMarker>
     
       <!-- mission waypoint -->
@@ -73,7 +76,7 @@
       />
     </GmapMap>
 
-    <h3 class="c">Latitude: {{ vehicleData.latitude }} <br/>Longitude: {{ vehicleData.longitude }}</h3>
+    <!-- <h3 class="c">Latitude: {{ vehicleData.latitude }} <br/>Longitude: {{ vehicleData.longitude }}</h3> -->
   </div>
 </template>
 
@@ -191,6 +194,7 @@ export default {
   data() {
     return {
       // Map Data
+      hover: false,
       center: { lat: centerLat, lng: centerLng },
       zoom: 18,
       tilt: 0,
@@ -288,4 +292,13 @@ export default {
 	left: 50%;
 	margin-left: -150px;
 }
+button.gm-ui-hover-effect {
+    visibility: hidden;
+}
+.gm-style-iw.gm-style-iw-c {
+font-size: 25px;
+font-weight: 400;
+}
+
+
 </style>
