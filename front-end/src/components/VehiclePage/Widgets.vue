@@ -30,11 +30,11 @@
 							<p class="compliant">Compliant: {{ geofenceCompliant }}
 								<b-icon icon="circle-fill"
 									v-if="geofenceCompliant"
-									:variant="success"
+									variant="success"
 								></b-icon>
 								<b-icon icon="circle-fill"
 									v-if="!geofenceCompliant"
-									:variant="danger"
+									variant="danger"
 								></b-icon>
 							</p>
 						</h5>

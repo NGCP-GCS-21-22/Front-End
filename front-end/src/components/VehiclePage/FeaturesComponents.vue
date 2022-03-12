@@ -1,24 +1,26 @@
 <template>
 	<b-card class="container">
-		<div>
-			<b-row class="row">
-				<b-col class="column">
-					<Features :name="nameofBar1" :unit="unit1" />
-				</b-col>
-				<b-col>
-					<Features :name="nameofBar2" :unit="unit2" />
-				</b-col>
-			</b-row>
-		</div>
-		<div>
+		<b-row>
+			<b-col>
+				<Features :name="'Altitude'" :unit="'ft'" :value="altitude" :max="maxAltitude"/>
+			</b-col>
+			<b-col>
+				<Features :name="'Speed'" :unit="'ft/s'" :value="speed" :max="maxSpeed"/>
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col cols="7">
 			<pitch-roll-yaw
 				v-if="pitch && roll && yaw"
-				class=""
 				:pitch="pitch"
 				:roll="roll"
 				:yaw="yaw"
 			/>
-		</div>
+			</b-col>
+			<b-col cols="5">
+				Temp
+			</b-col>
+		</b-row>
 	</b-card>
 </template>
 
@@ -27,18 +29,24 @@ import Features from "./StatusComponents/Features.vue";
 import PitchRollYaw from "./StatusComponents/PitchRollYaw.vue";
 
 export default {
+	props: {
+		vehicleData: Object
+	},
 	components: { Features, PitchRollYaw },
 	data() {
 		return {
-			nameofBar1: "Altitude",
-			nameofBar2: "Speed",
-			unit1: "ft",
-			unit2: "ft/s",
+			altitude: 50,
+			speed: 30,
+			maxAltitude: 100,
+			maxSpeed: 100,
 			pitch: 10,
 			roll: 5,
-			yaw: 8,
+			yaw: -3,
 		};
 	},
+	computed: {
+	
+	}
 };
 </script>
 
@@ -49,5 +57,7 @@ export default {
 	margin-left: 0px;
 	margin-right: 0px;
 	padding: 0px;
+	height: 36vh;
+	width: 10vw;
 }
 </style>
