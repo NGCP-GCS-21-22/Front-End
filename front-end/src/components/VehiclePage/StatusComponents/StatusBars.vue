@@ -38,13 +38,8 @@ export default {
   },
   data() {
     return {
-      altitude: 50,
-      speed: 30,
       maxAltitude: 100,
       maxSpeed: 100,
-      pitch: 10,
-      roll: 5,
-      yaw: -3,
     };
   },
 };
