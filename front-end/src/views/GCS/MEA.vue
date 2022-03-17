@@ -45,24 +45,26 @@
                 <b-row class="right-column-row">
                     <b-card class="vehicle-numbers">
                         <PrincipalAxes :vehicleData="vehicleData" />
-                        <b-row class="justify-content-md-center">
-                            <b-col>
-                                <b-row class="justify-content-md-center">
-                                    Status:
-                                </b-row>
-                                <b-row class="justify-content-md-center">
-                                    Active
-                                </b-row>
-                            </b-col>
-                            <b-col>
-                                <b-row class="justify-content-md-center">
-                                    Sensors:
-                                </b-row>
-                                <b-row class="justify-content-md-center">
-                                    Functional
-                                </b-row></b-col
-                            >
-                        </b-row>
+                        <b-container>
+                            <b-row class="justify-content-md-center">
+                                <b-col>
+                                    <b-row class="justify-content-md-center">
+                                        Status:
+                                    </b-row>
+                                    <b-row class="justify-content-md-center">
+                                        Active
+                                    </b-row>
+                                </b-col>
+                                <b-col>
+                                    <b-row class="justify-content-md-center">
+                                        Sensors:
+                                    </b-row>
+                                    <b-row class="justify-content-md-center">
+                                        Functional
+                                    </b-row>
+                                </b-col>
+                            </b-row>
+                        </b-container>
                     </b-card>
                 </b-row>
             </b-col>
