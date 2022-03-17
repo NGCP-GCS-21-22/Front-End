@@ -1,8 +1,8 @@
 <template>
 	<b-row>
-		<b-col class="info">Pitch: <br /> {{ pitch }}</b-col>
-		<b-col class="info">Roll: <br /> {{ roll }} </b-col>
-		<b-col class="info">Yaw: <br /> {{ yaw }} </b-col>
+		<b-col class="info"><u>Pitch</u><br /> {{ pitch }}</b-col>
+		<b-col class="info"><u>Roll</u><br /> {{ roll }} </b-col>
+		<b-col class="info"><u>Yaw</u><br /> {{ yaw }} </b-col>
 	</b-row>
 </template>
 
@@ -30,7 +30,7 @@ export default {
 
 <style>
 .info {
-	font-size: 14pt;
+	font-size: 20pt;
 	padding-bottom: 5px;
 }
 </style>
