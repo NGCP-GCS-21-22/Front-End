@@ -27,7 +27,7 @@
 						<h5 v-else>
 							Geofence 
 							<br />
-							<p class="compliant">Compliant: {{ geofenceCompliant }}
+							<p class="compliant">Compliant:
 								<b-icon icon="circle-fill"
 									v-if="geofenceCompliant"
 									variant="success"
