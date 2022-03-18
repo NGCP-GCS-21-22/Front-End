@@ -5,6 +5,7 @@
 			{{ name }}
 			<b-img
 				class="widget-icon"
+				style="width: 40px; height: 40px"
 				:src="require('@/assets/map_icons/home.png')"
 			></b-img>
 		</h2>
