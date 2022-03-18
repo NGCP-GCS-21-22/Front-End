@@ -35,7 +35,7 @@
 				</div>
 			</b-col>
 		</b-row>
-		<b-row class="deletesubmit">
+		<b-row class="deletesubmit-buttons">
 			<DeleteSubmit
 				:name="name"
 				:vehicleName="vehicleName"
@@ -141,10 +141,10 @@ export default {
 	left: 20px;
 }
 
-.deletesubmit {
+.deletesubmit-buttons {
 	position: absolute;
-	bottom: 30px;
-	right: 45px;
+	bottom: 20px;
+	right: 25px;
 }
 
 .cart {

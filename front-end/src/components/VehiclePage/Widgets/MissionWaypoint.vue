@@ -8,19 +8,19 @@
 				:src="require('@/assets/map_icons/mission-waypoint.png')"
 			></b-img>
 		</h2>
-		<div class="latlng-wrapper">
+		<div class="latlng-wrapper">	
 			<b-row>
 				<b-col
 					class="latlng"
-					cols="2"
-					offset="3"
+					cols="3"
+					offset="2"
 					style="padding-top: 6.5px"
 					align="left"
 				>
-					<label for="input-live">Latitude:</label>
+					<label for="input-live" class="latlng-label">Latitude:</label>
 				</b-col>
 
-				<b-col cols="4">
+				<b-col cols="5">
 					<b-form-input
 						id="input-1"
 						v-model="missionWaypoint.lat"
@@ -35,15 +35,15 @@
 			<b-row>
 				<b-col
 					class="latlng"
-					cols="2"
-					offset="3"
+					cols="3"
+					offset="2"
 					style="padding-top: 6.5px"
 					align="left"
 				>
-					<label for="input-live">Longitude:</label>
+					<label class="latlng-label">Longitude:</label>
 				</b-col>
 
-				<b-col cols="4">
+				<b-col cols="5">
 					<b-form-input
 						id="input-1"
 						v-model="missionWaypoint.lng"
@@ -56,7 +56,7 @@
 			</b-row>
 		</div>
 
-		<b-row class="row" style="float: right">
+		<b-row class="buttons">
 			<b-button class="button" @click="reset">Reset</b-button>
 			<b-button class="button" variant="success" :disabled="waypointNotChanged()" @click="postData">Submit</b-button>
 		</b-row>
@@ -124,6 +124,18 @@ export default {
 	height: 4vh;
 }
 .latlng-wrapper {
-	padding: 15px;
+	padding-top: 12vh;
+	/* padding-bottom: 10vh; */
+	height: 20vh;
+}
+
+.buttons {
+	position: absolute;
+	bottom: 20px;
+	right: 25px;
+}
+
+.latlng-label {
+	font-size: 15pt;
 }
 </style>
