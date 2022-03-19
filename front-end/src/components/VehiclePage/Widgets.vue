@@ -19,7 +19,9 @@
 						<!-- not geofence -->
 						<h5 v-if="widget.type != 'Geofence'">
 							{{ widget.name }}
-							<b-img class="widget-icon" v-if="widget.icon" :src="widget.icon">
+							<b-img 
+							style="height:50px"
+							class="widget-icon" v-if="widget.icon" :src="`${widget.icon}`">
 							</b-img>
 						</h5>
 
@@ -186,12 +188,12 @@ export default {
 					{
 						type: "MissionWaypoint",
 						name: this.vehicleMissionData.missionWaypoint,
-						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true",
+						icon: require('@/assets/map_icons/mission-waypoint.png'),
 					},
 					{
 						type: "HomeCoordinates",
 						name: "Home Coordinates",
-						icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/home.png?raw=true",
+						icon: require('@/assets/map_icons/home.png'),
 					},
 				],
 				buttonGroupId: "Button Group 1",
