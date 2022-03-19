@@ -3,12 +3,12 @@
 		<b-col align="center" class="center-block">
 			<b-row class="loadbar">
 				<span class="bar" :style="`height: ${barPercent}%`">
-					{{ value }} {{ unit }}
+					{{ value }}
 				</span>
 			</b-row>
 			<b-row
 				class="barLabel justify-content-md-center"
-				>{{ name }}</b-row
+				>{{ name }} {{ unit }}</b-row
 			>
 		</b-col>
 	</b-row>
