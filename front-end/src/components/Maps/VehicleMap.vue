@@ -14,9 +14,7 @@
                 :clickable="true"
                 @mouseover="hover = true"
                 @mouseout="hover = false"
-                :icon="{
-                    url: vehicleMarker.icon,
-                }"
+                :icon="vehicleMarker.icon"
                 :zIndex="500"
             >
                 <GmapInfoWindow v-if="hover" :opened="true">
@@ -75,55 +73,55 @@
                 :clickable="false"
                 :options="searchAreaOptions"
             />
-		<!-- Geofence -->
-        <!-- Workspace -->
-        <div v-if="widgetTypeSelected == 'Geofence'">
-            <GmapMarker
-                :key="coordinate.id"
-                v-for="(
-                    coordinate, index
-                ) in geofenceWorkspacePolygon.coordinates"
-                :position="{ lat: coordinate.lat, lng: coordinate.lng }"
-                :draggable="true"
-                :zIndex="1000"
-                :label="{
-                    color: '#fff',
-                    fontSize: '12px',
-                    fontWeight: '600',
-                    text: `${index + 1}`,
-                }"
-                @drag="moveGeofenceWorkspaceVertex($event, coordinate.id)"
-            />
-            <GmapPolygon
-                :path="geofenceWorkspacePolygon.coordinates"
-                :clickable="false"
-                :options="getWorkspacePolyOption()"
-            />
-        </div>
-        <!-- Polygons -->
-        <div
-            v-for="(polygon, index) in geofencePolygons.polygons"
-            :key="polygon.id"
-        >
-            <GmapPolygon
-                :path="polygon.coordinates"
-                :clickable="false"
-                :options="polygon.keep_in ? keepInOptions : keepOutOptions"
-            />
-            <GmapMarker
-                :position="getCenter(polygon.coordinates)"
-                :clickable="false"
-                :label="{
-                    color: '#fff',
-                    fontSize: '20px',
-                    fontWeight: '600',
-                    text: `${index + 1}`,
-                }"
-                :icon="{
-                    url: 'https://i.imgur.com/w2akEKc.png',
-                }"
-            />
-        </div>
+            <!-- Geofence -->
+            <!-- Workspace -->
+            <div v-if="widgetTypeSelected == 'Geofence'">
+                <GmapMarker
+                    :key="coordinate.id"
+                    v-for="(
+                        coordinate, index
+                    ) in geofenceWorkspacePolygon.coordinates"
+                    :position="{ lat: coordinate.lat, lng: coordinate.lng }"
+                    :draggable="true"
+                    :zIndex="1000"
+                    :label="{
+                        color: '#fff',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        text: `${index + 1}`,
+                    }"
+                    @drag="moveGeofenceWorkspaceVertex($event, coordinate.id)"
+                />
+                <GmapPolygon
+                    :path="geofenceWorkspacePolygon.coordinates"
+                    :clickable="false"
+                    :options="getWorkspacePolyOption()"
+                />
+            </div>
+            <!-- Polygons -->
+            <div
+                v-for="(polygon, index) in geofencePolygons.polygons"
+                :key="polygon.id"
+            >
+                <GmapPolygon
+                    :path="polygon.coordinates"
+                    :clickable="false"
+                    :options="polygon.keep_in ? keepInOptions : keepOutOptions"
+                />
+                <GmapMarker
+                    :position="getCenter(polygon.coordinates)"
+                    :clickable="false"
+                    :label="{
+                        color: '#fff',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        text: `${index + 1}`,
+                    }"
+                    :icon="{
+                        url: 'https://i.imgur.com/w2akEKc.png',
+                    }"
+                />
+            </div>
         </GmapMap>
         <!-- <h3 class="c">Latitude: {{ vehicleData.latitude }} <br/>Longitude: {{ vehicleData.longitude }}</h3> -->
     </div>
@@ -153,7 +151,15 @@ export default {
                     lat: this.vehicleData.latitude,
                     lng: this.vehicleData.longitude,
                 },
-                icon: this.vehicleIcon,
+                icon: {
+                    path: this.vehicleIcon.path,
+                    fillColor: this.vehicleIcon.fillColor,
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    rotation: this.vehicleData.rotation,
+                    scale: 1,
+                    anchor: { x: 41.42, y: 46.713 },
+                },
             };
         },
         missionWaypoint() {

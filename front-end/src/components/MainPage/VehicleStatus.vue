@@ -6,7 +6,7 @@
 				<b-col>
 					<VehicleStatusTitle
 						:vehicleName="vehicleName"
-						:vehicleImgPath="vehicleImgPath"
+						:vehicleIcon="vehicleIcon"
 					/>
 				</b-col>
 			</b-row>
@@ -55,7 +55,7 @@ import StageSelection from "@/components/MainPage/Status/StageSelection.vue";
 export default {
 	props: {
 		vehicleName: String,
-		vehicleImgPath: String,
+		vehicleIcon: Object,
 		vehicleData: Object,
 	},
 	components: {

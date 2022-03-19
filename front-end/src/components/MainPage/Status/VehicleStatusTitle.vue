@@ -1,7 +1,9 @@
 <template>
 	<b-row class="justify-content-md-center vehicleName">
 		<h2>{{ vehicleName }}</h2>
-		<b-img class="vehicleImg" :src="vehicleImgPath"> </b-img>
+		<svg class="vehicleImg" v-if="path && fillColor" viewBox="0 0 100 100">
+			<path :d="path" :fill="fillColor"/>
+		</svg>
 	</b-row>
 </template>
 
@@ -9,7 +11,17 @@
 export default {
 	props: {
 		vehicleName: String,
-		vehicleImgPath: String,
+		vehicleIcon: Object,
+	},
+	computed: {
+		path() {
+			if (!this.vehicleIcon) return null;
+			return this.vehicleIcon.path;
+		},
+		fillColor() {
+			if (!this.vehicleIcon) return null;
+			return this.vehicleIcon.fillColor;
+		},
 	},
 };
 </script>
@@ -22,7 +34,7 @@ export default {
 .vehicleImg {
 	width: 50px;
 	height: 50px;
-	margin-top: -8px;
+	margin-top: -6px;
 	margin-left: 10px;
 	float: left;
 }
