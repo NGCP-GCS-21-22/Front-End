@@ -21,7 +21,7 @@
                 <b-row v-if="widgetTypeSelected != 'Geofence'">
                     <VehicleStatus
                         :vehicleName="vehicleName"
-                        :vehicleImgPath="vehicleIcon"
+                        :vehicleIcon="vehicleIcon"
                         :vehicleData="vehicleData"
                     />
                 </b-row>

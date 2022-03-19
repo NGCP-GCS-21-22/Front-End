@@ -8,39 +8,108 @@
 		:options="options"
 	>
 		<!-- vehicle pos -->
-		<GmapMarker
+		<!-- <GmapMarker
 			v-for="marker in vehicleMarkers"
 			:key="marker.id"
 			:position="marker.position"
 			:clickable="false"
-			:icon="{
-				url: marker.icon,
-			}"
-		/>
-		<GMapInfoWindow>
-        <div>I am in info window <MyComponent/>
-        </div>
-		
-      </GMapInfoWindow>
-		<div style="z-index: 500; position: absolute; left: 100px; top: 800px; color: white;">
-			hello worlds
-			
-		</div>
+			:icon="marker.icon"
+			:zIndex="500"
+			@mouseover="hover = true"
+			@mouseout="hover = false"
+		>
+			<GmapInfoWindow v-if="marker.hover" :opened="true">
+				<div>
+					<strong>Latitude:</strong>
+					{{ marker.vehicleData.latitude }}
+					<br />
+					<strong>Longitude:</strong>
+					{{ marker.vehicleData.longitude }}
+				</div>
+			</GmapInfoWindow>
+		</GmapMarker> -->
+
+		<!-- MAC position -->
+		<GmapMarker
+			v-if="macMarker"
+			:position="macMarker.position"
+			:clickable="true"
+			@mouseover="macHover = true"
+			@mouseout="macHover = false"
+			:icon="macMarker.icon"
+			:zIndex="500"
+		>
+			<GmapInfoWindow v-if="macHover" :opened="true">
+				<div>
+					<strong>Latitude:</strong>
+					{{ macMarker.position.lat }}
+					<br />
+					<strong>Longitude:</strong>
+					{{ macMarker.position.lng }}
+				</div>
+			</GmapInfoWindow>
+		</GmapMarker>
+
+		<!-- ERU marker -->
+		<GmapMarker
+			v-if="eruMarker"
+			:position="eruMarker.position"
+			:clickable="true"
+			@mouseover="eruHover = true"
+			@mouseout="eruHover = false"
+			:icon="eruMarker.icon"
+			:zIndex="500"
+		>
+			<GmapInfoWindow v-if="eruHover" :opened="true">
+				<div>
+					<strong>Latitude:</strong>
+					{{ eruMarker.position.lat }}
+					<br />
+					<strong>Longitude:</strong>
+					{{ eruMarker.position.lng }}
+				</div>
+			</GmapInfoWindow>
+		</GmapMarker>
+
+		<!-- MEA marker -->
+		<GmapMarker
+			v-if="meaMarker"
+			:position="meaMarker.position"
+			:clickable="true"
+			@mouseover="meaHover = true"
+			@mouseout="meaHover = false"
+			:icon="meaMarker.icon"
+			:zIndex="500"
+		>
+			<GmapInfoWindow v-if="meaHover" :opened="true">
+				<div>
+					<strong>Latitude:</strong>
+					{{ meaMarker.position.lat }}
+					<br />
+					<strong>Longitude:</strong>
+					{{ meaMarker.position.lng }}
+				</div>
+			</GmapInfoWindow>
+		</GmapMarker>
 	</GmapMap>
-	
 </template>
 
 <script>
-import { centerLng, centerLat, defaultLat, defaultLng } from "@/helpers/coordinates.js";
+import {
+	centerLng,
+	centerLat,
+	defaultLat,
+	defaultLng,
+} from "@/helpers/coordinates.js";
 
 export default {
 	props: {
 		macData: Object,
 		eruData: Object,
 		meaData: Object,
-		macIcon: String,
-		eruIcon: String,
-		meaIcon: String,
+		macIcon: Object,
+		eruIcon: Object,
+		meaIcon: Object,
 	},
 	data() {
 		return {
@@ -60,50 +129,77 @@ export default {
 				disableDoubleClickZoom: true,
 			},
 			mapType: "satellite",
-		}
+			macHover: false,
+			eruHover: false,
+			meaHover: false,
+		};
 	},
 	computed: {
 		macMarker() {
-			if (!this.macData) return null
+			if (!this.macData) return null;
 			return {
 				id: "macMarker",
 				position: {
 					lat: this.macData.latitude,
 					lng: this.macData.longitude,
 				},
-				icon: this.macIcon,
-			}
+				icon: {
+					path: this.macIcon.path,
+					fillColor: this.macIcon.fillColor,
+					fillOpacity: 1,
+					strokeWeight: 0,
+					rotation: this.macData.rotation,
+					scale: 1,
+					anchor: { x: 41.42, y: 46.713 },
+				},
+			};
 		},
 		eruMarker() {
-			if (!this.eruData) return null
+			if (!this.eruData) return null;
 			return {
 				id: "eruMarker",
 				position: {
 					lat: this.eruData.latitude,
 					lng: this.eruData.longitude,
 				},
-				icon: this.eruIcon,
-			}
+				icon: {
+					path: this.eruIcon.path,
+					fillColor: this.eruIcon.fillColor,
+					fillOpacity: 1,
+					strokeWeight: 0,
+					rotation: this.eruData.rotation,
+					scale: 1,
+					anchor: { x: 41.42, y: 46.713 },
+				},
+			};
 		},
 		meaMarker() {
-			if (!this.meaData) return null
+			if (!this.meaData) return null;
 			return {
 				id: "meaMarker",
 				position: {
 					lat: this.meaData.latitude,
 					lng: this.meaData.longitude,
 				},
-				icon: this.meaIcon,
-			}
+				icon: {
+					path: this.meaIcon.path,
+					fillColor: this.meaIcon.fillColor,
+					fillOpacity: 1,
+					strokeWeight: 0,
+					rotation: this.meaData.rotation,
+					scale: 1,
+					anchor: { x: 41.42, y: 46.713 },
+				},
+			};
 		},
-		vehicleMarkers() {
-			if (!(this.macMarker && this.eruMarker && this.meaMarker))
-				return null
-			return [this.macMarker, this.eruMarker, this.meaMarker]
-		},
+		// vehicleMarkers() {
+		// 	if (!(this.macMarker && this.eruMarker && this.meaMarker))
+		// 		return null;
+		// 	return [this.macMarker, this.eruMarker, this.meaMarker];
+		// },
 	},
 	methods: {},
-}
+};
 </script>
 
 <style>

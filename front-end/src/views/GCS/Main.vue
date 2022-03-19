@@ -19,19 +19,19 @@
 				<VehicleStatus
 					class="vehicle-status"
 					:vehicleName="'MAC'"
-					:vehicleImgPath="macIcon"
+					:vehicleIcon="macIcon"
 					:vehicleData="macData"
 				/>
 				<VehicleStatus
 					class="vehicle-status"
 					:vehicleName="'ERU'"
-					:vehicleImgPath="eruIcon"
+					:vehicleIcon="eruIcon"
 					:vehicleData="eruData"
 				/>
 				<VehicleStatus
 					class="vehicle-status"
 					:vehicleName="'MEA'"
-					:vehicleImgPath="meaIcon"
+					:vehicleIcon="meaIcon"
 					:vehicleData="meaData"
 				/>
 			</b-col>
