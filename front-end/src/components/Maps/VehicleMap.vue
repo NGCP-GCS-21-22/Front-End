@@ -8,44 +8,21 @@
 			:tilt="tilt"
 			:options="options"
 		>
-			<!-- vehicle pos -->
-			<GmapMarker
-				:position="vehicleMarker.position"
-				:clickable="true"
-				@mouseover="hover = true"
-				@mouseout="hover = false"
-				:icon="vehicleMarker.icon"
-				:zIndex="500"
-			>
-				<GmapInfoWindow v-if="hover" :opened="true">
-					<div>
-						<strong>Latitude:</strong>
-						{{ this.vehicleData.latitude }}
-						<br />
-						<strong>Longitude:</strong>
-						{{ this.vehicleData.longitude }}
-					</div>
-				</GmapInfoWindow>
-			</GmapMarker>
-
-			<!-- mission waypoint -->
-			<GmapMarker
-				:position="missionWaypointMarker.position"
-				:draggable="isSelected(missionWaypointMarker)"
-				:clickable="isSelected(missionWaypointMarker)"
-				:icon="missionWaypointMarker.icon"
-				@drag="moveMissionWaypoint"
-				:zIndex="isSelected(missionWaypointMarker) ? 50 : 1"
+			<VehiclePositionMarker
+				:vehicleData="vehicleData"
+				:vehicleIcon="vehicleIcon"
 			/>
 
-			<!-- home coordinates -->
-			<GmapMarker
-				:position="homeCoordinatesMarker.position"
-				:draggable="isSelected(homeCoordinatesMarker)"
-				:clickable="isSelected(homeCoordinatesMarker)"
-				:icon="homeCoordinatesMarker.icon"
-				:zIndex="isSelected(homeCoordinatesMarker) ? 50 : 1"
-				@drag="moveHomeCoordinates"
+			<MissionWaypointMarker
+				:widgetData="widgetData"
+				:widgetTypeSelected="widgetTypeSelected"
+				@moveMarker="moveMarker"
+			/>
+
+			<HomeCoordinatesMarker
+				:widgetData="widgetData"
+				:widgetTypeSelected="widgetTypeSelected"
+				@moveMarker="moveMarker"
 			/>
 
 			<!-- Search Area -->
@@ -122,8 +99,23 @@
 					}"
 				/>
 			</div>
+
+			<!-- hiker pos -->
+			<GmapMarker
+				:position="{ lat: 33.93441, lng: -117.6318169 }"
+				:clickable="false"
+				:icon="{
+					url: 'https://i.imgur.com/fjnfxWN.png',
+				}"
+			/>
+			<!-- <GmapMarker
+				:position="{ lat: vehicleData.hiker_lat, lng: vehicleData.hiker_lng }"
+				:clickable="false"
+				:icon="{
+					url: 'https://i.imgur.com/UivDwEm.png',
+				}"
+			/> -->
 		</GmapMap>
-		<!-- <h3 class="c">Latitude: {{ vehicleData.latitude }} <br/>Longitude: {{ vehicleData.longitude }}</h3> -->
 	</div>
 </template>
 
@@ -134,65 +126,23 @@ import {
 	defaultLat,
 	defaultLng,
 } from "@/helpers/coordinates.js";
+import VehiclePositionMarker from "@/components/Maps/VehicleMap/VehiclePositionMarker.vue";
+import MissionWaypointMarker from "@/components/Maps/VehicleMap/MissionWaypointMarker.vue";
+import HomeCoordinatesMarker from "@/components/Maps/VehicleMap/HomeCoordinatesMarker.vue";
 
 export default {
 	props: {
 		vehicleData: Object,
-		vehicleIcon: String,
+		vehicleIcon: Object,
 		widgetData: Object,
 		widgetTypeSelected: String,
 	},
+	components: {
+		VehiclePositionMarker,
+		MissionWaypointMarker,
+		HomeCoordinatesMarker,
+	},
 	computed: {
-		vehicleMarker() {
-			if (!this.vehicleData) return null;
-			return {
-				id: "vehicleMarker",
-				position: {
-					lat: this.vehicleData.latitude,
-					lng: this.vehicleData.longitude,
-				},
-				icon: {
-					path: this.vehicleIcon.path,
-					fillColor: this.vehicleIcon.fillColor,
-					fillOpacity: 1,
-					strokeWeight: 0,
-					rotation: this.vehicleData.rotation,
-					scale: 1,
-					anchor: { x: 41.42, y: 46.713 },
-				},
-			};
-		},
-		missionWaypoint() {
-			if (!this.widgetData.missionWaypoint) return null;
-			return this.widgetData.missionWaypoint;
-		},
-		missionWaypointMarker() {
-			if (!this.missionWaypoint)
-				return {
-					id: "missionWaypoint",
-					position: {
-						lat: defaultLat,
-						lng: defaultLng,
-					},
-					icon: {
-						url: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true",
-						anchor: { x: 33, y: 45 },
-					},
-					draggable: this.widgetTypeSelected === "MissionWaypoint",
-				};
-			return {
-				id: "missionWaypoint",
-				position: {
-					lat: parseFloat(this.missionWaypoint.lat),
-					lng: parseFloat(this.missionWaypoint.lng),
-				},
-				icon: {
-					url: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/map_icons/mission-waypoint.png?raw=true",
-					anchor: { x: 33, y: 45 },
-				},
-				draggable: this.widgetTypeSelected === "MissionWaypoint",
-			};
-		},
 		homeCoordinates() {
 			if (!this.widgetData.homeCoordinates) return null;
 			return this.widgetData.homeCoordinates;
@@ -338,11 +288,19 @@ export default {
 				polygons: polygons,
 			};
 		},
+		// hikerCoordinates() {
+		// 	return {
+		// 		id: "hiker",
+		// 		position: {
+		// 			lat: parseFloat(this.vehicleData.hiker_lat),
+		// 			lng: parseFloat(this.vehicleData.hiker_lng),,
+		// 		},
+		// 	}
+		// }
 	},
 	data() {
 		return {
 			// Map Data
-			hover: false,
 			center: { lat: centerLat, lng: centerLng },
 			zoom: 18,
 			tilt: 0,
@@ -374,10 +332,10 @@ export default {
 				fillOpacity: 0.3,
 			},
 			searchAreaOptions: {
-				strokeColor: "#FFA500",
+				strokeColor: "#953553",
 				strokeOpacity: 0.8,
 				strokeWeight: 3,
-				fillColor: "#FFA500",
+				fillColor: "#953553",
 				fillOpacity: 0.3,
 			},
 			keepInOptions: {
@@ -402,15 +360,8 @@ export default {
 			if (!marker || !marker.draggable) return false;
 			return true;
 		},
-		moveMissionWaypoint(e) {
-			this.missionWaypointMarker.position = {
-				lat: e.latLng.lat(),
-				lng: e.latLng.lng(),
-			};
-			this.$emit("moveMarker", "missionWaypoint", {
-				lat: this.missionWaypointMarker.position.lat,
-				lng: this.missionWaypointMarker.position.lng,
-			});
+		moveMarker(widgetType, value) {
+			this.$emit("moveMarker", widgetType, value);
 		},
 		moveHomeCoordinates(e) {
 			this.homeCoordinatesMarker.position = {
