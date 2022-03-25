@@ -45,26 +45,7 @@
                 <b-row class="right-column-row">
                     <b-card class="vehicle-numbers">
                         <PrincipalAxes :vehicleData="vehicleData" />
-                        <b-container>
-                            <b-row class="justify-content-md-center">
-                                <b-col>
-                                    <b-row class="justify-content-md-center">
-                                        Status:
-                                    </b-row>
-                                    <b-row class="justify-content-md-center">
-                                        Active
-                                    </b-row>
-                                </b-col>
-                                <b-col>
-                                    <b-row class="justify-content-md-center">
-                                        Sensors:
-                                    </b-row>
-                                    <b-row class="justify-content-md-center">
-                                        Functional
-                                    </b-row>
-                                </b-col>
-                            </b-row>
-                        </b-container>
+                        <Status :vehicleData="vehicleData"/>
                     </b-card>
                 </b-row>
             </b-col>
@@ -85,7 +66,7 @@ import {
 } from "@/helpers/getData.js";
 import StatusBars from "@/components/VehiclePage/StatusComponents/StatusBars.vue";
 import PrincipalAxes from "@/components/VehiclePage/StatusComponents/PrincipalAxes.vue";
-
+import Status from '../../components/VehiclePage/StatusComponents/Status.vue';
 
 export default {
     components: {
@@ -95,6 +76,7 @@ export default {
         VehicleStage,
         StatusBars,
         PrincipalAxes,
+        Status
     },
     data() {
         return {
