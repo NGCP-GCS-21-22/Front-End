@@ -4,6 +4,7 @@
 			:position="{ lat: 33.93441, lng: -117.6318169 }"
 			:icon="{
 				url: 'https://i.imgur.com/fjnfxWN.png',
+				anchor: { x: 11, y: 26 },
 			}"
 			:clickable="true"
 			@mouseover="hover = true"
