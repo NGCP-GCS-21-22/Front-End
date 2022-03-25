@@ -60,14 +60,13 @@
 						<b-row>
 							<!-- Reset button -->
 							<b-button
-								pill
 								@click="resetCoordinate(index)"
 								v-show="
 									index || (!index && coordinates.length > 1)
 								"
 								variant="light"
 								size="sm"
-								class="btn"
+								class="small-btn"
 							>
 								<b-icon
 									icon="arrow-counterclockwise"
@@ -79,14 +78,13 @@
 
 							<!-- Remove button -->
 							<b-button
-								pill
 								@click="remove(index)"
 								v-show="
 									index || (!index && coordinates.length > 1)
 								"
 								variant="light"
 								size="sm"
-								class="btn"
+								class="small-btn"
 							>
 								<b-icon
 									icon="dash-circle"
@@ -98,11 +96,10 @@
 
 							<!-- Add button -->
 							<b-button
-								pill
 								@click="add(index)"
 								variant="light"
 								size="sm"
-								class="btn"
+								class="small-btn"
 							>
 								<b-icon
 									icon="plus-circle"
@@ -116,7 +113,7 @@
 				</b-input-group>
 			</b-row>
 		</div>
-		<b-row class="row" style="float: right; padding-right: 20px">
+		<b-row class="row" style="float: right; padding-right: 10px">
 			<b-button class="button" @click="resetCoordinates">Reset</b-button>
 			<b-button
 				class="button"
@@ -211,16 +208,22 @@ export default {
 </script>
 
 <style scoped>
-.btn {
+.small-btn {
+	background: #ffffff;
 	margin-left: 5px;
+	border: 1px solid #CED4DA;
+	border-radius: 100%;
 }
-.btn:last-child {
+.small-btn:last-child {
 	margin-right: 0px;
 }
 .back-button {
 	position: absolute;
 	top: 20px;
 	left: 20px;
+}
+.button {
+	margin-right: 5px;
 }
 
 .coordNum {
@@ -229,7 +232,7 @@ export default {
 }
 .container {
 	overflow-y: auto;
-	height: calc(45vh - 190px);
+	height: calc(45vh - 230px);
 	margin-bottom: 15px;
 }
 
