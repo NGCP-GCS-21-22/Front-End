@@ -40,7 +40,6 @@
 						<b-row>
 							<!-- Reset button -->
 							<b-button
-								pill
 								@click="resetCoordinate(index)"
 								v-show="
 									index || (!index && searchArea.length > 1)
@@ -59,7 +58,6 @@
 
 							<!-- Remove button -->
 							<b-button
-								pill
 								@click="remove(index)"
 								v-show="
 									index || (!index && searchArea.length > 1)
@@ -78,7 +76,6 @@
 
 							<!-- Add button -->
 							<b-button
-								pill
 								@click="add(index)"
 								variant="light"
 								size="sm"

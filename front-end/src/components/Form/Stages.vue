@@ -28,7 +28,6 @@
               <!-- Remove button -->
 
               <b-button
-                pill
                 @click="remove(k)"
                 v-show="k || (!k && inputs.length > 1)"
                 variant="light"
@@ -45,7 +44,6 @@
 
               <!-- Add button -->
               <b-button
-                pill
                 @click="add(k)"
                 v-show="k == inputs.length - 1"
                 b-modal="k == inputs.length-1"

@@ -1,12 +1,12 @@
 <template>
-	<b-container>
+	<div	>
 		<h5 v-for="(polygon) in polygons" :key="polygon.index">
 			Polygon {{ polygon.index + 1 }}
 			<b-button
-				pill
 				@click="deletePolygon(polygon.index)"
 				variant="light"
 				size="sm"
+				class="btn"
 			>
 				<b-icon
 					icon="dash-circle"
@@ -16,10 +16,10 @@
 				></b-icon>
 			</b-button>
 			<b-button
-				pill
 				@click="editPolygon(polygon.index)"
 				variant="light"
 				size="sm"
+				class="btn"
 			>
 				<b-icon
 					icon="pencil"
@@ -29,7 +29,7 @@
 				></b-icon>
 			</b-button>
 		</h5>
-	</b-container>
+	</div>
 </template>
 
 <script>
@@ -52,6 +52,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.btn {
+	background: #ffffff;
+	margin-left: 5px;
+	border: 1px solid #CED4DA;
+	border-radius: 100%;
+}
 </style>

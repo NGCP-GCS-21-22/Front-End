@@ -3,6 +3,7 @@
 		<b-button class="back-button" @click="goBack">Back</b-button>
 		<h2>{{ name }}</h2>
 		<b-row>
+			<b-card class="cartCards">
 			<Workspace
 				ref="Workspace"
 				:geofenceWorkspace="geofenceWorkspace"
@@ -10,29 +11,34 @@
 				@updateWidgetData="updateWidgetData"
 				style="width: 100%;"
 			/>
+			</b-card>
 		</b-row>
 		<b-row class="cart">
-			<b-col>
+			<b-col style="padding: 0 10px 0 0;">
+				<b-card class="cartCards">
 				<h5>Keep In</h5>
-				<div class="cont">
-					<Cart
-						:polygons="keepInPolygons"
-						:keepIn="true"
-						@deletePolygon="deletePolygon"
-						@editPolygon="editPolygon"
-					/>
-				</div>
+					<div class="cont">
+						<Cart
+							:polygons="keepInPolygons"
+							:keepIn="true"
+							@deletePolygon="deletePolygon"
+							@editPolygon="editPolygon"
+						/>
+					</div>
+				</b-card>
 			</b-col>
-			<b-col>
-				<h5>Keep Out</h5>
-				<div class="cont">
-					<Cart
-						:polygons="keepOutPolygons"
-						:keepIn="false"
-						@deletePolygon="deletePolygon"
-						@editPolygon="editPolygon"
-					/>
-				</div>
+			<b-col style="padding: 0 0 0 10px;">
+				<b-card class="cartCards">
+					<h5>Keep Out</h5>
+					<div class="cont">
+						<Cart
+							:polygons="keepOutPolygons"
+							:keepIn="false"
+							@deletePolygon="deletePolygon"
+							@editPolygon="editPolygon"
+						/>
+					</div>
+				</b-card>
 			</b-col>
 		</b-row>
 		<b-row class="deletesubmit-buttons">
@@ -145,6 +151,10 @@ export default {
 	position: absolute;
 	bottom: 20px;
 	right: 25px;
+}
+
+.cartCards {
+	background: #f3f3f3;
 }
 
 .cart {
