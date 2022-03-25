@@ -13,26 +13,30 @@
 		</b-row>
 		<b-row class="cart">
 			<b-col>
+				<b-card class="cartCards">
 				<h5>Keep In</h5>
-				<div class="cont">
-					<Cart
-						:polygons="keepInPolygons"
-						:keepIn="true"
-						@deletePolygon="deletePolygon"
-						@editPolygon="editPolygon"
-					/>
-				</div>
+					<div class="cont">
+						<Cart
+							:polygons="keepInPolygons"
+							:keepIn="true"
+							@deletePolygon="deletePolygon"
+							@editPolygon="editPolygon"
+						/>
+					</div>
+				</b-card>
 			</b-col>
 			<b-col>
-				<h5>Keep Out</h5>
-				<div class="cont">
-					<Cart
-						:polygons="keepOutPolygons"
-						:keepIn="false"
-						@deletePolygon="deletePolygon"
-						@editPolygon="editPolygon"
-					/>
-				</div>
+				<b-card class="cartCards">
+					<h5>Keep Out</h5>
+					<div class="cont">
+						<Cart
+							:polygons="keepOutPolygons"
+							:keepIn="false"
+							@deletePolygon="deletePolygon"
+							@editPolygon="editPolygon"
+						/>
+					</div>
+				</b-card>
 			</b-col>
 		</b-row>
 		<b-row class="deletesubmit-buttons">
@@ -145,6 +149,10 @@ export default {
 	position: absolute;
 	bottom: 20px;
 	right: 25px;
+}
+
+.cartCards {
+	background: #f3f3f3;
 }
 
 .cart {

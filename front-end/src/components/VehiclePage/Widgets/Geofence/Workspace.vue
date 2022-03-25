@@ -229,7 +229,7 @@ export default {
 }
 .container {
 	overflow-y: auto;
-	height: calc(45vh - 170px);
+	height: calc(45vh - 190px);
 	margin-bottom: 15px;
 }
 

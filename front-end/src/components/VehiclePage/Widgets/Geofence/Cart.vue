@@ -1,5 +1,5 @@
 <template>
-	<b-container>
+	<div>
 		<h5 v-for="(polygon) in polygons" :key="polygon.index">
 			Polygon {{ polygon.index + 1 }}
 			<b-button
@@ -29,7 +29,7 @@
 				></b-icon>
 			</b-button>
 		</h5>
-	</b-container>
+	</div>
 </template>
 
 <script>

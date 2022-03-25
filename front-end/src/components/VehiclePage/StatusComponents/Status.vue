@@ -2,8 +2,9 @@
   <b-container>
     <b-row class="justify-content-md-center">
       <b-col>
-        <b-row class="justify-content-md-center"> Status:</b-row>
-        <b-row class="justify-content-md-center">
+        <b-row class="justify-content-md-center"><h3>Status</h3></b-row>
+        <b-row class="status justify-content-md-center">
+          {{ status }}
           <p class="StatusIcon">
             <b-icon
               icon="circle-fill"
@@ -31,12 +32,12 @@
               variant="secondary"
             ></b-icon>
           </p>
-          {{ status }}
         </b-row>
       </b-col>
       <b-col>
-        <b-row class="justify-content-md-center"> Sensors: </b-row>
-        <b-row class="justify-content-md-center">
+        <b-row class="justify-content-md-center"><h3>Sensors</h3></b-row>
+        <b-row class="status justify-content-md-center">
+          {{sensors}}
           <p class="SensorIcon">
             <b-icon
               icon="circle-fill"
@@ -64,7 +65,6 @@
               variant="secondary"
             ></b-icon>
           </p>
-          {{sensors}}
         </b-row>
       </b-col>
     </b-row>
@@ -88,19 +88,19 @@ export default {
 
       this.status_ = this.vehicleData["status"];
       if (this.status_ == 1) return "unactive";
-      else if (this.status_ == 2) return "waiting";
-      else if (this.status_ == 3) return "active";
+      else if (this.status_ == 2) return "Waiting";
+      else if (this.status_ == 3) return "Active";
       else if (this.status_ == 4) return "unknown 1";
       else if (this.status_ == 5) return "unknown 2";
     },
     sensors() {
       if (!this.vehicleData) return 0;
       this.functional = this.vehicleData["sensors_ok"];
-      if (this.functional == 1) return "functional 1";
-      else if (this.functional == 2) return "functional 2";
-      else if (this.functional == 3) return "functional 3";
-      else if (this.functional == 4) return "functional 4";
-      else if (this.functional == 5) return "functional 5";
+      if (this.functional == 1) return "Functional";
+      else if (this.functional == 2) return "Functional";
+      else if (this.functional == 3) return "Functional";
+      else if (this.functional == 4) return "Functional";
+      else if (this.functional == 5) return "Functional";
     },
   },
 };
@@ -108,9 +108,15 @@ export default {
 
 <style>
 .StatusIcon .b-icon{
-  margin-right: 10px;
+  margin-left: 10px;
 }
 .SensorIcon .b-icon{
-  margin-right: 10px;
+  margin-left: 10px;
+}
+h3 {
+  text-decoration: underline;
+}
+.status {
+  font-size: 15pt;
 }
 </style>
