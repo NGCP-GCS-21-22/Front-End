@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
 	props: {
 		// stages: Object,
@@ -128,6 +130,17 @@ export default {
 		submit(sModalShow) {
 			this.sModalShow = !sModalShow;
 			console.log("selectedStage: " + this.selectedStage);
+			const path = "http://localhost:5000/postGeneralStage"
+			let payload = {
+				general_stage: this.generalStage,
+			}
+			axios.post(path, payload)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error)=>{
+				console.log(error);
+			});
 		},
 	},
 };
