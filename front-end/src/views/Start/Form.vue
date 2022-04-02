@@ -7,12 +7,12 @@
 			placeholder="Mission Name"
 		>
 		</b-form-input>
-		<b-button class="back" variant="outline-primary" @click="goToStart"
-			>Back</b-button
-		>
-		<b-button class="back" variant="outline-primary" @click="goToGCS"
-			>Go to GCS</b-button
-		>
+		<b-button class="back" variant="outline-primary" @click="goToStart">
+			Back
+		</b-button>
+		<b-button class="back" variant="outline-primary" @click="goToGCS">
+			Go to GCS
+		</b-button>
 
 		<b-container fluid>
 			<b-row class="justify-content-md-center">
@@ -27,9 +27,9 @@
 				</b-col>
 			</b-row>
 		</b-container>
-		<b-button class="submit" variant="primary" @click.prevent="submit()"
-			>Submit</b-button
-		>
+		<b-button class="submit" variant="primary" @click.prevent="submit()">
+			Submit
+		</b-button>
 	</div>
 </template>
 
@@ -49,15 +49,6 @@ export default {
 	props: {
 		vehicleName: String,
 	},
-	computed: {
-		getFormName() {
-			if (!this.formName) {
-				return 0;
-			}
-			return formName;
-		},
-	},
-
 	methods: {
 		goToGCS() {
 			this.$router.push("/gcs/main");
