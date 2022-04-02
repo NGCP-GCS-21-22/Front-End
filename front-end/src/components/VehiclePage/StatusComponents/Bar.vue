@@ -2,14 +2,16 @@
 	<b-row>
 		<b-col align="center" class="center-block">
 			<b-row class="loadbar">
-				<span class="bar" :style="`height: ${barPercent}%`">
+				<span
+					class="bar"
+					:style="`background-color: ${barStyle}; height: ${barPercent}%`"
+				>
 					{{ value }}
 				</span>
 			</b-row>
-			<b-row
-				class="barLabel justify-content-md-center"
-				>{{ name }} {{ unit }}</b-row
-			>
+			<b-row class="barLabel justify-content-md-center"
+				>{{ name }} ({{ unit }})
+			</b-row>
 		</b-col>
 	</b-row>
 </template>
@@ -21,16 +23,23 @@ export default {
 		unit: String,
 		value: Number,
 		max: Number,
+		color: String,
 	},
 	computed: {
 		barPercent() {
-			return (this.value / this.max) * 100
+			if (!this.value) return 0;
+			if (!this.max) return 0;
+			return (this.value / this.max) * 100;
+		},
+		barStyle() {
+			if (!this.color) return "#0d0384";
+			return this.color;
 		},
 	},
 	data() {
-		return {}
+		return {};
 	},
-}
+};
 </script>
 
 <style>
@@ -44,7 +53,6 @@ export default {
 }
 .bar {
 	width: 100%;
-	background-color: #0d0384;
 	color: #fff;
 	font-size: 12pt;
 	position: absolute;

@@ -40,11 +40,11 @@ export default {
 			return `color: ${this.vehicleData["pitch_color"]}`;
 		},
 		rollStyle() {
-			if (!this.vehicleData) return nul;
+			if (!this.vehicleData) return null;
 			return `color: ${this.vehicleData["roll_color"]}`;
 		},
 		yawStyle() {
-			if (!this.vehicleData) return nul;
+			if (!this.vehicleData) return null;
 			return `color: ${this.vehicleData["yaw_color"]}`;
 		},
 	},
