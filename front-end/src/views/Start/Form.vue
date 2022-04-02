@@ -1,10 +1,11 @@
 <template>
 	<div>
-		<b-form-input 
-			type="text" 
-			v-model="formName"  
-			style="justify-content-md-center; color: black; width: 55vh; height: 5.5vh; font-size: 3.2vh; margin-bottom: 15px; margin-top: 3vh; margin-right: 5vh; margin-left: 7vh;" 
-			placeholder="Mission Name" > 
+		<b-form-input
+			type="text"
+			v-model="formName"
+			style="justify-content-md-center; color: black; width: 55vh; height: 5.5vh; font-size: 3.2vh; margin-bottom: 15px; margin-top: 3vh; margin-right: 5vh; margin-left: 7vh;"
+			placeholder="Mission Name"
+		>
 		</b-form-input>
 		<b-button class="back" variant="outline-primary" @click="goToStart"
 			>Back</b-button
@@ -37,11 +38,10 @@ import MissionForm from "@/components/Form/MissionForm.vue";
 import axios from "axios";
 
 export default {
-	data(){
-		return{
+	data() {
+		return {
 			formName: "",
 		};
-
 	},
 	components: {
 		MissionForm,
@@ -49,13 +49,13 @@ export default {
 	props: {
 		vehicleName: String,
 	},
-	computed:{
-		getFormName(){
-			if(!this.formName){
+	computed: {
+		getFormName() {
+			if (!this.formName) {
 				return 0;
 			}
 			return formName;
-		}
+		},
 	},
 
 	methods: {
@@ -88,8 +88,7 @@ export default {
 
 			let path = "http://localhost:5000/postData";
 			let payload = {
-				Name: this.formName
-				,
+				name: this.formName,
 				MAC: {
 					icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/MAC.png",
 					MissionWaypoint:
