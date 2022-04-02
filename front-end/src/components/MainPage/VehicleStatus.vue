@@ -32,7 +32,7 @@
 			<b-row>
 				<!-- bottom left -->
 				<b-col cols="6">
-					<StageSelection :vehicleName="vehicleName" />
+					<StageSelection :vehicleName="vehicleName" :missionData="missionData" />
 				</b-col>
 				<!-- bottom right -->
 				<b-col>
@@ -57,6 +57,7 @@ export default {
 		vehicleName: String,
 		vehicleIcon: Object,
 		vehicleData: Object,
+		missionData: Object,
 	},
 	components: {
 		VehicleStatusTitle,
