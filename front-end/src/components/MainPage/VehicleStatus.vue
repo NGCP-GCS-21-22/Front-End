@@ -19,9 +19,9 @@
 				</b-col>
 				<!-- middle right -->
 				<b-col cols="6">
-					<b-row
-						><b-col><Mode :mode="mode" /></b-col>
-						<b-col>
+					<b-row>
+						<b-col cols="7"><Mode :mode="mode" /></b-col>
+						<b-col cols="5">
 							<Battery :batteryPct="batteryPct" />
 						</b-col>
 					</b-row>
@@ -36,7 +36,7 @@
 				</b-col>
 				<!-- bottom right -->
 				<b-col>
-					<EmergencyStop />
+					<EmergencyStop :vehicleName="vehicleName" />
 				</b-col>
 			</b-row>
 		</b-card>

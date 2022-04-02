@@ -94,6 +94,8 @@
 							cardSelected == widget.name
 						"
 						:name="widget.name"
+						:vehicleName="vehicleName"
+						:vehicleData="vehicleData"
 						@goBack="showWidgets"
 					/>
 				</div>

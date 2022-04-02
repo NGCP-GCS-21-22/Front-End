@@ -44,13 +44,35 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+	props: {
+		vehicleName: String,
+	},
 	data() {
 		return {
 			eModalShow: false,
-		}
+		};
 	},
-}
+	methods: {
+		sendEmergencyStopCommand() {
+			this.eModalShow = !eModalShow;
+			const path = "http://localhost:5000/emergencyStop";
+			let payload = {
+				vehicle: this.vehicleName,
+			};
+			axios
+				.post(path, payload)
+				.then((response) => {
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		},
+	},
+};
 </script>
 
 <style scoped>

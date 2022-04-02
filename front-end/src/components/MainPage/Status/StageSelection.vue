@@ -127,7 +127,7 @@ export default {
 		};
 	},
 	methods: {
-		submit(sModalShow) {
+		submit() {
 			this.sModalShow = !sModalShow;
 			console.log("selectedStage: " + this.selectedStage);
 			const path = "http://localhost:5000/updateGeneralStage"
