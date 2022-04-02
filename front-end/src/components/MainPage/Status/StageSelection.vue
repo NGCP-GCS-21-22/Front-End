@@ -130,9 +130,10 @@ export default {
 		submit(sModalShow) {
 			this.sModalShow = !sModalShow;
 			console.log("selectedStage: " + this.selectedStage);
-			const path = "http://localhost:5000/postGeneralStage"
+			const path = "http://localhost:5000/updateGeneralStage"
 			let payload = {
-				general_stage: this.generalStage,
+				stage: this.selectedId,
+				name: this.vehicleName
 			}
 			axios.post(path, payload)
 			.then((response) => {
