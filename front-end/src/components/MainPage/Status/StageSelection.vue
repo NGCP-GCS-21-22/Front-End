@@ -2,16 +2,15 @@
 	<div>
 		<b-button
 			class="stage-selection-button"
-			style="font-weight: bold;"
+			style="font-weight: bold"
 			@click="sModalShow = !sModalShow"
 			variant="primary"
-			>{{ selectedStage == null ? "STAGE SELECTION" : selectedStage}}
+			>{{ selectedStage == null ? "STAGE SELECTION" : selectedStage }}
 			<b-img
-					style="padding-left: 6px; width: 32px; color: #FFFFFF;"
-					:src="require('@/assets/select.png')"
+				style="padding-left: 6px; width: 32px; color: #ffffff"
+				:src="require('@/assets/select.png')"
 			></b-img>
-			</b-button
-		>
+		</b-button>
 
 		<b-modal
 			centered
@@ -38,8 +37,7 @@
 				variant="primary"
 				style="padding='5px'"
 				>Submit
-			</b-button
-			>
+			</b-button>
 		</b-modal>
 	</div>
 </template>
@@ -48,7 +46,7 @@
 export default {
 	props: {
 		vehicleName: String,
-		missionData: Object
+		missionData: Object,
 	},
 	computed: {
 		selectedStage() {
@@ -64,11 +62,14 @@ export default {
 			return null;
 		},
 		stages() {
+			if (!this.missionData) return null;
+			if (!this.vehicleName) return null;
 			// return stages array
-			return this.missionData
-
-			return null
-		}
+			let vehicleStages = this.missionData[this.vehicleName].stages;
+			console.log(vehicleStages);
+			let temp = [];
+			// for ()
+		},
 	},
 	data() {
 		return {
