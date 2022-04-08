@@ -49,12 +49,12 @@ import {
 	defaultLat,
 	defaultLng,
 } from "@/helpers/coordinates.js";
-import VehiclePositionMarker from "@/components/Maps/VehicleMap/VehiclePositionMarker.vue";
-import MissionWaypointMarker from "@/components/Maps/VehicleMap/MissionWaypointMarker.vue";
-import HomeCoordinatesMarker from "@/components/Maps/VehicleMap/HomeCoordinatesMarker.vue";
-import HikerMarker from "@/components/Maps/VehicleMap/HikerMarker.vue";
-import SearchAreaComponents from "@/components/Maps/VehicleMap/SearchAreaComponents.vue";
-import GeofenceComponents from "@/components/Maps/VehicleMap/GeofenceComponents.vue";
+import VehiclePositionMarker from "@/components/Maps/MapComponents/VehiclePositionMarker.vue";
+import MissionWaypointMarker from "@/components/Maps/MapComponents/MissionWaypointMarker.vue";
+import HomeCoordinatesMarker from "@/components/Maps/MapComponents/HomeCoordinatesMarker.vue";
+import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
+import SearchAreaComponents from "@/components/Maps/MapComponents/SearchAreaComponents.vue";
+import GeofenceComponents from "@/components/Maps/MapComponents/GeofenceComponents.vue";
 
 export default {
 	props: {

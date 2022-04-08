@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { getHikerPosition } from "@/helpers/getData.js";
+
 export default {
 	props: {
 		vehicleData: Object,
@@ -34,16 +36,29 @@ export default {
 		// 	return {
 		// 		id: "hiker",
 		// 		position: {
-		// 			lat: parseFloat(this.vehicleData.hiker_lat),
-		// 			lng: parseFloat(this.vehicleData.hiker_lng),,
+		// 			lat: parseFloat(this.hikerPosition.hiker_lat),
+		// 			lng: parseFloat(this.hikerPosition.hiker_lng),
 		// 		},
 		// 	}
 		// }
 	},
 	data() {
 		return {
-			hover: false,
+			hikerPosition: false,
 		};
+	},
+	mounted() {
+		this.interval = setInterval(this.updateHikerLocation, 500);
+	},
+	methods: {
+		async updateHikerLocation() {
+			try {
+				const response = await getHikerPosition();
+				this.hikerPosition = response;
+			} catch (error) {
+				console.log(error);
+			}
+		},
 	},
 };
 </script>
