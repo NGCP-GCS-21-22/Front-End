@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="searchArea.length > 0">
 		<b-button class="back-button" @click="goBack">Back</b-button>
 		<h2>{{ name }}</h2>
 		<b-row>
@@ -111,8 +111,8 @@ import {
 	defaultLat,
 	defaultLng,
 	defaultPolygon,
-} from "@/helpers/coordinates.js"
-import axios from "axios"
+} from "@/helpers/coordinates.js";
+import axios from "axios";
 
 export default {
 	props: {
@@ -122,53 +122,66 @@ export default {
 	data() {
 		return {
 			initialSearchArea: this.searchArea,
+		};
+	},
+	mounted() {
+		if (this.searchArea <= 0) {
+			this.$emit("updateWidgetData", "searchArea", [...defaultPolygon]);
 		}
 	},
 	methods: {
 		goBack() {
-			this.$emit("updateWidgetData", "searchArea", this.initialSearchArea)
-			this.$emit("goBack")
+			this.$emit(
+				"updateWidgetData",
+				"searchArea",
+				this.initialSearchArea
+			);
+			this.$emit("goBack");
 		},
 		add(index) {
-			let newSearchArea = this.searchArea
+			let newSearchArea = this.searchArea;
 			newSearchArea.splice(index + 1, 0, {
 				lat: defaultLat,
 				lng: defaultLng,
-			})
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			});
+			this.$emit("updateWidgetData", "searchArea", newSearchArea);
 		},
 		remove(index) {
-			let newSearchArea = this.searchArea
-			newSearchArea.splice(index, 1)
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			let newSearchArea = this.searchArea;
+			newSearchArea.splice(index, 1);
+			this.$emit("updateWidgetData", "searchArea", newSearchArea);
 		},
 		resetCoordinate(index) {
-			let newSearchArea = this.searchArea
+			let newSearchArea = this.searchArea;
 			newSearchArea[index] = {
 				lat: defaultLat,
 				lng: defaultLng,
-			}
+			};
 
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			this.$emit("updateWidgetData", "searchArea", newSearchArea);
 		},
 		resetSearchArea() {
-			let newSearchArea = [...defaultPolygon]
-			this.$emit("updateWidgetData", "searchArea", newSearchArea)
+			let newSearchArea = [...defaultPolygon];
+			this.$emit("updateWidgetData", "searchArea", newSearchArea);
 		},
 		searchAreaNotChanged() {
+			if (this.searchArea.length != this.initialSearchArea.length) {
+				return false;
+			}
+
 			for (let i = 0; i < this.searchArea.length; i++) {
 				if (
 					this.searchArea[i].lat != this.initialSearchArea[i].lat &&
 					this.searchArea[i].lng != this.initialSearchArea[i].lng
 				) {
-					return false
+					return false;
 				}
 			}
 
-			return true
+			return true;
 		},
 		postData() {
-			this.initialSearchArea = this.searchArea
+			this.initialSearchArea = this.searchArea;
 			// const path = "http://localhost:8000/postSearchArea"
 			// let payload = {
 			// 	search_area: this.searchArea,
@@ -180,10 +193,10 @@ export default {
 			// .catch((error)=>{
 			// 	console.log(error);
 			// });
-			this.$emit("goBack")
+			this.$emit("goBack");
 		},
 	},
-}
+};
 </script>
 
 <style scoped>

@@ -1,8 +1,8 @@
 <template>
-	<div>
+	<div v-if="widgetTypeSelected == 'SearchArea' && searchArea">
 		<!-- Search Area -->
 		<!-- v-if search selected v-for number of points in UI, create marker -->
-		<div v-if="widgetTypeSelected == 'SearchArea'">
+		<div>
 			<GmapMarker
 				:key="coordinate.id"
 				v-for="(coordinate, index) in searchAreaPolygon.coordinates"
