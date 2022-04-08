@@ -106,7 +106,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .StatusIcon .b-icon{
   margin-left: 10px;
 }

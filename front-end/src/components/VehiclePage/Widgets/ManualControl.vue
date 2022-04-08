@@ -64,9 +64,6 @@ export default {
 	top: 20px;
 	left: 20px;
 }
-h3 {
-	text-decoration: none;
-}
 .control {
 	position: absolute;
 	left: 50%;

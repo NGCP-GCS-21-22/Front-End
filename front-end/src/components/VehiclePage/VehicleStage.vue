@@ -22,7 +22,9 @@ h2,
 h4 {
 	color: #2c3e50;
 }
-
+h3 {
+	text-decoration: underline;
+}
 .stage-container {
 	margin-top: 10px;
 }
