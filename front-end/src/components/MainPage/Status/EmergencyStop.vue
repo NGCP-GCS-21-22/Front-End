@@ -33,7 +33,7 @@
 					<b-button
 						variant="success"
 						block
-						@click="eModalShow = !eModalShow"
+						@click="sendEmergencyStopCommand"
 					>
 						Yes
 					</b-button>
@@ -57,10 +57,13 @@ export default {
 	},
 	methods: {
 		sendEmergencyStopCommand() {
-			this.eModalShow = !eModalShow;
-			const path = "http://localhost:5000/emergencyStop";
+			this.eModalShow = !this.eModalShow;
+			const path = "http://localhost:5000/updateGeneralStage";
 			let payload = {
-				vehicle: this.vehicleName,
+				current_stage: -1,
+				stage_name: "Emergency Stop",
+				vehicle_name: this.vehicleName,
+				estop: true,
 			};
 			axios
 				.post(path, payload)

@@ -7,7 +7,7 @@
 			<b-card class="vehicle-numbers">
 				<PrincipalAxes :vehicleData="vehicleData" />
 				<Status :vehicleData="vehicleData" />
-				<ErrorMessages />
+				<ErrorMessages :vehicleData="vehicleData" />
 			</b-card>
 		</b-row>
 	</div>
