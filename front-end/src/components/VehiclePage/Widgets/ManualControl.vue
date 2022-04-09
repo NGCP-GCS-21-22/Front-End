@@ -6,18 +6,18 @@
 			<h3>{{ vehicleName }} Mode:</h3>
 			<span bg-variant="secondary" text-variant="white" class="mode">
 				{{ mode }}
-				<b-icon :icon="mode == 'Autonomous' ? 'cpu-fill' : 'controller'"></b-icon>
+				<b-icon
+					:icon="mode == 'Autonomous' ? 'cpu-fill' : 'controller'"
+				></b-icon>
 			</span>
 		</div>
 		<b-button
 			class="switch-to-manual"
 			variant="primary"
 			@click="switchToManual"
-			>Switch to Manual</b-button
 		>
-		<!-- <b-button class="button" variant="success" @click="postData"
-			>Submit</b-button
-		> -->
+			Switch to Manual
+		</b-button>
 	</div>
 </template>
 
@@ -41,10 +41,12 @@ export default {
 			this.$emit("goBack");
 		},
 		switchToManual() {
-			const path = "http://localhost:5000/blahblah";
+			const path = "http://localhost:5000/manualOverride";
 			let payload = {
-				name: this.vehicleName,
+				vehicle_name: this.vehicleName,
+				mode: "Manual",
 			};
+			console.log(payload)
 			axios
 				.post(path, payload)
 				.then((response) => {
