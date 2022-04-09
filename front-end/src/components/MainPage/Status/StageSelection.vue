@@ -2,16 +2,15 @@
 	<div>
 		<b-button
 			class="stage-selection-button"
-			style="font-weight: bold;"
+			style="font-weight: bold"
 			@click="sModalShow = !sModalShow"
 			variant="primary"
-			>{{ selectedStage == null ? "STAGE SELECTION" : selectedStage}}
+			>{{ selectedStage == null ? "STAGE SELECTION" : selectedStage }}
 			<b-img
-					style="padding-left: 6px; width: 32px; color: #FFFFFF;"
-					:src="require('@/assets/select.png')"
+				style="padding-left: 6px; width: 32px; color: #ffffff"
+				:src="require('@/assets/select.png')"
 			></b-img>
-			</b-button
-		>
+		</b-button>
 
 		<b-modal
 			centered
@@ -38,14 +37,13 @@
 				variant="primary"
 				style="padding='5px'"
 				>Submit
-			</b-button
-			>
+			</b-button>
 		</b-modal>
 	</div>
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
 
 export default {
 	props: {
@@ -130,18 +128,22 @@ export default {
 		submit() {
 			this.sModalShow = !this.sModalShow;
 			console.log("selectedStage: " + this.selectedStage);
-			const path = "http://localhost:5000/updateGeneralStage"
+			const path = "http://localhost:5000/updateGeneralStage";
 			let payload = {
-				stage: this.selectedId,
-				name: this.vehicleName
-			}
-			axios.post(path, payload)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error)=>{
-				console.log(error);
-			});
+				current_stage: this.selectedId,
+				stage_name: this.selectedStage,
+				vehicle_name: this.vehicleName,
+				estop: false,
+			};
+			console.log(payload);
+			axios
+				.post(path, payload)
+				.then((response) => {
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		},
 	},
 };
