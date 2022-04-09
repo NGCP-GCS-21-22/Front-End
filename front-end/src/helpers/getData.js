@@ -131,17 +131,17 @@ const getWidgetData = (vehicleName) => {
 const getHikerPosition = () => {
 	let path = "http://localhost:5000/postData"
 
-	return new Promise((resolve, reject) => {
+	return new Promise( async (resolve, reject) => {
 		// MEA
 		let payload = {
 			vehicle_name: "MEA",
 		}
-		axios
+		await axios
 			.post(path, payload)
 			.then((response) => {
 				let hikerPosition = {
 					lat: response.data["hiker_position_lat"],
-					lng: response.data["hiker_position_lat"],
+					lng: response.data["hiker_position_lng"],
 				}
 
 				if (hikerPosition != null) {
@@ -156,7 +156,7 @@ const getHikerPosition = () => {
 		payload = {
 			vehicle_name: "ERU",
 		}
-		axios
+		await axios
 			.post(path, payload)
 			.then((response) => {
 				let hikerPosition = {
@@ -176,7 +176,7 @@ const getHikerPosition = () => {
 		payload = {
 			vehicle_name: "MAC",
 		}
-		axios
+		await axios
 			.post(path, payload)
 			.then((response) => {
 				let hikerPosition = {
@@ -192,7 +192,7 @@ const getHikerPosition = () => {
 				reject(error)
 			})
 
-		resolve(null)
+		resolve("what the heck")
 	})
 }
 

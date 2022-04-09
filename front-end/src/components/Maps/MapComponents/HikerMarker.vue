@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div v-if="hikerCoordinates">
 		<GmapMarker
-			:position="{ lat: 33.93441, lng: -117.6318169 }"
+			:position="hikerCoordinates.position"
 			:icon="{
 				url: 'https://i.imgur.com/fjnfxWN.png',
 				anchor: { x: 11, y: 26 },
@@ -14,10 +14,10 @@
 			<GmapInfoWindow v-if="hover" :opened="true">
 				<div>
 					<strong>Latitude:</strong>
-					33.93441
+					{{ hikerCoordinates.position.lat }}
 					<br />
 					<strong>Longitude:</strong>
-					-117.6318169
+					{{ hikerCoordinates.position.lng }}
 				</div>
 			</GmapInfoWindow>
 		</GmapMarker>
@@ -32,19 +32,20 @@ export default {
 		vehicleData: Object,
 	},
 	computed: {
-		// hikerCoordinates() {
-		// 	return {
-		// 		id: "hiker",
-		// 		position: {
-		// 			lat: parseFloat(this.hikerPosition.hiker_lat),
-		// 			lng: parseFloat(this.hikerPosition.hiker_lng),
-		// 		},
-		// 	}
-		// }
+		hikerCoordinates() {
+			if (!this.hikerPosition) return null;
+			return {
+				id: "hiker",
+				position: {
+					lat: parseFloat(this.hikerPosition.lat),
+					lng: parseFloat(this.hikerPosition.lng),
+				},
+			};
+		},
 	},
 	data() {
 		return {
-			hikerPosition: false,
+			hikerPosition: null,
 			hover: false,
 		};
 	},
