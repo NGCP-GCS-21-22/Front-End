@@ -14,8 +14,8 @@ export default {
 	},
 	computed: {
 		errorMessage() {
-			if (!this.vehicleData) return "No error";
-			return this.vehicleData["errorMessage"];
+			if (!this.vehicleData) return "None";
+			return this.vehicleData["err_msg"];
 		},
 	},
 };

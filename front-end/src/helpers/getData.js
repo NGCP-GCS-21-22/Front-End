@@ -139,7 +139,11 @@ const getHikerPosition = () => {
 		axios
 			.post(path, payload)
 			.then((response) => {
-				let hikerPosition = response.data["hiker_pos"]
+				let hikerPosition = {
+					lat: response.data["hiker_position_lat"],
+					lng: response.data["hiker_position_lat"],
+				}
+
 				if (hikerPosition != null) {
 					resolve(hikerPosition)
 				}
@@ -155,7 +159,11 @@ const getHikerPosition = () => {
 		axios
 			.post(path, payload)
 			.then((response) => {
-				let hikerPosition = response.data["hiker_pos"]
+				let hikerPosition = {
+					lat: response.data["hiker_position_lat"],
+					lng: response.data["hiker_position_lat"],
+				}
+
 				if (hikerPosition != null) {
 					resolve(hikerPosition)
 				}
@@ -171,7 +179,11 @@ const getHikerPosition = () => {
 		axios
 			.post(path, payload)
 			.then((response) => {
-				let hikerPosition = response.data["hiker_pos"]
+				let hikerPosition = {
+					lat: response.data["hiker_position_lat"],
+					lng: response.data["hiker_position_lat"],
+				}
+
 				if (hikerPosition != null) {
 					resolve(hikerPosition)
 				}
