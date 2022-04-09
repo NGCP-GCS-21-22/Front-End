@@ -4,19 +4,19 @@
 		<h2>{{ name }}</h2>
 		<b-row>
 			<b-card class="cartCards">
-			<Workspace
-				ref="Workspace"
-				:geofenceWorkspace="geofenceWorkspace"
-				@addGeofencePolygon="addGeofencePolygon"
-				@updateWidgetData="updateWidgetData"
-				style="width: 100%;"
-			/>
+				<Workspace
+					ref="Workspace"
+					:geofenceWorkspace="geofenceWorkspace"
+					@addGeofencePolygon="addGeofencePolygon"
+					@updateWidgetData="updateWidgetData"
+					style="width: 100%"
+				/>
 			</b-card>
 		</b-row>
 		<b-row class="cart">
-			<b-col style="padding: 0 10px 0 0;">
+			<b-col style="padding: 0 10px 0 0">
 				<b-card class="cartCards">
-				<h5>Keep In</h5>
+					<h5>Keep In</h5>
 					<div class="cont">
 						<Cart
 							:polygons="keepInPolygons"
@@ -27,7 +27,7 @@
 					</div>
 				</b-card>
 			</b-col>
-			<b-col style="padding: 0 0 0 10px;">
+			<b-col style="padding: 0 0 0 10px">
 				<b-card class="cartCards">
 					<h5>Keep Out</h5>
 					<div class="cont">
@@ -71,8 +71,11 @@ export default {
 	},
 	data() {
 		return {
-			initialSearchArea: this.searchArea,
+			initialGeofence: null,
 		};
+	},
+	mounted() {
+		this.initialGeofence = [...this.geofence];
 	},
 	computed: {
 		keepInPolygons() {
@@ -107,6 +110,7 @@ export default {
 	methods: {
 		goBack() {
 			this.$refs.Workspace.resetCoordinates();
+			this.$emit("updateWidgetData", "geofence", this.initialGeofence);
 			this.$emit("goBack");
 		},
 		addGeofencePolygon(geofencePolygon, index) {

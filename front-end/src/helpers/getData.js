@@ -113,6 +113,10 @@ const getWidgetData = (vehicleName) => {
 			// {
 			// 	coordinates: [...defaultPolygon],
 			// 	keep_in: true
+			// },
+			// {
+			// 	coordinates: [...defaultPolygon],
+			// 	keep_in: true
 			// }
 		]
 

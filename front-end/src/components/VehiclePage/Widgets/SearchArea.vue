@@ -121,10 +121,11 @@ export default {
 	},
 	data() {
 		return {
-			initialSearchArea: this.searchArea,
+			initialSearchArea: null,
 		};
 	},
 	mounted() {
+		this.initialSearchArea = [...this.searchArea];
 		if (this.searchArea <= 0) {
 			this.$emit("updateWidgetData", "searchArea", [...defaultPolygon]);
 		}

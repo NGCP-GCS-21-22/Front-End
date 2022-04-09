@@ -29,6 +29,7 @@ h3 {
 	padding: 15px 0px 0px 0px;
 }
 .messages {
+	background: #f3f3f3;
 	font-size: 15pt;
 	height: 18vh;
     padding: 10px;
