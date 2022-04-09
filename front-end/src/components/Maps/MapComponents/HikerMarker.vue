@@ -45,6 +45,7 @@ export default {
 	data() {
 		return {
 			hikerPosition: false,
+			hover: false,
 		};
 	},
 	mounted() {
