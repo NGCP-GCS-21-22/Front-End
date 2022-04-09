@@ -7,90 +7,16 @@
 		:tilt="tilt"
 		:options="options"
 	>
-		<!-- vehicle pos -->
-		<!-- <GmapMarker
-			v-for="marker in vehicleMarkers"
-			:key="marker.id"
-			:position="marker.position"
-			:clickable="false"
-			:icon="marker.icon"
-			:zIndex="500"
-			@mouseover="hover = true"
-			@mouseout="hover = false"
-		>
-			<GmapInfoWindow v-if="marker.hover" :opened="true">
-				<div>
-					<strong>Latitude:</strong>
-					{{ marker.vehicleData.latitude }}
-					<br />
-					<strong>Longitude:</strong>
-					{{ marker.vehicleData.longitude }}
-				</div>
-			</GmapInfoWindow>
-		</GmapMarker> -->
+		<!-- MAC -->
+		<VehiclePositionMarker :vehicleData="macData" :vehicleIcon="macIcon" />
 
-		<!-- MAC position -->
-		<GmapMarker
-			v-if="macMarker"
-			:position="macMarker.position"
-			:clickable="true"
-			@mouseover="macHover = true"
-			@mouseout="macHover = false"
-			:icon="macMarker.icon"
-			:zIndex="500"
-		>
-			<GmapInfoWindow v-if="macHover" :opened="true">
-				<div>
-					<strong>Latitude:</strong>
-					{{ macMarker.position.lat }}
-					<br />
-					<strong>Longitude:</strong>
-					{{ macMarker.position.lng }}
-				</div>
-			</GmapInfoWindow>
-		</GmapMarker>
+		<!-- ERU -->
+		<VehiclePositionMarker :vehicleData="eruData" :vehicleIcon="eruIcon" />
 
-		<!-- ERU marker -->
-		<GmapMarker
-			v-if="eruMarker"
-			:position="eruMarker.position"
-			:clickable="true"
-			@mouseover="eruHover = true"
-			@mouseout="eruHover = false"
-			:icon="eruMarker.icon"
-			:zIndex="500"
-		>
-			<GmapInfoWindow v-if="eruHover" :opened="true">
-				<div>
-					<strong>Latitude:</strong>
-					{{ eruMarker.position.lat }}
-					<br />
-					<strong>Longitude:</strong>
-					{{ eruMarker.position.lng }}
-				</div>
-			</GmapInfoWindow>
-		</GmapMarker>
+		<!-- MEA -->
+		<VehiclePositionMarker :vehicleData="meaData" :vehicleIcon="meaIcon" />
 
-		<!-- MEA marker -->
-		<GmapMarker
-			v-if="meaMarker"
-			:position="meaMarker.position"
-			:clickable="true"
-			@mouseover="meaHover = true"
-			@mouseout="meaHover = false"
-			:icon="meaMarker.icon"
-			:zIndex="500"
-		>
-			<GmapInfoWindow v-if="meaHover" :opened="true">
-				<div>
-					<strong>Latitude:</strong>
-					{{ meaMarker.position.lat }}
-					<br />
-					<strong>Longitude:</strong>
-					{{ meaMarker.position.lng }}
-				</div>
-			</GmapInfoWindow>
-		</GmapMarker>
+		<HikerMarker />
 	</GmapMap>
 </template>
 
@@ -101,6 +27,8 @@ import {
 	defaultLat,
 	defaultLng,
 } from "@/helpers/coordinates.js";
+import VehiclePositionMarker from "@/components/Maps/MapComponents/VehiclePositionMarker.vue";
+import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
 
 export default {
 	props: {
@@ -110,6 +38,10 @@ export default {
 		macIcon: Object,
 		eruIcon: Object,
 		meaIcon: Object,
+	},
+	components: {
+		VehiclePositionMarker,
+		HikerMarker,
 	},
 	data() {
 		return {

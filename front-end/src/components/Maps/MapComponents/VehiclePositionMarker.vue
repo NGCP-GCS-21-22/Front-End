@@ -1,5 +1,6 @@
 <template>
 	<GmapMarker
+		v-if="vehicleData && vehicleIcon"
 		:position="vehicleMarker.position"
 		:clickable="true"
 		@mouseover="hover = true"
@@ -10,10 +11,10 @@
 		<GmapInfoWindow v-if="hover" :opened="true">
 			<div>
 				<strong>Latitude:</strong>
-				{{ this.vehicleData.latitude }}
+				{{ this.vehicleMaker.position.latitude }}
 				<br />
 				<strong>Longitude:</strong>
-				{{ this.vehicleData.longitude }}
+				{{ this.vehicleMaker.position.longitude }}
 			</div>
 		</GmapInfoWindow>
 	</GmapMarker>

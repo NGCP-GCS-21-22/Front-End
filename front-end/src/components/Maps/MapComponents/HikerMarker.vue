@@ -28,9 +28,6 @@
 import { getHikerPosition } from "@/helpers/getData.js";
 
 export default {
-	props: {
-		vehicleData: Object,
-	},
 	computed: {
 		hikerCoordinates() {
 			if (!this.hikerPosition) return null;
