@@ -11,10 +11,10 @@
 		<GmapInfoWindow v-if="hover" :opened="true">
 			<div>
 				<strong>Latitude:</strong>
-				{{ this.vehicleMaker.position.latitude }}
+				{{ vehicleMarker.position.lat }}
 				<br />
 				<strong>Longitude:</strong>
-				{{ this.vehicleMaker.position.longitude }}
+				{{ vehicleMarker.position.lng }}
 			</div>
 		</GmapInfoWindow>
 	</GmapMarker>
@@ -56,4 +56,29 @@ export default {
 </script>
 
 <style>
+-.coorStyle {
+	height: 7vh;
+	margin-left: 2px;
+}
+.coord-container {
+	margin-bottom: 10px;
+	margin-left: 2px;
+}
+
+.c {
+	background-color: white;
+	color: rgb(160, 160, 160);
+	position: absolute;
+	bottom: 0px;
+	right: 25%;
+	left: 50%;
+	margin-left: -150px;
+}
+button.gm-ui-hover-effect {
+	visibility: hidden;
+}
+.gm-style-iw.gm-style-iw-c {
+	font-size: 25px;
+	font-weight: 400;
+}
 </style>
