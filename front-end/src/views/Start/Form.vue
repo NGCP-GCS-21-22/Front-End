@@ -1,19 +1,16 @@
 <template>
-	<div>
-		<b-form-input
-			type="text"
-			v-model="formName"
-			style="justify-content-md-center; color: black; width: 55vh; height: 5.5vh; font-size: 3.2vh; margin-bottom: 15px; margin-top: 3vh; margin-right: 5vh; margin-left: 7vh;"
-			placeholder="Mission Name"
-		>
+	<div class="bg-container">
+		<div class="back">
+			<b-button variant="dark" @click="goToStart">
+				Back
+			</b-button>
+		</div>
+		<b-container>
+			<b-row class="justify-content-md-center">
+				<Name ref="Name"/>
+			</b-row>
+		</b-container>	
 		</b-form-input>
-		<b-button class="back" variant="outline-primary" @click="goToStart">
-			Back
-		</b-button>
-		<b-button class="back" variant="outline-primary" @click="goToGCS">
-			Go to GCS
-		</b-button>
-
 		<b-container fluid>
 			<b-row class="justify-content-md-center">
 				<b-col md="4">
@@ -27,15 +24,16 @@
 				</b-col>
 			</b-row>
 		</b-container>
-		<b-button class="submit" variant="primary" @click.prevent="submit()">
+		<b-button class="submit" variant="success" @click.prevent="submit()">
 			Submit
 		</b-button>
 	</div>
 </template>
 
 <script>
-import MissionForm from "@/components/Form/MissionForm.vue";
 import axios from "axios";
+import MissionForm from "@/components/Form/MissionForm.vue";
+import Name from "@/components/Form/Name.vue";
 
 export default {
 	data() {
@@ -45,6 +43,7 @@ export default {
 	},
 	components: {
 		MissionForm,
+		Name,
 	},
 	props: {
 		vehicleName: String,
@@ -57,29 +56,9 @@ export default {
 			this.$router.push("/");
 		},
 		submit() {
-			// // get the waypoint from each mission form
-			// console.log(this.$refs.MACForm.$refs.MissionWaypoint.waypointName);
-			// console.log(this.$refs.ERUForm.$refs.MissionWaypoint.waypointName);
-			// console.log(this.$refs.MEAForm.$refs.MissionWaypoint.waypointName);
-			// // get the Stage id and name from each mission form
-			// console.log(this.$refs.MACForm.$refs.Stages.id);
-			// console.log(this.$refs.ERUForm.$refs.Stages.id);
-			// console.log(this.$refs.MEAForm.$refs.Stages.id);
-			// console.log(this.$refs.MACForm.$refs.Stages.stage);
-			// console.log(this.$refs.ERUForm.$refs.Stages.stage);
-			// console.log(this.$refs.MEAForm.$refs.Stages.stage);
-			// // get the manual control from each mission form
-			// console.log(this.$refs.MACForm.$refs.ManualControl.toggle);
-			// console.log(this.$refs.ERUForm.$refs.ManualControl.toggle);
-			// console.log(this.$refs.MEAForm.$refs.ManualControl.toggle);
-			// // get the search area from each mission form
-			// console.log(this.$refs.MACForm.$refs.SearchArea.toggle);
-			// console.log(this.$refs.ERUForm.$refs.SearchArea.toggle);
-			// console.log(this.$refs.MEAForm.$refs.SearchArea.toggle);
-
 			let path = "http://localhost:5000/postData";
 			let payload = {
-				name: this.formName,
+				name: this.$refs.Name.missionName,
 				MAC: {
 					icon: "https://github.com/NGCP-GCS-21-22/Front-End/blob/main/front-end/src/assets/MAC.png",
 					MissionWaypoint:
@@ -111,14 +90,17 @@ export default {
 					Searcharea: this.$refs.MEAForm.$refs.SearchArea.toggle,
 				},
 			};
-			axios.post(path, payload).then(
-				(response) => {
-					console.log("Mission data sent.");
-				},
-				(error) => {
-					console.log(Error);
-				}
-			);
+			// axios
+			// 	.post(path, payload)
+			// 	.then((response) => {
+			// 		console.log("Mission data sent.");
+			// 		this.$router.push("/gcs/main");
+			// 	})
+			// 	.catch((error) => {
+			// 		console.log(error);
+			// 	});
+			console.log(payload);
+			this.$router.push("/gcs/main");
 		},
 	},
 };
@@ -141,9 +123,12 @@ export default {
 }
 
 .back {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-left: 10px;
-	margin-right: 10px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.bg-container {
+	width: 100vw;
+	height: 100vh;
 }
 </style>

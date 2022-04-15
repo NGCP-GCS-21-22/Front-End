@@ -59,7 +59,6 @@ export default {};
 
 .nav-title {
   font-size: 18pt;
-  text-transform: uppercase;
   padding-left: 25px;
   font-weight: 400;
   /* margin: auto; */

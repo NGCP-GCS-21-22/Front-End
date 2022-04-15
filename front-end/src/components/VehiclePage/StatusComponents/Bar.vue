@@ -49,7 +49,8 @@ export default {
 	background-color: #eeeeee;
 	border: 2px solid #aaaaaa;
 	position: relative;
-	margin-top: 10px;
+	/* margin-top: 10px; */
+	margin-bottom: 15px;
 }
 .bar {
 	width: 100%;

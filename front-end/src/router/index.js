@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Start from '@/views/Start/Start.vue'
 import Form from '@/views/Start/Form.vue'
-import Missions from '@/views/Start/Missions.vue'
 import Navbar from '@/components/Navbar.vue'
 import Main from '@/views/GCS/Main.vue'
 import MAC from '@/views/GCS/MAC.vue'
@@ -21,11 +20,6 @@ const routes = [
     path: '/form',
     name: 'Form',
     component: Form
-  },
-  {
-    path: '/missions',
-    name: 'Missions',
-    component: Missions
   },
   {
     path: '/gcs',
