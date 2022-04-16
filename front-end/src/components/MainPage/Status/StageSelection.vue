@@ -71,6 +71,7 @@ export default {
 			console.log(vehicleStages);
 			let temp = [];
 			// for ()
+			return vehicleStages
 		},
 	},
 	data() {
