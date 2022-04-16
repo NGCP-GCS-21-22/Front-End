@@ -23,6 +23,7 @@
 						:vehicleName="vehicleName"
 						:vehicleIcon="vehicleIcon"
 						:vehicleData="vehicleData"
+						:missionData="missionData"
 					/>
 				</b-row>
 				<b-row>
@@ -66,74 +67,78 @@ export default {
         VehicleStage,
         StatusSidebar,
     },
-	data() {
-		return {
-			vehicleName: "ERU",
-			generalStage: null,
-			vehicleData: null,
-			vehicleMissionData: null,
-			widgetData: null,
-			widgetTypeSelected: null,
-		};
-	},
-	computed: {
-		vehicleIcon() {
-			if (!this.vehicleMissionData) return null;
-			return this.vehicleMissionData.icon;
-		},
-	},
-	mounted() {
-		this.initializeMissionData();
-		this.initializeWidgetData();
-		this.interval = setInterval(this.updateStatus, 500);
-	},
-	methods: {
-		async initializeMissionData() {
-			try {
-				const response = await getMissionData(this.vehicleName);
-				this.vehicleMissionData = response;
+    data() {
+        return {
+            vehicleName: "ERU",
+            generalStage: null,
+            vehicleData: null,
+            missionData: null,
+            widgetData: null,
+            widgetTypeSelected: null,
+        };
+    },
+    computed: {
+        vehicleIcon() {
+            if (!this.vehicleMissionData) return null;
+            return this.vehicleMissionData.icon;
+        },
+        vehicleMissionData() {
+            if (!this.missionData) return null;
+            return this.missionData[this.vehicleName]
+        }
+    },
+    mounted() {
+        this.initializeMissionData();
+        this.initializeWidgetData();
+        this.interval = setInterval(this.updateStatus, 500);
+    },
+    methods: {
+        async initializeMissionData() {
+            try {
+				const response = await getMissionData("all");
+				this.missionData = response;
 			} catch (error) {
 				console.log(error);
 			}
-		},
-		async initializeWidgetData() {
-			try {
-				const response = await getWidgetData(this.vehicleName);
-				this.widgetData = response;
-			} catch (error) {
-				console.log(error);
-			}
-		},
-		updateStatus() {
-			this.updateGeneralStage();
-			this.updateVehicleData();
-		},
-		async updateGeneralStage() {
-			try {
-				const response = await getGeneralStage();
-				this.generalStage = response;
-			} catch (error) {
-				console.log(error);
-			}
-		},
-		async updateVehicleData() {
-			try {
-				const response = await getVehicleData("ERU");
-				this.vehicleData = response;
-			} catch (error) {
-				console.log(error);
-			}
-		},
-		setWidgetData(widgetType, value) {
-			this.$set(this.widgetData, widgetType, value);
-		},
-		setWidgetSelected(widgetTypeSelected) {
-			this.widgetTypeSelected = widgetTypeSelected;
-		},
-	},
-	beforeDestroy() {
-		clearInterval(this.interval);
-	},
+        },
+        async initializeWidgetData() {
+            try {
+                const response = await getWidgetData(this.vehicleName);
+                this.widgetData = response;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        updateStatus() {
+            this.updateGeneralStage();
+            this.updateVehicleData();
+        },
+        async updateGeneralStage() {
+            try {
+                const response = await getGeneralStage();
+                this.generalStage = response;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async updateVehicleData() {
+            try {
+                const response = await getVehicleData("ERU");
+                this.vehicleData = response;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        setWidgetData(widgetType, value) {
+            this.$set(this.widgetData, widgetType, value);
+        },
+        setWidgetSelected(widgetTypeSelected) {
+            this.widgetTypeSelected = widgetTypeSelected;
+        },
+    },
+    beforeDestroy() {
+        clearInterval(this.interval);
+    },
 };
 </script>
 

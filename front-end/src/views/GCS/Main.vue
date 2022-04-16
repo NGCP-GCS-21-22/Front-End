@@ -21,18 +21,21 @@
 					:vehicleName="'MAC'"
 					:vehicleIcon="macIcon"
 					:vehicleData="macData"
+					:missionData="missionData"
 				/>
 				<VehicleStatus
 					class="vehicle-status"
 					:vehicleName="'ERU'"
 					:vehicleIcon="eruIcon"
 					:vehicleData="eruData"
+					:missionData="missionData"
 				/>
 				<VehicleStatus
 					class="vehicle-status"
 					:vehicleName="'MEA'"
 					:vehicleIcon="meaIcon"
 					:vehicleData="meaData"
+					:missionData="missionData"
 				/>
 			</b-col>
 		</b-row>

@@ -23,6 +23,7 @@
 						:vehicleName="vehicleName"
 						:vehicleIcon="vehicleIcon"
 						:vehicleData="vehicleData"
+						:missionData="missionData"
 					/>
 				</b-row>
 				<b-row>
@@ -72,6 +73,7 @@ export default {
 			generalStage: null,
 			vehicleData: null,
 			vehicleMissionData: null,
+			missionData: null,
 			widgetData: null,
 			widgetTypeSelected: null,
 		};
@@ -80,6 +82,10 @@ export default {
 		vehicleIcon() {
 			if (!this.vehicleMissionData) return null;
 			return this.vehicleMissionData.icon;
+		},
+		vehicleMissionData() {
+			if (!this.missionData) return null;
+			return this.missionData[this.vehicleName];
 		},
 	},
 	mounted() {
@@ -90,8 +96,8 @@ export default {
 	methods: {
 		async initializeMissionData() {
 			try {
-				const response = await getMissionData(this.vehicleName);
-				this.vehicleMissionData = response;
+				const response = await getMissionData("all");
+				this.missionData = response;
 			} catch (error) {
 				console.log(error);
 			}

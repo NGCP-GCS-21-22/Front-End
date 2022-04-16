@@ -23,6 +23,7 @@
 						:vehicleName="vehicleName"
 						:vehicleIcon="vehicleIcon"
 						:vehicleData="vehicleData"
+						:missionData="missionData"
 					/>
 				</b-row>
 				<b-row>
@@ -71,7 +72,7 @@ export default {
 			vehicleName: "MAC",
 			generalStage: null,
 			vehicleData: null,
-			vehicleMissionData: null,
+			missionData: null,
 			widgetData: null,
 			widgetTypeSelected: null,
 		};
@@ -80,6 +81,10 @@ export default {
 		vehicleIcon() {
 			if (!this.vehicleMissionData) return null;
 			return this.vehicleMissionData.icon;
+		},
+		vehicleMissionData() {
+			if (!this.missionData) return null;
+			return this.missionData[this.vehicleName];
 		},
 	},
 	mounted() {
@@ -90,8 +95,8 @@ export default {
 	methods: {
 		async initializeMissionData() {
 			try {
-				const response = await getMissionData(this.vehicleName);
-				this.vehicleMissionData = response;
+				const response = await getMissionData("all");
+				this.missionData = response;
 			} catch (error) {
 				console.log(error);
 			}
@@ -149,5 +154,15 @@ export default {
 .right-column {
 	padding: 0;
 	/* background-color: purple; */
+}
+
+.vehicle-numbers {
+	width: 100%;
+	height: 52vh;
+	margin-top: 10px;
+	/* padding: 20px; */
+}
+.right-column-row {
+	padding-right: 10px;
 }
 </style>

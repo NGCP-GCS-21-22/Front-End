@@ -47,8 +47,8 @@ import axios from "axios";
 
 export default {
 	props: {
-		// stages: Object,
 		vehicleName: String,
+		missionData: Object,
 	},
 	computed: {
 		selectedStage() {
@@ -63,6 +63,15 @@ export default {
 			}
 			return null;
 		},
+		stages() {
+			if (!this.missionData) return null;
+			if (!this.vehicleName) return null;
+			// return stages array
+			let vehicleStages = this.missionData[this.vehicleName].stages;
+			console.log(vehicleStages);
+			let temp = [];
+			// for ()
+		},
 	},
 	data() {
 		return {
@@ -71,57 +80,57 @@ export default {
 			form: {
 				option: null,
 			},
-			stages: [
-				{
-					text: "Ready to Start",
-					value: {
-						id: 1,
-						stage: "Ready to Start",
-					},
-				},
-				{
-					text: "ERU Landing Sequence",
-					value: {
-						id: 5,
-						stage: "ERU Landing Sequence",
-					},
-				},
-				{
-					text: "Drive to Hiker",
-					value: {
-						id: 6,
-						stage: "Drive to Hiker",
-					},
-				},
-				{
-					text: "Load the Hiker",
-					value: {
-						id: 7,
-						stage: "Load the Hiker",
-					},
-				},
-				{
-					text: "Go to EZ",
-					value: {
-						id: 8,
-						stage: "Go to EZ",
-					},
-				},
-				{
-					text: "Transferring Hiker",
-					value: {
-						id: 9,
-						stage: "Transferring Hiker",
-					},
-				},
-				{
-					text: "Return to Home",
-					value: {
-						id: 10,
-						stage: "Return to Home",
-					},
-				},
-			],
+			// stages: [
+			// 	{
+			// 		text: "Ready to Start",
+			// 		value: {
+			// 			id: 1,
+			// 			stage: "Ready to Start",
+			// 		},
+			// 	},
+			// 	{
+			// 		text: "ERU Landing Sequence",
+			// 		value: {
+			// 			id: 5,
+			// 			stage: "ERU Landing Sequence",
+			// 		},
+			// 	},
+			// 	{
+			// 		text: "Drive to Hiker",
+			// 		value: {
+			// 			id: 6,
+			// 			stage: "Drive to Hiker",
+			// 		},
+			// 	},
+			// 	{
+			// 		text: "Load the Hiker",
+			// 		value: {
+			// 			id: 7,
+			// 			stage: "Load the Hiker",
+			// 		},
+			// 	},
+			// 	{
+			// 		text: "Go to EZ",
+			// 		value: {
+			// 			id: 8,
+			// 			stage: "Go to EZ",
+			// 		},
+			// 	},
+			// 	{
+			// 		text: "Transferring Hiker",
+			// 		value: {
+			// 			id: 9,
+			// 			stage: "Transferring Hiker",
+			// 		},
+			// 	},
+			// 	{
+			// 		text: "Return to Home",
+			// 		value: {
+			// 			id: 10,
+			// 			stage: "Return to Home",
+			// 		},
+			// 	},
+			// ],
 		};
 	},
 	methods: {
