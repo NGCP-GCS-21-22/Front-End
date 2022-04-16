@@ -68,10 +68,19 @@ export default {
 			if (!this.vehicleName) return null;
 			// return stages array
 			let vehicleStages = this.missionData[this.vehicleName].stages;
-			console.log(vehicleStages);
 			let temp = [];
-			// for ()
-			return vehicleStages
+			for (let i = 0; i < vehicleStages.length; i++) {
+				let stage = {
+					text: vehicleStages[i].stage,
+					value : {
+						id: vehicleStages[i].id,
+						stage: vehicleStages[i].stage,
+					}
+				};
+				temp.push(stage)
+			}
+			console.log(temp)
+			return temp
 		},
 	},
 	data() {
