@@ -116,7 +116,7 @@ const getWidgetData = (vehicleName) => {
 		data: vehicleName
 	}
 	axios
-		.get(`http://localhost:5000/getHomeCoordinates/${vehicleName}`)
+		.post(path, payload)
 		.then((response) => {
 			widgetData["homeCoordinates"] = response.data
 		})

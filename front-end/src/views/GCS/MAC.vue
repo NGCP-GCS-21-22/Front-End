@@ -173,6 +173,6 @@ export default {
     padding-right: 10px;
 }
 .status-card {
-    padding-top: 10px;
+    margin-top: 10px;
 }
 </style>
