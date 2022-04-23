@@ -57,7 +57,7 @@
             </b-col>
             <!-- right column -->
             <b-col cols="2">
-                <StatusSidebar :vehicleData="vehicleData" />
+                <FlightIndicators :vehicleData="vehicleData" />
             </b-col>
         </b-row>
     </b-container>
@@ -73,7 +73,7 @@ import {
     getWidgetData,
 } from "@/helpers/getData.js";
 import VehicleStage from "@/components/VehiclePage/VehicleStage.vue";
-import StatusSidebar from "@/components/VehiclePage/StatusSidebar.vue";
+import FlightIndicators from "@/components/VehiclePage/FlightIndicators.vue";
 import Status from "@/components/VehiclePage/StatusComponents/Status.vue";
 import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessages.vue";
 export default {
@@ -82,7 +82,7 @@ export default {
         Map,
         VehicleStatus,
         VehicleStage,
-        StatusSidebar,
+        FlightIndicators,
         Status,
         ErrorMessages,
     },
@@ -108,7 +108,7 @@ export default {
     mounted() {
         this.initializeMissionData();
         this.initializeWidgetData();
-        this.interval = setInterval(this.updateStatus, 1000);
+        this.interval = setInterval(this.updateVehicleData, 1000);
     },
     methods: {
         async initializeMissionData() {
@@ -126,9 +126,6 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-        },
-        updateStatus() {
-            this.updateVehicleData();
         },
         async updateVehicleData() {
             try {

@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Altimeter from "@/components/VehiclePage/StatusComponents/Altimeter.vue";
-import Airspeed from "@/components/VehiclePage/StatusComponents/Airspeed.vue";
-import Attitude from "@/components/VehiclePage/StatusComponents/Attitude.vue";
+import Altimeter from "@/components/VehiclePage/FlightIndicators/Altimeter.vue";
+import Airspeed from "@/components/VehiclePage/FlightIndicators/Airspeed.vue";
+import Attitude from "@/components/VehiclePage/FlightIndicators/Attitude.vue";
 
 export default {
     props: {

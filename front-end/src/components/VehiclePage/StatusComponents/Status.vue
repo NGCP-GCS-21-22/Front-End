@@ -97,8 +97,8 @@ export default {
             if (this.status_ == 1) return "unactive";
             else if (this.status_ == 2) return "Waiting";
             else if (this.status_ == 3) return "Active";
-            else if (this.status_ == 4) return "unknown 1";
-            else if (this.status_ == 5) return "unknown 2";
+            else if (this.status_ == 4) return "Active";
+            else if (this.status_ == 5) return "Active";
         },
         sensors() {
             if (!this.vehicleData) return 0;
