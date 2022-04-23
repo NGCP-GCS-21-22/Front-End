@@ -273,7 +273,7 @@ p {
 }
 .widget-card {
     overflow: auto;
-    height: 30vh;
+    height: 31vh;
 }
 .geofence-card {
     overflow: auto;
@@ -282,7 +282,7 @@ p {
 .widget-button {
     width: 100%;
     margin-bottom: 12px;
-    height: 12vh;
+    height: 13vh;
 }
 .widget-icon {
     height: 4vh;

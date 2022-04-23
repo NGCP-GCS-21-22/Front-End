@@ -220,6 +220,7 @@ export default {
 }
 .container {
     overflow: auto;
-    height: calc(52vh - 170px);
+    /* height: calc(52vh - 170px); */
+    height: 15vh;
 }
 </style>

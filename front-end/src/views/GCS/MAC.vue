@@ -174,5 +174,6 @@ export default {
 }
 .status-card {
     margin-top: 10px;
+    height: 20vh;
 }
 </style>
