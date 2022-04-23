@@ -51,6 +51,9 @@
                                 <!-- heading -->
                             </b-row>
                         </b-card>
+                        <b-card class="heading-card">
+                            <Heading :heading="yaw" />
+                        </b-card>
                     </b-col>
                 </b-row>
                 <!-- bottom row of right -->
@@ -77,6 +80,8 @@ import {
 import FlightIndicators from "@/components/VehiclePage/FlightIndicators.vue";
 import Status from "@/components/VehiclePage/StatusComponents/Status.vue";
 import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessages.vue";
+import Heading from "@/components/VehiclePage/FlightIndicators/Heading.vue";
+
 export default {
     components: {
         Widgets,
@@ -85,6 +90,7 @@ export default {
         FlightIndicators,
         Status,
         ErrorMessages,
+        Heading,
     },
     data() {
         return {
@@ -103,6 +109,10 @@ export default {
         vehicleMissionData() {
             if (!this.missionData) return null;
             return this.missionData[this.vehicleName];
+        },
+        yaw() {
+            if (!this.vehicleData) return null;
+            return this.vehicleData["yaw"];
         },
     },
     mounted() {
@@ -167,6 +177,10 @@ export default {
 .status-card {
     margin-top: 10px;
     height: 35vh;
+}
+.heading-card {
+    margin-top: 10px;
+    height: 20vh;
 }
 </style>
 
