@@ -87,10 +87,16 @@ const getWidgetData = (vehicleName) => {
 	let payload = null
 
 	// Mission Waypoint
-	payload = {
-		id: "Mission Waypoint",
-		data: vehicleName
+	if (vehicleName == "MAC") {
+		payload = {
+			id: "GET ERU Drop Location"
+		}
+	} else if (vehicleName == "ERU" || vehicleName == "MEA") {
+		payload = {
+			id: "GET Evacuation Zone"
+		}
 	}
+
 	axios
 		.post(path, payload)
 		.then((response) => {
@@ -106,7 +112,7 @@ const getWidgetData = (vehicleName) => {
 
 	// Home Coordinates
 	payload = {
-		id: "Hoom Coordinates",
+		id: "Home Coordinates",
 		data: vehicleName
 	}
 	axios
@@ -172,7 +178,7 @@ const getHikerPosition = () => {
 	return new Promise(async (resolve, reject) => {
 		// MEA
 		let payload = null
-		
+
 		payload = {
 			id: "GET Vehicle Data",
 			data: {

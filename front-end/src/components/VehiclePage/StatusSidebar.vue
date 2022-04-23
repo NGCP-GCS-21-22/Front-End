@@ -3,9 +3,8 @@
         <b-row class="right-column">
             <b-card class="vehicle-numbers">
                 <Altimeter :altitude="altitude" />
-                <PrincipalAxes :vehicleData="vehicleData" />
-                <Status :vehicleData="vehicleData" />
-                <ErrorMessages :vehicleData="vehicleData" />
+                <Airspeed :airspeed="airspeed"/>
+				<Attitude :pitch="pitch" :roll="roll" />
             </b-card>
         </b-row>
     </div>
@@ -13,9 +12,9 @@
 
 <script>
 import PrincipalAxes from "@/components/VehiclePage/StatusComponents/PrincipalAxes.vue";
-import Status from "@/components/VehiclePage/StatusComponents/Status.vue";
-import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessages.vue";
 import Altimeter from "@/components/VehiclePage/StatusComponents/Altimeter.vue";
+import Airspeed from "@/components/VehiclePage/StatusComponents/Airspeed.vue";
+import Attitude from "@/components/VehiclePage/StatusComponents/Attitude.vue";
 
 export default {
     props: {
@@ -23,15 +22,27 @@ export default {
     },
     components: {
         PrincipalAxes,
-        Status,
-        ErrorMessages,
         Altimeter,
+        Airspeed,
+		Attitude
     },
     computed: {
         altitude() {
             if (!this.vehicleData) return 0;
             return this.vehicleData["altitude"];
         },
+        airspeed() {
+            if (!this.vehicleData) return 0;
+            return this.vehicleData["speed"];
+        },
+		pitch() {
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["pitch"];
+		},
+		roll() {
+			if (!this.vehicleData) return 0;
+			return this.vehicleData["roll"];
+		},
     },
 };
 </script>

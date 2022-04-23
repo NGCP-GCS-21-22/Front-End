@@ -123,7 +123,10 @@ export default {
             let path = `http://localhost:5000/send`;
             let payload = {
                 id: this.name,
-                data: this.homeCoordinates,
+                data: {
+                    vehicle_name: this.vehicleName,
+                    coordinates: this.homeCoordinates,
+                },
             };
             console.log(payload);
             axios
@@ -156,9 +159,9 @@ export default {
     height: 4vh;
 }
 .latlng-wrapper {
-    padding-top: 12vh;
+    padding-top: 2vh;
     /* padding-bottom: 10vh; */
-    height: 20vh;
+    height: 1vh;
 }
 
 .buttons {

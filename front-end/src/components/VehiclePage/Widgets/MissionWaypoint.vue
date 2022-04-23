@@ -159,9 +159,9 @@ export default {
     height: 4vh;
 }
 .latlng-wrapper {
-    padding-top: 12vh;
+    padding-top: 2vh;
     /* padding-bottom: 10vh; */
-    height: 20vh;
+    height: 1vh;
 }
 
 .buttons {

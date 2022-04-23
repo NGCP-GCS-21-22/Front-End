@@ -31,7 +31,7 @@ h3 {
 .messages {
 	background: #f3f3f3;
 	font-size: 15pt;
-	height: 18vh;
+	height: 10vh;
     padding: 10px;
     border: 2px solid #eeeeee;
     border-radius: 2%;
