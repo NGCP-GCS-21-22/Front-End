@@ -1,85 +1,88 @@
 <template>
-  <div>
-    <b-button
-      @click="deleteModalShow = !deleteModalShow"
-      variant="danger"
-      class="button"
-    >
-      Delete All
-    </b-button>
-    <b-modal
-      centered
-      v-model="deleteModalShow"
-      hide-footer
-      :title="'Delete All'"
-    >
-      <h3>Delete {{ vehicleName }} Geofence?</h3>
-      <b-row>
-        <b-col>
-          <b-button
-            variant="danger"
-            block
+    <div>
+        <b-button
             @click="deleteModalShow = !deleteModalShow"
-          >
-            No
-          </b-button>
-        </b-col>
-        <b-col>
-          <b-button variant="success" block @click="deleteAll"> Yes </b-button>
-        </b-col>
-      </b-row>
-    </b-modal>
+            variant="danger"
+            class="button"
+        >
+            Delete All
+        </b-button>
+        <b-modal
+            centered
+            v-model="deleteModalShow"
+            hide-footer
+            :title="'Delete All'"
+        >
+            <h3>Delete {{ vehicleName }} Geofence?</h3>
+            <b-row>
+                <b-col>
+                    <b-button
+                        variant="danger"
+                        block
+                        @click="deleteModalShow = !deleteModalShow"
+                    >
+                        No
+                    </b-button>
+                </b-col>
+                <b-col>
+                    <b-button variant="success" block @click="deleteAll">
+                        Yes
+                    </b-button>
+                </b-col>
+            </b-row>
+        </b-modal>
 
-    <b-button
-      @click="submitAll"
-      :disabled="geofence.length == 0"
-      variant="success"
-      class="button"
-    >
-      Submit All
-    </b-button>
-  </div>
+        <b-button
+            @click="submitAll"
+            :disabled="geofence.length == 0"
+            variant="success"
+            class="button"
+        >
+            Submit All
+        </b-button>
+    </div>
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-  props: {
-    name: String,
-    vehicleName: String,
-    geofence: Array,
-  },
-  data() {
-    return {
-      deleteModalShow: false,
-    };
-  },
-  methods: {
-    deleteAll() {
-      this.deleteModalShow = !this.deleteModalShow;
-      this.$emit("updateWidgetData", "geofence", []);
+    props: {
+        name: String,
+        vehicleName: String,
+        geofence: Array,
     },
-    submitAll() {
-      const path = "http://localhost:5000/geofence/" + this.name;
-      let payload = {
-        geofence: this.geofence,
-      };
-      axios
-        .post(path, payload)
-        .then((response) => {
-          console.log(response.data.message);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    data() {
+        return {
+            deleteModalShow: false,
+        };
     },
-  },
+    methods: {
+        deleteAll() {
+            this.deleteModalShow = !this.deleteModalShow;
+            this.$emit("updateWidgetData", "geofence", []);
+        },
+        submitAll() {
+            const path = "http://localhost:5000/send";
+            let payload = {
+                id: "Geofence",
+                data: this.geofence,
+            };
+            axios
+                .post(path, payload)
+                .then((response) => {
+                    console.log(response.data.message);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+    },
 };
 </script>
 
 <style scoped>
 .button {
-	margin-left: 5px;
+    margin-left: 5px;
 }
 </style>

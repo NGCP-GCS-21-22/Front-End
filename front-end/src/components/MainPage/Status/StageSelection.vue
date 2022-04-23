@@ -5,7 +5,7 @@
             style="font-weight: bold"
             @click="sModalShow = !sModalShow"
             variant="primary"
-            >{{"STAGE SELECTION"}}
+            >{{ "STAGE SELECTION" }}
             <b-img
                 style="padding-left: 6px; width: 32px; color: #ffffff"
                 :src="require('@/assets/select.png')"
@@ -98,7 +98,6 @@ export default {
     },
     mounted() {
         // set the selected stage if available
-
         // if (this.stages != null) {
         //     this.stages.forEach((stage) => {
         //         if (stage.id == this.currentStage) {
@@ -112,13 +111,15 @@ export default {
     methods: {
         submit() {
             this.sModalShow = !this.sModalShow;
-            console.log("selectedStage: " + this.selectedStage);
-            const path = "http://localhost:5000/updateGeneralStage";
+            const path = "http://localhost:5000/send";
             let payload = {
-                current_stage: this.selectedId,
-                stage_name: this.selectedStage,
-                vehicle_name: this.vehicleName,
-                estop: false,
+                id: "Stage Selection",
+                data: {
+                    current_stage: this.selectedId,
+                    stage_name: this.selectedStage,
+                    vehicle_name: this.vehicleName,
+                    estop: false,
+                },
             };
             console.log(payload);
             axios

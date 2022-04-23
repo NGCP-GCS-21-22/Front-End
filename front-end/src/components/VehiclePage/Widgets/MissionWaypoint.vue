@@ -121,8 +121,12 @@ export default {
             return false;
         },
         postData() {
-            let path = `http://localhost:5000/postMissionWaypoint/${this.vehicleName}`;
-            let payload = {};
+            let path = `http://localhost:5000/send`;
+            let payload = {
+                id: this.name,
+                data: this.missionWaypoint,
+            };
+            console.log(payload);
             axios
                 .post(path, payload)
                 .then((response) => {
