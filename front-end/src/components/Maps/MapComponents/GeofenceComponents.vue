@@ -34,6 +34,7 @@
 				:path="polygon.coordinates"
 				:clickable="false"
 				:options="polygon.keep_in ? keepInOptions : keepOutOptions"
+				:zIndex="polygon.keep_in ? 1 : 1000"
 			/>
 			<GmapMarker
 				:position="getCenter(polygon.coordinates)"
@@ -155,7 +156,7 @@ export default {
 				strokeOpacity: 0.8,
 				strokeWeight: 3,
 				fillColor: "#cc0000",
-				fillOpacity: 0.3,
+				fillOpacity: 0.5,
 			},
         }
     },
