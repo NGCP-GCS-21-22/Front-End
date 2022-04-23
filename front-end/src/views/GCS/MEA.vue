@@ -30,6 +30,19 @@
                         :missionData="missionData"
                     />
                 </b-row>
+                <b-card
+                    class="status-card"
+                    v-if="widgetTypeSelected != 'Geofence'"
+                >
+                    <b-row>
+                        <b-col>
+                            <Status :vehicleData="vehicleData" />
+                        </b-col>
+                        <b-col>
+                            <ErrorMessages :vehicleData="vehicleData" />
+                        </b-col>
+                    </b-row>
+                </b-card>
                 <b-row>
                     <Widgets
                         v-if="vehicleName && vehicleMissionData"
@@ -61,7 +74,8 @@ import {
 } from "@/helpers/getData.js";
 import VehicleStage from "@/components/VehiclePage/VehicleStage.vue";
 import StatusSidebar from "@/components/VehiclePage/StatusSidebar.vue";
-
+import Status from "@/components/VehiclePage/StatusComponents/Status.vue";
+import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessages.vue";
 export default {
     components: {
         Widgets,
@@ -69,6 +83,8 @@ export default {
         VehicleStatus,
         VehicleStage,
         StatusSidebar,
+        Status,
+        ErrorMessages,
     },
     data() {
         return {
@@ -157,5 +173,9 @@ export default {
 }
 .right-column-row {
     padding-right: 10px;
+}
+.status-card {
+    margin-top: 10px;
+    height: 20vh;
 }
 </style>
