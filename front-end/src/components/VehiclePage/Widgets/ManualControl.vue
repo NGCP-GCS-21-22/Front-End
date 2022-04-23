@@ -72,7 +72,7 @@ export default {
 .control {
     position: absolute;
     left: 50%;
-    bottom: 40%;
+    bottom: 20%;
     transform: translate(-50%, -50%);
     margin: 0 auto;
 }
