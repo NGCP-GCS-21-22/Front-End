@@ -1,12 +1,15 @@
 <template>
     <b-container class="stage-container">
-        <b-card class="stage-card">
-            <h4>{{ vehicleName }} Mission Stage:</h4>
-            <h3 v-if="currentStage">
-                {{ currentStage }}
-            </h3>
-            <h3 v-else>No stage selected</h3>
-        </b-card>
+        <b-row class="justify-content-md-center">
+            <svg
+                class="vehicleImg"
+                v-if="path && fillColor"
+                viewBox="0 0 100 100"
+            >
+                <path :d="path" :fill="fillColor" />
+            </svg>
+            <h2>{{ vehicleName }}: {{ currentStage }}</h2>
+        </b-row>
     </b-container>
 </template>
 
@@ -16,8 +19,18 @@ export default {
         vehicleData: Object,
         vehicleName: String,
         missionData: Object,
+        vehicleIcon: Object,
+        large: Boolean,
     },
     computed: {
+        path() {
+            if (!this.vehicleIcon) return null;
+            return this.vehicleIcon.path;
+        },
+        fillColor() {
+            if (!this.vehicleIcon) return null;
+            return this.vehicleIcon.fillColor;
+        },
         stages() {
             if (!this.missionData) return null;
             if (!this.vehicleName) return null;
@@ -34,7 +47,7 @@ export default {
             return stages;
         },
         currentStage() {
-            if (this.vehicleData == null) return null;
+            if (this.vehicleData == null) return "No Stage Selected";
             let currentStage = this.vehicleData.current_stage;
             if (this.stages != null) {
                 for (let i = 0; i < this.stages.length; i++) {
@@ -44,23 +57,24 @@ export default {
                     }
                 }
             }
+
+            return "ERROR - INVALID STAGE";
         },
     },
 };
 </script>
 
 <style scoped>
-h2,
-h4 {
-    color: #2c3e50;
-}
-h3 {
-    text-decoration: underline;
-}
 .stage-container {
     margin-top: 10px;
 }
-.stage-card {
-    height: 13vh;
+.vehicleName {
+    padding: 10px 0px;
+}
+.vehicleImg {
+    width: 50px;
+    height: 50px;
+    margin-top: -8px;
+    margin-right: 10px;
 }
 </style>

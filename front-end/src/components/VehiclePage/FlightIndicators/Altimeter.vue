@@ -1,5 +1,5 @@
 <template>
-    <Altimeter :size="250" :altitude="altitude" />
+    <Altimeter :size="260" :altitude="altitude" />
 </template>
 
 <script>

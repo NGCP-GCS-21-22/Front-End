@@ -12,52 +12,54 @@
                     @moveMarker="setWidgetData"
                 />
             </b-col>
-
-            <!-- middle column -->
-            <b-col cols="4">
-                <b-row v-if="widgetTypeSelected != 'Geofence'">
-                    <VehicleStage
-                        :vehicleData="vehicleData"
-                        :vehicleName="vehicleName"
-                        :missionData="missionData"
-                    />
-                </b-row>
-                <b-row v-if="widgetTypeSelected != 'Geofence'">
-                    <VehicleStatus
-                        :vehicleName="vehicleName"
-                        :vehicleIcon="vehicleIcon"
-                        :vehicleData="vehicleData"
-                        :missionData="missionData"
-                    />
-                </b-row>
-                <b-card
-                    class="status-card"
-                    v-if="widgetTypeSelected != 'Geofence'"
-                >
-                    <b-row>
-                        <b-col>
-                            <Status :vehicleData="vehicleData" />
-                        </b-col>
-                        <b-col>
-                            <ErrorMessages :vehicleData="vehicleData" />
-                        </b-col>
-                    </b-row>
-                </b-card>
-                <b-row>
-                    <Widgets
-                        v-if="vehicleName && vehicleMissionData"
-                        :vehicleName="vehicleName"
-                        :vehicleMissionData="vehicleMissionData"
-                        :widgetData="widgetData"
-                        :vehicleData="vehicleData"
-                        @widgetTypeSelected="setWidgetSelected"
-                        @updateWidgetData="setWidgetData"
-                    />
-                </b-row>
-            </b-col>
             <!-- right column -->
-            <b-col cols="2">
-                <FlightIndicators :vehicleData="vehicleData" />
+            <b-col cols="6">
+                <!-- top row of right-->
+                <b-row>
+                    <!-- left of right column -->
+                    <b-col cols="8">
+                        <b-row v-if="widgetTypeSelected != 'Geofence'">
+                            <VehicleStatus
+                                :vehicleName="vehicleName"
+                                :vehicleIcon="vehicleIcon"
+                                :vehicleData="vehicleData"
+                                :missionData="missionData"
+                            />
+                        </b-row>
+                        <b-row>
+                            <Widgets
+                                v-if="vehicleName && vehicleMissionData"
+                                :vehicleName="vehicleName"
+                                :vehicleMissionData="vehicleMissionData"
+                                :widgetData="widgetData"
+                                :vehicleData="vehicleData"
+                                :vehicleIcon="vehicleIcon"
+                                @widgetTypeSelected="setWidgetSelected"
+                                @updateWidgetData="setWidgetData"
+                            />
+                        </b-row>
+                    </b-col>
+                    <!-- right of right column -->
+                    <b-col cols="4">
+                        <b-card
+                            class="status-card"
+                            v-if="widgetTypeSelected != 'Geofence'"
+                        >
+                            <b-row>
+                                <Status :vehicleData="vehicleData" />
+                                <ErrorMessages :vehicleData="vehicleData" />
+                                <!-- heading -->
+                            </b-row>
+                        </b-card>
+                    </b-col>
+                </b-row>
+                <!-- bottom row of right -->
+                <b-row>
+                    <FlightIndicators
+                        v-if="widgetTypeSelected != 'Geofence'"
+                        :vehicleData="vehicleData"
+                    />
+                </b-row>
             </b-col>
         </b-row>
     </b-container>
@@ -72,7 +74,6 @@ import {
     getVehicleData,
     getWidgetData,
 } from "@/helpers/getData.js";
-import VehicleStage from "@/components/VehiclePage/VehicleStage.vue";
 import FlightIndicators from "@/components/VehiclePage/FlightIndicators.vue";
 import Status from "@/components/VehiclePage/StatusComponents/Status.vue";
 import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessages.vue";
@@ -81,7 +82,6 @@ export default {
         Widgets,
         Map,
         VehicleStatus,
-        VehicleStage,
         FlightIndicators,
         Status,
         ErrorMessages,
@@ -161,18 +161,12 @@ export default {
     padding: 0;
     /* background-color: purple; */
 }
-
-.vehicle-numbers {
-    width: 100%;
-    height: 52vh;
-    margin-top: 10px;
-    /* padding: 20px; */
-}
 .right-column-row {
     padding-right: 10px;
 }
 .status-card {
     margin-top: 10px;
-    height: 20vh;
+    height: 35vh;
 }
 </style>
+

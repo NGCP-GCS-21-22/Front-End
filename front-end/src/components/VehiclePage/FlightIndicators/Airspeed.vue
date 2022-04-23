@@ -1,5 +1,5 @@
 <template>
-    <Airspeed :size="250" :airspeed="airspeed" />
+    <Airspeed :size="260" :airspeed="airspeed" />
 </template>
 
 <script>

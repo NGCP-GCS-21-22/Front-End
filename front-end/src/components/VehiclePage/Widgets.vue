@@ -1,5 +1,11 @@
  <template>
-    <b-container class="widget-container">
+    <b-container
+        :class="
+            widgetTypeSelected == 'Geofence'
+                ? 'geofence-container'
+                : 'widget-container'
+        "
+    >
         <b-card
             :class="
                 widgetTypeSelected == 'Geofence'
@@ -90,6 +96,7 @@
                         "
                         :name="widget.name"
                         :vehicleName="vehicleName"
+                        :vehicleIcon="vehicleIcon"
                         :geofence="geofence"
                         :geofenceWorkspace="geofenceWorkspace"
                         @goBack="showWidgets"
@@ -132,6 +139,7 @@ export default {
         vehicleMissionData: Object,
         widgetData: Object,
         vehicleData: Object,
+        vehicleIcon: Object,
     },
     computed: {
         missionWaypoint() {
@@ -271,9 +279,15 @@ p {
 .widget-container {
     margin-top: 10px;
 }
+.geofence-container {
+    margin-top: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
 .widget-card {
     overflow: auto;
-    height: 31vh;
+    height: 33vh;
 }
 .geofence-card {
     overflow: auto;
@@ -282,7 +296,7 @@ p {
 .widget-button {
     width: 100%;
     margin-bottom: 12px;
-    height: 13vh;
+    height: 14vh;
 }
 .widget-icon {
     height: 4vh;

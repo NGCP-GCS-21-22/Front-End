@@ -3,7 +3,7 @@
         <!-- Status -->
         <b-row class="justify-content-md-center">
             <b-col>
-                <b-row class="justify-content-md-center"><h3>Status</h3></b-row>
+                <b-row class="justify-content-md-center"><h3>Activity Status</h3></b-row>
                 <b-row class="status justify-content-md-center">
                     {{ status }}
                     <p class="StatusIcon">
@@ -41,7 +41,7 @@
         <b-row class="justify-content-md-center">
             <b-col>
                 <b-row class="justify-content-md-center"
-                    ><h3>Sensors</h3></b-row
+                    ><h3>Sensor Status</h3></b-row
                 >
                 <b-row class="status justify-content-md-center">
                     {{ sensors }}

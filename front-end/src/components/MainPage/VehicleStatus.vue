@@ -4,8 +4,10 @@
             <!-- top row -->
             <b-row>
                 <b-col>
-                    <VehicleStatusTitle
+                    <VehicleStage
+                        :vehicleData="vehicleData"
                         :vehicleName="vehicleName"
+                        :missionData="missionData"
                         :vehicleIcon="vehicleIcon"
                     />
                 </b-col>
@@ -51,8 +53,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import VehicleStatusTitle from "@/components/MainPage/Status/VehicleStatusTitle.vue";
+import VehicleStage from "@/components/MainPage/Status/VehicleStage.vue";
 import ConnectionStatus from "@/components/MainPage/Status/ConnectionStatus.vue";
 import EmergencyStop from "@/components/MainPage/Status/EmergencyStop.vue";
 import Battery from "@/components/MainPage/Status/Battery.vue";
@@ -67,7 +68,7 @@ export default {
         missionData: Object,
     },
     components: {
-        VehicleStatusTitle,
+        VehicleStage,
         ConnectionStatus,
         EmergencyStop,
         Battery,
@@ -96,11 +97,6 @@ export default {
             return "Online";
         },
     },
-    // data() {
-    //     return {
-    //         status: "Online",
-    //     };
-    // },
 };
 </script>
 

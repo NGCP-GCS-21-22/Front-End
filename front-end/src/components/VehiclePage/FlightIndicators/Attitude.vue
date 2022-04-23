@@ -1,5 +1,5 @@
 <template>
-    <Attitude :size="250" :pitch="pitch" :roll="roll" />
+    <Attitude :size="260" :pitch="pitch" :roll="roll" />
 </template>
 
 <script>

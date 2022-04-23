@@ -1,13 +1,11 @@
 <template>
-    <div>
-        <b-row class="right-column">
-            <b-card class="vehicle-numbers">
-                <Altimeter :altitude="altitude" />
-                <Airspeed :airspeed="airspeed"/>
-				<Attitude :pitch="pitch" :roll="roll" />
-            </b-card>
-        </b-row>
-    </div>
+    <b-container>
+        <b-card class="flight-indicators-card">
+            <Altimeter :altitude="altitude" />
+            <Airspeed :airspeed="airspeed" />
+            <Attitude :pitch="pitch" :roll="roll" />
+        </b-card>
+    </b-container>
 </template>
 
 <script>
@@ -22,7 +20,7 @@ export default {
     components: {
         Altimeter,
         Airspeed,
-		Attitude
+        Attitude,
     },
     computed: {
         altitude() {
@@ -33,26 +31,23 @@ export default {
             if (!this.vehicleData) return 0;
             return this.vehicleData["speed"];
         },
-		pitch() {
-			if (!this.vehicleData) return 0;
-			return this.vehicleData["pitch"];
-		},
-		roll() {
-			if (!this.vehicleData) return 0;
-			return this.vehicleData["roll"];
-		},
+        pitch() {
+            if (!this.vehicleData) return 0;
+            return this.vehicleData["pitch"];
+        },
+        roll() {
+            if (!this.vehicleData) return 0;
+            return this.vehicleData["roll"];
+        },
     },
 };
 </script>
 
 <style>
-.right-column-row {
-    padding-right: 10px;
-}
-.vehicle-numbers {
-    width: 100%;
-    height: 89vh;
+.flight-indicators-card {
+    width: 48vw;
+    height: 31vh;
     margin-top: 10px;
-    /* padding: 20px; */
+    padding: 0;
 }
 </style>
