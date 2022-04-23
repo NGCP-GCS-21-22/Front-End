@@ -1,7 +1,7 @@
 <template>
     <b-container class="stage-container">
         <b-card class="stage-card">
-            <h4>Vehicle Mission Stage:</h4>
+            <h4>{{ vehicleName }} Mission Stage:</h4>
             <h3 v-if="currentStage">
                 {{ currentStage }}
             </h3>
