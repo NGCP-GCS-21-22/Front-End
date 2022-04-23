@@ -91,12 +91,16 @@ export default {
             if (!this.vehicleData) return "None";
             return this.vehicleData["mode"];
         },
+        status() {
+            if (!this.vehicleData) return "Offline";
+            return "Online";
+        },
     },
-    data() {
-        return {
-            status: "Online",
-        };
-    },
+    // data() {
+    //     return {
+    //         status: "Online",
+    //     };
+    // },
 };
 </script>
 

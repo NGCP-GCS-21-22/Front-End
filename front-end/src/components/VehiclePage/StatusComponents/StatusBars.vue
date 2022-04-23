@@ -25,7 +25,6 @@
 
 <script>
 import Bar from "@/components/VehiclePage/StatusComponents/Bar.vue";
-
 export default {
 	props: {
 		vehicleData: Object,

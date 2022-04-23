@@ -22,11 +22,14 @@ const getMissionData = (vehicleName) => {
 		return missionData
 	}
 
-	let path = "http://localhost:5000/getNewMission"
+	let path = "http://localhost:5000/send"
+	let payload = {
+		id: "GET Primary Mission"
+	}
 
 	return new Promise((resolve, reject) => {
 		axios
-			.get(path)
+			.post(path, payload)
 			.then((response) => {
 				let missionData = response.data
 				missionData = addVehicleIcons(missionData)
@@ -41,11 +44,13 @@ const getMissionData = (vehicleName) => {
 }
 
 const getGeneralStage = () => {
-	let path = "http://localhost:5000/getGeneralStage"
-
+	let path = "http://localhost:5000/send"
+	let payload = {
+		id: "GET General Stage",
+	}
 	return new Promise((resolve, reject) => {
 		axios
-			.get(path)
+			.post(path, payload)
 			.then((response) => {
 				resolve(`${response.data["vehicle"]}: ${response.data["name"]}`)
 			})
@@ -56,10 +61,12 @@ const getGeneralStage = () => {
 }
 
 const getVehicleData = (vehicleName) => {
-	let path = "http://localhost:5000/postData"
+	let path = "http://localhost:5000/send"
 	let payload = {
-		// vehicle_name: "testing",
-		vehicle_name: vehicleName,
+		id: "GET Vehicle Data",
+		data: {
+			vehicle_name: vehicleName
+		},
 	}
 
 	return new Promise((resolve, reject) => {
@@ -75,27 +82,17 @@ const getVehicleData = (vehicleName) => {
 }
 
 const getWidgetData = (vehicleName) => {
-	// let payload = {
-	// 	widget_data: vehicleName,
-	// }
-
-	// return new Promise((resolve, reject) => {
-	// 	axios
-	// 		.post(path, payload)
-	// 		.then((response) => {
-	// 			resolve(response.data)
-	// 		})
-	// 		.catch((error) => {
-	// 			reject(error)
-	// 		})
-	// })
-
-	// return {}
-
 	let widgetData = {}
+	let path = "http://localhost:5000/send"
+	let payload = null
 
+	// Mission Waypoint
+	payload = {
+		id: "Mission Waypoint",
+		data: vehicleName
+	}
 	axios
-		.get(`http://localhost:5000/getMissionWaypoint/${vehicleName}`)
+		.post(path, payload)
 		.then((response) => {
 			widgetData["missionWaypoint"] = response.data
 		})
@@ -107,6 +104,11 @@ const getWidgetData = (vehicleName) => {
 		widgetData["missionWaypoint"] = {}
 	}
 
+	// Home Coordinates
+	payload = {
+		id: "Hoom Coordinates",
+		data: vehicleName
+	}
 	axios
 		.get(`http://localhost:5000/getHomeCoordinates/${vehicleName}`)
 		.then((response) => {
@@ -120,8 +122,13 @@ const getWidgetData = (vehicleName) => {
 		widgetData["homeCoordinates"] = {}
 	}
 
+
+	// Search Area
+	payload = {
+		id: "Search Area"
+	}
 	axios
-		.get(`http://localhost:5000/getSearchArea`)
+		.post(path, payload)
 		.then((response) => {
 			widgetData["searchArea"] = response.data
 		})
@@ -133,8 +140,13 @@ const getWidgetData = (vehicleName) => {
 		widgetData["searchArea"] = []
 	}
 
+	// Geofence
+	payload = {
+		id: "Geofence",
+		data: vehicleName
+	}
 	axios
-		.get(`http://localhost:5000/geofence/${vehicleName}`)
+		.post(path, payload)
 		.then((response) => {
 			widgetData["geofence"] = response.data
 		})
@@ -143,16 +155,7 @@ const getWidgetData = (vehicleName) => {
 		})
 
 	if (!widgetData["geofence"]) {
-		widgetData["geofence"] = [
-			// {
-			// 	coordinates: [...defaultPolygon],
-			// 	keep_in: true
-			// },
-			// {
-			// 	coordinates: [...defaultPolygon],
-			// 	keep_in: true
-			// }
-		]
+		widgetData["geofence"] = []
 	}
 
 	widgetData["geofenceWorkspace"] = {
@@ -164,12 +167,17 @@ const getWidgetData = (vehicleName) => {
 }
 
 const getHikerPosition = () => {
-	let path = "http://localhost:5000/postData"
+	let path = "http://localhost:5000/send"
 
 	return new Promise(async (resolve, reject) => {
 		// MEA
-		let payload = {
-			vehicle_name: "MEA",
+		let payload = null
+		
+		payload = {
+			id: "GET Vehicle Data",
+			data: {
+				vehicle_name: "MEA"
+			}
 		}
 		await axios
 			.post(path, payload)
@@ -189,7 +197,10 @@ const getHikerPosition = () => {
 
 		// ERU
 		payload = {
-			vehicle_name: "ERU",
+			id: "GET Vehicle Data",
+			data: {
+				vehicle_name: "ERU"
+			}
 		}
 		await axios
 			.post(path, payload)
@@ -209,7 +220,10 @@ const getHikerPosition = () => {
 
 		// MAC
 		payload = {
-			vehicle_name: "MAC",
+			id: "GET Vehicle Data",
+			data: {
+				vehicle_name: "MAC"
+			}
 		}
 		await axios
 			.post(path, payload)
@@ -227,7 +241,7 @@ const getHikerPosition = () => {
 				reject(error)
 			})
 
-		resolve("what the heck")
+		resolve("error getting vehicle information")
 	})
 }
 
