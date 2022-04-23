@@ -94,21 +94,55 @@ const getWidgetData = (vehicleName) => {
 
 	let widgetData = {}
 
-	if (!widgetData["missionWaypoint"])
-		widgetData["missionWaypoint"] = {
-			lat: defaultLat + 0.0003,
-			lng: defaultLng + 0.0015,
-		}
+	axios
+		.get(`http://localhost:5000/getMissionWaypoint/${vehicleName}`)
+		.then((response) => {
+			widgetData["missionWaypoint"] = response.data
+		})
+		.catch((error) => {
+			console.log(error)
+		})
 
-	if (!widgetData["homeCoordinates"])
-		widgetData["homeCoordinates"] = {
-			lat: defaultLat - 0.00035,
-			lng: defaultLng + 0.0006,
-		}
+	if (!widgetData["missionWaypoint"]) {
+		widgetData["missionWaypoint"] = {}
+	}
 
-	if (!widgetData["searchArea"]) widgetData["searchArea"] = []
+	axios
+		.get(`http://localhost:5000/getHomeCoordinates/${vehicleName}`)
+		.then((response) => {
+			widgetData["homeCoordinates"] = response.data
+		})
+		.catch((error) => {
+			console.log(error)
+		})
 
-	if (!widgetData["geofence"])
+	if (!widgetData["homeCoordinates"]) {
+		widgetData["homeCoordinates"] = {}
+	}
+
+	axios
+		.get(`http://localhost:5000/getSearchArea`)
+		.then((response) => {
+			widgetData["searchArea"] = response.data
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+
+	if (!widgetData["searchArea"]) {
+		widgetData["searchArea"] = []
+	}
+
+	axios
+		.get(`http://localhost:5000/geofence/${vehicleName}`)
+		.then((response) => {
+			widgetData["geofence"] = response.data
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+
+	if (!widgetData["geofence"]) {
 		widgetData["geofence"] = [
 			// {
 			// 	coordinates: [...defaultPolygon],
@@ -119,6 +153,7 @@ const getWidgetData = (vehicleName) => {
 			// 	keep_in: true
 			// }
 		]
+	}
 
 	widgetData["geofenceWorkspace"] = {
 		coordinates: [...defaultPolygon],
@@ -131,7 +166,7 @@ const getWidgetData = (vehicleName) => {
 const getHikerPosition = () => {
 	let path = "http://localhost:5000/postData"
 
-	return new Promise( async (resolve, reject) => {
+	return new Promise(async (resolve, reject) => {
 		// MEA
 		let payload = {
 			vehicle_name: "MEA",

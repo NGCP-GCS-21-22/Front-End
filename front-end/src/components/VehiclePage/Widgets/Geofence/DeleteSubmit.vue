@@ -61,7 +61,7 @@ export default {
       this.$emit("updateWidgetData", "geofence", []);
     },
     submitAll() {
-      const path = "http://localhost:8000/gcs/geofence/" + this.name;
+      const path = "http://localhost:5000/geofence/" + this.name;
       let payload = {
         geofence: this.geofence,
       };
