@@ -40,7 +40,7 @@ export default {
 					fillColor: this.vehicleIcon.fillColor,
 					fillOpacity: 1,
 					strokeWeight: 0,
-					rotation: this.vehicleData.rotation,
+					rotation: this.vehicleData.yaw,
 					scale: 1,
 					anchor: { x: 41.42, y: 46.713 },
 				},
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style>
--.coorStyle {
+.coorStyle {
 	height: 7vh;
 	margin-left: 2px;
 }
