@@ -99,9 +99,10 @@
                 class="button"
                 variant="success"
                 :disabled="searchAreaNotChanged() || searchArea.length < 3"
-                @click="postData"
-                >Submit</b-button
+                @click="postSearchArea"
             >
+                Submit
+            </b-button>
         </b-row>
     </div>
 </template>
@@ -181,12 +182,9 @@ export default {
 
             return true;
         },
-        postData() {
-            const path = "http://localhost:8000/send";
-            let payload = {
-                id: this.name,
-                data: this.searchArea,
-            };
+        postSearchArea() {
+            const path = "http://localhost:5000/postSearchArea";
+            let payload = this.searchArea;
             axios
                 .post(path, payload)
                 .then((response) => {

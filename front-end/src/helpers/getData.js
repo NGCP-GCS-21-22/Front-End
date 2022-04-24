@@ -121,11 +121,9 @@ const getWidgetData = (vehicleName) => {
 
 
 	// Search Area
-	payload = {
-		id: "Search Area"
-	}
+	path = "http://localhost:5000/getSearchArea"
 	axios
-		.post(path, payload)
+		.get(path)
 		.then((response) => {
 			console.log(response.data)
 			widgetData["searchArea"] = response.data
@@ -139,13 +137,11 @@ const getWidgetData = (vehicleName) => {
 	}
 
 	// Geofence
-	payload = {
-		id: "Geofence",
-		data: vehicleName
-	}
+	path = `http://localhost:5000/getGeofence/${vehicleName}`
 	axios
-		.post(path, payload)
+		.get(path)
 		.then((response) => {
+			console.log(response.data)
 			widgetData["geofence"] = response.data
 		})
 		.catch((error) => {
