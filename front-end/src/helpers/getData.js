@@ -83,24 +83,15 @@ const getVehicleData = (vehicleName) => {
 
 const getWidgetData = (vehicleName) => {
 	let widgetData = {}
-	let path = "http://localhost:5000/send"
+	let path = ""
 	let payload = null
 
 	// Mission Waypoint
-	if (vehicleName == "MAC") {
-		payload = {
-			id: "GET ERU Drop Location"
-		}
-	} else if (vehicleName == "ERU" || vehicleName == "MEA") {
-		payload = {
-			id: "GET Evacuation Zone"
-		}
-	}
-
+	path = `http://localhost:5000/getMissionWaypoint/${vehicleName}`
 	axios
-		.post(path, payload)
+		.get(path)
 		.then((response) => {
-			widgetData["missionWaypoint"] = response.data
+			widgetData["missionWaypoint"] = response.data.data
 		})
 		.catch((error) => {
 			console.log(error)
@@ -111,14 +102,14 @@ const getWidgetData = (vehicleName) => {
 	}
 
 	// Home Coordinates
-	payload = {
-		id: "Home Coordinates",
-		data: vehicleName
-	}
+	path = `http://localhost:5000/getHomeCoordinates/${vehicleName}`
 	axios
-		.post(path, payload)
+		.get(path)
 		.then((response) => {
-			widgetData["homeCoordinates"] = response.data
+			widgetData["homeCoordinates"] = {
+				lat: response.data.data.lat,
+				lng: response.data.data.lng,
+			}
 		})
 		.catch((error) => {
 			console.log(error)

@@ -120,14 +120,8 @@ export default {
             return false;
         },
         postData() {
-            let path = `http://localhost:5000/send`;
-            let payload = {
-                id: this.name,
-                data: {
-                    vehicle_name: this.vehicleName,
-                    coordinates: this.homeCoordinates,
-                },
-            };
+            let path = `http://localhost:5000/postHomeCoordinates/${this.vehicleName}`;
+            let payload = this.homeCoordinates;
             console.log(payload);
             axios
                 .post(path, payload)
