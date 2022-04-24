@@ -91,7 +91,7 @@ const getWidgetData = (vehicleName) => {
 	axios
 		.get(path)
 		.then((response) => {
-			widgetData["missionWaypoint"] = response.data.data
+			widgetData["missionWaypoint"] = response.data
 		})
 		.catch((error) => {
 			console.log(error)
@@ -107,8 +107,8 @@ const getWidgetData = (vehicleName) => {
 		.get(path)
 		.then((response) => {
 			widgetData["homeCoordinates"] = {
-				lat: response.data.data.lat,
-				lng: response.data.data.lng,
+				lat: response.data.lat,
+				lng: response.data.lng,
 			}
 		})
 		.catch((error) => {
@@ -127,6 +127,7 @@ const getWidgetData = (vehicleName) => {
 	axios
 		.post(path, payload)
 		.then((response) => {
+			console.log(response.data)
 			widgetData["searchArea"] = response.data
 		})
 		.catch((error) => {
