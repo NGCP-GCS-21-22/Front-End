@@ -185,6 +185,7 @@ export default {
         postSearchArea() {
             const path = "http://localhost:5000/postSearchArea";
             let payload = this.searchArea;
+            console.log(payload);
             axios
                 .post(path, payload)
                 .then((response) => {
