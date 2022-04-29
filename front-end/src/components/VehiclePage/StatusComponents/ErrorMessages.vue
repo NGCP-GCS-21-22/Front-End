@@ -37,7 +37,7 @@ h3 {
 .container {
     padding: 15px 0px 0px 0px;
     height: 7vh;
-    width: 13vw;
+    width: 100%;
 }
 .messages {
     background: #f3f3f3;
