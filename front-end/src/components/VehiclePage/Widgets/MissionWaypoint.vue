@@ -121,11 +121,12 @@ export default {
             return false;
         },
         postData() {
-            let path = `http://localhost:5000/send`;
-            let payload = {
-                id: this.name,
-                data: this.missionWaypoint,
-            };
+            let path = `http://localhost:5000/post${this.name.replace(
+                /\s/g,
+                ""
+            )}`;
+
+            let payload = this.missionWaypoint;
             console.log(payload);
             axios
                 .post(path, payload)
@@ -135,8 +136,6 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-            // // update initialMissionWaypoint
-            // this.initialMissionWaypoint = this.missionWaypoint;
             this.$emit("goBack");
         },
     },

@@ -45,7 +45,7 @@ export default {
 
 <style>
 .flight-indicators-card {
-    width: 48vw;
+    width: 100%;
     height: 31vh;
     margin-top: 10px;
     padding: 0;

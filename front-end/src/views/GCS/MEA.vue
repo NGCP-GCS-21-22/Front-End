@@ -51,7 +51,10 @@
                                 <!-- heading -->
                             </b-row>
                         </b-card>
-                        <b-card class="heading-card">
+                        <b-card
+                            v-if="widgetTypeSelected != 'Geofence'"
+                            class="heading-card"
+                        >
                             <Heading :heading="yaw" />
                         </b-card>
                     </b-col>

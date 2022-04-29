@@ -5,6 +5,7 @@
                 ? 'geofence-container'
                 : 'widget-container'
         "
+        v-if="widgetData && vehicleIcon && vehicleMissionData && vehicleData"
     >
         <b-card
             :class="
