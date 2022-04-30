@@ -1,9 +1,37 @@
 <template>
     <b-container>
         <b-card class="flight-indicators-card">
-            <Altimeter :altitude="altitude" />
-            <Airspeed :airspeed="airspeed" />
-            <Attitude :pitch="pitch" :roll="roll" />
+            <b-row>
+                <b-col>
+                    <b-row class="justify-content-md-center">
+                        <h5>Altitude: {{ altitude }}</h5>
+                    </b-row>
+                    <b-row class="justify-content-md-center"
+                        ><Altimeter :altitude="altitude" class="dials" />
+                    </b-row>
+                </b-col>
+                <b-col>
+                    <b-row class="justify-content-md-center">
+                        <h5>Speed: {{ airspeed }}</h5>
+                    </b-row>
+                    <b-row class="justify-content-md-center">
+                        <Airspeed :airspeed="airspeed" class="dials" />
+                    </b-row>
+                </b-col>
+                <b-col>
+                    <b-row class="justify-content-md-center">
+                        <b-col>
+                            <h5>Pitch: {{ pitch }}</h5>
+                        </b-col>
+                        <b-col>
+                            <h5>Roll: {{ roll }}</h5>
+                        </b-col>
+                    </b-row>
+                    <b-row class="justify-content-md-center">
+                        <Attitude :pitch="pitch" :roll="roll" class="dials" />
+                    </b-row>
+                </b-col>
+            </b-row>
         </b-card>
     </b-container>
 </template>
@@ -43,11 +71,22 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .flight-indicators-card {
     width: 100%;
     height: 31vh;
     margin-top: 10px;
     padding: 0;
+}
+.dials {
+    margin-top: -15px;
+}
+h5 {
+    background: #343a40;
+    margin: 0;
+    padding: 3px 10px;
+    color: #ffffff;
+    border-radius: 3px;
+    border: 1px solid rgb(121, 112, 99);
 }
 </style>
