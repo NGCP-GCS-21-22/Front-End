@@ -125,11 +125,10 @@ const getWidgetData = (vehicleName) => {
 	axios
 		.get(path)
 		.then((response) => {
-			console.log(response.data)
 			widgetData["searchArea"] = response.data
 		})
 		.catch((error) => {
-			console.log(error)
+			console.log(error.response)
 		})
 
 	if (!widgetData["searchArea"]) {
@@ -141,7 +140,6 @@ const getWidgetData = (vehicleName) => {
 	axios
 		.get(path)
 		.then((response) => {
-			console.log(response.data)
 			widgetData["geofence"] = response.data
 		})
 		.catch((error) => {

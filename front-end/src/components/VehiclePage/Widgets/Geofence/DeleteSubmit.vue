@@ -64,7 +64,9 @@ export default {
         },
         submitAll() {
             const path = `http://localhost:5000/postGeofence/${this.vehicleName}`;
-            let payload = this.geofence;
+            let payload = {
+                geofence: this.geofence,
+            };
             axios
                 .post(path, payload)
                 .then((response) => {
@@ -73,6 +75,7 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
+            this.$emit("goBack");
         },
     },
 };
