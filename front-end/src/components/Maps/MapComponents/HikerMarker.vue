@@ -47,7 +47,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.interval = setInterval(this.updateHikerLocation, 1000);
+		this.interval = setInterval(this.updateHikerLocation, 100);
 	},
 	methods: {
 		async updateHikerLocation() {
