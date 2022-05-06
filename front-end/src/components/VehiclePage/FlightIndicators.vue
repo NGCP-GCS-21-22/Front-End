@@ -4,7 +4,7 @@
             <b-row>
                 <b-col>
                     <b-row class="justify-content-md-center">
-                        <h5>Altitude: {{ altitude }}</h5>
+                        <h5>Altitude: {{ altitude }} ft</h5>
                     </b-row>
                     <b-row class="justify-content-md-center"
                         ><Altimeter :altitude="altitude" class="dials" />
@@ -12,7 +12,7 @@
                 </b-col>
                 <b-col>
                     <b-row class="justify-content-md-center">
-                        <h5>Speed: {{ airspeed }}</h5>
+                        <h5>Speed: {{ airspeed }} ft/s</h5>
                     </b-row>
                     <b-row class="justify-content-md-center">
                         <Airspeed :airspeed="airspeed" class="dials" />
