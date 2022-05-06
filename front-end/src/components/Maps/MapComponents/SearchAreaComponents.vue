@@ -73,11 +73,11 @@ export default {
     data() {
         return {
             searchAreaOptions: {
-                strokeColor: "#c94c7a",
+                strokeColor: "#0000FF",
                 strokeOpacity: 0.8,
                 strokeWeight: 3,
-                fillColor: "#c94c7a",
-                fillOpacity: 0.3,
+                fillColor: "#0000FF",
+                fillOpacity: 0.6,
             },
         };
     },
