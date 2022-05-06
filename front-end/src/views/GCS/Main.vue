@@ -88,7 +88,7 @@ export default {
     },
     mounted() {
         this.initializeMissionData();
-        this.interval = setInterval(this.updateStatus, 100);
+        this.interval = setInterval(this.updateStatus, 1000);
     },
     methods: {
         updateStatus() {
