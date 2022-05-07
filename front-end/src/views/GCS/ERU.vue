@@ -5,6 +5,7 @@
             <b-col class="left-column" cols="6  ">
                 <Map
                     v-if="vehicleData && vehicleIcon"
+                    :vehicleName="vehicleName"
                     :vehicleData="vehicleData"
                     :vehicleIcon="vehicleIcon"
                     :widgetData="widgetData"

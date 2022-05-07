@@ -75,7 +75,7 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-            this.$emit("goBack");
+            this.$emit("goBackSubmit");
         },
     },
 };

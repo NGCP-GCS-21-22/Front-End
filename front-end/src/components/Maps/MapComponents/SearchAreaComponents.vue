@@ -1,5 +1,5 @@
 <template>
-    <div v-if="searchArea">
+    <div v-if="searchArea && vehicleName =='MAC'">
         <div v-if="widgetTypeSelected == 'SearchArea'">
             <!-- Search Area -->
             <!-- v-if search selected v-for number of points in UI, create marker -->
@@ -34,6 +34,7 @@ export default {
     props: {
         widgetData: Object,
         widgetTypeSelected: String,
+        vehicleName: String,
     },
     computed: {
         searchArea() {

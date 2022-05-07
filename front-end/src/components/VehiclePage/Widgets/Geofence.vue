@@ -1,6 +1,6 @@
 <template>
     <b-container>
-        <b-button class="back-button" @click="goBack">Back</b-button>
+        <b-button class="back-button" @click="goBackReset">Back</b-button>
         <h2>
             <svg
                 class="vehicleImg"
@@ -56,6 +56,7 @@
                 :vehicleName="vehicleName"
                 :geofence="geofence"
                 @updateWidgetData="updateWidgetData"
+                @goBackSubmit="goBackSubmit"
             />
         </b-row>
     </b-container>
@@ -126,9 +127,13 @@ export default {
         },
     },
     methods: {
-        goBack() {
+        goBackReset() {
             this.$refs.Workspace.resetCoordinates();
             this.$emit("updateWidgetData", "geofence", this.initialGeofence);
+            this.$emit("goBack");
+        },
+        goBackSubmit() {
+            this.$refs.Workspace.resetCoordinates();
             this.$emit("goBack");
         },
         addGeofencePolygon(geofencePolygon, index) {
