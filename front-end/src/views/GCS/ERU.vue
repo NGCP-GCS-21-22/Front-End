@@ -121,7 +121,7 @@ export default {
     mounted() {
         this.initializeMissionData();
         this.initializeWidgetData();
-        this.interval = setInterval(this.updateVehicleData, 100);
+        this.interval = setInterval(this.updateVehicleData, 1000);
     },
     methods: {
         async initializeMissionData() {
