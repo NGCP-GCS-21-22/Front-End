@@ -117,7 +117,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gmap {
     width: 100vw;
     height: 92vh;

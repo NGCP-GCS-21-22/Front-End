@@ -24,7 +24,7 @@ h4 {
 }
 
 .stage-container {
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 .stage-card {

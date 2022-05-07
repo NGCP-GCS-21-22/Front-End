@@ -121,7 +121,6 @@ export default {
                     estop: false,
                 },
             };
-            console.log(payload);
             axios
                 .post(path, payload)
                 .then((response) => {

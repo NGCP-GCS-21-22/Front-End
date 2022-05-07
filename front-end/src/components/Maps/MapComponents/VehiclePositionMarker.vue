@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .coorStyle {
 	height: 7vh;
 	margin-left: 2px;

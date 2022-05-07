@@ -37,6 +37,7 @@
                     :vehicleData="meaData"
                     :missionData="missionData"
                 />
+                <EmergencyStopAll />
             </b-col>
         </b-row>
     </b-container>
@@ -47,6 +48,7 @@
 import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import GeneralStage from "@/components/MainPage/GeneralStage.vue";
 import Map from "@/components/Maps/MainMap.vue";
+import EmergencyStopAll from "@/components/MainPage/EmergencyStopAll.vue";
 import {
     getMissionData,
     getGeneralStage,
@@ -62,6 +64,7 @@ export default {
         VehicleStatus,
         GeneralStage,
         Map,
+        EmergencyStopAll,
     },
     data() {
         return {
@@ -151,7 +154,7 @@ export default {
     /* background-color: orange; */
 }
 .vehicle-status {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .main-row {
     /* max-width: 100%;
