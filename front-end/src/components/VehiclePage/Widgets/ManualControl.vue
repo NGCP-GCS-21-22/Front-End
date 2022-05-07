@@ -11,7 +11,9 @@
                 ></b-icon>
             </span>
         </div>
+
         <b-button
+            v-if="mode == 'Autonomous'"
             class="switch-to-manual"
             variant="primary"
             @click="switchToManual"
