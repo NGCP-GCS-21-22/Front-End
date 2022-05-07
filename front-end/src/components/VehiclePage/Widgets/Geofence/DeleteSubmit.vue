@@ -60,6 +60,18 @@ export default {
     methods: {
         deleteAll() {
             this.deleteModalShow = !this.deleteModalShow;
+            const path = `http://localhost:5000/postGeofence/${this.vehicleName}`;
+            let payload = {
+                geofence: [],
+            };
+            axios
+                .post(path, payload)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             this.$emit("updateWidgetData", "geofence", []);
         },
         submitAll() {
