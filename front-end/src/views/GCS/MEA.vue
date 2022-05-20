@@ -116,7 +116,7 @@ export default {
         },
         yaw() {
             if (!this.vehicleData) return null;
-            return this.vehicleData["yaw"];
+            return Math.round(this.vehicleData["yaw"]);
         },
     },
     mounted() {
