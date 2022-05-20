@@ -26,7 +26,6 @@
                         <b-col cols="5">
                             <Battery
                                 :batteryPct="batteryPct"
-                                :batteryColor="batteryColor"
                             />
                         </b-col>
                     </b-row>
@@ -77,12 +76,8 @@ export default {
     },
     computed: {
         batteryPct() {
-            if (!this.vehicleData) return 0;
+            if (!this.vehicleData) return -1;
             return this.vehicleData["battery"];
-        },
-        batteryColor() {
-            if (!this.vehicleData) return null;
-            return this.vehicleData["battery)color"];
         },
         latency() {
             if (!this.vehicleData) return 0;

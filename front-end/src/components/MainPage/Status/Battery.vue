@@ -2,7 +2,8 @@
     <div class="batteryContainer">
         <b-icon class="battery" :style="batteryStyle" :icon="batteryIcon">
         </b-icon>
-        <div class="batteryPercent">{{ batteryPct }}%</div>
+        <div v-if="batteryPct == -1" class="batteryPercent">--%</div>
+        <div v-else class="batteryPercent">{{ batteryPct }}%</div>
     </div>
 </template>
 
@@ -13,7 +14,6 @@ export default {
     },
     props: {
         batteryPct: Number,
-        batteryColor: String,
     },
     computed: {
         batteryIcon() {
@@ -24,6 +24,7 @@ export default {
 			else return "battery-full";
         },
         batteryStyle() {
+            if (this.batteryPct == -1) return "`color: grey`"
             if (this.batteryPct < 33) return `color: red`;
             else if (this.batteryPct < 66) return `color: yellow`;
             else return `color: green`;
