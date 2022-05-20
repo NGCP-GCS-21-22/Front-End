@@ -23,7 +23,7 @@ export default {
     },
     computed: {
         errorMessage() {
-            if (!this.vehicleData) return "None";
+            if (!this.vehicleData) return "-----";
             return this.vehicleData["err_msg"];
         },
     },

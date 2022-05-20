@@ -21,14 +21,14 @@ export default {
 					name: "KOWALSKI",
 					index: 0,
 				},
-				{
-					name: "SOTERIA",
-					index: 1,
-				},
-				{
-					name: "ARCHANGEL",
-					index: 2,
-				},
+				// {
+				// 	name: "SOTERIA",
+				// 	index: 1,
+				// },
+				// {
+				// 	name: "ARCHANGEL",
+				// 	index: 2,
+				// },
 			],
 		};
 	},
