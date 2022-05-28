@@ -49,7 +49,7 @@ export default {
 			return this.vehicleData["status"];
 		},
 		statusText() {
-			if (!this.status) return "-----";
+			if (!this.vehicleData) return "-----";
 			if (this.status == 0) return "Standby";
 			// else if (this.status == 1) return "Active";
 			else if (this.status >= 1) return "Active";
@@ -67,14 +67,14 @@ export default {
 		},
 		sensorsText() {
 			if (!this.vehicleData) return "-----";
-			if (this.sensors == 1) return "Functional";
+			if (this.sensors <= 1) return "Functional";
 			else if (this.sensors >= 2) return "Malfunctioning";
 			// else if (this.sensors == 2)
 			// 	return "Malfunctioning";
 		},
 		sensorsIconVariant() {
 			if (!this.vehicleData) return null;
-			if (this.sensors == 1) return "success";
+			if (this.sensors <= 1) return "success";
             else if (this.sensors >= 2) return "warning";
 			// else if (this.sensors == 2) return "warning";
 		},
