@@ -1,11 +1,7 @@
 <template>
     <b-container class="stage-container">
         <b-row class="justify-content-md-center">
-            <svg
-                class="vehicleImg"
-                v-if="path && fillColor"
-                viewBox="0 0 100 100"
-            >
+            <svg class="vehicleImg" v-if="path && fillColor" viewBox="0 0 100 100">
                 <path :d="path" :fill="fillColor" />
             </svg>
             <h2>{{ vehicleName }}: {{ currentStage }}</h2>
@@ -13,7 +9,7 @@
     </b-container>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     props: {
         vehicleData: Object,
@@ -68,9 +64,11 @@ export default {
 .stage-container {
     margin-top: 10px;
 }
+
 .vehicleName {
     padding: 10px 0px;
 }
+
 .vehicleImg {
     width: 50px;
     height: 50px;

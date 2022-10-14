@@ -9,7 +9,7 @@
 	</b-container>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	props: {
 		generalStage: String,
@@ -27,6 +27,7 @@ h4 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
 .stage-card {
 	height: 13vh;
 }

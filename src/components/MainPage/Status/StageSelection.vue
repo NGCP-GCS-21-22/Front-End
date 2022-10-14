@@ -1,27 +1,14 @@
 <template>
     <div>
-        <b-button
-            class="stage-selection-button"
-            style="font-weight: bold"
-            @click="sModalShow = !sModalShow"
-            variant="primary"
-            >{{ "STAGE SELECTION" }}
-            <b-img
-                style="padding-left: 6px; width: 32px; color: #ffffff"
-                :src="require('@/assets/select.png')"
-            ></b-img>
+        <b-button class="stage-selection-button" style="font-weight: bold" @click="sModalShow = !sModalShow"
+            variant="primary">{{ "STAGE SELECTION" }}
+            <b-img style="padding-left: 6px; width: 32px; color: #ffffff" :src="require('@/assets/select.png')"></b-img>
         </b-button>
 
-        <b-modal
-            centered
-            v-model="sModalShow"
-            hide-footer
-            :title="vehicleName + ' Stage Selection'"
-        >
+        <b-modal centered v-model="sModalShow" hide-footer :title="vehicleName + ' Stage Selection'">
             <!-- include form dropdown & submit button -->
             <b-form-select v-model="selected" :options="stages">
-                <b-form-select-option :value="null" disabled
-                    >-- Please select an option
+                <b-form-select-option :value="null" disabled>-- Please select an option
                 </b-form-select-option>
             </b-form-select>
 
@@ -32,17 +19,13 @@
                 Selected Stage: <strong>{{ selectedStage }}</strong>
             </div>
             <!--<div class="mt-3">Stage: <strong>{{ stages.text }}</strong></div>-->
-            <b-button
-                @click="submit(sModalShow)"
-                variant="primary"
-                style="padding='5px'"
-                >Submit
+            <b-button @click="submit(sModalShow)" variant="primary" style="padding='5px'">Submit
             </b-button>
         </b-modal>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios";
 
 export default {

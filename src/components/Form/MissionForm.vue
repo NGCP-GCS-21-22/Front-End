@@ -21,17 +21,17 @@
 			&nbsp;
 			<b-row align="start">
 				<!-- Manual Control (toggle/checkbox) -->
-				<ManualControl ref="ManualControl" :vehicleName="vehicleName + 'manual'" /> 
+				<ManualControl ref="ManualControl" :vehicleName="vehicleName + 'manual'" />
 			</b-row>
 			<b-row align="start">
 				<!-- Search Area (toggle/checkbox) -->
-				<SearchArea ref="SearchArea" :vehicleName="vehicleName + 'search'"/>
+				<SearchArea ref="SearchArea" :vehicleName="vehicleName + 'search'" />
 			</b-row>
 		</b-card>
 	</b-container>
 </template>
 
-<script>
+<script lang="ts">
 import MissionWaypoint from "@/components/Form/MissionWaypoint.vue";
 import Stages from "@/components/Form/Stages.vue";
 import ManualControl from "@/components/Form/ManualControl.vue";
@@ -59,4 +59,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

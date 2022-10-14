@@ -1,18 +1,19 @@
 <template>
 	<div class="bg-container">
-		<div class="header"><h1> Ground Control Station</h1></div>
+		<div class="header">
+			<h1> Ground Control Station</h1>
+		</div>
 		<Missions />
 
 		<b-button class="button" variant="success" @click="createNew"> New Mission </b-button>
 	</div>
 </template>
 
-<script>
-import Missions from "@/components/Start/Missions.vue";
-export default {
-	components: {
-		Missions,
-	},
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Missions from '../../components/Start/Missions.vue';
+
+export default defineComponent({
 	methods: {
 		createNew() {
 			this.$router.push("/form");
@@ -23,7 +24,9 @@ export default {
 			this.$router.push("/missions");
 		},
 	},
-};
+	components: { Missions }
+})
+
 </script>
 
 <style scoped>
@@ -31,6 +34,7 @@ export default {
 	width: 100vw;
 	height: 100vh;
 }
+
 .button {
 	/* position: absolute;
 	bottom: 20px; */
@@ -40,11 +44,13 @@ export default {
 	transform: translate(-50%, -50%);
 	margin: 0 auto;
 }
+
 .header {
 	background: #011949;
 	width: 100%;
 	padding: 20px 0px;
 }
+
 .header h1 {
 	color: #ffffff;
 }

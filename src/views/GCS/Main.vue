@@ -3,40 +3,19 @@
         <b-row class="main-row">
             <!-- left column -->
             <b-col class="left-column" cols="8" style="padding: 0">
-                <Map
-                    :macData="macData"
-                    :eruData="eruData"
-                    :meaData="meaData"
-                    :macIcon="macIcon"
-                    :eruIcon="eruIcon"
-                    :meaIcon="meaIcon"
-                />
+                <Map :macData="macData" :eruData="eruData" :meaData="meaData" :macIcon="macIcon" :eruIcon="eruIcon"
+                    :meaIcon="meaIcon" />
             </b-col>
 
             <!-- right column -->
             <b-col class="right-column" cols="4">
                 <GeneralStage :generalStage="generalStage" />
-                <VehicleStatus
-                    class="vehicle-status"
-                    :vehicleName="'MAC'"
-                    :vehicleIcon="macIcon"
-                    :vehicleData="macData"
-                    :missionData="missionData"
-                />
-                <VehicleStatus
-                    class="vehicle-status"
-                    :vehicleName="'ERU'"
-                    :vehicleIcon="eruIcon"
-                    :vehicleData="eruData"
-                    :missionData="missionData"
-                />
-                <VehicleStatus
-                    class="vehicle-status"
-                    :vehicleName="'MEA'"
-                    :vehicleIcon="meaIcon"
-                    :vehicleData="meaData"
-                    :missionData="missionData"
-                />
+                <VehicleStatus class="vehicle-status" :vehicleName="'MAC'" :vehicleIcon="macIcon" :vehicleData="macData"
+                    :missionData="missionData" />
+                <VehicleStatus class="vehicle-status" :vehicleName="'ERU'" :vehicleIcon="eruIcon" :vehicleData="eruData"
+                    :missionData="missionData" />
+                <VehicleStatus class="vehicle-status" :vehicleName="'MEA'" :vehicleIcon="meaIcon" :vehicleData="meaData"
+                    :missionData="missionData" />
                 <EmergencyStopAll />
             </b-col>
         </b-row>
@@ -153,18 +132,22 @@ export default {
     max-height: 100%;
     /* background-color: orange; */
 }
+
 .vehicle-status {
     margin-top: 10px;
 }
+
 .main-row {
     /* max-width: 100%;
   max-height: 100%; */
     /* background-color: aqua; */
 }
+
 .left-column {
     padding: 0;
     /* background-color: red; */
 }
+
 .right-column {
     padding: 0;
     /* background-color: purple; */

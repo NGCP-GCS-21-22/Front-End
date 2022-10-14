@@ -1,36 +1,36 @@
 <template>
-	<div class="bg-container">
-		<div class="back">
-			<b-button variant="dark" @click="goToStart">
-				Back
-			</b-button>
-		</div>
-		<b-container>
-			<b-row class="justify-content-md-center">
-				<Name ref="Name"/>
-			</b-row>
-		</b-container>	
-		</b-form-input>
-		<b-container fluid>
-			<b-row class="justify-content-md-center">
-				<b-col md="4">
-					<MissionForm ref="MACForm" :vehicleName="'MAC'" />
-				</b-col>
-				<b-col cols="4">
-					<MissionForm ref="ERUForm" :vehicleName="'ERU'" />
-				</b-col>
-				<b-col cols="4">
-					<MissionForm ref="MEAForm" :vehicleName="'MEA'" />
-				</b-col>
-			</b-row>
-		</b-container>
-		<b-button class="submit" variant="success" @click.prevent="submit()">
-			Submit
-		</b-button>
-	</div>
+    <div class="bg-container">
+        <div class="back">
+            <b-button variant="dark" @click="goToStart">
+                Back
+            </b-button>
+        </div>
+        <b-container>
+            <b-row class="justify-content-md-center">
+                <Name ref="Name" />
+            </b-row>
+        </b-container>
+
+        <b-container fluid>
+            <b-row class="justify-content-md-center">
+                <b-col md="4">
+                    <MissionForm ref="MACForm" :vehicleName="'MAC'" />
+                </b-col>
+                <b-col cols="4">
+                    <MissionForm ref="ERUForm" :vehicleName="'ERU'" />
+                </b-col>
+                <b-col cols="4">
+                    <MissionForm ref="MEAForm" :vehicleName="'MEA'" />
+                </b-col>
+            </b-row>
+        </b-container>
+        <b-button class="submit" variant="success" @click.prevent="submit()">
+            Submit
+        </b-button>
+    </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios";
 import MissionForm from "@/components/Form/MissionForm.vue";
 import Name from "@/components/Form/Name.vue";
@@ -97,14 +97,14 @@ export default {
                 },
             };
             axios
-            	.post(path, payload)
-            	.then((response) => {
-            		console.log("New mission created.");
-            		this.$router.push("/gcs/main");
-            	})
-            	.catch((error) => {
-            		console.log(error);
-            	});
+                .post(path, payload)
+                .then((response) => {
+                    console.log("New mission created.");
+                    this.$router.push("/gcs/main");
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             console.log(payload);
             this.$router.push("/gcs/main");
         },
@@ -133,6 +133,7 @@ export default {
     top: 20px;
     left: 20px;
 }
+
 .bg-container {
     width: 100vw;
     height: 100vh;

@@ -3,64 +3,42 @@
 		<!-- Geofence -->
 		<!-- Workspace -->
 		<div v-if="widgetTypeSelected == 'Geofence'">
-			<GmapMarker
-				:key="coordinate.id"
-				v-for="(
+			<GmapMarker :key="coordinate.id" v-for="(
 					coordinate, index
-				) in geofenceWorkspacePolygon.coordinates"
-				:position="{ lat: coordinate.lat, lng: coordinate.lng }"
-				:draggable="true"
-				:zIndex="1000"
-				:label="{
+				) in geofenceWorkspacePolygon.coordinates" :position="{ lat: coordinate.lat, lng: coordinate.lng }"
+				:draggable="true" :zIndex="1000" :label="{
 					color: '#fff',
 					fontSize: '12px',
 					fontWeight: '600',
 					text: `${index + 1}`,
-				}"
-				@drag="moveGeofenceWorkspaceVertex($event, coordinate.id)"
-			/>
-			<GmapPolygon
-				:path="geofenceWorkspacePolygon.coordinates"
-				:clickable="false"
-				:options="getWorkspacePolyOption()"
-			/>
+				}" @drag="moveGeofenceWorkspaceVertex($event, coordinate.id)" />
+			<GmapPolygon :path="geofenceWorkspacePolygon.coordinates" :clickable="false"
+				:options="getWorkspacePolyOption()" />
 		</div>
 		<!-- Polygons -->
-		<div
-			v-for="(polygon, index) in geofencePolygons.polygons"
-			:key="polygon.id"
-		>
-			<GmapPolygon
-				:path="polygon.coordinates"
-				:clickable="false"
-				:options="polygon.keep_in ? keepInOptions : keepOutOptions"
-				:zIndex="polygon.keep_in ? 1 : 1000"
-			/>
-			<GmapMarker
-				:position="getCenter(polygon.coordinates)"
-				:clickable="false"
-				:label="{
-					color: '#fff',
-					fontSize: '20px',
-					fontWeight: '600',
-					text: `${index + 1}`,
-				}"
-				:icon="{
-					url: 'https://i.imgur.com/w2akEKc.png',
-				}"
-			/>
+		<div v-for="(polygon, index) in geofencePolygons.polygons" :key="polygon.id">
+			<GmapPolygon :path="polygon.coordinates" :clickable="false"
+				:options="polygon.keep_in ? keepInOptions : keepOutOptions" :zIndex="polygon.keep_in ? 1 : 1000" />
+			<GmapMarker :position="getCenter(polygon.coordinates)" :clickable="false" :label="{
+				color: '#fff',
+				fontSize: '20px',
+				fontWeight: '600',
+				text: `${index + 1}`,
+			}" :icon="{
+				url: 'https://i.imgur.com/w2akEKc.png',
+			}" />
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-    props: {
-        widgetData: Object,
-        widgetTypeSelected: String,
-    },
-    computed: {
-        geofenceWorkspace() {
+	props: {
+		widgetData: Object,
+		widgetTypeSelected: String,
+	},
+	computed: {
+		geofenceWorkspace() {
 			if (!this.widgetData.geofenceWorkspace) return null;
 			let coordinates = this.widgetData.geofenceWorkspace.coordinates.map(
 				(element) => {
@@ -141,10 +119,10 @@ export default {
 				polygons: polygons,
 			};
 		},
-    },
-    data() {
-        return {
-            keepInOptions: {
+	},
+	data() {
+		return {
+			keepInOptions: {
 				strokeColor: "#39FF14",
 				strokeOpacity: 0.8,
 				strokeWeight: 3,
@@ -158,10 +136,10 @@ export default {
 				fillColor: "#cc0000",
 				fillOpacity: 0.5,
 			},
-        }
-    },
-    methods: {
-        getWorkspacePolyOption() {
+		};
+	},
+	methods: {
+		getWorkspacePolyOption() {
 			if (this.geofenceWorkspace.keep_in == null) return null;
 			if (this.geofenceWorkspace.keep_in == true) return keepInOptions;
 			if (this.geofenceWorkspace.keep_in == false) return keepOutOptions;
@@ -191,9 +169,10 @@ export default {
 				lng: parseFloat(centerLng),
 			};
 		},
-    }
+	}
 };
 </script>
 
 <style scoped>
+
 </style>

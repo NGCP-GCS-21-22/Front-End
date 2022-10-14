@@ -4,12 +4,8 @@
             <!-- top row -->
             <b-row>
                 <b-col>
-                    <VehicleStage
-                        :vehicleData="vehicleData"
-                        :vehicleName="vehicleName"
-                        :missionData="missionData"
-                        :vehicleIcon="vehicleIcon"
-                    />
+                    <VehicleStage :vehicleData="vehicleData" :vehicleName="vehicleName" :missionData="missionData"
+                        :vehicleIcon="vehicleIcon" />
                 </b-col>
             </b-row>
 
@@ -22,11 +18,11 @@
                 <!-- middle right -->
                 <b-col cols="6">
                     <b-row>
-                        <b-col cols="7"><Mode :mode="mode" /></b-col>
+                        <b-col cols="7">
+                            <Mode :mode="mode" />
+                        </b-col>
                         <b-col cols="5">
-                            <Battery
-                                :batteryPct="batteryPct"
-                            />
+                            <Battery :batteryPct="batteryPct" />
                         </b-col>
                     </b-row>
                 </b-col>
@@ -36,11 +32,7 @@
             <b-row>
                 <!-- bottom left -->
                 <b-col cols="6">
-                    <StageSelection
-                        :vehicleName="vehicleName"
-                        :missionData="missionData"
-                        :vehicleData="vehicleData"
-                    />
+                    <StageSelection :vehicleName="vehicleName" :missionData="missionData" :vehicleData="vehicleData" />
                 </b-col>
                 <!-- bottom right -->
                 <b-col>
@@ -51,7 +43,7 @@
     </b-container>
 </template>
 
-<script>
+<script lang="ts">
 import VehicleStage from "@/components/MainPage/Status/VehicleStage.vue";
 import ConnectionStatus from "@/components/MainPage/Status/ConnectionStatus.vue";
 import EmergencyStop from "@/components/MainPage/Status/EmergencyStop.vue";
@@ -99,9 +91,11 @@ export default {
 .status-container {
     margin-top: 10px;
 }
+
 .status-card {
     height: 22vh;
 }
+
 img {
     width: 20;
     height: 20;

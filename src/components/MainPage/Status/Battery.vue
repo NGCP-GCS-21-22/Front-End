@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     data() {
         return {};
@@ -21,7 +21,7 @@ export default {
 
             if (this.batteryPct < 33) return "battery";
             else if (this.batteryPct < 66) return "battery-half";
-			else return "battery-full";
+            else return "battery-full";
         },
         batteryStyle() {
             if (this.batteryPct == -1) return "`color: grey`"

@@ -2,12 +2,12 @@
 	<b-row class="justify-content-md-center vehicleName">
 		<h2>{{ vehicleName }}</h2>
 		<svg class="vehicleImg" v-if="path && fillColor" viewBox="0 0 100 100">
-			<path :d="path" :fill="fillColor"/>
+			<path :d="path" :fill="fillColor" />
 		</svg>
 	</b-row>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	props: {
 		vehicleName: String,
