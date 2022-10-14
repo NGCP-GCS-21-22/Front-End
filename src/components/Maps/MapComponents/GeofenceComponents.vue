@@ -3,7 +3,7 @@
 		<!-- Geofence -->
 		<!-- Workspace -->
 		<div v-if="widgetTypeSelected == 'Geofence'">
-			<GmapMarker :key="coordinate.id" v-for="(
+			<Marker :key="coordinate.id" v-for="(
 					coordinate, index
 				) in geofenceWorkspacePolygon.coordinates" :position="{ lat: coordinate.lat, lng: coordinate.lng }"
 				:draggable="true" :zIndex="1000" :label="{
@@ -19,7 +19,7 @@
 		<div v-for="(polygon, index) in geofencePolygons.polygons" :key="polygon.id">
 			<GmapPolygon :path="polygon.coordinates" :clickable="false"
 				:options="polygon.keep_in ? keepInOptions : keepOutOptions" :zIndex="polygon.keep_in ? 1 : 1000" />
-			<GmapMarker :position="getCenter(polygon.coordinates)" :clickable="false" :label="{
+			<Marker :position="getCenter(polygon.coordinates)" :clickable="false" :label="{
 				color: '#fff',
 				fontSize: '20px',
 				fontWeight: '600',
@@ -32,7 +32,11 @@
 </template>
 
 <script>
+import { Marker } from "vue3-google-map";
 export default {
+	components: {
+		Marker
+	},
 	props: {
 		widgetData: Object,
 		widgetTypeSelected: String,

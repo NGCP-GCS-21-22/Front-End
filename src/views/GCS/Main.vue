@@ -33,7 +33,6 @@ import {
     getGeneralStage,
     getVehicleData,
 } from "@/helpers/getData.js";
-import axios from "axios";
 
 export default {
     props: {

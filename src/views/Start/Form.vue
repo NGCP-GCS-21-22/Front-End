@@ -30,7 +30,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script >
 import axios from "axios";
 import MissionForm from "@/components/Form/MissionForm.vue";
 import Name from "@/components/Form/Name.vue";

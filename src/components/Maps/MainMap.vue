@@ -1,26 +1,18 @@
 <template>
-	<GmapMap
-		class="gmap"
-		:center="center"
-		:zoom="zoom"
-		:map-type-id="mapType"
-		:tilt="tilt"
-		:options="options"
-	>
+	<GoogleMap :api-key="apiKey" class="gmap" :center="center" :zoom="zoom" :map-type-id="mapType" :tilt="tilt"
+		:options="options">
 		<!-- MAC -->
 		<VehiclePositionMarker :vehicleData="macData" :vehicleIcon="macIcon" />
-
 		<!-- ERU -->
 		<VehiclePositionMarker :vehicleData="eruData" :vehicleIcon="eruIcon" />
 
 		<!-- MEA -->
 		<VehiclePositionMarker :vehicleData="meaData" :vehicleIcon="meaIcon" />
-
 		<HikerMarker />
-	</GmapMap>
+	</GoogleMap>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	centerLng,
 	centerLat,
@@ -29,19 +21,30 @@ import {
 } from "@/helpers/coordinates.js";
 import VehiclePositionMarker from "@/components/Maps/MapComponents/VehiclePositionMarker.vue";
 import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
+import { GoogleMap } from "vue3-google-map";
+import { defineComponent } from "vue";
 
-export default {
+type Icon = {
+	path: String,
+	fillColor: Number,
+	latitude: Number,
+	longitude: Number,
+	rotation: Number,
+}
+
+export default defineComponent({
 	props: {
-		macData: Object,
-		eruData: Object,
-		meaData: Object,
-		macIcon: Object,
-		eruIcon: Object,
-		meaIcon: Object,
+		macData: { required: true, type: Object as () => Icon },
+		eruData: { required: true, type: Object as () => Icon },
+		meaData: { required: true, type: Object as () => Icon },
+		macIcon: { required: true, type: Object as () => Icon },
+		eruIcon: { required: true, type: Object as () => Icon },
+		meaIcon: { required: true, type: Object as () => Icon },
 	},
 	components: {
 		VehiclePositionMarker,
 		HikerMarker,
+		GoogleMap
 	},
 	data() {
 		return {
@@ -64,6 +67,7 @@ export default {
 			macHover: false,
 			eruHover: false,
 			meaHover: false,
+			apiKey: import.meta.env.API_KEY
 		};
 	},
 	computed: {
@@ -131,7 +135,7 @@ export default {
 		// },
 	},
 	methods: {},
-};
+});
 </script>
 
 <style scoped>

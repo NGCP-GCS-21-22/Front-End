@@ -2,7 +2,7 @@
     <div>
         <b-button class="stage-selection-button" style="font-weight: bold" @click="sModalShow = !sModalShow"
             variant="primary">{{ "STAGE SELECTION" }}
-            <b-img style="padding-left: 6px; width: 32px; color: #ffffff" :src="require('@/assets/select.png')"></b-img>
+            <b-img style="padding-left: 6px; width: 32px; color: #ffffff" src="@/assets/select.png"></b-img>
         </b-button>
 
         <b-modal centered v-model="sModalShow" hide-footer :title="vehicleName + ' Stage Selection'">
@@ -25,7 +25,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script >
 import axios from "axios";
 
 export default {
