@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 
 import BootstrapVue3 from "bootstrap-vue-3";
+import VueGoogleMaps from "@fawmi/vue-google-maps";
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,6 +19,11 @@ app.use(BootstrapVue3);
 // app.use(IconsPlugin);
 
 // app.use(ModalPlugin);
-
+console.log(import.meta.env, import.meta.env.API_KEY);
+app.use(VueGoogleMaps, {
+  load: {
+    key: import.meta.env.VITE_API_KEY,
+  },
+});
 app.use(router);
 app.mount("#app");

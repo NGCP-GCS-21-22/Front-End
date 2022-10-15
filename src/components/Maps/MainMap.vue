@@ -1,6 +1,5 @@
 <template>
-	<GoogleMap :api-key="apiKey" class="gmap" :center="center" :zoom="zoom" :map-type-id="mapType" :tilt="tilt"
-		:options="options">
+	<GMapMap class="gmap" :center="center" :zoom="zoom" :map-type-id="mapType" :tilt="tilt" :options="options">
 		<!-- MAC -->
 		<VehiclePositionMarker :vehicleData="macData" :vehicleIcon="macIcon" />
 		<!-- ERU -->
@@ -9,7 +8,7 @@
 		<!-- MEA -->
 		<VehiclePositionMarker :vehicleData="meaData" :vehicleIcon="meaIcon" />
 		<HikerMarker />
-	</GoogleMap>
+	</GMapMap>
 </template>
 
 <script lang="ts">
@@ -21,7 +20,6 @@ import {
 } from "@/helpers/coordinates.js";
 import VehiclePositionMarker from "@/components/Maps/MapComponents/VehiclePositionMarker.vue";
 import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
-import { GoogleMap } from "vue3-google-map";
 import { defineComponent } from "vue";
 
 type Icon = {
@@ -44,7 +42,6 @@ export default defineComponent({
 	components: {
 		VehiclePositionMarker,
 		HikerMarker,
-		GoogleMap
 	},
 	data() {
 		return {
@@ -67,7 +64,6 @@ export default defineComponent({
 			macHover: false,
 			eruHover: false,
 			meaHover: false,
-			apiKey: import.meta.env.API_KEY
 		};
 	},
 	computed: {
