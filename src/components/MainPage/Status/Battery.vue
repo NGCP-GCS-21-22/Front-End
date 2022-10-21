@@ -3,7 +3,7 @@
         <b-icon class="battery" :style="batteryStyle" :icon="batteryIcon">
         </b-icon>
         <div v-if="batteryPct == -1" class="batteryPercent">--%</div>
-        <div v-else class="batteryPercent">{{ batteryPct }}%</div> 
+        <div v-else class="batteryPercent">{{ batteryPct }}%</div>
     </div>
 </template>
 
@@ -35,17 +35,27 @@ export default {
 
 <style scoped>
 .batteryContainer {
-    overflow: auto;                                                       // if content is rendered outside battery icon element content is clipped and scroll bars are added if necessary by auto
-    padding: 10px 0px;                                                    // creates 10px of blank space on top and bottom inside battery icon and 0px space on left/right
+    overflow: auto;
+    /** if content is rendered outside battery icon element content is clipped and scroll bars are added if necessary by auto*/
+    padding: 10px 0px;
+}
+
+/** creates 10px of blank space on top and bottom inside battery icon and 0px space on left/right*/
 .battery {
-    width: 60px;                                                          // width of battery icon
-    height: 38px;                                                         // height of icon
-    margin-top: -8px;                                                     // creates blank space of 8px around border of battery element 
-    float: left;                                                          // set the horizontal alignment of the battery icon
+    width: 60px;
+    /** width of battery icon*/
+    height: 38px;
+    /** height of icon*/
+    margin-top: -8px;
+    /** creates blank space of 8px around border of battery element */
+    float: left;
+    /** set the horizontal alignment of the battery icon*/
 }
 
 .batteryPercent {
-    float: left;                                                          // set the horizontal alignment of the bat % #
-    font-size: 11pt;                                                      // font size of battery % #
+    float: left;
+    /** set the horizontal alignment of the bat % #*/
+    font-size: 11pt;
+    /**font size of battery % # */
 }
 </style>
