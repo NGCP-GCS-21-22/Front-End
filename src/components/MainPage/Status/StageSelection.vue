@@ -1,57 +1,81 @@
+<!-- Selection modal for user to select which stage to switch vehicle to -->
 <template>
     <div>
+        <!-- button to open modal -->
         <b-button class="stage-selection-button" style="font-weight: bold" @click="sModalShow = !sModalShow"
             variant="primary">{{ "STAGE SELECTION" }}
             <b-img style="padding-left: 6px; width: 32px; color: #ffffff" src="@/assets/select.png"></b-img>
         </b-button>
 
+        <!-- dynamic title -->
         <b-modal centered v-model="sModalShow" hide-footer :title="vehicleName + ' Stage Selection'">
             <!-- include form dropdown & submit button -->
-            <b-form-select v-model="selected" :options="stages">
-                <b-form-select-option :value="null" disabled>-- Please select an option
+
+            <!-- select a stage -->
+            <b-form-select v-model="selected"
+                :options="stages? stages.map(stage => {return {text: stage.stage, value: stage}}) : []">
+                <b-form-select-option :value="undefined" disabled>-- Please select an option
                 </b-form-select-option>
             </b-form-select>
 
+            <!-- display selected values -->
             <div class="mt-3">
                 Selected ID: <strong>{{ selectedId }}</strong>
             </div>
             <div class="mt-3">
                 Selected Stage: <strong>{{ selectedStage }}</strong>
             </div>
-            <!--<div class="mt-3">Stage: <strong>{{ stages.text }}</strong></div>-->
-            <b-button @click="submit(sModalShow)" variant="primary" style="padding='5px'">Submit
+
+            <!-- button to submit form (calls endpoint) -->
+            <b-button @click="submit()" variant="primary" style="{padding: 5px}">Submit
             </b-button>
         </b-modal>
     </div>
 </template>
 
-<script >
+<script lang="ts">
 import axios from "axios";
+import { defineComponent } from "vue";
 
-export default {
+type Stage = {
+    id: number,
+    stage: string,
+}
+
+export default defineComponent({
     props: {
-        vehicleName: String,
+        // name of the vehicle
+        vehicleName: {
+            type: String,
+            required: true,
+        },
+        // shared mission data
         missionData: Object,
+        // data regarding specific vehicle
         vehicleData: Object,
     },
     computed: {
-        currentStage() {
+        // existential checks, if prop is null, return null
+        currentStage(): string | null {
             if (this.vehicleData == null) return null;
             return this.vehicleData.current_stage;
         },
-        selectedStage() {
+        selectedStage(): string | null {
             if (this.selected) {
                 return this.selected.stage;
             }
             return null;
         },
-        selectedId() {
+        selectedId(): number | null {
             if (this.selected) {
                 return this.selected.id;
             }
             return null;
         },
-        stages() {
+        /**
+         * Returns null if either mission data or vehicleName is missing. Else, returns a list of stages.
+         */
+        stages(): Stage[] | null {
             if (!this.missionData) return null;
             if (!this.vehicleName) return null;
             // return stages array
@@ -59,11 +83,8 @@ export default {
             let stages = [];
             for (let i = 0; i < vehicleStages.length; i++) {
                 let stage = {
-                    text: vehicleStages[i].stage,
-                    value: {
-                        id: vehicleStages[i].id,
-                        stage: vehicleStages[i].stage,
-                    },
+                    id: vehicleStages[i].id,
+                    stage: vehicleStages[i].stage,
                 };
                 stages.push(stage);
             }
@@ -73,25 +94,18 @@ export default {
     data() {
         return {
             sModalShow: false,
-            selected: null,
+            selected: undefined as Stage | undefined,
             form: {
                 option: null,
             },
         };
     },
     mounted() {
-        // set the selected stage if available
-        // if (this.stages != null) {
-        //     this.stages.forEach((stage) => {
-        //         if (stage.id == this.currentStage) {
-        //             this.selected = stage;
-        //             console.log(this.currentStage);
-        //             console.log(this.selected);
-        //         }
-        //     });
-        // }
     },
     methods: {
+        /**
+         * Submits selection of stage to local REST endpoint. Provides selected stage id/name as well as vehicle name and emergency stop boolean.
+         */
         submit() {
             this.sModalShow = !this.sModalShow;
             const path = "http://localhost:5000/send";
@@ -114,7 +128,7 @@ export default {
                 });
         },
     },
-};
+});
 </script>
 
 <style scoped>
