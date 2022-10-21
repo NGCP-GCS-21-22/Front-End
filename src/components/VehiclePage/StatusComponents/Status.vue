@@ -44,7 +44,10 @@ export default {
 		vehicleData: Object,
 	},
 	computed: {
+                //status section
 		status() {
+                        //If the vehicle's data stream Isn't null, it will return one of two statuses
+                        //Either active or standby. If it's not sending a number it will give an empty status
 			if (!this.vehicleData) return null;
 			return this.vehicleData["status"];
 		},
@@ -61,10 +64,13 @@ export default {
 			// else if (this.status == 1) return "success";
 			else if (this.status >= 1) return "success";
 		},
+                //sensor status section
 		sensors() {
+                //if there is data to stream, then the sensors are ok
 			if (!this.vehicleData) return null;
 			return this.vehicleData["sensors_ok"];
 		},
+                //Here's what reports the current status of the sensor
 		sensorsText() {
 			if (!this.vehicleData) return "-----";
 			if (this.sensors <= 1) return "Functional";
@@ -81,7 +87,7 @@ export default {
 	},
 };
 </script>
-
+//style section. Different margins and underlining for the statuses
 <style scoped>
 .StatusIcon .b-icon {
 	margin-left: 10px;
