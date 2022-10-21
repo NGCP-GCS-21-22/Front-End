@@ -1,3 +1,4 @@
+<!-- Map displaying the position of all vehicles -->
 <template>
 	<GMapMap class="gmap" :center="center" :zoom="zoom" :map-type-id="mapType" :tilt="tilt" :options="options">
 		<!-- MAC -->
@@ -43,12 +44,16 @@ export default defineComponent({
 		VehiclePositionMarker,
 		HikerMarker,
 	},
+	// Map data
 	data() {
 		return {
-			// Map Data
+			// Center the map
 			center: { lat: centerLat, lng: centerLng },
+			// Adjust zoom of the map
 			zoom: 18,
+			// Adjust tilt of the map
 			tilt: 0,
+			// Disable controls for the map
 			options: {
 				zoomControl: false,
 				mapTypeControl: false,
@@ -60,6 +65,7 @@ export default defineComponent({
 				draggable: false,
 				disableDoubleClickZoom: true,
 			},
+			// Define map type
 			mapType: "satellite",
 			macHover: false,
 			eruHover: false,
@@ -68,7 +74,10 @@ export default defineComponent({
 	},
 	computed: {
 		macMarker() {
+			// If missing MAC data, do not display marker
 			if (!this.macData) return null;
+			
+			// Display the MAC marker
 			return {
 				id: "macMarker",
 				position: {
@@ -87,7 +96,10 @@ export default defineComponent({
 			};
 		},
 		eruMarker() {
+			// If missing ERU data, do not display marker
 			if (!this.eruData) return null;
+			
+			// Display the MEA marker
 			return {
 				id: "eruMarker",
 				position: {
@@ -106,7 +118,10 @@ export default defineComponent({
 			};
 		},
 		meaMarker() {
+			// If missing MEA data, do not display marker
 			if (!this.meaData) return null;
+			
+			// Display the MEA marker
 			return {
 				id: "meaMarker",
 				position: {
@@ -136,7 +151,9 @@ export default defineComponent({
 
 <style scoped>
 .gmap {
+	// sets the width of the map
 	width: 100vw;
+	// sets the height of the map
 	height: 92vh;
 }
 </style>
