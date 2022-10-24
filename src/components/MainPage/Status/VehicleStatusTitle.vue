@@ -10,17 +10,17 @@
 <script lang="ts">
 export default {
 	props: {
-		vehicleName: String,
-		vehicleIcon: Object,
+		vehicleName: String,										string property for naming the vehicle
+		vehicleIcon: Object,										property for giving the vehicle an icon 
 	},
 	computed: {
 		path() {
-			if (!this.vehicleIcon) return null;
-			return this.vehicleIcon.path;
+			if (!this.vehicleIcon) return null;						if no instance of a vehicle icon object return null
+			return this.vehicleIcon.path;							else return the vehicles icon
 		},
 		fillColor() {
-			if (!this.vehicleIcon) return null;
-			return this.vehicleIcon.fillColor;
+			if (!this.vehicleIcon) return null;						if no instance of a vehicle icon object return null
+			return this.vehicleIcon.fillColor;						else return the vehicles icon color
 		},
 	},
 };
@@ -28,14 +28,14 @@ export default {
 
 <style scoped>
 .vehicleName {
-	padding: 10px 0px;
+	padding: 10px 0px;												create an area of empty around the vehicle name inside its bounding box of 10px on top and bottom 0px on left and right
 }
 
 .vehicleImg {
-	width: 50px;
-	height: 50px;
-	margin-top: -6px;
-	margin-left: 10px;
-	float: left;
+	width: 50px;													define size of vehicle icon to be 50px wide 
+	height: 50px;													by 50px tall
+	margin-top: -6px;												positioned 6px below the top of the screen 
+	margin-left: 10px;												and 10px from the  left of the screen
+	float: left;													left align the icon object
 }
 </style>
