@@ -13,6 +13,7 @@
         </div>
 
         <b-button
+        //Setting the different modes for control - Automatic, and Manual. By default it's on Autonomous.
             v-if="mode == 'Autonomous'"
             class="switch-to-manual"
             variant="primary"
@@ -27,12 +28,14 @@
 import axios from "axios";
 
 export default {
+//Different "object" names that will be used - name, VehicleName, and vehicleData.
     props: {
         name: String,
         vehicleName: String,
         vehicleData: Object,
     },
     computed: {
+    //If data is not null, return the mode the vehicle is in.
         mode() {
             if (!this.vehicleData) return null;
             return this.vehicleData.mode;
@@ -42,6 +45,7 @@ export default {
         goBack() {
             this.$emit("goBack");
         },
+        //Command to switch controls to manual. Will send a payload to the const path. That payload will switch the vehicle's mode
         switchToManual() {
             const path = "http://localhost:5000/send";
             let payload = {
@@ -64,7 +68,7 @@ export default {
     },
 };
 </script>
-
+//Design and style for the back button
 <style scoped>
 .back-button {
     position: absolute;
@@ -81,6 +85,7 @@ export default {
 .mode {
     font-size: 30pt;
 }
+//Position for the swith to manual button
 .switch-to-manual {
     position: absolute;
     left: 50%;
