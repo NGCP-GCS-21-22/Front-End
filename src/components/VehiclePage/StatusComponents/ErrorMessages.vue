@@ -1,17 +1,15 @@
 <template>
-//Formatting stuff
+    //Formatting stuff
     <b-container class="container">
         <h3>Error Messages</h3>
-        <b-container
-            class="
+        <b-container class="
                 messages
                 w-100
                 p-4
                 d-flex
                 align-items-center
                 justify-content-center
-            "
-        >
+            ">
             {{ errorMessage }}
         </b-container>
     </b-container>
@@ -37,13 +35,15 @@ export default {
 h3 {
     text-decoration: underline;
 }
-//Creating the container for the message
+
+/* //Creating the container for the message */
 .container {
     padding: 15px 0px 0px 0px;
     height: 7vh;
     width: 100%;
 }
-//Formatting/Style for the message
+
+/* //Formatting/Style for the message */
 .messages {
     background: #f3f3f3;
     font-size: 15pt;
