@@ -32,7 +32,7 @@ import {
     getMissionData,
     getGeneralStage,
     getVehicleData,
-} from "@/helpers/getData.js";
+} from "@/helpers/getData";
 
 export default {
     props: {

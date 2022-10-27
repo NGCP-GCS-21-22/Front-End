@@ -41,7 +41,7 @@
             </b-row>
         </b-card>
     </b-container>
-</template>
+</template> 
 
 <script lang="ts">
 import VehicleStage from "@/components/MainPage/Status/VehicleStage.vue";
@@ -50,13 +50,15 @@ import EmergencyStop from "@/components/MainPage/Status/EmergencyStop.vue";
 import Battery from "@/components/MainPage/Status/Battery.vue";
 import Mode from "@/components/MainPage/Status/Mode.vue";
 import StageSelection from "@/components/MainPage/Status/StageSelection.vue";
+import { defineComponent } from "vue";
+import type { Icon, MissionData, VehicleData } from "@/types";
 
-export default {
+export default defineComponent({
     props: {
-        vehicleName: String,
-        vehicleIcon: Object,
-        vehicleData: Object,
-        missionData: Object,
+        vehicleName: { required: true, type: String as () => keyof MissionData },
+        vehicleIcon: Object as () => Icon,
+        vehicleData: Object as () => VehicleData,
+        missionData: Object as () => MissionData,
     },
     components: {
         VehicleStage,
@@ -67,24 +69,24 @@ export default {
         StageSelection,
     },
     computed: {
-        batteryPct() {
+        batteryPct(): number {
             if (!this.vehicleData) return -1;
             return this.vehicleData["battery"];
         },
-        latency() {
+        latency(): number {
             if (!this.vehicleData) return 0;
             return this.vehicleData["last_packet_time"];
         },
-        mode() {
+        mode(): string {
             if (!this.vehicleData) return "None";
             return this.vehicleData["mode"];
         },
-        status() {
+        status(): string {
             if (!this.vehicleData) return "Offline";
             return "Online";
         },
     },
-};
+});
 </script>
 
 <style scoped>

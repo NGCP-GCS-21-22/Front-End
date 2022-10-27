@@ -9,8 +9,8 @@
     </div>
 </template>
 
-<script>
-import { Heading } from "vue-flight-indicators";
+<script >
+import { Heading as Heading } from "vue-flight-indicators";
 export default {
     props: {
         heading: Number,
@@ -30,6 +30,7 @@ h5 {
     border-radius: 3px;
     border: 1px solid rgb(121, 112, 99);
 }
+
 .dial {
     margin-top: -8px;
 }

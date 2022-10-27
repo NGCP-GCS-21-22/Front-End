@@ -2,7 +2,7 @@
     <b-container class="vehicle-container">
         <b-row class="vehicle-row">
             <!-- left column -->
-            <b-col class="left-column" cols="6  ">
+            <b-col class="left-column" cols="6">
                 <Map v-if="vehicleData && vehicleIcon" :vehicleName="vehicleName" :vehicleData="vehicleData"
                     :vehicleIcon="vehicleIcon" :widgetData="widgetData" :widgetTypeSelected="widgetTypeSelected"
                     @moveMarker="setWidgetData" />
@@ -47,50 +47,51 @@
     </b-container>
 </template>
 
-<script>
-import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
-import Widgets from "@/components/VehiclePage/Widgets.vue";
+<script lang="ts">
+import VehicleStatus from '@/components/MainPage/VehicleStatus.vue';
+import FlightIndicators from '@/components/VehiclePage/FlightIndicators.vue';
+import Heading from '@/components/VehiclePage/FlightIndicators/Heading.vue';
+import ErrorMessages from '@/components/VehiclePage/StatusComponents/ErrorMessages.vue';
+import Status from '@/components/VehiclePage/StatusComponents/Status.vue';
+import Widgets from '@/components/VehiclePage/Widgets.vue';
+import { getMissionData, getWidgetData, getVehicleData } from '@/helpers/getData';
+import type { VehicleData, MissionData, WidgetData, Icon, VehicleMission } from '@/types';
+import { BContainer, BRow, BCol, BCard } from 'bootstrap-vue-3';
+import { defineComponent } from 'vue';
 import Map from "@/components/Maps/VehicleMap.vue";
-import {
-    getMissionData,
-    getVehicleData,
-    getWidgetData,
-} from "@/helpers/getData.js";
-import FlightIndicators from "@/components/VehiclePage/FlightIndicators.vue";
-import Status from "@/components/VehiclePage/StatusComponents/Status.vue";
-import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessages.vue";
-import Heading from "@/components/VehiclePage/FlightIndicators/Heading.vue";
 
-export default {
+
+export default defineComponent({
     components: {
         Widgets,
         Map,
-        VehicleStatus,
-        FlightIndicators,
         Status,
         ErrorMessages,
         Heading,
+        VehicleStatus,
+        FlightIndicators
     },
     data() {
         return {
-            vehicleName: "ERU",
-            vehicleData: null,
-            missionData: null,
-            widgetData: null,
-            widgetTypeSelected: null,
+            vehicleName: "ERU" as const,
+            vehicleData: undefined as VehicleData | undefined,
+            missionData: undefined as MissionData | undefined,
+            widgetData: undefined as WidgetData | undefined,
+            widgetTypeSelected: undefined as string | undefined,
+            interval: undefined as NodeJS.Timer | undefined
         };
     },
     computed: {
-        vehicleIcon() {
-            if (!this.vehicleMissionData) return null;
+        vehicleIcon(): Icon | undefined {
+            if (!this.vehicleMissionData) return undefined;
             return this.vehicleMissionData.icon;
         },
-        vehicleMissionData() {
-            if (!this.missionData) return null;
+        vehicleMissionData(): VehicleMission | undefined {
+            if (!this.missionData) return undefined;
             return this.missionData[this.vehicleName];
         },
-        yaw() {
-            if (!this.vehicleData) return null;
+        yaw(): number | undefined {
+            if (!this.vehicleData) return undefined;
             return Math.round(this.vehicleData["yaw"]);
         },
     },
@@ -103,7 +104,7 @@ export default {
         async initializeMissionData() {
             try {
                 const response = await getMissionData("all");
-                this.missionData = response;
+                this.missionData = response as MissionData;
             } catch (error) {
                 console.log(error);
             }
@@ -124,18 +125,21 @@ export default {
                 console.log(error);
             }
         },
-        setWidgetData(widgetType, value) {
-            this.$set(this.widgetData, widgetType, value);
+        setWidgetData(widgetType: string, value: any) {
+            if (!this.widgetData) return
+            this.widgetData[widgetType] = value
         },
-        setWidgetSelected(widgetTypeSelected) {
+        setWidgetSelected(widgetTypeSelected: string) {
             this.widgetTypeSelected = widgetTypeSelected;
         },
     },
     beforeDestroy() {
         clearInterval(this.interval);
     },
-};
+});
 </script>
+
+
 
 <style scoped>
 .vehicle-container {

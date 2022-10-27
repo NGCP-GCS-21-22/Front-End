@@ -1,11 +1,14 @@
+import type { MissionData, VehicleData, VehicleMission, WidgetData } from "@/types.js";
 import axios from "axios";
 // const defaultLat = require("./coordinates.js")
 import { defaultLat } from "./coordinates.js";
 import { defaultLng } from "./coordinates.js";
 import { defaultPolygon } from "./coordinates.js";
 
-const getMissionData = (vehicleName) => {
-  let addVehicleIcons = (missionData) => {
+export const API = "http://localhost:5000/";
+
+const getMissionData = (vehicleName: string): Promise<MissionData | VehicleMission> => {
+  let addVehicleIcons = (missionData: MissionData) => {
     missionData.MAC.icon = {
       path: "M31.16,7.48c-0.41,3.6-2.82,4.57-5.29,5.72C15.36,18.09,8.71,26.34,5.15,37.28 c-5.62,17.23,3.52,36.4,17.74,44.31c6.22,3.46,12.78,5.73,19.8,5.44c17.79-0.72,32.29-11.15,37.33-29.48 c4.91-17.87-4.99-36.59-20.07-43.77c-2.66-1.27-6.24-1.9-6.31-6.35c9.66,2.02,16.46,8.19,22.42,15.26 c7.49,8.88,9.07,19.56,8.24,30.81c-1.29,17.61-18.74,34.81-36.32,36.66C20.3,93.08,3.05,72.54,0.52,55.28 C-3.18,29.97,13.48,12.1,31.16,7.48z M47.85,63.95c-2.27-1.1-2.7-3.09-2.55-5.44c0.15-2.3,0.03-4.62,0.03-7.25 c5.46,1.65,10.54,3.18,15.56,4.7c1.21-3-0.28-4.44-2.24-5.67c-3.64-2.29-7.19-4.75-10.95-6.81c-1.94-1.06-2.51-2.34-2.41-4.37 c0.12-2.49,0.01-5,0.03-7.49c0.01-1.91-0.7-3.24-2.76-3.43c-1.97-0.18-3.11,0.96-3.22,3.44c-0.11,2.49-0.12,5,0,7.49 c0.1,2.03-0.47,3.31-2.4,4.38c-3.9,2.17-7.58,4.72-11.36,7.11c-2.06,1.3-3.05,2.93-1.71,5.35c5.08-1.52,10.08-3.02,15.44-4.62 c0,2.41-0.11,4.56,0.03,6.7c0.16,2.47-0.17,4.57-2.48,6.04c-1.34,0.85-2.14,2.1-0.94,4c4.17-1.76,8.43-2.21,12.93,0.23 C49.5,66.16,49.66,64.83,47.85,63.95z M41.78,0c-2.28,5.82-4.56,11.64-7.01,17.91c5.32,0,9.89,0,15.18,0 C47.48,11.64,45.18,5.82,42.89,0C42.52,0,42.15,0,41.78,0z",
       fillColor: "#45FBFE",
@@ -22,14 +25,13 @@ const getMissionData = (vehicleName) => {
     return missionData;
   };
 
-  let path = "http://localhost:5000/send";
   let payload = {
     id: "GET Primary Mission",
   };
 
   return new Promise((resolve, reject) => {
     axios
-      .post(path, payload)
+      .post(API + "send", payload)
       .then((response) => {
         let missionData = response.data;
         missionData = addVehicleIcons(missionData);
@@ -43,8 +45,8 @@ const getMissionData = (vehicleName) => {
   });
 };
 
-const getGeneralStage = () => {
-  let path = "http://localhost:5000/send";
+const getGeneralStage = (): Promise<string> => {
+  let path = API + "send";
   let payload = {
     id: "GET General Stage",
   };
@@ -60,8 +62,8 @@ const getGeneralStage = () => {
   });
 };
 
-const getVehicleData = (vehicleName) => {
-  let path = "http://localhost:5000/send";
+const getVehicleData = (vehicleName: string): Promise<VehicleData> => {
+  let path = API + "send";
   let payload = {
     id: "GET Vehicle Data",
     data: {
@@ -81,13 +83,13 @@ const getVehicleData = (vehicleName) => {
   });
 };
 
-const getWidgetData = (vehicleName) => {
-  let widgetData = {};
-  let path = "";
-  let payload = null;
+const getWidgetData = async (vehicleName: string): Promise<WidgetData> => {
+  let widgetData: WidgetData = {};
+
+  let path: string;
 
   // Mission Waypoint
-  path = `http://localhost:5000/getMissionWaypoint/${vehicleName}`;
+  path = API + vehicleName;
   axios
     .get(path)
     .then((response) => {

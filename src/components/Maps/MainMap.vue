@@ -22,20 +22,13 @@ import {
 import VehiclePositionMarker from "@/components/Maps/MapComponents/VehiclePositionMarker.vue";
 import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
 import { defineComponent } from "vue";
-
-type Icon = {
-	path: String,
-	fillColor: Number,
-	latitude: Number,
-	longitude: Number,
-	rotation: Number,
-}
+import type { Icon, VehicleData } from "@/types";
 
 export default defineComponent({
 	props: {
-		macData: { required: true, type: Object as () => Icon },
-		eruData: { required: true, type: Object as () => Icon },
-		meaData: { required: true, type: Object as () => Icon },
+		macData: { required: true, type: Object as () => VehicleData },
+		eruData: { required: true, type: Object as () => VehicleData },
+		meaData: { required: true, type: Object as () => VehicleData },
 		macIcon: { required: true, type: Object as () => Icon },
 		eruIcon: { required: true, type: Object as () => Icon },
 		meaIcon: { required: true, type: Object as () => Icon },
@@ -76,7 +69,7 @@ export default defineComponent({
 		macMarker() {
 			// If missing MAC data, do not display marker
 			if (!this.macData) return null;
-			
+
 			// Display the MAC marker
 			return {
 				id: "macMarker",
@@ -98,7 +91,7 @@ export default defineComponent({
 		eruMarker() {
 			// If missing ERU data, do not display marker
 			if (!this.eruData) return null;
-			
+
 			// Display the MEA marker
 			return {
 				id: "eruMarker",
@@ -120,7 +113,7 @@ export default defineComponent({
 		meaMarker() {
 			// If missing MEA data, do not display marker
 			if (!this.meaData) return null;
-			
+
 			// Display the MEA marker
 			return {
 				id: "meaMarker",
@@ -151,9 +144,9 @@ export default defineComponent({
 
 <style scoped>
 .gmap {
-	// sets the width of the map
+	/* sets the width of the map */
 	width: 100vw;
-	// sets the height of the map
+	/* sets the height of the map */
 	height: 92vh;
 }
 </style>

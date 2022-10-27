@@ -18,12 +18,14 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: {
-    status: String,
-    latency: Number,
+    status: { required: true, type: String },
+    latency: { required: true, type: Number },
   },
-};
+});
 </script>
 
 <style scoped>

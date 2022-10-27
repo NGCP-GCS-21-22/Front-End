@@ -10,39 +10,41 @@
 </template>
 
 <script lang="ts">
-export default {
+import type { Icon, MissionData, Stage, VehicleData } from '@/types';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
     props: {
-        vehicleData: Object,
-        vehicleName: String,
-        missionData: Object,
-        vehicleIcon: Object,
+        vehicleData: Object as () => VehicleData,
+        vehicleName: String as () => keyof MissionData,
+        missionData: Object as () => MissionData,
+        vehicleIcon: Object as () => Icon,
         large: Boolean,
     },
     computed: {
-        path() {
-            if (!this.vehicleIcon) return null;
-            return this.vehicleIcon.path;
+        path(): string | undefined {
+            return this.vehicleIcon?.path;
         },
-        fillColor() {
-            if (!this.vehicleIcon) return null;
-            return this.vehicleIcon.fillColor;
+        fillColor(): string | undefined {
+            return this.vehicleIcon?.fillColor;
         },
-        stages() {
-            if (!this.missionData) return null;
-            if (!this.vehicleName) return null;
+        stages(): Stage[] | undefined {
+            if (!this.missionData) return undefined;
+            if (!this.vehicleName) return undefined;
             // return stages array
-            let vehicleStages = this.missionData[this.vehicleName].stages;
-            let stages = [];
-            for (let i = 0; i < vehicleStages.length; i++) {
-                let stage = {
-                    id: vehicleStages[i].id,
-                    stage: vehicleStages[i].stage,
-                };
-                stages.push(stage);
-            }
-            return stages;
+            let vehicleStages: Stage[] = this.missionData[this.vehicleName].stages;
+            return vehicleStages
+            // let stages = [];
+            // for (let i = 0; i < vehicleStages.length; i++) {
+            //     let stage = {
+            //         id: vehicleStages[i].id,
+            //         stage: vehicleStages[i].stage,
+            //     };
+            //     stages.push(stage);
+            // }
+            // return stages;
         },
-        currentStage() {
+        currentStage(): string {
             if (this.vehicleData == null) return "No Stage Selected";
             let currentStage = this.vehicleData.current_stage;
             if (this.stages != null) {
@@ -57,7 +59,7 @@ export default {
             return "ERROR - INVALID STAGE";
         },
     },
-};
+});
 </script>
 
 <style scoped>

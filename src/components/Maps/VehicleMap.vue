@@ -1,49 +1,24 @@
 <template>
-    <div>
-        <GmapMap
-            class="gmap"
-            :center="center"
-            :zoom="zoom"
-            :map-type-id="mapType"
-            :tilt="tilt"
-            :options="options"
-        >
-            <VehiclePositionMarker
-                :vehicleData="vehicleData"
-                :vehicleIcon="vehicleIcon"
-            />
+    <GmapMap class="gmap" :center="center" :zoom="zoom" :map-type-id="mapType" :tilt="tilt" :options="options">
+        <VehiclePositionMarker :vehicleData="vehicleData" :vehicleIcon="vehicleIcon" />
 
-            <MissionWaypointMarker
-                :widgetData="widgetData"
-                :widgetTypeSelected="widgetTypeSelected"
-                @moveMarker="moveMarker"
-            />
+        <MissionWaypointMarker :widgetData="widgetData" :widgetTypeSelected="widgetTypeSelected"
+            @moveMarker="moveMarker" />
 
-            <HomeCoordinatesMarker
-                :widgetData="widgetData"
-                :widgetTypeSelected="widgetTypeSelected"
-                @moveMarker="moveMarker"
-            />
+        <HomeCoordinatesMarker :widgetData="widgetData" :widgetTypeSelected="widgetTypeSelected"
+            @moveMarker="moveMarker" />
 
-            <SearchAreaComponents
-                :widgetData="widgetData"
-                :widgetTypeSelected="widgetTypeSelected"
-                :vehicleName="vehicleName"
-                @moveMarker="moveMarker"
-            />
+        <SearchAreaComponents :widgetData="widgetData" :widgetTypeSelected="widgetTypeSelected"
+            :vehicleName="vehicleName" @moveMarker="moveMarker" />
 
-            <GeofenceComponents
-                :widgetData="widgetData"
-                :widgetTypeSelected="widgetTypeSelected"
-                @moveMarker="moveMarker"
-            />
+        <GeofenceComponents :widgetData="widgetData" :widgetTypeSelected="widgetTypeSelected"
+            @moveMarker="moveMarker" />
 
-            <HikerMarker />
-        </GmapMap>
-    </div>
+        <HikerMarker />
+    </GmapMap>
 </template>
 
-<script>
+<script lang="ts">
 import {
     centerLng,
     centerLat,
@@ -56,8 +31,9 @@ import HomeCoordinatesMarker from "@/components/Maps/MapComponents/HomeCoordinat
 import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
 import SearchAreaComponents from "@/components/Maps/MapComponents/SearchAreaComponents.vue";
 import GeofenceComponents from "@/components/Maps/MapComponents/GeofenceComponents.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
     props: {
         vehicleName: String,
         vehicleData: Object,
@@ -110,11 +86,11 @@ export default {
         };
     },
     methods: {
-        moveMarker(widgetType, value) {
+        moveMarker(widgetType: string, value: any) {
             this.$emit("moveMarker", widgetType, value);
         },
     },
-};
+});
 </script>
 
 <style scoped>

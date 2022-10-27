@@ -1,16 +1,9 @@
 <template>
 	<div v-if="hikerCoordinates">
-		<GmapMarker
-			:position="hikerCoordinates.position"
-			:icon="{
-				url: 'https://i.imgur.com/fjnfxWN.png',
-				anchor: { x: 11, y: 26 },
-			}"
-			:clickable="true"
-			@mouseover="hover = true"
-			@mouseout="hover = false"
-			:zIndex="500"
-		>
+		<GmapMarker :position="hikerCoordinates.position" :icon="{
+			url: 'https://i.imgur.com/fjnfxWN.png',
+			anchor: { x: 11, y: 26 },
+		}" :clickable="true" @mouseover="hover = true" @mouseout="hover = false" :zIndex="500">
 			<GmapInfoWindow v-if="hover" :opened="true">
 				<div>
 					<strong>Latitude:</strong>
@@ -25,7 +18,7 @@
 </template>
 
 <script>
-import { getHikerPosition } from "@/helpers/getData.js";
+import { getHikerPosition } from "@/helpers/getData";
 
 export default {
 	computed: {
@@ -63,4 +56,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
