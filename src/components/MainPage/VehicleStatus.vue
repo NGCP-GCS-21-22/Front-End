@@ -55,32 +55,40 @@ import type { Icon, MissionData, VehicleData } from "@/types";
 
 export default defineComponent({
     props: {
+        // Respective vehicle name string
         vehicleName: { required: true, type: String as () => keyof MissionData },
+        // Respective vehicle icon object
         vehicleIcon: Object as () => Icon,
+        // Respective vehicle data object
         vehicleData: Object as () => VehicleData,
+        // Respective mission data object
         missionData: Object as () => MissionData,
     },
     components: {
-        VehicleStage,
-        ConnectionStatus,
-        EmergencyStop,
-        Battery,
-        Mode,
-        StageSelection,
+        VehicleStage,               // Component for displaying current vehicle stage
+        ConnectionStatus,           // Component for displaying connection status
+        EmergencyStop,              // Component for displaying emergency stop button
+        Battery,                    // Component for displaying battery status
+        Mode,                       // Component for displaying current mode of vehicle
+        StageSelection,             // Component for stage selection button
     },
     computed: {
+        //If vehicle data is null display battery percentage as -1, otherwise return the battery percentage
         batteryPct(): number {
             if (!this.vehicleData) return -1;
             return this.vehicleData["battery"];
         },
+        //If vehicle data is null display latency as 0, otherwise return the last packet time for latency
         latency(): number {
             if (!this.vehicleData) return 0;
             return this.vehicleData["last_packet_time"];
         },
+        // If the vehicle data is null display mode as None, otherwise return the vehicle data mode
         mode(): string {
             if (!this.vehicleData) return "None";
             return this.vehicleData["mode"];
         },
+        // If the vehicle data is null, display status as offline, otherwise return online
         status(): string {
             if (!this.vehicleData) return "Offline";
             return "Online";
