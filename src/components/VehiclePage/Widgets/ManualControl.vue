@@ -6,19 +6,12 @@
             <h3>{{ vehicleName }} Mode:</h3>
             <span bg-variant="secondary" text-variant="white" class="mode">
                 {{ mode }}
-                <b-icon
-                    :icon="mode == 'Autonomous' ? 'cpu-fill' : 'controller'"
-                ></b-icon>
+                <b-icon :icon="mode == 'Autonomous' ? 'cpu-fill' : 'controller'"></b-icon>
             </span>
         </div>
 
-        <b-button
-        //Setting the different modes for control - Automatic, and Manual. By default it's on Autonomous.
-            v-if="mode == 'Autonomous'"
-            class="switch-to-manual"
-            variant="primary"
-            @click="switchToManual"
-        >
+        <!-- //Setting the different modes for control - Automatic, and Manual. By default it's on Autonomous. -->
+        <b-button v-if="mode == 'Autonomous'" class="switch-to-manual" variant="primary" @click="switchToManual">
             Switch to Manual
         </b-button>
     </div>
@@ -28,14 +21,14 @@
 import axios from "axios";
 
 export default {
-//Different "object" names that will be used - name, VehicleName, and vehicleData.
+    //Different "object" names that will be used - name, VehicleName, and vehicleData.
     props: {
         name: String,
         vehicleName: String,
         vehicleData: Object,
     },
     computed: {
-    //If data is not null, return the mode the vehicle is in.
+        //If data is not null, return the mode the vehicle is in.
         mode() {
             if (!this.vehicleData) return null;
             return this.vehicleData.mode;
@@ -75,6 +68,7 @@ export default {
     top: 20px;
     left: 20px;
 }
+
 .control {
     position: absolute;
     left: 50%;
@@ -82,10 +76,12 @@ export default {
     transform: translate(-50%, -50%);
     margin: 0 auto;
 }
+
 .mode {
     font-size: 30pt;
 }
-//Position for the swith to manual button
+
+/* Position for the swith to manual button */
 .switch-to-manual {
     position: absolute;
     left: 50%;
