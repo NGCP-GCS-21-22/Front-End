@@ -53,34 +53,34 @@ import StageSelection from "@/components/MainPage/Status/StageSelection.vue";
 
 export default {
     props: {
-        vehicleName: String,
-        vehicleIcon: Object,
-        vehicleData: Object,
-        missionData: Object,
+        vehicleName: String,        // Respective vehicle name string
+        vehicleIcon: Object,        // Respective vehicle icon object
+        vehicleData: Object,        // Respective vehicle data object
+        missionData: Object,        // Respective mission data object
     },
     components: {
-        VehicleStage,
-        ConnectionStatus,
-        EmergencyStop,
-        Battery,
-        Mode,
-        StageSelection,
+        VehicleStage,               // Component for displaying current vehicle stage
+        ConnectionStatus,           // Component for displaying connection status
+        EmergencyStop,              // Component for displaying emergency stop button
+        Battery,                    // Component for displaying battery status
+        Mode,                       // Component for displaying current mode of vehicle
+        StageSelection,             // Component for stage selection button
     },
     computed: {
         batteryPct() {
-            if (!this.vehicleData) return -1;
+            if (!this.vehicleData) return -1;       //If vehicle data is null display battery percentage as -1, otherwise return the battery percentage
             return this.vehicleData["battery"];
         },
         latency() {
-            if (!this.vehicleData) return 0;
+            if (!this.vehicleData) return 0;                //If vehicle data is null display latency as 0, otherwise return the last packet time for latency
             return this.vehicleData["last_packet_time"];
         },
         mode() {
-            if (!this.vehicleData) return "None";
+            if (!this.vehicleData) return "None";           // If the vehicle data is null display mode as None, otherwise return the vehicle data mode
             return this.vehicleData["mode"];
         },
         status() {
-            if (!this.vehicleData) return "Offline";
+            if (!this.vehicleData) return "Offline";        // If the vehicle data is null, display status as offline, otherwise return online
             return "Online";
         },
     },
