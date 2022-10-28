@@ -1,8 +1,11 @@
 <template>
     <b-container>
-        <b-button class="back-button" @click="goBack">Back</b-button>
+        <b-button class="back-button" @click="goBack">Back</b-button> 
+        <!-- Button that says "Back" w/ default padding listed below -->
+        
         <h2 class="mx-auto">
             {{ name }}
+            <!-- Pre-defined padding for widget-icon + picture -->
             <b-img
                 class="widget-icon"
                 style="width: 40px; height: 40px"
@@ -10,7 +13,8 @@
             ></b-img>
         </h2>
         <div class="latlng-wrapper">
-            <b-row>
+            <!-- Pre-defined padding for latling-wrapper -->
+            <b-row> <!-- Setting padding variables / Looks -->
                 <b-col
                     class="latlng"
                     cols="3"
@@ -21,7 +25,7 @@
                     <label class="latlng-label">Latitude:</label>
                 </b-col>
 
-                <b-col cols="5">
+                <b-col cols="5"><!-- Area to display homeCoordinates, default "Enter Latitude" if nothing -->
                     <b-form-input
                         id="input-1"
                         v-model="homeCoordinates.lat"
@@ -33,7 +37,7 @@
                 </b-col>
             </b-row>
 
-            <b-row>
+            <b-row><!-- Pre-defined padding for latling-wrapper -->
                 <b-col
                     class="latlng"
                     cols="3"
@@ -44,7 +48,7 @@
                     <label class="latlng-label">Longitude:</label>
                 </b-col>
 
-                <b-col cols="5">
+                <b-col cols="5"><!-- Area to display homeCoordinates, default "Enter Longtitude" if nothing -->
                     <b-form-input
                         id="input-1"
                         v-model="homeCoordinates.lng"
@@ -57,7 +61,7 @@
             </b-row>
         </div>
 
-        <b-row class="buttons">
+        <b-row class="buttons"><!-- Reset button w/ default button class-->
             <b-button class="button" @click="reset">Reset</b-button>
             <b-button
                 class="button"
@@ -74,17 +78,17 @@
 import axios from "axios";
 import { defaultLat, defaultLng } from "@/helpers/coordinates.js";
 export default {
-    props: {
+    props: {    // External "props" passed down onto this HomeCoordinates.vue
         name: String,
         homeCoordinates: Object,
         vehicleName: String,
     },
-    data() {
+    data() {    // Returns this.homeCoordinates if initialHomeCoordinates called.
         return {
             initialHomeCoordinates: this.homeCoordinates,
         };
     },
-    mounted() {
+    mounted() { //After mounted, sets lat and lng to default coordinates if previous values do not exist.
         this.initialHomeCoordinates = this.homeCoordinates;
         if (Object.keys(this.homeCoordinates).length == 0) {
             this.$emit("updateWidgetData", "homeCoordinates", {
@@ -94,7 +98,7 @@ export default {
         }
     },
     methods: {
-        goBack() {
+        goBack() {  // Calls updateWidgetData and HomeCoordinates events upon goBack().
             this.$emit(
                 "updateWidgetData",
                 "homeCoordinates",
@@ -102,14 +106,14 @@ export default {
             );
             this.$emit("goBack");
         },
-        reset() {
+        reset() {   // Reset coordinates, and calls updateWidgetData and homeCoordinate events
             let coordinates = {
                 lat: defaultLat,
                 lng: defaultLng,
             };
             this.$emit("updateWidgetData", "homeCoordinates", coordinates);
         },
-        waypointNotChanged() {
+        waypointNotChanged() {  // Waypoing equals check.
             if (
                 this.homeCoordinates.lat == this.initialHomeCoordinates.lat &&
                 this.homeCoordinates.lng == this.initialHomeCoordinates.lng
@@ -119,7 +123,7 @@ export default {
 
             return false;
         },
-        postData() {
+        postData() {    // Posts data by getting address and handles error responses
             let path = `http://localhost:5000/postHomeCoordinates/${this.vehicleName}`;
             let payload = this.homeCoordinates;
             console.log(payload);
@@ -137,6 +141,7 @@ export default {
 };
 </script>
 
+<!-- Default padding settings for classes -->
 <style scoped>
 .back-button {
     position: absolute;
