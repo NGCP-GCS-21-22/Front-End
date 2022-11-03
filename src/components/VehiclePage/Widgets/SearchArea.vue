@@ -122,17 +122,17 @@ export default {
     },
     data() {
         return {
-            initialSearchArea: null,
+            initialSearchArea: null,        // Returns null if initialSearchArea is called
         };
     },
-    mounted() {
-        this.initialSearchArea = [...this.searchArea];
-        if (this.searchArea <= 0) {
+    mounted() {     // After mounted, initialSearchArea is set to the searchArea array
+        this.initialSearchArea = [...this.searchArea];  
+        if (this.searchArea <= 0) {     //If the searchArea is less that or equal to 0 then update the searchArea with the defaultPolygon values
             this.$emit("updateWidgetData", "searchArea", [...defaultPolygon]);
         }
     },
     methods: {
-        goBack() {
+        goBack() {  //Sets searchArea widgetData to the initialSearchArea values
             this.$emit(
                 "updateWidgetData",
                 "searchArea",
@@ -140,7 +140,7 @@ export default {
             );
             this.$emit("goBack");
         },
-        add(index) {
+        add(index) {  //Adds default coordinates at index+1 in searchArea widgetData 
             let newSearchArea = this.searchArea;
             newSearchArea.splice(index + 1, 0, {
                 lat: defaultLat,
@@ -148,12 +148,12 @@ export default {
             });
             this.$emit("updateWidgetData", "searchArea", newSearchArea);
         },
-        remove(index) {
+        remove(index) {     // Removes a coordinate at index in searchArea widgetData 
             let newSearchArea = this.searchArea;
             newSearchArea.splice(index, 1);
             this.$emit("updateWidgetData", "searchArea", newSearchArea);
         },
-        resetCoordinate(index) {
+        resetCoordinate(index) {        //Resets coordinate at index to the default coordinate values in searchArea widgetData 
             let newSearchArea = this.searchArea;
             newSearchArea[index] = {
                 lat: defaultLat,
@@ -162,11 +162,11 @@ export default {
 
             this.$emit("updateWidgetData", "searchArea", newSearchArea);
         },
-        resetSearchArea() {
+        resetSearchArea() {     // Resets the search area to the default search area in searchArea widgetData 
             let newSearchArea = [...defaultPolygon];
             this.$emit("updateWidgetData", "searchArea", newSearchArea);
         },
-        searchAreaNotChanged() {
+        searchAreaNotChanged() {        // Compares initialSearchArea and the current searchArea and returns false if they are not the same
             if (this.searchArea.length != this.initialSearchArea.length) {
                 return false;
             }
@@ -182,7 +182,7 @@ export default {
 
             return true;
         },
-        postSearchArea() {
+        postSearchArea() { //Posts data and handles error desponds
             const path = "http://localhost:5000/postSearchArea";
             let payload = {
                 search_area: this.searchArea,
