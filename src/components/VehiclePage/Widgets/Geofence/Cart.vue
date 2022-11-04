@@ -9,6 +9,7 @@
 				class="btn"
 			>
 				<b-icon
+				//Setting up different icons for different sitations.
 					icon="dash-circle"
 					variant="danger"
 					font-scale="1"
@@ -16,6 +17,7 @@
 				></b-icon>
 			</b-button>
 			<b-button
+			//Polygon editing options
 				@click="editPolygon(polygon.index)"
 				variant="light"
 				size="sm"
@@ -33,6 +35,7 @@
 </template>
 
 <script>
+//Logic for the polygon. They're stored in an array where they can be edited or deleted.
 export default {
 	props: {
 		polygons: Array,
