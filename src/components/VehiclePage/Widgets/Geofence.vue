@@ -2,6 +2,7 @@
     <b-container>
         <b-button class="back-button" @click="goBackReset">Back</b-button>
         <h2>
+            <!-- Setting up Header for Vehicle -->
             <svg
                 class="vehicleImg"
                 v-if="path && fillColor"
@@ -9,9 +10,11 @@
             >
                 <path :d="path" :fill="fillColor" />
             </svg>
+            <!-- vehicleName and name prop -->
             {{ vehicleName }} {{ name }}
         </h2>
         <b-row>
+            <!-- Squares to hold information in -->
             <b-card class="cartCards">
                 <Workspace
                     ref="Workspace"
@@ -22,11 +25,14 @@
                 />
             </b-card>
         </b-row>
+        <!-- Squares to hold information in -->
         <b-row class="cart">
             <b-col style="padding: 0 10px 0 0">
+                <!-- Creating "Keep In" Zones -->
                 <b-card class="cartCards">
                     <h5>Keep In</h5>
                     <div class="cont">
+                        <!-- Buttons to change polygon-->
                         <Cart
                             :polygons="keepInPolygons"
                             :keepIn="true"
@@ -36,10 +42,12 @@
                     </div>
                 </b-card>
             </b-col>
+            <!-- Creating "Keep Out" Zones -->
             <b-col style="padding: 0 0 0 10px">
                 <b-card class="cartCards">
                     <h5>Keep Out</h5>
                     <div class="cont">
+                        <!-- Buttons to change polygon-->
                         <Cart
                             :polygons="keepOutPolygons"
                             :keepIn="false"
@@ -50,6 +58,7 @@
                 </b-card>
             </b-col>
         </b-row>
+        <!-- Row under top carts for delete and submit buttons-->
         <b-row class="deletesubmit-buttons">
             <DeleteSubmit
                 :name="name"
@@ -97,6 +106,7 @@ export default {
             if (!this.vehicleIcon) return null;
             return this.vehicleIcon.fillColor;
         },
+        // Returns all KeepIn polygons by indexing through geofence array
         keepInPolygons() {
             if (!this.geofence) return null;
             let polygons = [];
@@ -111,6 +121,7 @@ export default {
             }
             return polygons;
         },
+        // Returns all KeepOut polygons by indexing through geofence array
         keepOutPolygons() {
             if (!this.geofence) return null;
             let polygons = [];
@@ -136,6 +147,7 @@ export default {
             this.$refs.Workspace.resetCoordinates();
             this.$emit("goBack");
         },
+        // Adds polygon to given array and at index.
         addGeofencePolygon(geofencePolygon, index) {
             let newGeofence = this.geofence;
             if (index == null) {
@@ -148,6 +160,7 @@ export default {
         updateWidgetData(widgetType, value) {
             this.$emit("updateWidgetData", widgetType, value);
         },
+        // Deletes polygon to at index in geofence array.
         deletePolygon(index) {
             let newGeofence = this.geofence; // create a copy of the current geofence
             newGeofence.splice(index, 1); // modify it/ removing
