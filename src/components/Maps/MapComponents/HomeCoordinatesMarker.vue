@@ -1,28 +1,23 @@
 <template>
-    <GmapMarker
-        v-if="homeCoordinates"
-        :position="homeCoordinatesMarker.position"
-        :draggable="isSelected(homeCoordinatesMarker)"
-        :clickable="isSelected(homeCoordinatesMarker)"
-        :icon="homeCoordinatesMarker.icon"
-        @drag="moveHomeCoordinates"
-        :zIndex="isSelected(homeCoordinatesMarker) ? 1000 : 1"
-    />
+    <GmapMarker v-if="homeCoordinates" :position="homeCoordinatesMarker.position"
+        :draggable="isSelected(homeCoordinatesMarker)" :clickable="isSelected(homeCoordinatesMarker)"
+        :icon="homeCoordinatesMarker.icon" @drag="moveHomeCoordinates"
+        :zIndex="isSelected(homeCoordinatesMarker) ? 1000 : 1" />
 </template>
 
-<script>
+<script lang="ts">
+import type { Coordinate, Marker, WidgetData } from '@/types';
+
 export default {
     props: {
-        widgetData: Object,
+        widgetData: { required: true, type: Object as () => WidgetData },
         widgetTypeSelected: String,
     },
     computed: {
-        homeCoordinates() {
-            if (!this.widgetData.homeCoordinates) return null;
+        homeCoordinates(): Coordinate[] {
             return this.widgetData.homeCoordinates;
         },
-        homeCoordinatesMarker() {
-            if (!this.homeCoordinates) return null;
+        homeCoordinatesMarker(): Marker {
             return {
                 id: "homeCoordinates",
                 position: this.homeCoordinates,
@@ -35,11 +30,11 @@ export default {
         },
     },
     methods: {
-        isSelected(marker) {
+        isSelected(marker: Marker) {
             if (!marker || !marker.draggable) return false;
             return true;
         },
-        moveHomeCoordinates(e) {
+        moveHomeCoordinates(e: { latLng: { lat: () => number; lng: () => number; }; }) {
             this.homeCoordinatesMarker.position = {
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
@@ -54,4 +49,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

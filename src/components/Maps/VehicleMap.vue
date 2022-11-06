@@ -32,13 +32,14 @@ import HikerMarker from "@/components/Maps/MapComponents/HikerMarker.vue";
 import SearchAreaComponents from "@/components/Maps/MapComponents/SearchAreaComponents.vue";
 import GeofenceComponents from "@/components/Maps/MapComponents/GeofenceComponents.vue";
 import { defineComponent } from "vue";
+import type { Icon, VehicleData, WidgetData } from "@/types";
 
 export default defineComponent({
     props: {
         vehicleName: String,
-        vehicleData: Object,
-        vehicleIcon: Object,
-        widgetData: Object,
+        vehicleData: { required: true, type: Object as () => VehicleData },
+        vehicleIcon: { required: true, type: Object as () => Icon },
+        widgetData: { required: true, type: Object as () => WidgetData },
         widgetTypeSelected: String,
     },
     components: {
@@ -49,7 +50,6 @@ export default defineComponent({
         SearchAreaComponents,
         GeofenceComponents,
     },
-    computed: {},
     data() {
         return {
             // Map Data

@@ -10,7 +10,7 @@
 </template>
 
 <script >
-import { Heading as Heading } from "vue-flight-indicators";
+import { Heading } from "vue-flight-indicators";
 export default {
     props: {
         heading: Number,

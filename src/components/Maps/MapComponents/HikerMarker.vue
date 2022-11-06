@@ -17,10 +17,18 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { getHikerPosition } from "@/helpers/getData";
+import type { HikerPosition } from "@/types";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
+	data() {
+		return {
+			hikerPosition: { lat: "", lng: "" } as HikerPosition,
+			hover: false as Boolean,
+		};
+	},
 	computed: {
 		hikerCoordinates() {
 			if (!this.hikerPosition) return null;
@@ -33,12 +41,6 @@ export default {
 			};
 		},
 	},
-	data() {
-		return {
-			hikerPosition: null,
-			hover: false,
-		};
-	},
 	mounted() {
 		this.interval = setInterval(this.updateHikerLocation, 1000);
 	},
@@ -46,13 +48,13 @@ export default {
 		async updateHikerLocation() {
 			try {
 				const response = await getHikerPosition();
-				this.hikerPosition = response;
+				this.hikerPosition = response as HikerPosition;
 			} catch (error) {
 				console.log(error);
 			}
 		},
 	},
-};
+});
 </script>
 
 <style scoped>

@@ -13,7 +13,7 @@ export default {
         return {};
     },
     props: {
-        batteryPct: Number,                                               // declare a property called batteryPct that is a number 
+        batteryPct: { required: true, type: Number },                                               // declare a property called batteryPct that is a number 
     },
     computed: {
         batteryIcon() {

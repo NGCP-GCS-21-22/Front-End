@@ -2,7 +2,7 @@
     <Altimeter :size="260" :altitude="altitude" />
 </template>
 
-<script>
+<script >
 import { Altimeter } from "vue-flight-indicators";
 export default {
     props: {
@@ -15,4 +15,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

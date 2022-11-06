@@ -84,7 +84,8 @@ const getVehicleData = (vehicleName: string): Promise<VehicleData> => {
 };
 
 const getWidgetData = async (vehicleName: string): Promise<WidgetData> => {
-  let widgetData: WidgetData = {};
+  // FIX THIS LATER
+  let widgetData: any = {};
 
   let path: string;
 
@@ -156,7 +157,7 @@ const getWidgetData = async (vehicleName: string): Promise<WidgetData> => {
     keep_in: true,
   };
 
-  return widgetData;
+  return widgetData as WidgetData;
 };
 
 const getHikerPosition = () => {

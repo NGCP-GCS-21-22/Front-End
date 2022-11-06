@@ -13,7 +13,7 @@
 
             <!-- select a stage -->
             <b-form-select v-model="selected"
-                :options="stages? stages.map(stage => {return {text: stage.stage, value: stage}}) : []">
+                :options="stages ? stages.map(stage => { return { text: stage.stage, value: stage } }) : []">
                 <b-form-select-option :value="undefined" disabled>-- Please select an option
                 </b-form-select-option>
             </b-form-select>
@@ -93,7 +93,7 @@ export default defineComponent({
     },
     data() {
         return {
-            sModalShow: false,
+            sModalShow: false as Boolean,
             selected: undefined as Stage | undefined,
             form: {
                 option: null,

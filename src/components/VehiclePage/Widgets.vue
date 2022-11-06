@@ -1,36 +1,22 @@
- <template>
-    <b-container
-        :class="
+<template>
+    <b-container :class="
+        widgetTypeSelected == 'Geofence'
+            ? 'geofence-container'
+            : 'widget-container'
+    " v-if="widgetData && vehicleIcon && vehicleMissionData && vehicleData">
+        <b-card :class="
             widgetTypeSelected == 'Geofence'
-                ? 'geofence-container'
-                : 'widget-container'
-        "
-        v-if="widgetData && vehicleIcon && vehicleMissionData && vehicleData"
-    >
-        <b-card
-            :class="
-                widgetTypeSelected == 'Geofence'
-                    ? 'geofence-card'
-                    : 'widget-card'
-            "
-        >
+                ? 'geofence-card'
+                : 'widget-card'
+        ">
             <b-row v-for="group in widgetGroups" :key="group.buttonGroupId">
                 <b-col v-for="widget in group.widgetGroup" :key="widget.name">
-                    <b-button
-                        class="widget-button"
-                        variant="dark"
-                        v-if="!selected && widget.type != 'Placeholder'"
-                        @click="selectWidget(widget.name, widget.type)"
-                    >
+                    <b-button class="widget-button" variant="dark" v-if="!selected && widget.type != 'Placeholder'"
+                        @click="selectWidget(widget.name, widget.type)">
                         <!-- not geofence -->
                         <h5 v-if="widget.type != 'Geofence'">
                             {{ widget.name }}
-                            <b-img
-                                style="height: 50px"
-                                class="widget-icon"
-                                v-if="widget.icon"
-                                :src="`${widget.icon}`"
-                            >
+                            <b-img style="height: 50px" class="widget-icon" v-if="widget.icon" :src="`${widget.icon}`">
                             </b-img>
                         </h5>
 
@@ -40,16 +26,8 @@
                             <br />
                             <p class="compliant">
                                 Compliant:
-                                <b-icon
-                                    icon="circle-fill"
-                                    v-if="geofenceCompliant"
-                                    variant="success"
-                                ></b-icon>
-                                <b-icon
-                                    icon="circle-fill"
-                                    v-if="!geofenceCompliant"
-                                    variant="danger"
-                                ></b-icon>
+                                <b-icon icon="circle-fill" v-if="geofenceCompliant" variant="success"></b-icon>
+                                <b-icon icon="circle-fill" v-if="!geofenceCompliant" variant="danger"></b-icon>
                             </p>
                         </h5>
                     </b-button>
@@ -58,125 +36,91 @@
 
             <div v-for="group in widgetGroups" :key="group.widgetGroupId">
                 <div v-for="widget in group.widgetGroup" :key="widget.name">
-                    <MissionWaypoint
-                        v-if="
-                            widget.type == 'MissionWaypoint' &&
-                            cardSelected == widget.name
-                        "
-                        :name="widget.name"
-                        :missionWaypoint="missionWaypoint"
-                        :vehicleName="vehicleName"
-                        @goBack="showWidgets"
-                        @updateWidgetData="updateWidgetData"
-                    />
-                    <HomeCoordinates
-                        v-if="
-                            widget.type == 'HomeCoordinates' &&
-                            cardSelected == widget.name
-                        "
-                        :name="widget.name"
-                        :homeCoordinates="homeCoordinates"
-                        :vehicleName="vehicleName"
-                        @goBack="showWidgets"
-                        @updateWidgetData="updateWidgetData"
-                    />
-                    <SearchArea
-                        v-if="
-                            widget.type == 'SearchArea' &&
-                            cardSelected == widget.name
-                        "
-                        :name="widget.name"
-                        :searchArea="searchArea"
-                        @goBack="showWidgets"
-                        @updateWidgetData="updateWidgetData"
-                    />
-                    <Geofence
-                        v-if="
-                            widget.type == 'Geofence' &&
-                            cardSelected == widget.name
-                        "
-                        :name="widget.name"
-                        :vehicleName="vehicleName"
-                        :vehicleIcon="vehicleIcon"
-                        :geofence="geofence"
-                        :geofenceWorkspace="geofenceWorkspace"
-                        @goBack="showWidgets"
-                        @updateWidgetData="updateWidgetData"
-                    />
-                    <ManualControl
-                        v-if="
-                            widget.type == 'ManualControl' &&
-                            cardSelected == widget.name
-                        "
-                        :name="widget.name"
-                        :vehicleName="vehicleName"
-                        :vehicleData="vehicleData"
-                        @goBack="showWidgets"
-                    />
+                    <MissionWaypoint v-if="
+                        widget.type == 'MissionWaypoint' &&
+                        cardSelected == widget.name
+                    " :name="widget.name" :missionWaypoint="missionWaypoint" :vehicleName="vehicleName"
+                        @goBack="showWidgets" @updateWidgetData="updateWidgetData" />
+                    <HomeCoordinates v-if="
+                        widget.type == 'HomeCoordinates' &&
+                        cardSelected == widget.name
+                    " :name="widget.name" :homeCoordinates="homeCoordinates" :vehicleName="vehicleName"
+                        @goBack="showWidgets" @updateWidgetData="updateWidgetData" />
+                    <SearchArea v-if="
+                        widget.type == 'SearchArea' &&
+                        cardSelected == widget.name
+                    " :name="widget.name" :searchArea="searchArea" @goBack="showWidgets"
+                        @updateWidgetData="updateWidgetData" />
+                    <Geofence v-if="
+                        widget.type == 'Geofence' &&
+                        cardSelected == widget.name
+                    " :name="widget.name" :vehicleName="vehicleName" :vehicleIcon="vehicleIcon" :geofence="geofence"
+                        :geofenceWorkspace="geofenceWorkspace" @goBack="showWidgets"
+                        @updateWidgetData="updateWidgetData" />
+                    <ManualControl v-if="
+                        widget.type == 'ManualControl' &&
+                        cardSelected == widget.name
+                    " :name="widget.name" :vehicleName="vehicleName" :vehicleData="vehicleData"
+                        @goBack="showWidgets" />
                 </div>
             </div>
         </b-card>
     </b-container>
 </template>
 
-<script>
+<script lang="ts">
 import MissionWaypoint from "@/components/VehiclePage/Widgets/MissionWaypoint.vue";
 import HomeCoordinates from "@/components/VehiclePage/Widgets/HomeCoordinates.vue";
 import SearchArea from "@/components/VehiclePage/Widgets/SearchArea.vue";
 import Geofence from "@/components/VehiclePage/Widgets/Geofence.vue";
 import ManualControl from "@/components/VehiclePage/Widgets/ManualControl.vue";
+import { defineComponent } from "vue";
+import type { Coordinate, GeoFence, GeoFenceWorkspace, Icon, VehicleData, VehicleMission, Waypoint, WidgetData } from "@/types";
 
-export default {
+export default defineComponent({
     components: {
         MissionWaypoint,
         HomeCoordinates,
-
         SearchArea,
         Geofence,
         ManualControl,
     },
     props: {
         vehicleName: String,
-        vehicleMissionData: Object,
-        widgetData: Object,
-        vehicleData: Object,
-        vehicleIcon: Object,
+        vehicleMissionData: Object as () => VehicleMission,
+        widgetData: Object as () => WidgetData,
+        vehicleData: Object as () => VehicleData,
+        vehicleIcon: Object as () => Icon,
     },
     computed: {
-        missionWaypoint() {
-            if (!this.widgetData.missionWaypoint) return null;
-            return this.widgetData.missionWaypoint;
+        missionWaypoint(): Waypoint | undefined {
+            return this.widgetData?.missionWaypoint;
         },
-        homeCoordinates() {
-            if (!this.widgetData.homeCoordinates) return null;
-            return this.widgetData.homeCoordinates;
+        homeCoordinates(): Coordinate[] | undefined {
+            return this.widgetData?.homeCoordinates;
         },
-        searchArea() {
-            if (!this.widgetData.searchArea) return null;
-
-            return this.widgetData.searchArea.map((coordinate) => {
+        searchArea(): { lat: number, lng: number }[] | undefined {
+            return this.widgetData?.searchArea?.map((coordinate) => {
                 return {
                     lat: parseFloat(coordinate.lat),
                     lng: parseFloat(coordinate.lng),
                 };
             });
         },
-        geofence() {
-            if (!this.widgetData.geofence) return null;
-            return this.widgetData.geofence;
+        geofence(): GeoFence | undefined {
+            return this.widgetData?.geofence;
         },
-        geofenceWorkspace() {
-            if (!this.widgetData.geofenceWorkspace) return null;
-            return this.widgetData.geofenceWorkspace;
+        geofenceWorkspace(): GeoFenceWorkspace | undefined {
+            return this.widgetData?.geofenceWorkspace;
         },
-        geofenceCompliant() {
+        geofenceCompliant(): string {
             if (!this.vehicleData) return "None";
             return this.vehicleData["geofence_compliant"];
         },
     },
     data() {
         return {
-            selected: false,
+            selected: false as boolean,
             cardSelected: null,
             widgetTypeSelected: null,
             widgetGroups: [],
@@ -205,7 +149,7 @@ export default {
                 widgetGroup: [
                     {
                         type: "MissionWaypoint",
-                        name: this.vehicleMissionData.missionWaypoint,
+                        name: this.vehicleMissionData?.missionWaypoint,
                         icon: require("@/assets/map_icons/mission-waypoint.png"),
                     },
                     {
@@ -270,41 +214,49 @@ export default {
             this.$emit("updateWidgetData", widgetType, value);
         },
     },
-};
+});
 </script>
 
 <style scoped>
 p {
     color: black;
 }
+
 .widget-container {
     margin-top: 10px;
 }
+
 .geofence-container {
     margin-top: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
 }
+
 .widget-card {
     overflow: auto;
     height: 33vh;
 }
+
 .geofence-card {
     overflow: auto;
     height: 89vh;
 }
+
 .widget-button {
     width: 100%;
     margin-bottom: 12px;
     height: 14vh;
 }
+
 .widget-icon {
     height: 4vh;
 }
+
 .invisible {
     visibility: hidden;
 }
+
 .compliant {
     color: #ffffff;
     font-size: 10pt;

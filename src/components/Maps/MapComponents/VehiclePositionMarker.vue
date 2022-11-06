@@ -1,34 +1,28 @@
 <template>
-	<GmapMarker
-		v-if="vehicleData && vehicleIcon"
-		:position="vehicleMarker.position"
-		:clickable="true"
-		@mouseover="hover = true"
-		@mouseout="hover = false"
-		:icon="vehicleMarker.icon"
-		:zIndex="500"
-	>
+	<GmapMarker v-if="vehicleData && vehicleIcon" :position="vehicleMarker?.position" :clickable="true"
+		@mouseover="hover = true" @mouseout="hover = false" :icon="vehicleMarker?.icon" :zIndex="500">
 		<GmapInfoWindow v-if="hover" :opened="true">
 			<div>
 				<strong>Latitude:</strong>
-				{{ vehicleMarker.position.lat }}
+				{{ vehicleMarker?.position.lat }}
 				<br />
 				<strong>Longitude:</strong>
-				{{ vehicleMarker.position.lng }}
+				{{ vehicleMarker?.position.lng }}
 			</div>
 		</GmapInfoWindow>
 	</GmapMarker>
 </template>
 
-<script>
+<script lang="ts">import type { Icon, VehiclePositionMarker, VehicleData } from '@/types';
+
 export default {
-    props: {
-        vehicleData: Object,
-        vehicleIcon: Object,
-    },
-    computed: {
-        vehicleMarker() {
-			if (!this.vehicleData) return null;
+	props: {
+		vehicleData: { required: true, type: Object as () => VehicleData },
+		vehicleIcon: { required: true, type: Object as () => Icon },
+	},
+	computed: {
+		vehicleMarker(): VehiclePositionMarker | undefined {
+			if (!this.vehicleData || !this.vehicleIcon) return undefined;
 			return {
 				id: "vehicleMarker",
 				position: {
@@ -46,7 +40,7 @@ export default {
 				},
 			};
 		},
-    },
+	},
 	data() {
 		return {
 			hover: false,
@@ -60,6 +54,7 @@ export default {
 	height: 7vh;
 	margin-left: 2px;
 }
+
 .coord-container {
 	margin-bottom: 10px;
 	margin-left: 2px;
@@ -74,9 +69,11 @@ export default {
 	left: 50%;
 	margin-left: -150px;
 }
+
 button.gm-ui-hover-effect {
 	visibility: hidden;
 }
+
 .gm-style-iw.gm-style-iw-c {
 	font-size: 25px;
 	font-weight: 400;

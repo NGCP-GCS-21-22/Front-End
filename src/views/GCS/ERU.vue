@@ -3,9 +3,9 @@
         <b-row class="vehicle-row">
             <!-- left column -->
             <b-col class="left-column" cols="6">
-                <Map v-if="vehicleData && vehicleIcon" :vehicleName="vehicleName" :vehicleData="vehicleData"
-                    :vehicleIcon="vehicleIcon" :widgetData="widgetData" :widgetTypeSelected="widgetTypeSelected"
-                    @moveMarker="setWidgetData" />
+                <Map v-if="vehicleData && vehicleIcon && widgetData" :vehicleName="vehicleName"
+                    :vehicleData="vehicleData" :vehicleIcon="vehicleIcon" :widgetData="widgetData"
+                    :widgetTypeSelected="widgetTypeSelected" @moveMarker="setWidgetData" />
             </b-col>
             <!-- right column -->
             <b-col cols="6">

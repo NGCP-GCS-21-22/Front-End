@@ -1,5 +1,4 @@
 <template>
-    //Formatting stuff
     <b-container class="container">
         <h3>Error Messages</h3>
         <b-container class="
@@ -15,20 +14,21 @@
     </b-container>
 </template>
 
-<script>
+<script lang="ts">import { defineComponent } from 'vue';
+
 //setting up the vehicle data for computing
-export default {
+export default defineComponent({
     props: {
         vehicleData: Object,
     },
     //If the vehicle data does not return good data, an error message will be returned
     computed: {
-        errorMessage() {
+        errorMessage(): string {
             if (!this.vehicleData) return "-----";
             return this.vehicleData["err_msg"];
         },
     },
-};
+});
 </script>
 
 <style scoped>

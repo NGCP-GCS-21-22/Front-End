@@ -1,34 +1,14 @@
 <template>
-	<div	>
+	<div>
 		<h5 v-for="(polygon) in polygons" :key="polygon.index">
 			Polygon {{ polygon.index + 1 }}
-			<b-button
-				@click="deletePolygon(polygon.index)"
-				variant="light"
-				size="sm"
-				class="btn"
-			>
-				<b-icon
-				//Setting up different icons for different sitations.
-					icon="dash-circle"
-					variant="danger"
-					font-scale="1"
-					aria-label="Delete"
-				></b-icon>
+			<b-button @click="deletePolygon(polygon.index)" variant="light" size="sm" class="btn">
+				<!-- Setting up different icons for different sitations. -->
+				<b-icon icon="dash-circle" variant="danger" font-scale="1" aria-label="Delete"></b-icon>
 			</b-button>
-			<b-button
-			//Polygon editing options
-				@click="editPolygon(polygon.index)"
-				variant="light"
-				size="sm"
-				class="btn"
-			>
-				<b-icon
-					icon="pencil"
-					variant="info"
-					font-scale="1"
-					aria-label="Edit"
-				></b-icon>
+			<!-- Polygon editing options -->
+			<b-button @click="editPolygon(polygon.index)" variant="light" size="sm" class="btn">
+				<b-icon icon="pencil" variant="info" font-scale="1" aria-label="Edit"></b-icon>
 			</b-button>
 		</h5>
 	</div>
@@ -42,17 +22,17 @@ export default {
 		keepIn: Boolean,
 	},
 	data() {
-		return {}
+		return {};
 	},
 	methods: {
 		deletePolygon(index) {
-			this.$emit("deletePolygon", index)
+			this.$emit("deletePolygon", index);
 		},
 		editPolygon(index) {
-			this.$emit("editPolygon", index, this.keepIn)
+			this.$emit("editPolygon", index, this.keepIn);
 		},
 	},
-}
+};
 </script>
 
 <style scoped>

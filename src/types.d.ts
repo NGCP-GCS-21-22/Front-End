@@ -7,6 +7,14 @@ export type VehicleData = {
   last_packet_time: number;
   mode: string;
   current_stage: string;
+  altitude: number;
+  speed: number;
+  pitch: number;
+  roll: number;
+  err_msg: string;
+  sensors_ok: number;
+  status: number;
+  geofence_compliant: string;
 };
 
 export type Icon = {
@@ -19,7 +27,9 @@ export type Stage = {
 };
 export type VehicleMission = {
   icon: Icon;
+  missionWaypoint: string;
   stages: Stage[];
+  searchArea: Coordinate[];
 };
 export type MissionData = {
   ERU: VehicleMission;
@@ -28,8 +38,10 @@ export type MissionData = {
 };
 
 export type Waypoint = {};
-export type Coordinates = {};
-export type SearchArea = {};
+export type Coordinate = {
+  lat: string;
+  lng: string;
+};
 export type GeoFence = {};
 export type GeoFenceWorkspace = {};
 export enum WidgetType {
@@ -42,14 +54,14 @@ export enum WidgetType {
 export type WidgetData = {
   type?: WidgetType;
   [key: string]: any; // this is hacky and really should be fixed.
-  missionWaypoint?: Waypoint;
-  homeCoordinates?: Coordinates;
-  searchArea?: SearchArea;
-  geofence?: GeoFence;
-  geofenceWorkspace?: GeoFenceWorkspace;
+  missionWaypoint: Waypoint;
+  homeCoordinates: Coordinate[];
+  searchArea: Coordinate[];
+  geofence: GeoFence;
+  geofenceWorkspace: GeoFenceWorkspace;
 };
 
-export type Marker = {
+export type VehiclePositionMarker = {
   id: string;
   position: {
     lat: number;
@@ -67,4 +79,19 @@ export type Marker = {
       y: number;
     };
   };
+};
+
+export type Marker = {
+  id: string;
+  position: WayPoint;
+  icon: {
+    url: string;
+    anchor: { x: number; y: number };
+  };
+  draggable: boolean;
+};
+
+export type HikerPosition = {
+  lat: string;
+  lng: string;
 };

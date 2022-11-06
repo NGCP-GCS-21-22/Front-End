@@ -9,8 +9,8 @@
 						<h5>Altitude: {{ altitude }} ft</h5>
 						<!-- Text tempalte to show "ALtitude: (altitude) ft" -->
 					</b-row>
-					<b-row class="justify-content-md-center"
-						><Altimeter :altitude="altitude" class="dials" />
+					<b-row class="justify-content-md-center">
+						<Altimeter :altitude="altitude" class="dials" />
 						<!-- Setting altitude variable in Altimiter dial-->
 					</b-row>
 				</b-col>
@@ -44,14 +44,16 @@
 <!-- Altitude: 0 ft		Airspeed: 0 ft/s		Pitch: 0 	Roll: 0		-->
 <!-- (Altitude Dial)	(Airspeed Dial)			(Artificial Horizon)	-->
 
-<script>
+<script lang="ts">
 import Altimeter from "@/components/VehiclePage/FlightIndicators/Altimeter.vue";
 import Airspeed from "@/components/VehiclePage/FlightIndicators/Airspeed.vue";
 import Attitude from "@/components/VehiclePage/FlightIndicators/Attitude.vue";
+import { defineComponent } from 'vue';
+import type { VehicleData } from "@/types";
 
-export default {
+export default defineComponent({
 	props: {	//"Properties"
-		vehicleData: Object,	// vehicleData object is "passed" to this vue, allowing this vue to extract data such as altitude, speed, pitch, roll, etc.
+		vehicleData: Object as () => VehicleData,	// vehicleData object is "passed" to this vue, allowing this vue to extract data such as altitude, speed, pitch, roll, etc.
 	},
 	components: {	// Components that this vue wants to interact with, such as the Altimeter dial, Airspeed dial, etc.
 		Altimeter,
@@ -60,24 +62,24 @@ export default {
 	},
 	computed: { //Computed "getters" for altitude, airspeed, pitch, and roll
 		// Rounding the vehicle data to 2 decimal places.
-		altitude() {
+		altitude(): number {
 			if (!this.vehicleData) return 0;
 			return Math.round(this.vehicleData["altitude"] * 100) / 100;
 		},
-		airspeed() {
+		airspeed(): number {
 			if (!this.vehicleData) return 0;
 			return Math.round(this.vehicleData["speed"] * 100) / 100;
 		},
-		pitch() {
+		pitch(): number {
 			if (!this.vehicleData) return 0;
 			return Math.round(this.vehicleData["pitch"]);
 		},
-		roll() {
+		roll(): number {
 			if (!this.vehicleData) return 0;
 			return Math.round(this.vehicleData["roll"]);
 		},
 	},
-};
+});
 </script>
 
 <!-- Applies to elements of current component only. Does not apply to entire document.-->
@@ -88,9 +90,11 @@ export default {
 	margin-top: 10px;
 	padding: 0;
 }
+
 .dials {
 	margin-top: -15px;
 }
+
 h5 {
 	background: #343a40;
 	margin: 0;
