@@ -1,3 +1,4 @@
+<!-- Display the hiker's marker on the map based on latitude and longitude and update the position every second -->
 <template>
 	<div v-if="hikerCoordinates">
 		<GmapMarker :position="hikerCoordinates.position" :icon="{
@@ -37,13 +38,13 @@ export default defineComponent({
 				position: {
 					lat: parseFloat(this.hikerPosition.lat),
 					lng: parseFloat(this.hikerPosition.lng),
-				},
+				}, // uses parseFloat to ensure the values are converted to a number
 			};
 		},
 	},
 	mounted() {
 		this.interval = setInterval(this.updateHikerLocation, 1000);
-	},
+	}, // calls updateHikerLocation every 1000 milliseconds (1 second)
 	methods: {
 		async updateHikerLocation() {
 			try {
@@ -52,7 +53,7 @@ export default defineComponent({
 			} catch (error) {
 				console.log(error);
 			}
-		},
+		}, // updates the position with latitude and longitude from getData.ts
 	},
 });
 </script>
