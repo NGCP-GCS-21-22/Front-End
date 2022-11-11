@@ -1,3 +1,4 @@
+<!-- Google maps marker for home coordinates that can be selected and dragged -->
 <template>
     <GmapMarker v-if="homeCoordinates" :position="homeCoordinatesMarker.position"
         :draggable="isSelected(homeCoordinatesMarker)" :clickable="isSelected(homeCoordinatesMarker)"
@@ -26,14 +27,14 @@ export default {
                     anchor: { x: 33, y: 45 },
                 },
                 draggable: this.widgetTypeSelected === "HomeCoordinates",
-            };
+            }; // display the home coordinates marker icon
         },
     },
     methods: {
         isSelected(marker: Marker) {
             if (!marker || !marker.draggable) return false;
             return true;
-        },
+        }, // return true if user clicked on a marker that is draggable
         moveHomeCoordinates(e: { latLng: { lat: () => number; lng: () => number; }; }) {
             this.homeCoordinatesMarker.position = {
                 lat: e.latLng.lat(),
@@ -43,7 +44,7 @@ export default {
                 lat: this.homeCoordinatesMarker.position.lat,
                 lng: this.homeCoordinatesMarker.position.lng,
             });
-        },
+        }, // updates latitude and longitude based on event of moving the mouse
     },
 };
 </script>
