@@ -1,7 +1,7 @@
 <template>
     <div v-if="searchArea && vehicleName =='MAC'">
         <div v-if="widgetTypeSelected == 'SearchArea'">
-            <!-- Search Area -->
+            <!-- Search Area for the MAC is selected -->
             <!-- v-if search selected v-for number of points in UI, create marker -->
             <div>
                 <GmapMarker
@@ -44,7 +44,7 @@ export default {
                 return {
                     lat: parseFloat(coordinate.lat),
                     lng: parseFloat(coordinate.lng),
-                };
+                }; // uses parseFloat to ensure the values are converted to a number
             });
         },
         searchAreaPolygon() {
@@ -86,7 +86,7 @@ export default {
         isSelected(marker) {
             if (!marker || !marker.draggable) return false;
             return true;
-        },
+        }, // return true if user clicked on a marker that is draggable
         moveSearchAreaVertex(e, index) {
             this.searchAreaPolygon.coordinates[index].lat = e.latLng.lat();
             this.searchAreaPolygon.coordinates[index].lng = e.latLng.lng();
@@ -95,7 +95,7 @@ export default {
                 "searchArea",
                 this.searchAreaPolygon.coordinates
             );
-        },
+        }, // updates latitude and longitude based on event of moving the mouse
     },
 };
 </script>
