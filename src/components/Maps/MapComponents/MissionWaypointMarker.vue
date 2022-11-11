@@ -1,3 +1,4 @@
+<!-- Google maps marker for the mission waypoint that can be selected and dragged -->
 <template>
     <GmapMarker v-if="missionWaypoint" :position="missionWaypointMarker?.position"
         :draggable="isSelected(missionWaypointMarker)" :clickable="isSelected(missionWaypointMarker)"
@@ -27,14 +28,14 @@ export default defineComponent({
                     anchor: { x: 33, y: 45 },
                 },
                 draggable: this.widgetTypeSelected === "MissionWaypoint",
-            };
+            }; // display the mission waypoint marker icon
         },
     },
     methods: {
         isSelected(marker: Marker | undefined) {
             if (!marker || !marker.draggable) return false;
             return true;
-        },
+        }, // return true if user clicked on a marker that is draggable
         moveMissionWaypoint(e: { latLng: { lat: () => number; lng: () => number; }; }) {
             this.missionWaypointMarker.position = {
                 lat: e.latLng.lat(),
@@ -44,7 +45,7 @@ export default defineComponent({
                 lat: this.missionWaypointMarker?.position.lat,
                 lng: this.missionWaypointMarker?.position.lng,
             });
-        },
+        }, // updates latitude and longitude based on event of moving the mouse
     },
 });
 </script>
