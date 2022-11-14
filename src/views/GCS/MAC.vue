@@ -48,6 +48,7 @@
 </template>
 
 <script>
+// bring in functions from other files to be used with the MAC to display all necessary info for the vehicle
 import VehicleStatus from "@/components/MainPage/VehicleStatus.vue";
 import Widgets from "@/components/VehiclePage/Widgets.vue";
 import Map from "@/components/Maps/VehicleMap.vue";
@@ -62,6 +63,7 @@ import ErrorMessages from "@/components/VehiclePage/StatusComponents/ErrorMessag
 import Heading from "@/components/VehiclePage/FlightIndicators/Heading.vue";
 
 export default {
+    // export single value present by default in script for components for reusability
     components: {
         Widgets,
         Map,
@@ -72,6 +74,7 @@ export default {
         Heading,
     },
     data() {
+        // set name and initial values of vehicle info
         return {
             vehicleName: "MAC",
             vehicleData: null,
@@ -82,25 +85,30 @@ export default {
     },
     computed: {
         vehicleIcon() {
+            // updates position of vehicle on map
             if (!this.vehicleMissionData) return null;
             return this.vehicleMissionData.icon;
         },
         vehicleMissionData() {
+            // coordinates of vehicle MAC in list of vehicles
             if (!this.missionData) return null;
             return this.missionData[this.vehicleName];
         },
         yaw() {
+            // direction of MAC nose on horizontal plane (yaw)
             if (!this.vehicleData) return null;
             return Math.round(this.vehicleData["yaw"]);
         },
     },
     mounted() {
+        // calls to methods to initialize MAC info and update data at 1Hz (once every 1s or every 1000ms)
         this.initializeMissionData();
         this.initializeWidgetData();
         this.interval = setInterval(this.updateVehicleData, 1000);
     },
     methods: {
         async initializeMissionData() {
+            // asynchronous method attempts to initialize mission data while program continues to be responsive to other tasks
             try {
                 const response = await getMissionData("all");
                 this.missionData = response;
@@ -109,6 +117,7 @@ export default {
             }
         },
         async initializeWidgetData() {
+            // asynchronous method attempts to initialize widget data while program continues to be responsive to other tasks
             try {
                 const response = await getWidgetData(this.vehicleName);
                 this.widgetData = response;
@@ -117,6 +126,7 @@ export default {
             }
         },
         async updateVehicleData() {
+            // asynchronous method attempts to update vehicle data while program continues to be responsive to other task
             try {
                 const response = await getVehicleData("MAC");
                 this.vehicleData = response;
@@ -124,14 +134,18 @@ export default {
                 console.log(error);
             }
         },
+
+        // initialize widget data
         setWidgetData(widgetType, value) {
             this.$set(this.widgetData, widgetType, value);
         },
+        // selecting widget to update data
         setWidgetSelected(widgetTypeSelected) {
             this.widgetTypeSelected = widgetTypeSelected;
         },
     },
     beforeDestroy() {
+        // resets the interval timer for updating MAC info
         clearInterval(this.interval);
     },
 };
@@ -142,7 +156,7 @@ export default {
     max-width: 100%;
     max-height: 100%;
 }
-
+/* padding adds space between info inside coulumns and the edge of the column */
 .left-column {
     padding: 0;
     /* background-color: red; */
@@ -157,6 +171,7 @@ export default {
     padding-right: 10px;
 }
 
+/* margins add space outside the columns to prevent overlap and improve asthetics */
 .status-card {
     margin-top: 10px;
     height: 35vh;
