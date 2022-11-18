@@ -21,14 +21,14 @@
 import axios from "axios";
 
 export default {
-    <!-- //Different "object" names that will be used - name, VehicleName, and vehicleData. -->
+    //Different "object" names that will be used - name, VehicleName, and vehicleData.
     props: {
         name: String,
         vehicleName: String,
         vehicleData: Object,
     },
     computed: {
-        <!-- //If data is not null, return the mode the vehicle is in. -->
+        //If data is not null, return the mode the vehicle is in.
         mode() {
             if (!this.vehicleData) return null;
             return this.vehicleData.mode;
@@ -38,7 +38,7 @@ export default {
         goBack() {
             this.$emit("goBack");
         },
-        <!-- //Command to switch controls to manual. Will send a payload to the const path. That payload will switch the vehicle's mode -->
+        //Command to switch controls to manual. Will send a payload to the const path. That payload will switch the vehicle's mode
         switchToManual() {
             const path = "http://localhost:5000/send";
             let payload = {
@@ -61,8 +61,9 @@ export default {
     },
 };
 </script>
-<!-- //Design and style for the back button -->
+
 <style scoped>
+/* Design and style for the back button */
 .back-button {
     position: absolute;
     top: 20px;
@@ -81,7 +82,9 @@ export default {
     font-size: 30pt;
 }
 
-<!-- /* Position for the swith to manual button */ -->
+
+
+/* Position for the swith to manual button */
 .switch-to-manual {
     position: absolute;
     left: 50%;
