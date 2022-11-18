@@ -82,14 +82,17 @@ export default defineComponent({
         };
     },
     computed: {
+        // Returns Vehicle Icon
         vehicleIcon(): Icon | undefined {
             if (!this.vehicleMissionData) return undefined;
             return this.vehicleMissionData.icon;
         },
+        // Returns Mission Data
         vehicleMissionData(): VehicleMission | undefined {
             if (!this.missionData) return undefined;
             return this.missionData[this.vehicleName];
         },
+        // Returns yaw of vehicle
         yaw(): number | undefined {
             if (!this.vehicleData) return undefined;
             return Math.round(this.vehicleData["yaw"]);
