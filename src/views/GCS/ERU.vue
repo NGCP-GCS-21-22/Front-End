@@ -47,6 +47,7 @@
     </b-container>
 </template>
 
+<!-- importing key components from GCS -->
 <script lang="ts">
 import VehicleStatus from '@/components/MainPage/VehicleStatus.vue';
 import FlightIndicators from '@/components/VehiclePage/FlightIndicators.vue';
@@ -60,7 +61,7 @@ import { BContainer, BRow, BCol, BCard } from 'bootstrap-vue-3';
 import { defineComponent } from 'vue';
 import Map from "@/components/Maps/VehicleMap.vue";
 
-
+<!-- Giving class definitions for each component -->
 export default defineComponent({
     components: {
         Widgets,
@@ -72,6 +73,7 @@ export default defineComponent({
         FlightIndicators
     },
     data() {
+        <!-- different return values for each widget-->
         return {
             vehicleName: "ERU" as const,
             vehicleData: undefined as VehicleData | undefined,
@@ -81,6 +83,7 @@ export default defineComponent({
             interval: undefined as NodeJS.Timer | undefined
         };
     },
+    <!-- Return values for Icon, Mision data,  vertical axis rotation-->
     computed: {
         // Returns Vehicle Icon
         vehicleIcon(): Icon | undefined {
@@ -98,11 +101,13 @@ export default defineComponent({
             return Math.round(this.vehicleData["yaw"]);
         },
     },
+    <!-- sets up the initialization for Mission Data, Widget Data, and intervals-->
     mounted() {
         this.initializeMissionData();
         this.initializeWidgetData();
         this.interval = setInterval(this.updateVehicleData, 1000);
     },
+    <!-- Initializes the missions data. Will return an error if data is invalid -->
     methods: {
         async initializeMissionData() {
             try {
@@ -112,6 +117,7 @@ export default defineComponent({
                 console.log(error);
             }
         },
+        <!-- Initializes the process for getting Widget Data -->
         async initializeWidgetData() {
             try {
                 const response = await getWidgetData(this.vehicleName);
@@ -120,6 +126,7 @@ export default defineComponent({
                 console.log(error);
             }
         },
+        <!-- Provides updates to the data. Will wait for a response. Will either give an erorr if failure, otherwise it will set the response -->
         async updateVehicleData() {
             try {
                 const response = await getVehicleData("ERU");
@@ -128,10 +135,12 @@ export default defineComponent({
                 console.log(error);
             }
         },
+        <!-- Sets the data of the widget -->
         setWidgetData(widgetType: string, value: any) {
             if (!this.widgetData) return
             this.widgetData[widgetType] = value
         },
+        <!-- Will set the widget to be whichever one was selected -->
         setWidgetSelected(widgetTypeSelected: string) {
             this.widgetTypeSelected = widgetTypeSelected;
         },
