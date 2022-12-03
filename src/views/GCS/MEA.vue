@@ -81,28 +81,28 @@ export default {
         };
     },
     computed: {
-        vehicleIcon() {
+        vehicleIcon() {                                     // If vehicleMissionData is null, return icon
             if (!this.vehicleMissionData) return null;
             return this.vehicleMissionData.icon;
         },
-        vehicleMissionData() {
+        vehicleMissionData() {                              // If missionData is null, return missionData for MEA in the missionData array
             if (!this.missionData) return null;
             return this.missionData[this.vehicleName];
         },
         yaw() {
-            if (!this.vehicleData) return null;
+            if (!this.vehicleData) return null;             // If vehicleData is null, return vehicleData for "yaw"
             return Math.round(this.vehicleData["yaw"]);
         },
     },
     mounted() {
         this.initializeMissionData();
         this.initializeWidgetData();
-        this.interval = setInterval(this.updateVehicleData, 1000);
+        this.interval = setInterval(this.updateVehicleData, 1000);      // Update the vehicledata every 1000 seconds
     },
     methods: {
         async initializeMissionData() {
             try {
-                const response = await getMissionData("all");
+                const response = await getMissionData("all");       //Retrieves all missionData
                 this.missionData = response;
             } catch (error) {
                 console.log(error);
@@ -110,7 +110,7 @@ export default {
         },
         async initializeWidgetData() {
             try {
-                const response = await getWidgetData(this.vehicleName);
+                const response = await getWidgetData(this.vehicleName);     //Retrieves WidgetData for the MEA
                 this.widgetData = response;
             } catch (error) {
                 console.log(error);
@@ -118,21 +118,21 @@ export default {
         },
         async updateVehicleData() {
             try {
-                const response = await getVehicleData("MEA");
+                const response = await getVehicleData("MEA");           // Gets the vehicleData for the MEA
                 this.vehicleData = response;
             } catch (error) {
                 console.log(error);
             }
         },
         setWidgetData(widgetType, value) {
-            this.$set(this.widgetData, widgetType, value);
+            this.$set(this.widgetData, widgetType, value);      // Sets the widgetData in the widgetType with the passed value
         },
         setWidgetSelected(widgetTypeSelected) {
-            this.widgetTypeSelected = widgetTypeSelected;
+            this.widgetTypeSelected = widgetTypeSelected;       // Sets the widget with the passed in widgetTypeSelected
         },
     },
     beforeDestroy() {
-        clearInterval(this.interval);
+        clearInterval(this.interval);       
     },
 };
 </script>
